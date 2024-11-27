@@ -12,3 +12,6 @@ I am a passionate software engineer and Product Engineer dedicated to building s
 - 🌱 I’m currently learning to build AI Companions, Go, Next14
 - 👯 I’m looking to collaborate on Cutting Edge Product 
 - 💬 Ask me about Webapps, Cross platform mobile development, Business Automation, Design System
+
+
+![Ashwani's GitHub stats](https://github-readme-stats.vercel.app/api?username=ashwaniarya&hide=contribs,prs)
