@@ -11,4 +11,4 @@ I am a passionate software engineer and Product Engineer dedicated to building s
 - 🔭 I’m currently working on AI Companions 
 - 🌱 I’m currently learning to build AI Companions, Go, Next14
 - 👯 I’m looking to collaborate on Cutting Edge Product 
-- 💬 Ask me about Webapps, Cross platform mobile development, Business Automatiob
+- 💬 Ask me about Webapps, Cross platform mobile development, Business Automation, Design System
