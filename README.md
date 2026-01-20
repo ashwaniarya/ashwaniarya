@@ -6,8 +6,8 @@
 Here are some ideas to get you started:
 .
 -->
-I am passionate about design, engineering, product and scale to bring the best experience possible and make the bussiness thrive.
-- 🔭 I’m currently working on building my portfolio.
-- 🌱 I’m currently learning to design and delope Copilots, Apps, New Interface and Dashboards.
-- 💬 Ask me about Webapps, Cross platform mobile development, Design System, UX and UI and interactions, State Management and backend.
+I am passionate about Full Stack, Design, Engineering, Product and scale to bring the best experience possible and make the bussiness thrive.
+- 🔭 I’m currently learning to building workflow B2B dashboard
+- 🌱 I’m currently learning to design and develope Copilots, Apps, New Interface and Dashboards.
+- 💬 Ask me about Webapps, Cross platform mobile development, Design System, UX and UI and interactions, State Management and Event Drivent Architecture.
 
