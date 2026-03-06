@@ -6,6 +6,6 @@
 Here are some ideas to get you started:
 .
 -->
-I am passionate about Product Engineer
+I am passionate about Product Engineer. Looking to build.
 
 ❤️ I also make micro tool, DX tools and some products as hobby.
