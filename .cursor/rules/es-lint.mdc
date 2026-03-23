@@ -1,0 +1,59 @@
+---
+alwaysApply: true
+---
+
+## Frontend Standard Rulebook 🎯🧩
+
+### Golden Path (SRP-first) 🧠➡️🧩
+- One component = one responsibility. Split early, not late.
+- One hook = one concern. No “do-everything” hooks.
+- One file = one main idea. Move helpers to `utils/` or `hooks/`.
+
+### Naming (easy to remember) 🏷️✨
+- Use clear names: `UserProfileCard`, `useThemePreference`, `formatReadableDate`.
+- No short names unless domain-standard (`id`, `url`).
+- Avoid “magic” names like `data`, `thing`, `stuff`.
+
+### Constants (centralize policies) 🧰📍
+- All timeouts, retries, sizes, limits, and durations live in `app/constants/policy.ts`.
+- Never hardcode policy values in components or hooks.
+
+### Configs (centralize config)
+- All the config should be added to directory `app/config/*`.
+
+### Type Safety & Props 🔒🧪
+- Prefer explicit types for public component props.
+- Keep props minimal; pass only what the component needs.
+- Avoid `any`. If unavoidable, add a TODO only when explicitly asked.
+
+### UI Structure (predictable layout) 🧭🧱
+- Keep layout-only logic in `app/components/layout/`.
+- Presentation components should be side-effect free.
+- No data fetching inside layout components.
+
+### State & Effects ⚙️🌊
+- Keep side effects in `useEffect` with clear dependencies.
+- Use derived state instead of duplicating data.
+- If state is shared across pages, lift to a dedicated provider.
+
+### CSS & Visual Consistency 🎨🧵
+- Prefer CSS variables for colors, spacing, and typography.
+- Keep class lists short; extract repeated styles to shared classes.
+
+### Error Handling & UX 🛡️🧑‍🚀
+- Always render a stable fallback UI for async or error states.
+- Log errors once with context, not on every render.
+
+### Testing & Accessibility ✅♿
+- Add `aria-*` where intent isn’t obvious.
+- Ensure keyboard focus styles are visible.
+- A unit test should be localise to same directory where code is written.
+
+### Visual Flow Map (SRP) 🗺️
+```
+Request -> Page -> Layout -> Feature Component -> UI Atoms
+              |        |              |
+              |        |              +-> Local state only
+              |        +-> No data fetch
+              +-> Data fetch (if needed)
+```
