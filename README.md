@@ -3,6 +3,17 @@
 
 ---
 
+### 🎯 Experience
+
+* 📱 **Cross-platform development:** Web, mobile, and desktop surfaces with shared patterns where they earn their keep.
+* 🧩 **Reusable component design:** Composable UI, predictable APIs, and design-system discipline.
+* 🔌 **API and contract development:** Stable boundaries, schemas, and typed clients between client and server.
+* ⚡ **Performance optimization:** Virtual scroll, lazy loading, asset tuning, and smooth cross-device behavior.
+* 📊 **Data-intensive frontends:** Heavy lists, live updates, and responsive UIs under real data load.
+* 🏛️ **Frontend architecture:** Layering, state boundaries, and structure that scales with teams and traffic.
+
+---
+
 ### 💻 Technical Stack
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)

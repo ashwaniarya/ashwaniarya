@@ -42,6 +42,16 @@ export const homepageTechnologyStackSectionPolicy = {
     "mt-0.5 h-4 w-4 shrink-0 text-textSecondary",
 } as const;
 
+/** Homepage experience focus areas: icon-led tiles in the projects grid rhythm. */
+export const homepageExperienceSectionPolicy = {
+  sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
+  focusAreaCardsListClassName:
+    "mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:mt-8 sm:gap-5 md:grid-cols-2",
+  focusAreaTileRowClassName: "flex gap-3 sm:gap-4",
+  focusAreaTileIconClassName: "mt-0.5 h-5 w-5 shrink-0 text-textSecondary",
+  focusAreaTileTextStackClassName: "min-w-0 space-y-1.5",
+} as const;
+
 /** Homepage contact: channel list under mesh shell (matches stack section rhythm). */
 export const homepageContactSectionPolicy = {
   sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
