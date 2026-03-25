@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 import { SiteFooter } from "@/app/components/layout/SiteFooter";
 import { SiteHeader } from "@/app/components/layout/SiteHeader";
 import { siteIdentityConfiguration } from "@/app/config/siteConfiguration";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const geistMono = Geist_Mono({
@@ -16,7 +17,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const canonicalSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
 export const metadata: Metadata = {
+  ...(canonicalSiteUrl
+    ? {
+        metadataBase: new URL(
+          canonicalSiteUrl.endsWith("/")
+            ? canonicalSiteUrl.slice(0, -1)
+            : canonicalSiteUrl,
+        ),
+      }
+    : {}),
   title: {
     default: siteIdentityConfiguration.siteName,
     template: `%s | ${siteIdentityConfiguration.siteName}`,
@@ -33,7 +45,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={[
-          geistSans.variable,
+          plusJakartaSans.variable,
           geistMono.variable,
           "antialiased",
           "min-h-dvh bg-backgroundPage text-textPrimary",

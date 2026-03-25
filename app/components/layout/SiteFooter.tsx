@@ -1,10 +1,11 @@
 import {
   footerConfiguration,
   layoutConfiguration,
-  siteIdentityConfiguration,
 } from "@/app/config/siteConfiguration";
 
 export function SiteFooter() {
+  const copyrightYear = new Date().getFullYear();
+
   return (
     <footer className="border-t border-black/10 bg-backgroundPage">
       <div
@@ -16,8 +17,8 @@ export function SiteFooter() {
         ].join(" ")}
       >
         <p>
-          © {new Date().getFullYear()} {siteIdentityConfiguration.ownerName}.{" "}
-          {footerConfiguration.footerTagline}
+          © {copyrightYear}{" "}
+          {footerConfiguration.footerCopyrightAttributionLine}
         </p>
       </div>
     </footer>

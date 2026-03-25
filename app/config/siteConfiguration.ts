@@ -13,7 +13,7 @@ export const siteIdentityConfiguration = {
 export const navigationConfiguration = {
   navigationLinks: [
     { label: "Home", href: "/" },
-    { label: "Example Work", href: "/work/example-case-study" },
+    { label: "Work", href: "/work/getbujo" },
     { label: "Design System", href: "/design-system" },
   ] satisfies ReadonlyArray<NavigationLink>,
 } as const;
@@ -21,7 +21,7 @@ export const navigationConfiguration = {
 export const layoutConfiguration = {
   maximumPageWidthClassName: "max-w-5xl",
   pageHorizontalPaddingClassName: "px-6 sm:px-8",
-  pageVerticalPaddingClassName: "py-10 sm:py-14",
+  pageVerticalPaddingClassName: "py-8 sm:py-10",
   headerVerticalPaddingClassName: "py-4",
   footerVerticalPaddingClassName: "py-6",
 } as const;
@@ -32,7 +32,9 @@ export const searchConfiguration = {
 } as const;
 
 export const footerConfiguration = {
-  footerTagline: "Built to stay simple, readable, and quick to navigate.",
+  /** Shown after the © year in `SiteFooter` (name + short descriptor). */
+  footerCopyrightAttributionLine:
+    "Ashwani Arya, a cracked engineer with high agency and autonomy.",
 } as const;
 
 export const siteConfiguration = {

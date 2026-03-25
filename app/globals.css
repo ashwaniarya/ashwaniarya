@@ -1,14 +1,24 @@
 @import "tailwindcss";
 
+/* Tailwind v4 does not apply tailwind.config.ts theme extensions unless the file is loaded here. */
+@config "../tailwind.config.ts";
+
 :root {
-  /* Color tokens */
+  /* Color tokens — core */
   --color-background-page: 255 255 255;
-  --color-text-primary: 23 23 23;
-  --color-text-secondary: 82 82 82;
-  --color-accent-primary: 37 99 235;
-  --color-accent-secondary: 59 130 246;
-  --color-border-default: 229 229 229;
-  --color-border-muted: 245 245 245;
+  --color-text-primary: 15 23 42;
+  --color-text-secondary: 71 85 105;
+  --color-accent-primary: 109 40 217;
+  --color-accent-secondary: 14 165 233;
+  --color-border-default: 226 232 240;
+  --color-border-muted: 241 245 249;
+
+  /* Surfaces & editorial accents (case study / layered UI) */
+  --color-surface-elevated: 255 255 255;
+  --color-surface-muted: 248 250 252;
+  --color-accent-highlight: 217 70 239;
+  --color-glow-violet: 139 92 246;
+  --color-glow-cyan: 6 182 212;
 
   /* Radius tokens */
   --radius-sm: 0.25rem;
@@ -20,35 +30,36 @@
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-case-study-elevated: 0 24px 48px -12px rgb(15 23 42 / 0.12),
+    0 12px 24px -8px rgb(109 40 217 / 0.08);
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-plus-jakarta-sans);
   --font-mono: var(--font-geist-mono);
-
-  /* Color utilities – reference :root for dark mode support */
-  --color-background-page: rgb(var(--color-background-page) / <alpha-value>);
-  --color-text-primary: rgb(var(--color-text-primary) / <alpha-value>);
-  --color-text-secondary: rgb(var(--color-text-secondary) / <alpha-value>);
-  --color-accent-primary: rgb(var(--color-accent-primary) / <alpha-value>);
-  --color-accent-secondary: rgb(var(--color-accent-secondary) / <alpha-value>);
-  --color-border-default: rgb(var(--color-border-default) / <alpha-value>);
-  --color-border-muted: rgb(var(--color-border-muted) / <alpha-value>);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background-page: 10 10 10;
-    --color-text-primary: 237 237 237;
-    --color-text-secondary: 163 163 163;
-    --color-accent-primary: 96 165 250;
-    --color-accent-secondary: 147 197 253;
-    --color-border-default: 38 38 38;
-    --color-border-muted: 23 23 23;
+    --color-background-page: 10 12 24;
+    --color-text-primary: 241 245 249;
+    --color-text-secondary: 148 163 184;
+    --color-accent-primary: 167 139 250;
+    --color-accent-secondary: 56 189 248;
+    --color-border-default: 51 65 85;
+    --color-border-muted: 30 41 59;
+
+    --color-surface-elevated: 22 27 44;
+    --color-surface-muted: 15 20 36;
+    --color-accent-highlight: 232 121 249;
+    --color-glow-violet: 167 139 250;
+    --color-glow-cyan: 34 211 238;
 
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --shadow-case-study-elevated: 0 24px 48px -12px rgb(0 0 0 / 0.45),
+      0 0 0 1px rgb(167 139 250 / 0.12);
   }
 }
 

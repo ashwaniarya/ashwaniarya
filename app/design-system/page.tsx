@@ -15,7 +15,7 @@ function ColorSwatch({
   tailwindClass,
 }: Readonly<{ name: string; variable: string; tailwindClass: string }>) {
   const isDarkToken =
-    name.includes("Text") || name.includes("Accent");
+    name.includes("Text") || name.includes("Accent") || name.includes("Glow");
   return (
     <div className="flex flex-col gap-2">
       <div

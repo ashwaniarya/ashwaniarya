@@ -36,6 +36,11 @@ export const designSystemColorTokens: ReadonlyArray<ColorToken> = [
   { name: "Accent Secondary", variable: "--color-accent-secondary", tailwindClass: "bg-accentSecondary" },
   { name: "Border Default", variable: "--color-border-default", tailwindClass: "bg-borderDefault" },
   { name: "Border Muted", variable: "--color-border-muted", tailwindClass: "bg-borderMuted" },
+  { name: "Surface Elevated", variable: "--color-surface-elevated", tailwindClass: "bg-surfaceElevated" },
+  { name: "Surface Muted", variable: "--color-surface-muted", tailwindClass: "bg-surfaceMuted" },
+  { name: "Accent Highlight", variable: "--color-accent-highlight", tailwindClass: "bg-accentHighlight" },
+  { name: "Glow Violet", variable: "--color-glow-violet", tailwindClass: "bg-glowViolet" },
+  { name: "Glow Cyan", variable: "--color-glow-cyan", tailwindClass: "bg-glowCyan" },
 ] as const;
 
 export const designSystemTypographyTokens: ReadonlyArray<TypographyToken> = [
@@ -72,6 +77,11 @@ export const designSystemShadowTokens: ReadonlyArray<ShadowToken> = [
   { name: "Small", variable: "--shadow-sm", tailwindClass: "shadow-sm" },
   { name: "Medium", variable: "--shadow-md", tailwindClass: "shadow-md" },
   { name: "Large", variable: "--shadow-lg", tailwindClass: "shadow-lg" },
+  {
+    name: "Case study elevated",
+    variable: "--shadow-case-study-elevated",
+    tailwindClass: "shadow-caseStudyElevated",
+  },
 ] as const;
 
 export const designSystemTokens = {
