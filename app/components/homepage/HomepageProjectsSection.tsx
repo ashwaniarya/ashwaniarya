@@ -2,8 +2,10 @@ import { CaseStudySummaryCard } from "@/app/components/homepage/CaseStudySummary
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import { homepageProjectsSectionCopyConfiguration } from "@/app/config/homepageConfiguration";
+import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import { getAllCaseStudies } from "@/app/config/portfolioCaseStudiesConfiguration";
 import {
+  homepageAnchoredSectionScrollMarginPolicy,
   homepageProjectsSectionPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
@@ -14,8 +16,12 @@ export function HomepageProjectsSection() {
 
   return (
     <section
+      id={homepageSectionAnchorConfiguration.projectsSectionDomId}
       aria-labelledby="homepage-projects-heading"
-      className={homepageProjectsSectionPolicy.sectionClassName}
+      className={[
+        homepageProjectsSectionPolicy.sectionClassName,
+        homepageAnchoredSectionScrollMarginPolicy.scrollMarginTopClassName,
+      ].join(" ")}
       data-test="homepage-projects-section"
     >
       <MeshGlowBackdrop

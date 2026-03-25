@@ -81,6 +81,31 @@ export const editorialGradientTitlePolicy = {
     "bg-gradient-to-r from-textPrimary via-accentPrimary to-accentSecondary bg-clip-text text-transparent",
 } as const;
 
+/** Primary nav in `SiteHeader`: touch-friendly targets; `NavigationLabel` owns type; anchor owns color + focus ring. */
+export const siteHeaderNavigationPolicy = {
+  navigationListClassName:
+    "flex w-full flex-wrap items-center justify-start gap-x-6 gap-y-2 sm:w-auto sm:justify-end sm:gap-x-8 sm:gap-y-0",
+  navigationLinkClassName:
+    "inline-flex min-h-11 items-center rounded-sm px-2 text-textPrimary/80 transition-colors hover:text-accentPrimary focus-visible:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:min-h-0 sm:px-1",
+} as const;
+
+/**
+ * Sticky top bar for `SiteHeader`.
+ * Keep vertical footprint aligned with `homepageAnchoredSectionScrollMarginPolicy` when changing padding or type scale.
+ */
+export const siteHeaderChromePolicy = {
+  headerShellClassName:
+    "sticky top-0 z-10 border-b border-black/10 bg-backgroundPage",
+  /** Stacks brand above nav on narrow viewports; single row from `sm`. */
+  headerInnerRowClassName:
+    "flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4",
+} as const;
+
+/** Homepage sections targeted by hash links — offset scroll so targets sit below the sticky header (taller when stacked on mobile). */
+export const homepageAnchoredSectionScrollMarginPolicy = {
+  scrollMarginTopClassName: "scroll-mt-28 sm:scroll-mt-16",
+} as const;
+
 /** Vertical rhythm inside long-form case study article wrapper. */
 export const caseStudyArticleShellPolicy = {
   contentStackClassName: "mx-auto max-w-prose space-y-8 sm:space-y-10",

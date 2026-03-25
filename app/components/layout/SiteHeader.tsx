@@ -1,5 +1,12 @@
 import Link from "next/link";
 
+import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
+import {
+  editorialGradientTitlePolicy,
+  siteHeaderChromePolicy,
+  siteHeaderNavigationPolicy,
+} from "@/app/constants/policy";
+import { NavigationLabel } from "@/design-system/tokens/Typography";
 import {
   layoutConfiguration,
   navigationConfiguration,
@@ -8,35 +15,39 @@ import {
 
 export function SiteHeader() {
   return (
-    <header className="border-b border-black/10 bg-backgroundPage">
+    <header className={siteHeaderChromePolicy.headerShellClassName}>
       <div
         className={[
-          "mx-auto flex w-full items-center justify-between",
+          "mx-auto w-full",
           layoutConfiguration.maximumPageWidthClassName,
           layoutConfiguration.pageHorizontalPaddingClassName,
           layoutConfiguration.headerVerticalPaddingClassName,
+          siteHeaderChromePolicy.headerInnerRowClassName,
         ].join(" ")}
       >
-        {/* <Link
-          href="/"
-          className="text-base font-semibold tracking-tight text-textPrimary"
+        <Link
+          href={`/#${homepageSectionAnchorConfiguration.homeSectionDomId}`}
+          className={[
+            "min-w-0 shrink-0 text-base font-semibold tracking-tight",
+            editorialGradientTitlePolicy.gradientTextClassName,
+          ].join(" ")}
         >
           {siteIdentityConfiguration.siteName}
         </Link>
-        <nav aria-label="Primary">
-          <ul className="flex items-center gap-4">
+        <nav aria-label="Primary" className="min-w-0 sm:shrink-0">
+          <ul className={siteHeaderNavigationPolicy.navigationListClassName}>
             {navigationConfiguration.navigationLinks.map((navigationLink) => (
               <li key={navigationLink.href}>
                 <Link
                   href={navigationLink.href}
-                  className="text-sm font-medium text-textPrimary/80 hover:text-accentPrimary"
+                  className={siteHeaderNavigationPolicy.navigationLinkClassName}
                 >
-                  {navigationLink.label}
+                  <NavigationLabel>{navigationLink.label}</NavigationLabel>
                 </Link>
               </li>
             ))}
           </ul>
-        </nav> */}
+        </nav>
       </div>
     </header>
   );

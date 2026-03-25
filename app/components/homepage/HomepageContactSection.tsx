@@ -5,7 +5,9 @@ import {
   homepageContactChannelsConfiguration,
   homepageContactSectionCopyConfiguration,
 } from "@/app/config/homepageContactConfiguration";
+import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import {
+  homepageAnchoredSectionScrollMarginPolicy,
   homepageContactSectionPolicy,
   homepageProjectsSectionPolicy,
   meshEditorialSurfacePolicy,
@@ -15,9 +17,12 @@ import { BodyText, Heading } from "@/design-system/tokens/Typography";
 export function HomepageContactSection() {
   return (
     <section
-      id="contact"
+      id={homepageSectionAnchorConfiguration.contactSectionDomId}
       aria-labelledby="homepage-contact-heading"
-      className={homepageContactSectionPolicy.sectionClassName}
+      className={[
+        homepageContactSectionPolicy.sectionClassName,
+        homepageAnchoredSectionScrollMarginPolicy.scrollMarginTopClassName,
+      ].join(" ")}
       data-test="homepage-contact-section"
     >
       <MeshGlowBackdrop

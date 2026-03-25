@@ -69,3 +69,19 @@ export function Label({ children, className = "" }: LabelProps) {
     </span>
   );
 }
+
+/** Primary site navigation labels inside anchors — color comes from the parent link. */
+export type NavigationLabelProps = Readonly<{
+  children: ReactNode;
+  className?: string;
+}>;
+
+export function NavigationLabel({ children, className = "" }: NavigationLabelProps) {
+  return (
+    <span
+      className={`text-sm font-semibold uppercase tracking-[0.12em] text-inherit ${className}`.trim()}
+    >
+      {children}
+    </span>
+  );
+}

@@ -6,8 +6,10 @@ import {
   homepageHeroCopyConfiguration,
   homepageHeroMediaConfiguration,
 } from "@/app/config/homepageConfiguration";
+import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import {
   editorialGradientTitlePolicy,
+  homepageAnchoredSectionScrollMarginPolicy,
   homepageHeroPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
@@ -15,7 +17,14 @@ import { BodyText, Heading } from "@/design-system/tokens/Typography";
 
 export function HeroSection() {
   return (
-    <section data-test="homepage-section" className={homepageHeroPolicy.heroSectionSpacingClassName}>
+    <section
+      id={homepageSectionAnchorConfiguration.homeSectionDomId}
+      data-test="homepage-section"
+      className={[
+        homepageHeroPolicy.heroSectionSpacingClassName,
+        homepageAnchoredSectionScrollMarginPolicy.scrollMarginTopClassName,
+      ].join(" ")}
+    >
       <MeshGlowBackdrop
         className={[
           meshEditorialSurfacePolicy.shellBaseClassName,

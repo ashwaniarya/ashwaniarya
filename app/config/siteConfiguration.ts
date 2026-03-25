@@ -1,20 +1,28 @@
+import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
+
 export type NavigationLink = Readonly<{
   label: string;
   href: string;
 }>;
 
+const primaryHomepageNavigationHref = {
+  home: `/#${homepageSectionAnchorConfiguration.homeSectionDomId}`,
+  projects: `/#${homepageSectionAnchorConfiguration.projectsSectionDomId}`,
+  contact: `/#${homepageSectionAnchorConfiguration.contactSectionDomId}`,
+} as const;
+
 export const siteIdentityConfiguration = {
-  siteName: "Arya – Personal Website",
+  siteName: "Ashwani Arya",
   siteDescription:
     "A small, fast personal site with selected work, product experiments, and engineering notes.",
-  ownerName: "Arya",
+  ownerName: "Ashwani Arya",
 } as const;
 
 export const navigationConfiguration = {
   navigationLinks: [
-    { label: "Home", href: "/" },
-    { label: "Work", href: "/work/getbujo" },
-    { label: "Design System", href: "/design-system" },
+    { label: "Home", href: primaryHomepageNavigationHref.home },
+    { label: "Projects", href: primaryHomepageNavigationHref.projects },
+    { label: "Contact", href: primaryHomepageNavigationHref.contact },
   ] satisfies ReadonlyArray<NavigationLink>,
 } as const;
 
@@ -34,7 +42,7 @@ export const searchConfiguration = {
 export const footerConfiguration = {
   /** Shown after the © year in `SiteFooter` (name + short descriptor). */
   footerCopyrightAttributionLine:
-    "Ashwani Arya, a cracked engineer with high agency and autonomy.",
+    "Ashwani Arya, a project engineer with high agency and commitment.",
 } as const;
 
 export const siteConfiguration = {
