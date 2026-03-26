@@ -9,7 +9,7 @@ export const homepageHeroPolicy = {
   heroTextWrapperClassName: "mx-auto w-full max-w-2xl",
   /** Frosted panel so copy stays legible over mesh glow orbs. */
   heroTextContrastPanelClassName:
-    "rounded-xl bg-surfaceElevated/95 px-5 py-4 shadow-sm ring-1 ring-borderDefault/70 backdrop-blur-sm sm:px-6 sm:py-5",
+    "rounded-xl bg-surfaceElevated/95 px-4 py-3 shadow-sm ring-1 ring-borderDefault/70 backdrop-blur-sm narrowPhoneUp:px-5 narrowPhoneUp:py-4 sm:px-6 sm:py-5",
 } as const;
 
 export const projectSectionPolicy = {
@@ -70,9 +70,12 @@ export const meshEditorialSurfacePolicy = {
   homepageMeshShellShadowClassName: "shadow-sm",
   /** Work: deeper lift for long-form reading depth. */
   caseStudyMeshShellShadowClassName: "shadow-caseStudyElevated",
-  caseStudyPaddingClassName: "px-4 py-8 sm:px-8 sm:py-11",
-  homepageHeroPaddingClassName: "px-4 py-6 sm:px-8 sm:py-8",
-  homepageProjectsPaddingClassName: "px-4 py-8 sm:px-8 sm:py-10",
+  caseStudyPaddingClassName:
+    "px-2 py-2 narrowPhoneUp:px-4 narrowPhoneUp:py-4 sm:px-8 sm:py-11",
+  homepageHeroPaddingClassName:
+    "px-2 py-5 narrowPhoneUp:px-4 narrowPhoneUp:py-6 sm:px-8 sm:py-8",
+  homepageProjectsPaddingClassName:
+    "px-2 py-6 narrowPhoneUp:px-4 narrowPhoneUp:py-8 sm:px-8 sm:py-10",
 } as const;
 
 /** Primary display titles (hero name, case study document title) — clip gradient to glyphs. */
@@ -84,7 +87,7 @@ export const editorialGradientTitlePolicy = {
 /** Primary nav in `SiteHeader`: touch-friendly targets; `NavigationLabel` owns type; anchor owns color + focus ring. */
 export const siteHeaderNavigationPolicy = {
   navigationListClassName:
-    "flex w-full flex-wrap items-center justify-start gap-x-6 gap-y-2 sm:w-auto sm:justify-end sm:gap-x-8 sm:gap-y-0",
+    "flex w-full flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:w-auto sm:justify-end sm:gap-x-8 sm:gap-y-0",
   navigationLinkClassName:
     "inline-flex min-h-11 items-center rounded-sm px-2 text-textPrimary/80 transition-colors hover:text-accentPrimary focus-visible:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:min-h-0 sm:px-1",
 } as const;
@@ -96,14 +99,14 @@ export const siteHeaderNavigationPolicy = {
 export const siteHeaderChromePolicy = {
   headerShellClassName:
     "sticky top-0 z-10 border-b border-black/10 bg-backgroundPage",
-  /** Stacks brand above nav on narrow viewports; single row from `sm`. */
+  /** Stacked brand then nav; centered band below `sm`, spaced column from `sm`. */
   headerInnerRowClassName:
-    "flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4",
+    "flex w-full flex-col items-center gap-1 sm:items-center sm:justify-between sm:gap-4",
 } as const;
 
-/** Homepage sections targeted by hash links — offset scroll so targets sit below the sticky header (taller when stacked on mobile). */
+/** Homepage sections targeted by hash links — offset scroll so targets sit below the sticky header. */
 export const homepageAnchoredSectionScrollMarginPolicy = {
-  scrollMarginTopClassName: "scroll-mt-28 sm:scroll-mt-16",
+  scrollMarginTopClassName: "scroll-mt-24 sm:scroll-mt-16",
 } as const;
 
 /** Vertical rhythm inside long-form case study article wrapper. */
@@ -114,7 +117,7 @@ export const caseStudyArticleShellPolicy = {
 /** Product chapter cards: gradient accent rail matches editorial marks + title gradient stops. */
 export const caseStudyProductChapterPolicy = {
   shellFlexClassName:
-    "flex gap-4 rounded-xl border border-borderDefault/80 bg-surfaceElevated p-6 shadow-md sm:gap-5",
+    "flex gap-3 rounded-xl border border-borderDefault/80 bg-surfaceElevated p-4 shadow-md narrowPhoneUp:gap-4 narrowPhoneUp:p-5 sm:gap-5 sm:p-6",
   accentGradientRailClassName:
     "w-1 shrink-0 self-stretch rounded-full bg-gradient-to-b from-accentPrimary/80 via-accentHighlight/90 to-accentSecondary/80",
 } as const;

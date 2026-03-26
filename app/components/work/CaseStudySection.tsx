@@ -18,7 +18,7 @@ export function CaseStudySection({ title, titleId, children }: CaseStudySectionP
           {title}
         </Heading>
       </div>
-      <div className="space-y-3 pl-3 sm:pl-4">{children}</div>
+      <div className="space-y-3 narrowPhoneUp:pl-0 sm:pl-2">{children}</div>
     </section>
   );
 }

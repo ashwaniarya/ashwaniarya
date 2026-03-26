@@ -7,6 +7,8 @@ describe("NavigationLabel", () => {
   it("emits nav label classes including uppercase and text-inherit", () => {
     const html = renderToStaticMarkup(<NavigationLabel>Home</NavigationLabel>);
     expect(html).toContain("uppercase");
+    expect(html).toContain("text-xs");
+    expect(html).toContain("sm:text-sm");
     expect(html).toContain("text-inherit");
     expect(html).toContain("tracking-[0.12em]");
     expect(html).toContain("Home");

@@ -1,5 +1,11 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * Must equal `narrowPhoneMinWidthPx` in ./app/config/layoutViewportBreakpoints.ts (PostCSS cannot
+ * reliably import that module from this config).
+ */
+const narrowPhoneUpScreenMinWidthPx = 420;
+
 const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,6 +13,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        narrowPhoneUp: `${narrowPhoneUpScreenMinWidthPx}px`,
+      },
       colors: {
         backgroundPage: "rgb(var(--color-background-page) / <alpha-value>)",
         textPrimary: "rgb(var(--color-text-primary) / <alpha-value>)",

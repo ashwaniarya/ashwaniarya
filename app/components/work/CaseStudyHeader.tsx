@@ -19,7 +19,7 @@ export function CaseStudyHeader({ caseStudy }: CaseStudyHeaderProps) {
   ].filter(Boolean);
 
   return (
-    <header className="space-y-4 rounded-xl border border-borderDefault/80 bg-surfaceElevated/95 p-6 shadow-md backdrop-blur-sm sm:p-8">
+    <header className="space-y-4 rounded-xl border border-borderDefault/80 bg-surfaceElevated/95 p-4 shadow-md backdrop-blur-sm narrowPhoneUp:p-6 sm:p-8">
       <EditorialAccentMark variant="horizontalTitle" />
       <Heading
         level="h1"

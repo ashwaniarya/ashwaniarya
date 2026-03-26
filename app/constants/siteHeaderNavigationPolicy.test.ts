@@ -3,8 +3,8 @@ import { describe, expect, it } from "vitest";
 import { siteHeaderNavigationPolicy } from "@/app/constants/policy";
 
 describe("siteHeaderNavigationPolicy", () => {
-  it("uses wider horizontal gaps between nav links than the previous gap-4 default", () => {
-    expect(siteHeaderNavigationPolicy.navigationListClassName).toContain("gap-x-6");
+  it("uses tighter horizontal gaps below sm and wider gaps from sm", () => {
+    expect(siteHeaderNavigationPolicy.navigationListClassName).toContain("gap-x-3");
     expect(siteHeaderNavigationPolicy.navigationListClassName).toContain("sm:gap-x-8");
   });
 

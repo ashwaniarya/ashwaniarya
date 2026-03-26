@@ -28,7 +28,7 @@ export function SiteHeader() {
         <Link
           href={`/#${homepageSectionAnchorConfiguration.homeSectionDomId}`}
           className={[
-            "min-w-0 shrink-0 text-base font-semibold tracking-tight",
+            "min-w-0 shrink-0 text-sm font-semibold tracking-tight sm:text-base",
             editorialGradientTitlePolicy.gradientTextClassName,
           ].join(" ")}
         >

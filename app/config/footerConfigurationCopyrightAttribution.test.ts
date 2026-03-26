@@ -5,7 +5,7 @@ import { footerConfiguration } from "@/app/config/siteConfiguration";
 describe("footerConfiguration copyright attribution", () => {
   it("keeps the public footer attribution line stable for branding and legal clarity", () => {
     expect(footerConfiguration.footerCopyrightAttributionLine).toBe(
-      "Ashwani Arya, a project engineer with high agency and commitment.",
+      "Ashwani Arya, a product engineer with high agency and commitment.",
     );
   });
 });

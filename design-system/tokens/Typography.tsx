@@ -79,7 +79,7 @@ export type NavigationLabelProps = Readonly<{
 export function NavigationLabel({ children, className = "" }: NavigationLabelProps) {
   return (
     <span
-      className={`text-sm font-semibold uppercase tracking-[0.12em] text-inherit ${className}`.trim()}
+      className={`text-xs font-semibold uppercase tracking-[0.12em] text-inherit sm:text-sm ${className}`.trim()}
     >
       {children}
     </span>

@@ -26,11 +26,16 @@ export const navigationConfiguration = {
   ] satisfies ReadonlyArray<NavigationLink>,
 } as const;
 
+/**
+ * Page shell padding (with `meshEditorialSurfacePolicy`): per-side sum ≈ 24px / 36px / 64px
+ * below narrowPhoneMinWidth / 420–639px / sm+ so ultra-narrow phones are not double-guttered by main+mesh.
+ */
 export const layoutConfiguration = {
   maximumPageWidthClassName: "max-w-5xl",
-  pageHorizontalPaddingClassName: "px-6 sm:px-8",
-  pageVerticalPaddingClassName: "py-8 sm:py-10",
-  headerVerticalPaddingClassName: "py-4",
+  pageHorizontalPaddingClassName: "px-2 narrowPhoneUp:px-5 sm:px-8",
+  pageVerticalPaddingClassName: "py-6 narrowPhoneUp:py-8 sm:py-10",
+  /** Tighter vertical padding below `sm` so the sticky bar wastes less viewport. */
+  headerVerticalPaddingClassName: "py-2 sm:py-4",
   footerVerticalPaddingClassName: "py-6",
 } as const;
 
@@ -42,7 +47,7 @@ export const searchConfiguration = {
 export const footerConfiguration = {
   /** Shown after the © year in `SiteFooter` (name + short descriptor). */
   footerCopyrightAttributionLine:
-    "Ashwani Arya, a project engineer with high agency and commitment.",
+    "Ashwani Arya, a product engineer with high agency and commitment.",
 } as const;
 
 export const siteConfiguration = {
