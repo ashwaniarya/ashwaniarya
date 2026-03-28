@@ -29,9 +29,8 @@ export const homepageTechnologyStackCategoriesConfiguration = [
       "Vanilla JS",
       "Web APIs",
       "Material UI",
-      "Bootstrap",
-      "NativeBase",
-      "react-native-paper",
+      "Tailwind CSS",
+      "Shadcn UI",
     ],
   },
   {
