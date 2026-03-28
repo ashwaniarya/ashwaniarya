@@ -6,6 +6,7 @@ import {
   TbDevices,
   TbGauge,
   TbPuzzle,
+  TbServer,
   TbStack2,
 } from "react-icons/tb";
 
@@ -15,6 +16,7 @@ const experienceFocusAreaIconByKey: Readonly<Record<ExperienceFocusAreaKey, Icon
   crossPlatformDevelopment: TbDevices,
   reusableComponentDesign: TbPuzzle,
   apiAndContractDevelopment: SiOpenapiinitiative,
+  backendDevelopment: TbServer,
   performanceOptimization: TbGauge,
   dataIntensiveFrontend: TbChartHistogram,
   frontendArchitecture: TbStack2,

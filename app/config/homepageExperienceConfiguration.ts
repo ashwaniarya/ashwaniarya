@@ -2,6 +2,7 @@ export type ExperienceFocusAreaKey =
   | "crossPlatformDevelopment"
   | "reusableComponentDesign"
   | "apiAndContractDevelopment"
+  | "backendDevelopment"
   | "performanceOptimization"
   | "dataIntensiveFrontend"
   | "frontendArchitecture";
@@ -15,7 +16,7 @@ export type ExperienceFocusAreaRecord = Readonly<{
 export const homepageExperienceSectionCopyConfiguration = {
   sectionHeading: "Experience",
   sectionIntroLines: [
-    "Where I spend depth: shipping interfaces that scale across platforms, contracts, data volume, and performance budgets.",
+    "Where I spend depth: shipping interfaces and backend systems that scale across platforms, contracts, data volume, and performance budgets.",
   ],
 } as const;
 
@@ -37,6 +38,12 @@ export const homepageExperienceFocusAreasConfiguration = [
     titleLine: "API and contract development",
     detailLine:
       "Stable HTTP boundaries, schema-first thinking, and client typings so frontend and backend evolve without silent breakage.",
+  },
+  {
+    focusAreaKey: "backendDevelopment",
+    titleLine: "Backend development",
+    detailLine:
+      "Node.js services; normalized and denormalized database layers; data modeling across NoSQL and PostgreSQL; and payment systems built for reliability under real-world failure modes.",
   },
   {
     focusAreaKey: "performanceOptimization",
