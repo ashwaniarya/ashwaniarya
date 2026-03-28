@@ -1,8 +1,9 @@
 export const homepageHeroCopyConfiguration = {
   headline: "Ashwani Arya",
   descriptionLines: [
-    "A frontend focused full stack developer with a passion for building user-friendly and efficient web applications.",
+    "A full stack developer with a passion for web applications.",
     "I love to build products that help people and businesses grow.",
+    "I have experience in building web application from scratch to production."
   ],
 } as const;
 
