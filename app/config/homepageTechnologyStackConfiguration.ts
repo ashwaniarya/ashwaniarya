@@ -5,6 +5,10 @@ export type TechnologyStackCategoryRecord = Readonly<{
 
 export const homepageTechnologyStackCategoriesConfiguration = [
   {
+    categoryTitle: "Systems",
+    itemLabels: ["Payment Systems","BFF (Backend for Frontend)", "Investment Management System", "Design Systems", "RESTful APIs"],
+  },
+  {
     categoryTitle: "Programming Languages",
     itemLabels: ["JavaScript", "TypeScript", "Java"],
   },
@@ -66,10 +70,7 @@ export const homepageTechnologyStackCategoriesConfiguration = [
       "Socket.io",
     ],
   },
-  {
-    categoryTitle: "Others",
-    itemLabels: ["Design Systems", "RESTful APIs"],
-  },
+
   {
     categoryTitle: "CI/CD",
     itemLabels: ["GitHub Actions", "Vercel Deployment"],
