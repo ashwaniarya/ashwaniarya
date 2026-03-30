@@ -117,9 +117,41 @@ export const caseStudyArticleShellPolicy = {
 /** Product chapter cards: gradient accent rail matches editorial marks + title gradient stops. */
 export const caseStudyProductChapterPolicy = {
   shellFlexClassName:
-    "flex gap-3 rounded-xl border border-borderDefault/80 bg-surfaceElevated p-4 shadow-md narrowPhoneUp:gap-4 narrowPhoneUp:p-5 sm:gap-5 sm:p-6",
+    "flex gap-2 rounded-xl border border-borderDefault/80 bg-surfaceElevated p-3 shadow-md narrowPhoneUp:gap-3 narrowPhoneUp:p-4 sm:gap-4 sm:p-5",
   accentGradientRailClassName:
     "w-1 shrink-0 self-stretch rounded-full bg-gradient-to-b from-accentPrimary/80 via-accentHighlight/90 to-accentSecondary/80",
+  /** Heading row: title + segment chip; bottom padding before first ruled block. */
+  chapterTitleRowClassName:
+    "flex flex-col gap-2 pb-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3",
+  /** Link / illustration / impact blocks that sit below a horizontal rule. */
+  productChapterBorderedSectionTopClassName:
+    "border-t border-borderDefault pt-4",
+  /** Primary external link + optional `availabilityCaption` stack under the chapter title. */
+  productPageLinkAvailabilityStackClassName: "space-y-2",
+  /** Body + impact bullets when a rule sits above (no Impact KPI strip, or flush spacing handled separately). */
+  productChapterBodyStackWhenTopRuleClassName:
+    "space-y-2 border-t border-borderDefault pt-5",
+  /** Body after Impact KPI strip: no extra rule; tighter top padding. */
+  productChapterBodyStackWhenAfterImpactClassName: "space-y-2 pt-4",
+  /** Skills block at chapter foot. */
+  productChapterSkillsSectionClassName: "border-t border-borderDefault pt-5",
+  /** Inset KPI strip inside a chapter (lighter than wrapping in a second Card). */
+  impactSnapshotPanelClassName:
+    "rounded-lg border border-borderDefault/60 bg-surfaceMuted/40 px-3 py-3 narrowPhoneUp:px-4",
+  impactSnapshotHeadingClassName:
+    "font-semibold uppercase tracking-wide text-accentPrimary",
+  impactSnapshotMetricsGridClassName:
+    "mt-2 grid grid-cols-1 gap-3 sm:mt-3 sm:grid-cols-3 sm:gap-4",
+  impactSnapshotMetricCellClassName: "min-w-0 space-y-1",
+  impactSnapshotMetricLabelClassName: "text-textSecondary",
+  impactSnapshotMetricValueClassName: "text-textPrimary",
+  /** Full-width figure inside prose column; matches chapter card chrome. */
+  chapterIllustrationFigureClassName:
+    "mt-4 overflow-hidden rounded-lg border border-borderDefault/70 bg-surfaceMuted/30 shadow-sm",
+  chapterIllustrationImageClassName:
+    "h-auto w-full object-cover object-top",
+  /** Responsive hint for chapter screenshots (max ~65ch prose width). */
+  chapterIllustrationImageSizes: "(max-width: 640px) 100vw, 42rem",
 } as const;
 
 /** Mesh orb strengths — lower = less color bleed through typography. */

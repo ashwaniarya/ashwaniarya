@@ -36,7 +36,7 @@ export function CaseStudyHeader({ caseStudy }: CaseStudyHeaderProps) {
         {caseStudy.companySiteUrl ? (
           <div>
             <ExternalTextLink href={caseStudy.companySiteUrl} isExternal>
-              {caseStudy.company} website
+              {caseStudy.company}
             </ExternalTextLink>
           </div>
         ) : null}

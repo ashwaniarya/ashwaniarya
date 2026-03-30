@@ -5,6 +5,11 @@ import { caseStudyProductChapterPolicy } from "@/app/constants/policy";
 import { BodyText, Caption, Heading } from "@/design-system/tokens/Typography";
 
 import { ExternalTextLink } from "./ExternalTextLink";
+import { CaseStudyProductChapterIllustration } from "./CaseStudyProductChapterIllustration";
+import {
+  CaseStudyProductImpactSnapshot,
+  productImpactSnapshotHasRenderableContent,
+} from "./CaseStudyProductImpactSnapshot";
 
 export type CaseStudyProductChapterProps = Readonly<{
   chapter: CaseStudyProductChapterConfiguration;
@@ -13,6 +18,15 @@ export type CaseStudyProductChapterProps = Readonly<{
 export function CaseStudyProductChapter({
   chapter,
 }: CaseStudyProductChapterProps) {
+  const productImpactSnapshotConfiguration = chapter.productImpactSnapshot;
+  const chapterShowsProductImpactSnapshot =
+    productImpactSnapshotConfiguration !== undefined &&
+    productImpactSnapshotHasRenderableContent(productImpactSnapshotConfiguration);
+
+  const productChapterBodyStackClassName = chapterShowsProductImpactSnapshot
+    ? caseStudyProductChapterPolicy.productChapterBodyStackWhenAfterImpactClassName
+    : caseStudyProductChapterPolicy.productChapterBodyStackWhenTopRuleClassName;
+
   return (
     <div className={caseStudyProductChapterPolicy.shellFlexClassName}>
       <div
@@ -20,7 +34,7 @@ export function CaseStudyProductChapter({
         className={caseStudyProductChapterPolicy.accentGradientRailClassName}
       />
       <div className="min-w-0 flex-1">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 pb-5">
+        <div className={caseStudyProductChapterPolicy.chapterTitleRowClassName}>
           <Heading level="h3">{chapter.heading}</Heading>
           <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-accentHighlight/40 bg-surfaceMuted px-3 py-1">
             <span
@@ -33,12 +47,25 @@ export function CaseStudyProductChapter({
           </span>
         </div>
 
-        <div className="border-t border-borderDefault pt-5">
+        <div className={caseStudyProductChapterPolicy.productChapterBorderedSectionTopClassName}>
           {chapter.productPageLink ? (
-            <div>
-              <ExternalTextLink href={chapter.productPageLink.url} isExternal>
-                {chapter.productPageLink.label}
-              </ExternalTextLink>
+            <div
+              className={
+                chapter.availabilityCaption
+                  ? caseStudyProductChapterPolicy.productPageLinkAvailabilityStackClassName
+                  : undefined
+              }
+            >
+              <div>
+                <ExternalTextLink href={chapter.productPageLink.url} isExternal>
+                  {chapter.productPageLink.label}
+                </ExternalTextLink>
+              </div>
+              {chapter.availabilityCaption ? (
+                <Caption className="max-w-prose text-textSecondary">
+                  {chapter.availabilityCaption}
+                </Caption>
+              ) : null}
             </div>
           ) : (
             <Caption className="max-w-prose text-textSecondary">
@@ -48,7 +75,23 @@ export function CaseStudyProductChapter({
           )}
         </div>
 
-        <div className="space-y-3 border-t border-borderDefault pt-6">
+        {chapter.chapterIllustration ? (
+          <div className={caseStudyProductChapterPolicy.productChapterBorderedSectionTopClassName}>
+            <CaseStudyProductChapterIllustration
+              illustration={chapter.chapterIllustration}
+            />
+          </div>
+        ) : null}
+
+        {chapterShowsProductImpactSnapshot && productImpactSnapshotConfiguration ? (
+          <div className={caseStudyProductChapterPolicy.productChapterBorderedSectionTopClassName}>
+            <CaseStudyProductImpactSnapshot
+              snapshot={productImpactSnapshotConfiguration}
+            />
+          </div>
+        ) : null}
+
+        <div className={productChapterBodyStackClassName}>
           {chapter.bodyParagraphs.map((paragraph, index) => (
             <BodyText
               key={`${chapter.heading}-body-${index}`}
@@ -67,7 +110,7 @@ export function CaseStudyProductChapter({
         </div>
 
         {chapter.skills.length > 0 ? (
-          <div className="border-t border-borderDefault pt-6">
+          <div className={caseStudyProductChapterPolicy.productChapterSkillsSectionClassName}>
             <Caption className="font-semibold text-textPrimary">Skills</Caption>
             <p className="mt-3 text-sm leading-6 text-textPrimary">
               {chapter.skills.map((skill, index) => (

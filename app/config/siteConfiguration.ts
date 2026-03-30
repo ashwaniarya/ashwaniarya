@@ -47,7 +47,7 @@ export const searchConfiguration = {
 export const footerConfiguration = {
   /** Shown after the © year in `SiteFooter` (name + short descriptor). */
   footerCopyrightAttributionLine:
-    "Ashwani Arya, a product engineer with high agency and commitment.",
+    "Ashwani Arya, a product engineer focused on shipping clear, reliable, and useful experiences end-to-end.",
 } as const;
 
 export const siteConfiguration = {
