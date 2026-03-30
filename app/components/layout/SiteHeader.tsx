@@ -34,10 +34,17 @@ export function SiteHeader() {
         >
           {siteIdentityConfiguration.siteName}
         </Link>
-        <nav aria-label="Primary" className="min-w-0 sm:shrink-0">
+        <nav aria-label="Primary" className="min-w-0 w-full sm:shrink-0">
           <ul className={siteHeaderNavigationPolicy.navigationListClassName}>
-            {navigationConfiguration.navigationLinks.map((navigationLink) => (
-              <li key={navigationLink.href}>
+            {navigationConfiguration.navigationLinks.map((navigationLink, navigationLinkIndex) => (
+              <li
+                key={navigationLink.href}
+                className={
+                  siteHeaderNavigationPolicy.navigationListItemSlotClassNames[
+                    navigationLinkIndex
+                  ] ?? ""
+                }
+              >
                 <Link
                   href={navigationLink.href}
                   className={siteHeaderNavigationPolicy.navigationLinkClassName}

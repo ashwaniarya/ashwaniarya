@@ -95,8 +95,17 @@ export const editorialGradientTitlePolicy = {
 
 /** Primary nav in `SiteHeader`: touch-friendly targets; `NavigationLabel` owns type; anchor owns color + focus ring. */
 export const siteHeaderNavigationPolicy = {
+  /**
+   * Narrow: centered cluster. `sm+`: 1fr | auto | 1fr grid so Projects stays on the row midline with symmetric wings.
+   */
   navigationListClassName:
-    "flex w-full flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:w-auto sm:justify-end sm:gap-x-8 sm:gap-y-0",
+    "flex w-full flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:grid sm:w-full sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-x-8 sm:gap-y-0",
+  /** Grid cell alignment for Home | Projects | Contact (indexes match `navigationConfiguration.navigationLinks` order). */
+  navigationListItemSlotClassNames: [
+    "sm:justify-self-end",
+    "sm:justify-self-center",
+    "sm:justify-self-start",
+  ] as const,
   navigationLinkClassName:
     "inline-flex min-h-11 items-center rounded-sm px-2 text-textPrimary/80 transition-colors hover:text-accentPrimary focus-visible:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:min-h-0 sm:px-1",
 } as const;
