@@ -1,9 +1,9 @@
 export const homepageHeroCopyConfiguration = {
   headline: "Ashwani Arya",
   descriptionLines: [
-    "A full stack developer with a passion for web applications.",
-    "I love to build products that help people and businesses grow.",
-    "I have experience in building web application from scratch to production."
+    "A Full Stack Product Engineer/Builder with a passion for shipping useful, performant, reliable, and fast experiences end-to-end.",
+    "I have experience in building products from scratch to production.",
+    "I have many tools in my toolbox to build products and ship them fast."
   ],
 } as const;
 
@@ -23,7 +23,8 @@ export const homepageTechnologyStackSectionCopyConfiguration = {
 
 export const homepageHeroMediaConfiguration = {
   profileImage: {
-    src: "/images/hero-profile.svg",
+    pngSrc: "/images/homepage-profile.png",
+    webpSrc: "/images/homepage-profile.webp",
     alt: "Arya profile portrait",
   },
 } as const;

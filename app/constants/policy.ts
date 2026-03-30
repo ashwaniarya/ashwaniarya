@@ -3,6 +3,15 @@ export const homepageHeroPolicy = {
   heroImageWrapperClassName:
     "mx-auto flex h-[176px] w-[176px] items-center justify-center rounded-full border border-borderDefault bg-backgroundPage/80 shadow-sm",
   heroImageSizePx: 160,
+  /** Outer hero portrait frame (tailwind `h/w-[176px]`); used for `sizes` on raster profile images. */
+  heroProfilePictureFrameOuterEdgePx: 176,
+  /**
+   * Square edge length for exported homepage profile PNG/WebP (2× visible slot for retina).
+   * Keep in sync with `HOMEPAGE_PROFILE_SOURCE_EDGE_PX` in `scripts/optimize-homepage-profile.mjs`.
+   */
+  heroProfileRasterSourceEdgePx: 352,
+  heroProfileImageSizes: "176px",
+  heroProfileRasterImageClassName: "rounded-full object-cover",
   heroTitleStackClassName: "flex flex-col items-center gap-3 sm:gap-4",
   heroTextStackSpacingClassName: "space-y-2 sm:space-y-3",
   heroTextAlignmentClassName: "text-center",

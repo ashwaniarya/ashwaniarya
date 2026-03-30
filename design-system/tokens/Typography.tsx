@@ -41,7 +41,7 @@ export type BodyTextProps = Readonly<{
 
 export function BodyText({ size = "base", children, className = "" }: BodyTextProps) {
   const classes = bodySizeClasses[size];
-  return <p className={`${classes} ${className}`.trim()}>{children}</p>;
+  return <div className={`${classes} ${className}`.trim()}>{children}</div>;
 }
 
 export type CaptionProps = Readonly<{

@@ -1,11 +1,7 @@
-import Image from "next/image";
-
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
-import {
-  homepageHeroCopyConfiguration,
-  homepageHeroMediaConfiguration,
-} from "@/app/config/homepageConfiguration";
+import { HomepageHeroProfileImage } from "@/app/components/homepage/HomepageHeroProfileImage";
+import { homepageHeroCopyConfiguration } from "@/app/config/homepageConfiguration";
 import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import {
   editorialGradientTitlePolicy,
@@ -33,13 +29,7 @@ export function HeroSection() {
         ].join(" ")}
       >
         <div className={homepageHeroPolicy.heroImageWrapperClassName}>
-          <Image
-            src={homepageHeroMediaConfiguration.profileImage.src}
-            alt={homepageHeroMediaConfiguration.profileImage.alt}
-            width={homepageHeroPolicy.heroImageSizePx}
-            height={homepageHeroPolicy.heroImageSizePx}
-            priority
-          />
+          <HomepageHeroProfileImage />
         </div>
         <div className={homepageHeroPolicy.heroTitleStackClassName}>
           <EditorialAccentMark variant="horizontalTitle" />
