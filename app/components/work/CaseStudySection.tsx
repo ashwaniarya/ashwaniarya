@@ -11,8 +11,8 @@ export type CaseStudySectionProps = Readonly<{
 
 export function CaseStudySection({ title, titleId, children }: CaseStudySectionProps) {
   return (
-    <section className="space-y-4">
-      <div className="flex items-start gap-3">
+    <section className="space-y-4 mb-6">
+      <div className="flex items-start gap-3 prose-rhythm">
         <EditorialAccentMark variant="verticalSection" />
         <Heading level="h2" id={titleId} className="text-balance">
           {title}

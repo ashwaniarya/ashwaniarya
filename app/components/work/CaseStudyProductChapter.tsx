@@ -47,7 +47,7 @@ export function CaseStudyProductChapter({
           </span>
         </div>
 
-        <div className={caseStudyProductChapterPolicy.productChapterBorderedSectionTopClassName}>
+        <div className={caseStudyProductChapterPolicy.productChapterBorderedSectionTopCPlassName}>
           {chapter.productPageLink ? (
             <div
               className={
@@ -76,7 +76,7 @@ export function CaseStudyProductChapter({
         </div>
 
         {chapter.chapterIllustration ? (
-          <div className={caseStudyProductChapterPolicy.productChapterBorderedSectionTopClassName}>
+          <div className={caseStudyProductChapterPolicy.productChapterBorderedSectionTopCPlassName}>
             <CaseStudyProductChapterIllustration
               illustration={chapter.chapterIllustration}
             />
@@ -84,7 +84,7 @@ export function CaseStudyProductChapter({
         ) : null}
 
         {chapterShowsProductImpactSnapshot && productImpactSnapshotConfiguration ? (
-          <div className={caseStudyProductChapterPolicy.productChapterBorderedSectionTopClassName}>
+          <div className={caseStudyProductChapterPolicy.productChapterBorderedSectionTopCPlassName}>
             <CaseStudyProductImpactSnapshot
               snapshot={productImpactSnapshotConfiguration}
             />
@@ -92,6 +92,14 @@ export function CaseStudyProductChapter({
         ) : null}
 
         <div className={productChapterBodyStackClassName}>
+          {chapter.introductionSections && chapter.introductionSections.length > 0
+            ? chapter.introductionSections.map((section, index) => (
+                <Fragment key={`${chapter.heading}-intro-${index}`}>
+                  <Heading level="h4">{section.sectionHeading}</Heading>
+                  <BodyText className="text-textPrimary">{section.sectionBody}</BodyText>
+                </Fragment>
+              ))
+            : null}
           {chapter.bodyParagraphs.map((paragraph, index) => (
             <BodyText
               key={`${chapter.heading}-body-${index}`}
@@ -101,9 +109,11 @@ export function CaseStudyProductChapter({
             </BodyText>
           ))}
           {chapter.impactBullets.length > 0 ? (
-            <ul className="list-inside list-disc space-y-2 pt-1 text-base leading-6 text-textPrimary marker:text-accentPrimary">
+            <ul className="list-outside list-disc ml-5 space-y-3 pt-1 text-base leading-6 text-textPrimary marker:text-accentPrimary">
               {chapter.impactBullets.map((bullet, index) => (
-                <li key={`${chapter.heading}-impact-${index}`}>{bullet}</li>
+                <li key={`${chapter.heading}-impact-${index}`} className="pl-1">
+                  {bullet}
+                </li>
               ))}
             </ul>
           ) : null}

@@ -3,7 +3,36 @@ import { useId } from "react";
 import { caseStudyProductImpactSnapshotCopyConfiguration } from "@/app/config/caseStudyProductImpactSnapshotCopyConfiguration";
 import type { CaseStudyProductImpactSnapshotConfiguration } from "@/app/config/portfolioCaseStudiesConfiguration";
 import { caseStudyProductChapterPolicy } from "@/app/constants/policy";
-import { BodyText, Caption } from "@/design-system/tokens/Typography";
+import { BodyText } from "@/design-system/tokens/Typography";
+
+const productImpactSnapshotAccentRailClassName =
+  caseStudyProductChapterPolicy.accentGradientRailClassName;
+
+function CaseStudyProductImpactSnapshotMetricTitle({
+  labelText,
+}: Readonly<{ labelText: string }>) {
+  return (
+    <div
+      className={
+        caseStudyProductChapterPolicy.impactSnapshotMetricLabelRowClassName
+      }
+    >
+      <span
+        aria-hidden
+        className={
+          caseStudyProductChapterPolicy.impactSnapshotMetricLabelRailClassName
+        }
+      />
+      <span
+        className={
+          caseStudyProductChapterPolicy.impactSnapshotMetricLabelClassName
+        }
+      >
+        {labelText}
+      </span>
+    </div>
+  );
+}
 
 export type CaseStudyProductImpactSnapshotProps = Readonly<{
   snapshot: CaseStudyProductImpactSnapshotConfiguration;
@@ -26,8 +55,12 @@ export function CaseStudyProductImpactSnapshot({
   if (!productImpactSnapshotHasRenderableContent(snapshot)) {
     return null;
   }
-  const { impactSectionHeading, stageMetricLabel, dailyReachMetricLabel, revenueMetricLabel } =
-    caseStudyProductImpactSnapshotCopyConfiguration;
+  const {
+    panelHeadingLabel,
+    stageMetricLabel,
+    dailyReachMetricLabel,
+    revenueMetricLabel,
+  } = caseStudyProductImpactSnapshotCopyConfiguration;
 
   const stageValue = snapshot.stageLabel.trim();
   const reachValue = snapshot.dailyReachLabel.trim();
@@ -38,55 +71,84 @@ export function CaseStudyProductImpactSnapshot({
       aria-labelledby={impactSectionHeadingElementId}
       className={caseStudyProductChapterPolicy.impactSnapshotPanelClassName}
     >
-      <span id={impactSectionHeadingElementId} className="block">
-        <Caption
-          className={[
-            caseStudyProductChapterPolicy.impactSnapshotHeadingClassName,
-          ].join(" ")}
-        >
-          {impactSectionHeading}
-        </Caption>
-      </span>
-      <div className={caseStudyProductChapterPolicy.impactSnapshotMetricsGridClassName}>
-        {stageValue.length > 0 ? (
-          <div className={caseStudyProductChapterPolicy.impactSnapshotMetricCellClassName}>
-            <Caption className={caseStudyProductChapterPolicy.impactSnapshotMetricLabelClassName}>
-              {stageMetricLabel}
-            </Caption>
-            <BodyText
-              size="sm"
-              className={caseStudyProductChapterPolicy.impactSnapshotMetricValueClassName}
-            >
-              {stageValue}
-            </BodyText>
+      <div
+        className={caseStudyProductChapterPolicy.impactSnapshotPanelFrameClassName}
+      >
+        <div
+          aria-hidden
+          className={productImpactSnapshotAccentRailClassName}
+        />
+        <div className="min-w-0 flex-1 space-y-3">
+          <h2
+            id={impactSectionHeadingElementId}
+            className={caseStudyProductChapterPolicy.impactSnapshotHeadingClassName}
+          >
+            {panelHeadingLabel}
+          </h2>
+          <div
+            className={
+              caseStudyProductChapterPolicy.impactSnapshotMetricsGridClassName
+            }
+          >
+            {stageValue.length > 0 ? (
+              <div
+                className={
+                  caseStudyProductChapterPolicy.impactSnapshotMetricCellClassName
+                }
+              >
+                <CaseStudyProductImpactSnapshotMetricTitle
+                  labelText={stageMetricLabel}
+                />
+                <BodyText
+                  size="sm"
+                  className={
+                    caseStudyProductChapterPolicy.impactSnapshotMetricValueClassName
+                  }
+                >
+                  {stageValue}
+                </BodyText>
+              </div>
+            ) : null}
+            {reachValue.length > 0 ? (
+              <div
+                className={
+                  caseStudyProductChapterPolicy.impactSnapshotMetricCellClassName
+                }
+              >
+                <CaseStudyProductImpactSnapshotMetricTitle
+                  labelText={dailyReachMetricLabel}
+                />
+                <BodyText
+                  size="sm"
+                  className={
+                    caseStudyProductChapterPolicy.impactSnapshotMetricValueClassName
+                  }
+                >
+                  {reachValue}
+                </BodyText>
+              </div>
+            ) : null}
+            {revenueValue.length > 0 ? (
+              <div
+                className={
+                  caseStudyProductChapterPolicy.impactSnapshotMetricCellClassName
+                }
+              >
+                <CaseStudyProductImpactSnapshotMetricTitle
+                  labelText={revenueMetricLabel}
+                />
+                <BodyText
+                  size="sm"
+                  className={
+                    caseStudyProductChapterPolicy.impactSnapshotMetricValueClassName
+                  }
+                >
+                  {revenueValue}
+                </BodyText>
+              </div>
+            ) : null}
           </div>
-        ) : null}
-        {reachValue.length > 0 ? (
-          <div className={caseStudyProductChapterPolicy.impactSnapshotMetricCellClassName}>
-            <Caption className={caseStudyProductChapterPolicy.impactSnapshotMetricLabelClassName}>
-              {dailyReachMetricLabel}
-            </Caption>
-            <BodyText
-              size="sm"
-              className={caseStudyProductChapterPolicy.impactSnapshotMetricValueClassName}
-            >
-              {reachValue}
-            </BodyText>
-          </div>
-        ) : null}
-        {revenueValue.length > 0 ? (
-          <div className={caseStudyProductChapterPolicy.impactSnapshotMetricCellClassName}>
-            <Caption className={caseStudyProductChapterPolicy.impactSnapshotMetricLabelClassName}>
-              {revenueMetricLabel}
-            </Caption>
-            <BodyText
-              size="sm"
-              className={caseStudyProductChapterPolicy.impactSnapshotMetricValueClassName}
-            >
-              {revenueValue}
-            </BodyText>
-          </div>
-        ) : null}
+        </div>
       </div>
     </section>
   );

@@ -13,7 +13,7 @@ export const homepageHeroPolicy = {
   heroProfileImageSizes: "176px",
   heroProfileRasterImageClassName: "rounded-full object-cover",
   heroTitleStackClassName: "flex flex-col items-center gap-3 sm:gap-4",
-  heroTextStackSpacingClassName: "space-y-2 sm:space-y-3",
+  heroTextStackSpacingClassName: "prose-rhythm",
   heroTextAlignmentClassName: "text-center",
   heroTextWrapperClassName: "mx-auto w-full max-w-2xl",
   /** Frosted panel so copy stays legible over mesh glow orbs. */
@@ -35,7 +35,7 @@ export const projectSectionPolicy = {
 /** Homepage projects block: heading → intro → card list (no duplicate panel chrome). */
 export const homepageProjectsSectionPolicy = {
   sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
-  headerStackClassName: "space-y-2 sm:space-y-3",
+  headerStackClassName: "prose-rhythm",
   headingMaxWidthClassName: "max-w-2xl",
   introMaxWidthClassName: "max-w-prose",
   cardsListClassName:
@@ -127,9 +127,14 @@ export const homepageAnchoredSectionScrollMarginPolicy = {
   scrollMarginTopClassName: "scroll-mt-24 sm:scroll-mt-16",
 } as const;
 
-/** Vertical rhythm inside long-form case study article wrapper. */
+/** Vertical rhythm inside long-form case study article wrapper (header + sections). */
 export const caseStudyArticleShellPolicy = {
-  contentStackClassName: "mx-auto max-w-prose space-y-8 sm:space-y-10",
+  /** Article column — spacing comes from child wrappers so header vs body sections can differ. */
+  articleShellColumnClassName: "mx-auto flex flex-col",
+  /** Air between the elevated header card and the first prose section. */
+  caseStudyHeaderBlockBottomMarginClassName: "mb-12 sm:mb-16",
+  /** Tighter stack between “Engagement overview”, “Product surfaces”, etc. */
+  caseStudyBodySectionsVerticalStackClassName: "flex flex-col gap-7 sm:gap-10",
 } as const;
 
 /** Product chapter cards: gradient accent rail matches editorial marks + title gradient stops. */
@@ -142,27 +147,42 @@ export const caseStudyProductChapterPolicy = {
   chapterTitleRowClassName:
     "flex flex-col gap-2 pb-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3",
   /** Link / illustration / impact blocks that sit below a horizontal rule. */
-  productChapterBorderedSectionTopClassName:
+  productChapterBorderedSectionTopCPlassName:
     "border-t border-borderDefault pt-4",
   /** Primary external link + optional `availabilityCaption` stack under the chapter title. */
   productPageLinkAvailabilityStackClassName: "space-y-2",
   /** Body + impact bullets when a rule sits above (no Impact KPI strip, or flush spacing handled separately). */
-  productChapterBodyStackWhenTopRuleClassName:
-    "space-y-2 border-t border-borderDefault pt-5",
+  productChapterBodyStackWhenTopRuleClassName: "border-t border-borderDefault pt-5 prose-rhythm",
   /** Body after Impact KPI strip: no extra rule; tighter top padding. */
-  productChapterBodyStackWhenAfterImpactClassName: "space-y-2 pt-4",
+  productChapterBodyStackWhenAfterImpactClassName: "pt-4 prose-rhythm",
+  /** Optional h4-led blocks (Overview / Problem / My role) above technical paragraphs. */
+  productChapterIntroductionOuterStackClassName: "prose-rhythm",
+  productChapterIntroductionSectionBlockClassName: "prose-rhythm",
   /** Skills block at chapter foot. */
   productChapterSkillsSectionClassName: "border-t border-borderDefault pt-5",
-  /** Inset KPI strip inside a chapter (lighter than wrapping in a second Card). */
-  impactSnapshotPanelClassName:
-    "rounded-lg border border-borderDefault/60 bg-surfaceMuted/40 px-3 py-3 narrowPhoneUp:px-4",
+  /** Section wrapper — chrome lives on `impactSnapshotPanelFrameClassName`. */
+  impactSnapshotPanelClassName: "min-w-0",
+  /**
+   * Highlight rail + wash: light mode reads as a soft violet→cyan glass strip; dark mode uses the same
+   * structure with deeper surfaces (tokens in `globals.css`).
+   */
+  impactSnapshotPanelFrameClassName:
+    "flex gap-3 overflow-hidden rounded-xl border border-accentPrimary/25 bg-gradient-to-br from-accentPrimary/[0.12] via-surfaceMuted to-accentSecondary/[0.10] p-3 shadow-sm ring-1 ring-inset ring-borderDefault/40 narrowPhoneUp:gap-3.5 narrowPhoneUp:p-4 sm:gap-4",
   impactSnapshotHeadingClassName:
-    "font-semibold uppercase tracking-wide text-accentPrimary",
+    "text-xs font-semibold uppercase tracking-[0.14em] text-accentHighlight",
   impactSnapshotMetricsGridClassName:
-    "mt-2 grid grid-cols-1 gap-3 sm:mt-3 sm:grid-cols-3 sm:gap-4",
-  impactSnapshotMetricCellClassName: "min-w-0 space-y-1",
-  impactSnapshotMetricLabelClassName: "text-textSecondary",
-  impactSnapshotMetricValueClassName: "text-textPrimary",
+    "grid grid-cols-1 gap-2.5 sm:grid-cols-3 sm:gap-3",
+  impactSnapshotMetricCellClassName:
+    "min-w-0 space-y-2 rounded-lg border border-borderDefault/70 bg-surfaceElevated/55 px-3 py-2.5 shadow-sm backdrop-blur-[2px] narrowPhoneUp:px-3.5 narrowPhoneUp:py-3",
+  /** Flex row: micro-rail + label; rail is decorative only (`aria-hidden` in component). */
+  impactSnapshotMetricLabelRowClassName:
+    "flex min-w-0 items-center gap-1.5",
+  impactSnapshotMetricLabelRailClassName:
+    "h-2 w-px shrink-0 rounded-full bg-gradient-to-b from-accentPrimary via-accentHighlight to-accentSecondary opacity-90",
+  impactSnapshotMetricLabelClassName:
+    "block min-w-0 truncate text-[11px] font-bold uppercase leading-none tracking-[0.1em] text-accentSecondary/90",
+  impactSnapshotMetricValueClassName:
+    "font-semibold tabular-nums tracking-tight text-textPrimary",
   /** Full-width figure inside prose column; matches chapter card chrome. */
   chapterIllustrationFigureClassName:
     "mt-4 overflow-hidden rounded-lg border border-borderDefault/70 bg-surfaceMuted/30 shadow-sm",

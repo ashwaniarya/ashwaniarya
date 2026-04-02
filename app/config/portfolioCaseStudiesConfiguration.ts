@@ -18,6 +18,11 @@ export type CaseStudyProductChapterIllustrationConfiguration = Readonly<{
   height: number;
 }>;
 
+export type CaseStudyProductChapterIntroductionSectionConfiguration = Readonly<{
+  sectionHeading: string;
+  sectionBody: string;
+}>;
+
 export type CaseStudyProductChapterConfiguration = Readonly<{
   heading: string;
   segmentLabel: string;
@@ -31,6 +36,10 @@ export type CaseStudyProductChapterConfiguration = Readonly<{
    * When `productPageLink` is set: optional secondary line under the external link (e.g. attribution).
    */
   availabilityCaption?: string;
+  /**
+   * Optional labeled blocks (e.g. Overview / Problem / My role) rendered as h4 + body above `bodyParagraphs`.
+   */
+  introductionSections?: readonly CaseStudyProductChapterIntroductionSectionConfiguration[];
   bodyParagraphs: readonly string[];
   impactBullets: readonly string[];
   skills: readonly string[];
@@ -76,7 +85,7 @@ const portfolioCaseStudies = [
       "Cross-functional work from discovery to release",
     ],
     engagementOverviewParagraphs: [
-      "GetBujo needed a senior engineer who could move fast across the stack while keeping UX coherent. I joined as a founding engineer to turn ambiguous problems into shippable product: live collaboration, distribution through the browser, and AI-assisted workflows tied back to clear dashboards.",
+      "GetBujo needed a senior engineer who could move fast across and build cost effective scalable platform. I joined as a founding engineer to turn ambiguous problems into shippable product: live collaboration, distribution through the browser, and AI-assisted workflows tied back to clear dashboards.",
     ],
     productChapters: [
       {
@@ -100,6 +109,22 @@ const portfolioCaseStudies = [
           width: 3452,
           height: 1708,
         },
+        introductionSections: [
+          {
+            sectionHeading: "Overview",
+            sectionBody:
+              "A multi-tenant, cross-platform live video call consultation platform which connects a shopper to a company's sales representative. An owner for the e-commerce business gets a very clean and easy way to understand how sales reps performed and can evaluate their sales pitch.",
+          },
+          {
+            sectionHeading: "Problem",
+            sectionBody:
+              "Buying a high-ticket product online is not easy. There is a lot of information available in a typical store. An interested buyer can easily get confused. Wingman helps the company solve this problem by removing the clutter and providing the offline store experience online.",
+          },
+          {
+            sectionHeading: "My role",
+            sectionBody: "End-to-end product development and platform building.",
+          },
+        ],
         bodyParagraphs: [
           "Built the first uninterrupted, cross-platform in-browser video calling experience on a Server-Side Rendered e-commerce site. The hard part was not the first paint—it was guided selling: a rep walks a shopper across PDPs, collections, and checkout-style sections, but classic full-page navigations rebuild the whole document, which repeatedly tore down the call surface and created a jarring disconnect mid-conversation.",
           "Designed the experience so the video layer survives those SSR route changes: the call stays attached and continuous while the storefront content around it updates, instead of forcing a re-join after every click.",
@@ -108,11 +133,14 @@ const portfolioCaseStudies = [
         ],
         impactBullets: [
           "E-commerce + SSR navigation: addressed full-page rebuilds that broke sales-led flows when users moved between sections.",
-          "Multi-tab experience.",
+          "Multi-tab experience for widget users.",
+          "Dashboard for mulitiple tenants.",
+          "Configurable brandable UI for the widget.",
           "Cross-platform in-browser video that stays coherent for “rep guides shopper” sessions—not only landing → call.",
           "Single launcher UX across two legacy widgets—shared affordance, shared telemetry hooks, less user confusion at join time.",
           "Reduced ambiguity in the live session lifecycle (join, active call, wrap-up).",
           "Tightened dashboard summaries so success metrics are scannable in under a minute.",
+          
         ],
         skills: [
           "React",
@@ -129,6 +157,9 @@ const portfolioCaseStudies = [
           "Problem solving",
           "Asset and bundling optimization",
           "System building",
+          "CI/CD",
+          "Monitoring and logging",
+          "Vertualised Tables"
         ],
       },
       {

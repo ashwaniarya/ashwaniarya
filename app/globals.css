@@ -63,9 +63,28 @@
   }
 }
 
-body {
-  background: rgb(var(--color-background-page));
-  color: rgb(var(--color-text-primary));
-}
+@utility prose-rhythm {
+  /* Default gap between any sibling blocks (e.g. p to p, p to ul) */
+  & > * + * {
+    margin-top: 1.25rem;
+  }
 
+  /* Large gap ABOVE headings indicating a new section */
+  & > h1:not(:first-child),
+  & > h2:not(:first-child),
+  & > h3:not(:first-child),
+  & > h4:not(:first-child) {
+    margin-top: 2.5rem;
+  }
+
+
+
+  /* Keep EditorialAccentMark (aria-hidden span) tightly grouped with its heading */
+  & > span[aria-hidden] + h1,
+  & > span[aria-hidden] + h2,
+  & > span[aria-hidden] + h3,
+  & > span[aria-hidden] + h4 {
+    margin-top: 0.5rem;
+  }
+}
 

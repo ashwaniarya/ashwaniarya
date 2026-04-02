@@ -8,7 +8,7 @@ export type CaseStudyArticleShellProps = Readonly<{
 
 export function CaseStudyArticleShell({ children }: CaseStudyArticleShellProps) {
   return (
-    <article className={caseStudyArticleShellPolicy.contentStackClassName}>
+    <article className={caseStudyArticleShellPolicy.articleShellColumnClassName}>
       {children}
     </article>
   );
