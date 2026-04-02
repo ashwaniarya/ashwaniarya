@@ -116,7 +116,7 @@ export const siteHeaderNavigationPolicy = {
  */
 export const siteHeaderChromePolicy = {
   headerShellClassName:
-    "sticky top-0 z-10 border-b border-black/10 bg-backgroundPage",
+    "sticky top-0 z-10 border-b border-black/10 bg-backgroundPage/80 backdrop-blur-md",
   /** Stacked brand then nav; centered band below `sm`, spaced column from `sm`. */
   headerInnerRowClassName:
     "flex w-full flex-col items-center gap-1 sm:items-center sm:justify-between sm:gap-4",

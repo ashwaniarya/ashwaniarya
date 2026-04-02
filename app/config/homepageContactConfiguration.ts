@@ -16,7 +16,7 @@ export type ContactChannelRecord = Readonly<{
 export const homepageContactSectionCopyConfiguration = {
   sectionHeading: "Contact",
   sectionIntroLines: [
-    "Reach out for collaborations, product work, or a quick hello—I am remote-first and reply best by email or WhatsApp.",
+    "Reach out for collaborations, product work, architectural designing, or a quick hello—I am remote-first. I would love to hear from you.",
   ],
 } as const;
 
