@@ -1,6 +1,9 @@
 import { Fragment } from "react";
 
-import type { CaseStudyProductChapterConfiguration } from "@/app/config/portfolioCaseStudiesConfiguration";
+import type {
+  CaseStudyProductChapterConfiguration,
+  CaseStudyProductChapterIntroductionSectionConfiguration,
+} from "@/app/config/portfolioCaseStudiesConfiguration";
 import { caseStudyProductChapterPolicy } from "@/app/constants/policy";
 import { BodyText, Caption, Heading } from "@/design-system/tokens/Typography";
 
@@ -14,6 +17,37 @@ import {
 export type CaseStudyProductChapterProps = Readonly<{
   chapter: CaseStudyProductChapterConfiguration;
 }>;
+
+function CaseStudyProductChapterIntroductionSection({
+  section,
+}: Readonly<{
+  section: CaseStudyProductChapterIntroductionSectionConfiguration;
+}>) {
+  return (
+    <div
+      className={
+        caseStudyProductChapterPolicy.productChapterIntroductionSectionBlockClassName
+      }
+    >
+      <div
+        className={
+          caseStudyProductChapterPolicy.productChapterIntroductionHeadingRowClassName
+        }
+      >
+        <span
+          aria-hidden
+          className={
+            caseStudyProductChapterPolicy.productChapterEditorialMicroRailClassName
+          }
+        />
+        <Heading level="h4" className="min-w-0 flex-1">
+          {section.sectionHeading}
+        </Heading>
+      </div>
+      <BodyText className="text-textPrimary">{section.sectionBody}</BodyText>
+    </div>
+  );
+}
 
 export function CaseStudyProductChapter({
   chapter,
@@ -92,14 +126,20 @@ export function CaseStudyProductChapter({
         ) : null}
 
         <div className={productChapterBodyStackClassName}>
-          {chapter.introductionSections && chapter.introductionSections.length > 0
-            ? chapter.introductionSections.map((section, index) => (
-                <Fragment key={`${chapter.heading}-intro-${index}`}>
-                  <Heading level="h4">{section.sectionHeading}</Heading>
-                  <BodyText className="text-textPrimary">{section.sectionBody}</BodyText>
-                </Fragment>
-              ))
-            : null}
+          {chapter.introductionSections && chapter.introductionSections.length > 0 ? (
+            <div
+              className={
+                caseStudyProductChapterPolicy.productChapterIntroductionOuterStackClassName
+              }
+            >
+              {chapter.introductionSections.map((section, index) => (
+                <CaseStudyProductChapterIntroductionSection
+                  key={`${chapter.heading}-intro-${index}`}
+                  section={section}
+                />
+              ))}
+            </div>
+          ) : null}
           {chapter.bodyParagraphs.map((paragraph, index) => (
             <BodyText
               key={`${chapter.heading}-body-${index}`}

@@ -72,5 +72,14 @@ describe("CaseStudyProductChapter", () => {
     expect(html).toContain(
       `class="${caseStudyProductChapterPolicy.productChapterIntroductionOuterStackClassName}"`,
     );
+    expect(html).toContain(
+      caseStudyProductChapterPolicy.productChapterIntroductionSectionBlockClassName,
+    );
+    expect(html).toContain(
+      caseStudyProductChapterPolicy.productChapterIntroductionHeadingRowClassName,
+    );
+    expect(html).toContain(
+      caseStudyProductChapterPolicy.productChapterEditorialMicroRailClassName,
+    );
   });
 });

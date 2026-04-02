@@ -137,12 +137,16 @@ export const caseStudyArticleShellPolicy = {
   caseStudyBodySectionsVerticalStackClassName: "flex flex-col gap-7 sm:gap-10",
 } as const;
 
+/** Short gradient spine beside Impact Metric labels and introduction h4 rows (single source of truth). */
+const editorialMicroRailClassName =
+  "h-2 w-px shrink-0 rounded-full bg-gradient-to-b from-accentPrimary via-accentHighlight to-accentSecondary opacity-90";
+
 /** Product chapter cards: gradient accent rail matches editorial marks + title gradient stops. */
 export const caseStudyProductChapterPolicy = {
   shellFlexClassName:
     "flex gap-2 rounded-xl border border-borderDefault/80 bg-surfaceElevated p-3 shadow-md narrowPhoneUp:gap-3 narrowPhoneUp:p-4 sm:gap-4 sm:p-5",
   accentGradientRailClassName:
-    "w-1 shrink-0 self-stretch rounded-full bg-gradient-to-b from-accentPrimary/80 via-accentHighlight/90 to-accentSecondary/80",
+    "w-[3px] sm:w-[4px] shrink-0 self-stretch rounded-full bg-gradient-to-b from-accentPrimary/80 via-accentHighlight/90 to-accentSecondary/80",
   /** Heading row: title + segment chip; bottom padding before first ruled block. */
   chapterTitleRowClassName:
     "flex flex-col gap-2 pb-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3",
@@ -158,6 +162,10 @@ export const caseStudyProductChapterPolicy = {
   /** Optional h4-led blocks (Overview / Problem / My role) above technical paragraphs. */
   productChapterIntroductionOuterStackClassName: "prose-rhythm",
   productChapterIntroductionSectionBlockClassName: "prose-rhythm",
+  /** Micro-rail + h4 row; rail uses `productChapterEditorialMicroRailClassName` (`aria-hidden` in component). */
+  productChapterIntroductionHeadingRowClassName:
+    "flex min-w-0 items-center gap-1.5",
+  productChapterEditorialMicroRailClassName: editorialMicroRailClassName,
   /** Skills block at chapter foot. */
   productChapterSkillsSectionClassName: "border-t border-borderDefault pt-5",
   /** Section wrapper — chrome lives on `impactSnapshotPanelFrameClassName`. */
@@ -177,8 +185,7 @@ export const caseStudyProductChapterPolicy = {
   /** Flex row: micro-rail + label; rail is decorative only (`aria-hidden` in component). */
   impactSnapshotMetricLabelRowClassName:
     "flex min-w-0 items-center gap-1.5",
-  impactSnapshotMetricLabelRailClassName:
-    "h-2 w-px shrink-0 rounded-full bg-gradient-to-b from-accentPrimary via-accentHighlight to-accentSecondary opacity-90",
+  impactSnapshotMetricLabelRailClassName: editorialMicroRailClassName,
   impactSnapshotMetricLabelClassName:
     "block min-w-0 truncate text-[11px] font-bold uppercase leading-none tracking-[0.1em] text-accentSecondary/90",
   impactSnapshotMetricValueClassName:

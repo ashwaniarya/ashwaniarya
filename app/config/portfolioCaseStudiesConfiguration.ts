@@ -113,7 +113,7 @@ const portfolioCaseStudies = [
           {
             sectionHeading: "Overview",
             sectionBody:
-              "A multi-tenant, cross-platform live video call consultation platform which connects a shopper to a company's sales representative. An owner for the e-commerce business gets a very clean and easy way to understand how sales reps performed and can evaluate their sales pitch.",
+              "A multi-tenant, cross-platform live video call consultation platform which connects a shopper to a company's sales representative. An owner for the e-commerce business gets an AI Powered Dashboard—a very clean, easy way to understand how sales reps performed and evaluate their sales pitch.",
           },
           {
             sectionHeading: "Problem",
