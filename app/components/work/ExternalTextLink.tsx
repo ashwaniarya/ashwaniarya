@@ -30,6 +30,7 @@ export function ExternalTextLink({
         target="_blank"
       >
         {children}
+        <span className="sr-only"> (opens in a new tab)</span>
       </a>
     );
   }
