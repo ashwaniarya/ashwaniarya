@@ -2,6 +2,8 @@ import type { CaseStudyRecord } from "@/app/config/portfolioCaseStudiesConfigura
 
 import { BodyText } from "@/design-system/tokens/Typography";
 
+import { caseStudyArticleShellPolicy } from "@/app/constants/policy";
+
 import { CaseStudyArticleShell } from "./CaseStudyArticleShell";
 import { CaseStudyHeader } from "./CaseStudyHeader";
 import { CaseStudyProductChapter } from "./CaseStudyProductChapter";
@@ -16,8 +18,11 @@ export function CaseStudyPageContent({ caseStudy }: CaseStudyPageContentProps) {
   return (
     <CaseStudyReadingCanvas>
       <CaseStudyArticleShell>
-        <CaseStudyHeader caseStudy={caseStudy} />
-        <CaseStudySection title="Engagement overview">
+        <div className={caseStudyArticleShellPolicy.caseStudyHeaderBlockBottomMarginClassName}>
+          <CaseStudyHeader caseStudy={caseStudy} />
+        </div>
+        <div className={caseStudyArticleShellPolicy.caseStudyBodySectionsVerticalStackClassName}>
+          <CaseStudySection title="Engagement overview">
           {caseStudy.engagementOverviewParagraphs.map((paragraph, index) => (
             <BodyText
               key={`engagement-overview-${index}`}
@@ -34,6 +39,7 @@ export function CaseStudyPageContent({ caseStudy }: CaseStudyPageContentProps) {
             ))}
           </div>
         </CaseStudySection>
+        </div>
       </CaseStudyArticleShell>
     </CaseStudyReadingCanvas>
   );
