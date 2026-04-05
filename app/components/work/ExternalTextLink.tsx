@@ -15,7 +15,7 @@ export function ExternalTextLink({
   className = "",
 }: ExternalTextLinkProps) {
   const mergedClassName = [
-    "font-medium text-accentPrimary underline-offset-4 hover:underline",
+    "font-medium text-accentPrimary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage rounded-sm",
     className,
   ]
     .join(" ")
