@@ -52,6 +52,12 @@ export default function RootLayout({
         ].join(" ")}
       >
         <div className="flex min-h-dvh flex-col">
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-backgroundPage focus:text-accentPrimary focus:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary rounded-md font-medium shadow-sm border border-borderDefault"
+          >
+            Skip to main content
+          </a>
           <SiteHeader />
           <div className="flex min-h-0 flex-1 flex-col">{children}</div>
           <SiteFooter />
