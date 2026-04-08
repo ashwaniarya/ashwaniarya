@@ -51,6 +51,12 @@ export const homepageTechnologyStackSectionPolicy = {
     "mt-0.5 h-4 w-4 shrink-0 text-textSecondary",
 } as const;
 
+/** Skip to content link policy for keyboard accessibility */
+export const skipToContentPolicy = {
+  skipLinkClassName:
+    "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-backgroundPage focus:text-accentPrimary focus:font-semibold focus:rounded-md focus:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary",
+} as const;
+
 /** Homepage experience focus areas: icon-led tiles in the projects grid rhythm. */
 export const homepageExperienceSectionPolicy = {
   sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
