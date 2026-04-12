@@ -1,0 +1,3 @@
+## 2024-05-18 - Sticky Header Bypass with Next.js App Router
+**Learning:** Sticky or fixed global headers block direct access to the main content for keyboard users unless explicitly bypassed. Setting the `tabIndex={-1}` and `focus:outline-none` on the target container allows it to be focused programmatically when targeted by a skip link without showing an ugly outline click state.
+**Action:** Always include a visually hidden "Skip to main content" link at the very top of `layout.tsx` targeting a programmatically focusable `<main id="main-content">` whenever implementing a sticky global header pattern.
