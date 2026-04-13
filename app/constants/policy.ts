@@ -215,3 +215,8 @@ export const contentCardPolicy = {
   linkInteractiveClassName:
     "transition-colors transition-shadow hover:border-accentPrimary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
 } as const;
+
+export const skipToContentPolicy = {
+  skipLinkClassName:
+    "sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-backgroundPage focus:text-textPrimary focus:outline-none focus:ring-2 focus:ring-accentPrimary",
+} as const;
