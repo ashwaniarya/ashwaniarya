@@ -1,0 +1,3 @@
+## 2024-05-15 - Implement skip-to-content accessibility link
+**Learning:** The app relies heavily on a centralized policy pattern for styles (`app/constants/policy.ts`). When implementing standard accessibility patterns like "Skip to Content", their styling should be extracted into this policy file to maintain consistency, rather than hardcoded in the component. The main element should handle focus management explicitly to support hash-link routing.
+**Action:** Extract styling for standard, global components (like skip links, generic focus rings) to `app/constants/policy.ts` to follow the app's standard design tokens system. Always ensure skip links have a programmatically focusable target (`tabIndex={-1}`) with focus ring styles hidden (`focus:outline-none`).
