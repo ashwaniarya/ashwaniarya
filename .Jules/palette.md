@@ -1,0 +1,3 @@
+## 2024-05-24 - Accessibility: Skip to Main Content Link
+**Learning:** For a skip-to-content link to work optimally without leaving an unwanted persistent focus ring on the entire page content upon navigation, the `<main>` tag must use `focus:outline-none`. Additionally, the link itself must be `absolute`ly positioned and styled to appear only upon focus (`sr-only focus:not-sr-only focus:absolute ...`), keeping the UI clean for mouse users while ensuring keyboard accessibility.
+**Action:** Always ensure target elements for internal anchor links (like `#main-content`) have `tabIndex={-1}` and `focus:outline-none` when they aren't inherently focusable interactives to prevent visual regressions while supporting screen readers and keyboard users.
