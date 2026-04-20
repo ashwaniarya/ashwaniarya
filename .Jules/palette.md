@@ -1,0 +1,3 @@
+## 2025-04-20 - Skip to Content for Sticky Headers
+**Learning:** In applications using a sticky global header, keyboard users need a mechanism to bypass repeated navigation links. Directly anchoring to a main content region provides this. The target element (`<main>`) must be made programmatically focusable (`tabIndex={-1}`) so focus actually moves, but it shouldn't show a visible focus ring (`focus:outline-none`) since it's an abstract container, not an interactive widget.
+**Action:** When adding skip links, ensure the target element uses `tabIndex={-1}` and `focus:outline-none` to balance robust screen reader/keyboard focus routing without unwanted visual noise for sighted keyboard users.
