@@ -93,6 +93,15 @@ export const editorialGradientTitlePolicy = {
     "bg-gradient-to-r from-textPrimary via-accentPrimary to-accentSecondary bg-clip-text text-transparent",
 } as const;
 
+/**
+ * Visually hidden skip-to-content link that becomes visible on keyboard focus.
+ * Stays fixed at the top left of the viewport to bypass navigation.
+ */
+export const skipToContentPolicy = {
+  skipLinkClassName:
+    "sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-sm focus:bg-backgroundPage focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-accentPrimary focus:outline-none focus:ring-2 focus:ring-accentPrimary focus:ring-offset-2 focus:ring-offset-backgroundPage focus:shadow-md",
+} as const;
+
 /** Primary nav in `SiteHeader`: touch-friendly targets; `NavigationLabel` owns type; anchor owns color + focus ring. */
 export const siteHeaderNavigationPolicy = {
   /**
