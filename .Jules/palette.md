@@ -1,0 +1,3 @@
+## 2025-02-12 - Skip to Content for Sticky Headers
+**Learning:** Sticky headers obscure the top of the page when navigating with keyboard if there is no way to skip them. The "skip to main content" link must be the first element in the DOM (in `app/layout.tsx`) and visually hidden until focused. The target element (`<main>`) must be programmatically focusable (`tabIndex={-1}`) to receive focus, but should not show a visual focus ring (`focus:outline-none`) to avoid confusing mouse users.
+**Action:** Always include a skip-to-content link targeting `#main-content` on the root layout when a site uses a global sticky header. Add `tabIndex={-1}` and `focus:outline-none` to the `<main>` container across all page layouts.
