@@ -1,0 +1,3 @@
+## 2024-05-02 - Skip to Content Target Accessibility
+**Learning:** When implementing a skip-to-content link, the target element (like `<main>`) must be programmatically focusable but should not show a visual focus ring when navigating normally. If it lacks `tabIndex={-1}`, the jump might not reliably set focus, breaking sequential keyboard navigation afterward. If it lacks `focus:outline-none`, a confusing focus ring appears around the entire page content after the jump.
+**Action:** Always add `id`, `tabIndex={-1}`, and `className="focus:outline-none"` to the target of internal anchor links (like `#main-content`) to ensure robust screen reader and keyboard accessibility without degrading visual polish.
