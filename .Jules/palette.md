@@ -1,0 +1,3 @@
+## 2026-05-03 - Skip to content link pattern
+**Learning:** Found a good accessibility pattern for single-page apps with sticky headers. Using `tabIndex={-1}` and `focus:outline-none` on the target `<main>` element allows programmatic focus for screen readers and keyboard users after clicking a 'skip to content' link, without displaying an unnecessary visual focus ring when navigating.
+**Action:** Always add 'Skip to main content' links on sites with sticky global headers. Apply `id="main-content"`, `tabIndex={-1}`, and `focus:outline-none` to the page layout wrapper to ensure proper accessibility handoff.
