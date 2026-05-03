@@ -114,6 +114,11 @@ export const siteHeaderNavigationPolicy = {
  * Sticky top bar for `SiteHeader`.
  * Keep vertical footprint aligned with `homepageAnchoredSectionScrollMarginPolicy` when changing padding or type scale.
  */
+export const skipToContentPolicy = {
+  skipLinkClassName:
+    "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-sm focus:bg-backgroundPage focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-textPrimary focus:outline-none focus:ring-2 focus:ring-accentPrimary focus:ring-offset-2 focus:ring-offset-backgroundPage",
+} as const;
+
 export const siteHeaderChromePolicy = {
   headerShellClassName:
     "sticky top-0 z-10 border-b border-black/10 bg-backgroundPage/80 backdrop-blur-md",
