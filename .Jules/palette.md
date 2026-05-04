@@ -1,0 +1,3 @@
+## 2024-05-04 - Skip-to-content focus management
+**Learning:** Next.js route structures often wrap main content in containers that aren't natively focusable. When adding a "skip to main content" link, the target element needs `tabIndex={-1}` and `focus:outline-none` to accept programmatic focus from the hash link without showing a confusing visual focus ring, as it's not a truly interactive element like a button or input.
+**Action:** When creating in-page anchor links to structural sections, verify the target can receive programmatic focus seamlessly, especially in deeply nested React layouts.
