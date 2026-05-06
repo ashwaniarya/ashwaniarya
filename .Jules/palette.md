@@ -1,0 +1,3 @@
+## 2025-05-06 - Sticky Header Skip-to-Content Link
+**Learning:** When a global sticky header is present, screen reader and keyboard users need a "skip to main content" link to bypass it on every page load. The target element (`<main>`) must have `tabIndex={-1}` to be programmatically focusable, and `focus:outline-none` so that it doesn't show an unwanted focus ring when the link is activated. The skip link itself should be styled to be visually hidden by default, but absolutely positioned and visible on focus (`sr-only focus:not-sr-only focus:absolute ...`).
+**Action:** Use the `skipToContentPolicy` pattern to add accessible skip links when implementing sticky headers, ensuring the target element handles programmatic focus properly without visual regressions.
