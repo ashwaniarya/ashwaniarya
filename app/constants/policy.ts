@@ -222,12 +222,12 @@ export const contentCardPolicy = {
  */
 export const scrollScrubbedHighlightPolicy = {
   /**
-   * GSAP position string — when the trigger’s top hits ~40% from the viewport top (reading band
-   * ~60% up from the bottom), the scrub timeline begins.
+   * Classic in-flow band: progress runs while the hero section traverses the viewport. Works when
+   * the block starts near the top (unlike a fixed “top 40%” line, which may never be crossed while
+   * scrolling down).
    */
-  scrollTriggerStart: "top 40%",
-  /** Completes when the trigger’s bottom crosses the same band (symmetric band). */
-  scrollTriggerEnd: "bottom 40%",
+  scrollTriggerStart: "top bottom",
+  scrollTriggerEnd: "bottom top",
   /** Seconds of smoothing for ScrollTrigger `scrub` (numeric lag). */
   scrubLagSeconds: 0.45,
   dimCharacterClassName: "text-textSecondary",

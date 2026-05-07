@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useMemo, useRef, type RefObject } from "react";
+import { useLayoutEffect, useMemo, useRef } from "react";
 
 import { scrollScrubbedHighlightPolicy } from "@/app/constants/policy";
 import { computeHighlightedCharacterCount } from "@/app/lib/motion/computeHighlightedCharacterCount";
@@ -9,7 +9,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export type ScrollScrubbedHighlightTextBlockProps = Readonly<{
   lines: readonly string[];
-  sectionRef: RefObject<HTMLElement | null>;
   paragraphClassName?: string;
 }>;
 
@@ -19,7 +18,6 @@ export type ScrollScrubbedHighlightTextBlockProps = Readonly<{
  */
 export function ScrollScrubbedHighlightTextBlock({
   lines,
-  sectionRef,
   paragraphClassName = "",
 }: ScrollScrubbedHighlightTextBlockProps) {
   const rootReference = useRef<HTMLDivElement>(null);
@@ -42,9 +40,8 @@ export function ScrollScrubbedHighlightTextBlock({
   }, [lines]);
 
   useLayoutEffect(() => {
-    const sectionElement = sectionRef.current;
     const rootElement = rootReference.current;
-    if (!sectionElement || !rootElement) {
+    if (!rootElement) {
       return;
     }
 
@@ -52,54 +49,65 @@ export function ScrollScrubbedHighlightTextBlock({
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    const motionContext = gsap.context(() => {
-      gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
 
-      const characterSpanNodeList =
-        rootElement.querySelectorAll<HTMLElement>("[data-scroll-highlight-char]");
-      const totalCharacterCount = characterSpanNodeList.length;
+    const characterSpanNodeList =
+      rootElement.querySelectorAll<HTMLElement>("[data-scroll-highlight-char]");
+    const totalCharacterCount = characterSpanNodeList.length;
 
-      const applyLitCharacterCount = (litCharacterCount: number) => {
-        const boundedCount = Math.min(
-          totalCharacterCount,
-          Math.max(0, litCharacterCount),
+    const applyLitCharacterCount = (litCharacterCount: number) => {
+      const boundedCount = Math.min(
+        totalCharacterCount,
+        Math.max(0, litCharacterCount),
+      );
+      for (let characterIndex = 0; characterIndex < characterSpanNodeList.length; characterIndex += 1) {
+        const spanElement = characterSpanNodeList[characterIndex];
+        const isLit = characterIndex < boundedCount;
+        spanElement.classList.toggle(
+          scrollScrubbedHighlightPolicy.litCharacterClassName,
+          isLit,
         );
-        for (let characterIndex = 0; characterIndex < characterSpanNodeList.length; characterIndex += 1) {
-          const spanElement = characterSpanNodeList[characterIndex];
-          const isLit = characterIndex < boundedCount;
-          spanElement.classList.toggle(
-            scrollScrubbedHighlightPolicy.litCharacterClassName,
-            isLit,
-          );
-          spanElement.classList.toggle(
-            scrollScrubbedHighlightPolicy.dimCharacterClassName,
-            !isLit,
-          );
-        }
-      };
-
-      if (prefersReducedMotion || totalCharacterCount === 0) {
-        applyLitCharacterCount(totalCharacterCount);
-        return;
+        spanElement.classList.toggle(
+          scrollScrubbedHighlightPolicy.dimCharacterClassName,
+          !isLit,
+        );
       }
+    };
 
-      applyLitCharacterCount(0);
+    if (prefersReducedMotion || totalCharacterCount === 0) {
+      applyLitCharacterCount(totalCharacterCount);
+      return;
+    }
 
-      ScrollTrigger.create({
-        trigger: sectionElement,
-        start: scrollScrubbedHighlightPolicy.scrollTriggerStart,
-        end: scrollScrubbedHighlightPolicy.scrollTriggerEnd,
-        scrub: scrollScrubbedHighlightPolicy.scrubLagSeconds,
-        onUpdate: (scrollTriggerInstance) => {
-          applyLitCharacterCount(
-            computeHighlightedCharacterCount(
-              scrollTriggerInstance.progress,
-              totalCharacterCount,
-            ),
-          );
-        },
-      });
-    }, rootElement);
+    applyLitCharacterCount(0);
+
+    const syncHighlightToScrollProgress = (scrollTriggerInstanceArg: {
+      progress: number;
+    }) => {
+      applyLitCharacterCount(
+        computeHighlightedCharacterCount(
+          scrollTriggerInstanceArg.progress,
+          totalCharacterCount,
+        ),
+      );
+    };
+
+    /** Trigger on the copy block so scroll range matches visible text, not the whole hero chrome. */
+    const scrollTriggerInstance = ScrollTrigger.create({
+      trigger: rootElement,
+      start: scrollScrubbedHighlightPolicy.scrollTriggerStart,
+      end: scrollScrubbedHighlightPolicy.scrollTriggerEnd,
+      scrub: scrollScrubbedHighlightPolicy.scrubLagSeconds,
+      onUpdate(scrollTriggerInstanceArg) {
+        syncHighlightToScrollProgress(scrollTriggerInstanceArg);
+      },
+    });
+
+    syncHighlightToScrollProgress(scrollTriggerInstance);
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+      syncHighlightToScrollProgress(scrollTriggerInstance);
+    });
 
     const refreshScrollTriggersOnResize = () => {
       ScrollTrigger.refresh();
@@ -107,10 +115,10 @@ export function ScrollScrubbedHighlightTextBlock({
     window.addEventListener("resize", refreshScrollTriggersOnResize);
 
     return () => {
+      scrollTriggerInstance.kill();
       window.removeEventListener("resize", refreshScrollTriggersOnResize);
-      motionContext.revert();
     };
-  }, [lines, sectionRef]);
+  }, [lines]);
 
   const paragraphTypographyClassName =
     scrollScrubbedHighlightPolicy.paragraphTypographyClassName;

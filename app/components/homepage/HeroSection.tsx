@@ -1,7 +1,3 @@
-"use client";
-
-import { useRef } from "react";
-
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import { HomepageHeroProfileImage } from "@/app/components/homepage/HomepageHeroProfileImage";
@@ -17,11 +13,8 @@ import {
 import { Heading } from "@/design-system/tokens/Typography";
 
 export function HeroSection() {
-  const homepageHeroSectionReference = useRef<HTMLElement>(null);
-
   return (
     <section
-      ref={homepageHeroSectionReference}
       id={homepageSectionAnchorConfiguration.homeSectionDomId}
       data-test="homepage-section"
       className={[
@@ -57,7 +50,6 @@ export function HeroSection() {
             </Heading>
             <ScrollScrubbedHighlightTextBlock
               lines={homepageHeroCopyConfiguration.descriptionLines}
-              sectionRef={homepageHeroSectionReference}
               paragraphClassName="mx-auto max-w-prose text-center"
             />
           </div>
