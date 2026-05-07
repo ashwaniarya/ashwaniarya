@@ -1,0 +1,3 @@
+## 2024-05-07 - Added Skip to Main Content Link
+**Learning:** This app uses a sticky global header that can be tedious to tab through on every page navigation. Implementing a skip-to-content link significantly improves keyboard accessibility. When targeting internal elements like `<main>`, using `tabIndex={-1}` and `focus:outline-none` allows programmatic focus without showing an unwanted focus ring when the user jumps to it, keeping the visual experience clean while maintaining accessibility.
+**Action:** Applied this pattern by adding a visually hidden skip link to `app/layout.tsx` that targets `app/components/layout/PageLayout.tsx`. Next time a sticky header is used, I should ensure a skip link is present early in the development lifecycle.
