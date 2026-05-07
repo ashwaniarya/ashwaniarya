@@ -215,3 +215,23 @@ export const contentCardPolicy = {
   linkInteractiveClassName:
     "transition-colors transition-shadow hover:border-accentPrimary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
 } as const;
+
+/**
+ * ScrollTrigger-driven character highlight: full copy stays in the DOM; scrub maps scroll progress
+ * to how many grapheme units use the “lit” emphasis classes (bidirectional with scrub rewind).
+ */
+export const scrollScrubbedHighlightPolicy = {
+  /**
+   * GSAP position string — when the trigger’s top hits ~40% from the viewport top (reading band
+   * ~60% up from the bottom), the scrub timeline begins.
+   */
+  scrollTriggerStart: "top 40%",
+  /** Completes when the trigger’s bottom crosses the same band (symmetric band). */
+  scrollTriggerEnd: "bottom 40%",
+  /** Seconds of smoothing for ScrollTrigger `scrub` (numeric lag). */
+  scrubLagSeconds: 0.45,
+  dimCharacterClassName: "text-textSecondary",
+  litCharacterClassName: "text-textPrimary",
+  /** Matches design-system Body Base scale; pair with per-character color classes above. */
+  paragraphTypographyClassName: "text-base leading-6",
+} as const;

@@ -1,6 +1,11 @@
+"use client";
+
+import { useRef } from "react";
+
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import { HomepageHeroProfileImage } from "@/app/components/homepage/HomepageHeroProfileImage";
+import { ScrollScrubbedHighlightTextBlock } from "@/app/components/motion/ScrollScrubbedHighlightTextBlock";
 import { homepageHeroCopyConfiguration } from "@/app/config/homepageConfiguration";
 import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import {
@@ -9,11 +14,14 @@ import {
   homepageHeroPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
-import { BodyText, Heading } from "@/design-system/tokens/Typography";
+import { Heading } from "@/design-system/tokens/Typography";
 
 export function HeroSection() {
+  const homepageHeroSectionReference = useRef<HTMLElement>(null);
+
   return (
     <section
+      ref={homepageHeroSectionReference}
       id={homepageSectionAnchorConfiguration.homeSectionDomId}
       data-test="homepage-section"
       className={[
@@ -47,14 +55,11 @@ export function HeroSection() {
             >
               {homepageHeroCopyConfiguration.headline}
             </Heading>
-            {homepageHeroCopyConfiguration.descriptionLines.map((descriptionLine) => (
-              <BodyText
-                key={descriptionLine}
-                className="mx-auto max-w-prose text-textSecondary"
-              >
-                {descriptionLine}
-              </BodyText>
-            ))}
+            <ScrollScrubbedHighlightTextBlock
+              lines={homepageHeroCopyConfiguration.descriptionLines}
+              sectionRef={homepageHeroSectionReference}
+              paragraphClassName="mx-auto max-w-prose text-center"
+            />
           </div>
         </div>
       </MeshGlowBackdrop>
