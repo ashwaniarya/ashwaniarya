@@ -1,0 +1,16 @@
+
+> personal-website@0.1.0 dev /app
+> next dev -p 3000 -H 0.0.0.0
+
+▲ Next.js 16.1.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://0.0.0.0:3000
+
+✓ Starting...
+✓ Ready in 1106ms
+(node:55122) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///app/tailwind.config.ts?id=1778311578479 is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /app/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+○ Compiling / ...
+ GET / 200 in 13.0s (compile: 8.2s, render: 4.9s)
