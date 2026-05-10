@@ -1,0 +1,3 @@
+## 2025-01-20 - Skip to Main Content Link Pattern
+**Learning:** Adding a "skip to main content" link is critical for keyboard accessibility, especially with sticky headers. However, setting focus on a non-interactive element like `<main>` can cause an ugly default browser focus ring.
+**Action:** When implementing skip links, the target element (e.g., `<main id="main-content">`) must have `tabIndex={-1}` to become programmatically focusable, and it should also use a class like `focus:outline-none` to prevent the visual focus ring from appearing when navigated to via the skip link. Use the `sr-only focus:not-sr-only` pattern for the link itself so it stays visually hidden until focused.
