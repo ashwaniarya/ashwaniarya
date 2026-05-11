@@ -1,0 +1,3 @@
+## 2025-02-23 - Added Skip to Main Content Link
+**Learning:** For a skip-to-content pattern to be fully accessible while maintaining visual polish, the target element needs `tabIndex={-1}` to be programmatically focusable, and `focus:outline-none` so it doesn't display an unwanted visual focus ring when navigating via the link. Using an explicit "skipToContentPolicy" centralized in `policy.ts` ensures the link visually reveals itself (`sr-only focus:not-sr-only`) when tabbed onto but remains hidden otherwise.
+**Action:** When creating new layouts with sticky headers, always include a skip link targeting the main content area, ensure the main content has `tabIndex={-1}` and `focus:outline-none`, and use centralized skip link policies.
