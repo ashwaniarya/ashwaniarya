@@ -1,0 +1,3 @@
+## 2024-05-13 - Added Skip to Main Content Link
+**Learning:** To make skip links fully accessible, the target anchor element must be programmatically focusable. By adding `tabIndex={-1}` and using `focus:outline-none` on the target `<main>` element, keyboard focus shifts properly without displaying an unwanted focus ring. This is particularly important for this app to bypass the sticky global header.
+**Action:** Use `tabIndex={-1}` and `focus:outline-none` for internal anchor link targets, such as `#main-content`, if they are not inherently interactive elements to maintain robust screen reader and keyboard accessibility without unwanted visual artifacts.
