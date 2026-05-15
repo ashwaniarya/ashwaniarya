@@ -1,0 +1,4 @@
+## 2024-05-15 - Skip to Main Content
+
+**Learning:** Sticky headers and visually complex navigations can become blockers for keyboard-only users navigating repetitive links. A robust skip-to-content mechanism isn't just about skipping nav, it's about shifting focus accurately to a safe main container without disrupting the visual design. Using a dedicated visually-hidden link targeting a programmatically focusable non-interactive wrapper (`<main tabIndex={-1} className="focus:outline-none">`) is the best strategy to maintain styling consistency while providing strict functional accessibility.
+**Action:** Implemented a `skipToContentPolicy` token for uniform skip-link styling and enforced `<main id="main-content" tabIndex={-1} className="focus:outline-none">` in `PageLayout` to ensure all pages provide a reliable destination for standard `#main-content` anchor links.

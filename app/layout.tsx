@@ -5,6 +5,7 @@ import "./globals.css";
 import { SiteFooter } from "@/app/components/layout/SiteFooter";
 import { SiteHeader } from "@/app/components/layout/SiteHeader";
 import { siteIdentityConfiguration } from "@/app/config/siteConfiguration";
+import { skipToContentPolicy } from "@/app/constants/policy";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -52,6 +53,12 @@ export default function RootLayout({
         ].join(" ")}
       >
         <div className="flex min-h-dvh flex-col">
+          <a
+            href="#main-content"
+            className={skipToContentPolicy.skipLinkClassName}
+          >
+            Skip to main content
+          </a>
           <SiteHeader />
           <div className="flex min-h-0 flex-1 flex-col">{children}</div>
           <SiteFooter />
