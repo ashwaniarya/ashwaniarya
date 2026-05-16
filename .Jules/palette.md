@@ -1,0 +1,3 @@
+## 2026-05-16 - Skip-to-Content Link Targeting
+**Learning:** When using internal anchor links (like a 'Skip to main content' link) to shift focus to a non-interactive element (like a `<main>` tag), the target element requires `tabIndex={-1}` so it can programmatically receive focus. Additionally, it must have `focus:outline-none` (or similar) to prevent an unwanted visual focus ring from appearing around the entire main content area after the skip link is used.
+**Action:** Always add `tabIndex={-1}` and `focus:outline-none` to non-interactive container elements when they are used as anchor link targets for skip links or hash navigation.
