@@ -1,0 +1,3 @@
+## 2024-05-17 - Focus Management and Visual Consistency for Skip Links
+**Learning:** When creating non-interactive internal anchor targets (like `<main id="main-content">`) to support skip-to-content accessibility patterns, setting `tabIndex={-1}` is required to make the element programmatically focusable. However, this causes some browsers to render a default visual focus ring when the skip link is activated, which can look unintended on structural layout elements.
+**Action:** Always pair `tabIndex={-1}` with an explicit outline reset (e.g., Tailwind's `focus:outline-none`) on non-interactive structural anchor targets to maintain robust keyboard accessibility without introducing unwanted visual focus artifacts.
