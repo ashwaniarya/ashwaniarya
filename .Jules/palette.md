@@ -1,0 +1,3 @@
+## 2024-05-18 - Added skip-to-content functionality
+**Learning:** This application lacks a way to bypass the sticky global header (`SiteHeader`), which forces screen reader and keyboard users to tab through the navigation on every page load.
+**Action:** Added a visually hidden "Skip to main content" link at the very top of `app/layout.tsx` pointing to `#main-content`, and updated `PageLayout.tsx` `<main>` wrapper with `id="main-content"`, `tabIndex={-1}`, and `focus:outline-none` so it can receive programmatic focus without an unwanted visual ring. Created `skipToContentPolicy` in `app/constants/policy.ts` to manage the link's styling.
