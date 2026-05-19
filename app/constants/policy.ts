@@ -1,3 +1,8 @@
+export const skipToContentPolicy = {
+  linkClassName:
+    "sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[100] focus:px-4 focus:py-2 focus:bg-backgroundPage focus:text-accentPrimary focus:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus:font-medium",
+} as const;
+
 export const homepageHeroPolicy = {
   heroSectionSpacingClassName: "space-y-4",
   heroImageWrapperClassName:
