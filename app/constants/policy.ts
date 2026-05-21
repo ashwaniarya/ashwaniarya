@@ -215,3 +215,23 @@ export const contentCardPolicy = {
   linkInteractiveClassName:
     "transition-colors transition-shadow hover:border-accentPrimary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
 } as const;
+
+/**
+ * ScrollTrigger-driven character highlight: full copy stays in the DOM; scrub maps scroll progress
+ * to how many grapheme units use the “lit” emphasis classes (bidirectional with scrub rewind).
+ */
+export const scrollScrubbedHighlightPolicy = {
+  /**
+   * Classic in-flow band: progress runs while the hero section traverses the viewport. Works when
+   * the block starts near the top (unlike a fixed “top 40%” line, which may never be crossed while
+   * scrolling down).
+   */
+  scrollTriggerStart: "top bottom",
+  scrollTriggerEnd: "bottom top",
+  /** Seconds of smoothing for ScrollTrigger `scrub` (numeric lag). */
+  scrubLagSeconds: 0.45,
+  dimCharacterClassName: "text-textSecondary",
+  litCharacterClassName: "text-textPrimary",
+  /** Matches design-system Body Base scale; pair with per-character color classes above. */
+  paragraphTypographyClassName: "text-base leading-6",
+} as const;
