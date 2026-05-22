@@ -87,6 +87,12 @@ export const meshEditorialSurfacePolicy = {
     "px-2 py-6 narrowPhoneUp:px-4 narrowPhoneUp:py-8 sm:px-8 sm:py-10",
 } as const;
 
+/** Visually hidden link that becomes visible when receiving keyboard focus for accessibility. */
+export const skipToContentPolicy = {
+  skipLinkClassName:
+    "sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:top-4 focus-visible:left-4 focus-visible:z-50 focus-visible:rounded-md focus-visible:bg-surfaceElevated focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:font-medium focus-visible:text-accentPrimary focus-visible:shadow-md focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:outline-none",
+} as const;
+
 /** Primary display titles (hero name, case study document title) — clip gradient to glyphs. */
 export const editorialGradientTitlePolicy = {
   gradientTextClassName:
