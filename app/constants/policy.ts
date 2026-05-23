@@ -72,6 +72,11 @@ export const homepageContactSectionPolicy = {
 } as const;
 
 /** Editorial mesh surfaces (shared with work case study canvas). */
+export const skipToContentPolicy = {
+  skipLinkClassName:
+    "sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-backgroundPage focus:text-textPrimary focus:font-semibold focus:shadow-md focus:border focus:border-borderDefault focus:rounded-sm focus:outline-none focus:ring-2 focus:ring-accentPrimary focus:ring-offset-2",
+} as const;
+
 export const meshEditorialSurfacePolicy = {
   /** Border + fill only — compose with a shadow token below. */
   shellBaseClassName: "rounded-2xl border border-borderDefault/70 bg-surfaceMuted",
