@@ -1,0 +1,3 @@
+## 2024-03-21 - Accessible Skip to Content Link Without Unwanted Focus
+**Learning:** Adding a visually hidden "Skip to main content" link is critical for keyboard and screen reader accessibility to bypass a sticky global header. However, navigating to an anchor link on an inherently non-interactive element like `<main>` can result in unexpected and visually unappealing focus rings, or fail to move focus programmatically.
+**Action:** Always target the skip link to a programmatically focusable container. Ensure the target element has `tabIndex={-1}` so it can receive programmatic focus without being in the regular tab order, and add `focus:outline-none` so it doesn't display a focus ring when navigated to via the skip link.
