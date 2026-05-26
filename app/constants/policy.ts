@@ -215,3 +215,9 @@ export const contentCardPolicy = {
   linkInteractiveClassName:
     "transition-colors transition-shadow hover:border-accentPrimary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
 } as const;
+
+/** Visually hidden link that becomes visible on focus, used to bypass sticky headers. */
+export const skipToContentPolicy = {
+  linkClassName:
+    "sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 rounded-md bg-backgroundPage px-4 py-2 text-sm font-medium text-textPrimary shadow-sm ring-1 ring-borderDefault focus:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary",
+} as const;
