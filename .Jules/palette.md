@@ -1,0 +1,3 @@
+## 2024-05-29 - Added Skip-to-Content Link
+**Learning:** This app's sticky header causes keyboard users to iterate through all navigation links on every page load. Providing a skip link to the main content significantly improves keyboard accessibility. When doing this, the target container must have `tabIndex={-1}` to be programmatically focusable, but it also needs `focus:outline-none` so that a visual ring is not confusingly rendered around the entire page layout when a user jumps to it.
+**Action:** When adding skip links, always ensure the target container sets `tabIndex={-1}` and `focus:outline-none` to prevent unwanted visual focus rings upon navigation.

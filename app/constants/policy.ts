@@ -215,3 +215,10 @@ export const contentCardPolicy = {
   linkInteractiveClassName:
     "transition-colors transition-shadow hover:border-accentPrimary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
 } as const;
+
+
+/** Accessibility skip-to-content link: visually hidden until focused via keyboard. */
+export const skipToContentPolicy = {
+  skipLinkClassName:
+    "sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:z-50 focus-visible:top-4 focus-visible:left-4 focus-visible:rounded-sm focus-visible:bg-backgroundPage focus-visible:px-4 focus-visible:py-2 focus-visible:text-accentPrimary focus-visible:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary",
+} as const;
