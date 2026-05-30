@@ -1,0 +1,3 @@
+## 2026-05-30 - Sticky Header Keyboard Accessibility
+**Learning:** Sticky or fixed global headers create significant usability issues for keyboard-only and screen reader users, who must tab through the entire navigation on every page load to reach the main content. This is especially problematic in single-page apps or when returning to top-level pages.
+**Action:** Always include a visually hidden "Skip to main content" link as the first focusable element in the DOM (e.g., just inside `<body>`). To ensure the link reliably focuses the main content without leaving a visible focus ring (which is undesirable for a structural container like `<main>`), set `id="main-content"`, `tabIndex={-1}`, and `className="focus:outline-none"` on the target container.
