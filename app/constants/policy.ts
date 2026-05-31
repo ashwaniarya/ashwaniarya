@@ -72,6 +72,12 @@ export const homepageContactSectionPolicy = {
 } as const;
 
 /** Editorial mesh surfaces (shared with work case study canvas). */
+/** Accessibility: Skip to content link that appears on focus. */
+export const skipToContentPolicy = {
+  skipLinkClassName:
+    "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-backgroundPage focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-textPrimary focus:shadow-md focus:outline-none focus:ring-2 focus:ring-accentPrimary",
+} as const;
+
 export const meshEditorialSurfacePolicy = {
   /** Border + fill only — compose with a shadow token below. */
   shellBaseClassName: "rounded-2xl border border-borderDefault/70 bg-surfaceMuted",
