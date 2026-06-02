@@ -4,15 +4,19 @@ import { HomepageContactSection } from "@/app/components/homepage/HomepageContac
 import { HomepageProjectsSection } from "@/app/components/homepage/HomepageProjectsSection";
 import { HomepageTechnologyStackSection } from "@/app/components/homepage/HomepageTechnologyStackSection";
 import { PageLayout } from "@/app/components/layout/PageLayout";
+import { HomeThreeBackground } from "@/app/components/three-spike/HomeThreeBackground";
 
 export default function Home() {
   return (
-    <PageLayout>
-      <HeroSection />
-      <HomepageExperienceSection />
-      <HomepageProjectsSection />
-      <HomepageTechnologyStackSection />
-      <HomepageContactSection />
-    </PageLayout>
+    <>
+      <HomeThreeBackground />
+      <PageLayout>
+        <HeroSection />
+        <HomepageExperienceSection />
+        <HomepageProjectsSection />
+        <HomepageTechnologyStackSection />
+        <HomepageContactSection />
+      </PageLayout>
+    </>
   );
 }

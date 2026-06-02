@@ -1,6 +1,7 @@
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import { HomepageHeroProfileImage } from "@/app/components/homepage/HomepageHeroProfileImage";
+import { ThreeEffectButton } from "@/app/components/three-spike/ThreeEffectButton";
 import { homepageHeroCopyConfiguration } from "@/app/config/homepageConfiguration";
 import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import {
@@ -56,6 +57,11 @@ export function HeroSection() {
               </BodyText>
             ))}
           </div>
+          <ThreeEffectButton
+            href={`#${homepageSectionAnchorConfiguration.projectsSectionDomId}`}
+          >
+            View work
+          </ThreeEffectButton>
         </div>
       </MeshGlowBackdrop>
     </section>

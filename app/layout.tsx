@@ -48,7 +48,7 @@ export default function RootLayout({
           plusJakartaSans.variable,
           geistMono.variable,
           "antialiased",
-          "min-h-dvh bg-backgroundPage text-textPrimary",
+          "min-h-dvh text-textPrimary",
         ].join(" ")}
       >
         <div className="flex min-h-dvh flex-col">
