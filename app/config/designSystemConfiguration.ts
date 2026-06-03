@@ -91,3 +91,17 @@ export const designSystemTokens = {
   radius: designSystemRadiusTokens,
   shadows: designSystemShadowTokens,
 } as const;
+
+export type Button3DVariantDoc = Readonly<{
+  variant: string;
+  description: string;
+  hasCanvas: boolean;
+}>;
+
+export const designSystemButton3DVariants: ReadonlyArray<Button3DVariantDoc> = [
+  { variant: "primary", description: "Pill call-to-action with the shared-canvas WebGL motif.", hasCanvas: true },
+  { variant: "card", description: "Full-surface card link; translucent so the motif shows through.", hasCanvas: true },
+  { variant: "nav", description: "Header navigation item with a subtle motif.", hasCanvas: true },
+  { variant: "inlineLink", description: "Inline internal text link (flat, no WebGL).", hasCanvas: false },
+  { variant: "externalLink", description: "External / mailto / tel link (flat, no WebGL).", hasCanvas: false },
+] as const;

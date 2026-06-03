@@ -1,6 +1,6 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { Button3D } from "@/app/components/three/Button3D";
 import { contentCardPolicy } from "@/app/constants/policy";
 
 export type CardProps = Readonly<{
@@ -10,21 +10,21 @@ export type CardProps = Readonly<{
 }>;
 
 export function Card({ children, href, className = "" }: CardProps) {
-  const containerClassName = [
-    contentCardPolicy.containerBaseClassName,
-    href ? contentCardPolicy.linkInteractiveClassName : "",
-    className,
-  ]
-    .join(" ")
-    .trim();
-
   if (href) {
     return (
-      <Link href={href} className={containerClassName}>
+      <Button3D variant="card" href={href} className={className}>
         {children}
-      </Link>
+      </Button3D>
     );
   }
 
-  return <div className={containerClassName}>{children}</div>;
+  return (
+    <div
+      className={[contentCardPolicy.containerBaseClassName, className]
+        .join(" ")
+        .trim()}
+    >
+      {children}
+    </div>
+  );
 }

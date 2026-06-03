@@ -34,6 +34,12 @@
     0 12px 24px -8px rgb(109 40 217 / 0.08);
 }
 
+/* Page background lives on <html> so the home-page WebGL canvas (a fixed -z-10
+   layer behind a transparent <body>) shows through. */
+html {
+  background-color: rgb(var(--color-background-page));
+}
+
 @theme inline {
   --font-sans: var(--font-plus-jakarta-sans);
   --font-mono: var(--font-geist-mono);

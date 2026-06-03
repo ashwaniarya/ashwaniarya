@@ -1,5 +1,6 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
+
+import { Button3D } from "@/app/components/three/Button3D";
 
 export type ExternalTextLinkProps = Readonly<{
   href: string;
@@ -14,30 +15,17 @@ export function ExternalTextLink({
   children,
   className = "",
 }: ExternalTextLinkProps) {
-  const mergedClassName = [
-    "font-medium text-accentPrimary underline-offset-4 hover:underline",
-    className,
-  ]
-    .join(" ")
-    .trim();
-
-  if (isExternal) {
-    return (
-      <a
-        href={href}
-        className={mergedClassName}
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        {children}
-        <span className="sr-only"> (opens in a new tab)</span>
-      </a>
-    );
-  }
-
   return (
-    <Link href={href} className={mergedClassName}>
+    <Button3D
+      variant={isExternal ? "externalLink" : "inlineLink"}
+      href={href}
+      isExternal={isExternal}
+      className={className}
+    >
       {children}
-    </Link>
+      {isExternal ? (
+        <span className="sr-only"> (opens in a new tab)</span>
+      ) : null}
+    </Button3D>
   );
 }

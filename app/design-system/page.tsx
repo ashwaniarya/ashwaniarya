@@ -1,6 +1,8 @@
 import { Card } from "@/app/components/content/Card";
 import { PageLayout } from "@/app/components/layout/PageLayout";
+import { Button3D } from "@/app/components/three/Button3D";
 import {
+  designSystemButton3DVariants,
   designSystemColorTokens,
   designSystemRadiusTokens,
   designSystemShadowTokens,
@@ -234,6 +236,60 @@ export default function DesignSystemPage() {
               </Card>
             </div>
           </div>
+        </section>
+
+        <section className="space-y-6" aria-labelledby="three-d-heading">
+          <Heading level="h2" id="three-d-heading">
+            3D Components
+          </Heading>
+          <p className="text-sm leading-5 text-textSecondary">
+            <code>Button3D</code> variants. Canvas variants (primary, card, nav)
+            render a WebGL motif from the shared scene behind a translucent
+            surface; inline variants stay flat.
+          </p>
+          <div className="flex flex-wrap items-center gap-6">
+            <div className="space-y-2">
+              <p className="text-xs text-textSecondary">primary</p>
+              <Button3D variant="primary" href="#three-d-heading">
+                Primary action
+              </Button3D>
+            </div>
+            <div className="space-y-2">
+              <p className="text-xs text-textSecondary">nav</p>
+              <Button3D variant="nav" href="#three-d-heading">
+                Nav item
+              </Button3D>
+            </div>
+            <div className="space-y-2">
+              <p className="text-xs text-textSecondary">inlineLink</p>
+              <Button3D variant="inlineLink" href="#three-d-heading">
+                Inline link
+              </Button3D>
+            </div>
+            <div className="space-y-2">
+              <p className="text-xs text-textSecondary">externalLink</p>
+              <Button3D variant="externalLink" href="https://example.com" isExternal>
+                External link
+              </Button3D>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <p className="text-xs text-textSecondary">card</p>
+            <Button3D variant="card" href="#three-d-heading" className="max-w-sm">
+              <Heading level="h3">3D card</Heading>
+              <BodyText size="sm" className="mt-2">
+                Translucent surface with the shared-canvas motif behind the content.
+              </BodyText>
+            </Button3D>
+          </div>
+          <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {designSystemButton3DVariants.map((entry) => (
+              <li key={entry.variant} className="text-sm text-textSecondary">
+                <code className="text-textPrimary">{entry.variant}</code>
+                {entry.hasCanvas ? " (3D)" : " (flat)"} — {entry.description}
+              </li>
+            ))}
+          </ul>
         </section>
       </div>
     </PageLayout>
