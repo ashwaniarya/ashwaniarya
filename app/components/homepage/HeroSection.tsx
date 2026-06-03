@@ -1,7 +1,7 @@
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import { HomepageHeroProfileImage } from "@/app/components/homepage/HomepageHeroProfileImage";
-import { ThreeEffectButton } from "@/app/components/three-spike/ThreeEffectButton";
+import { Button3D } from "@/app/components/three/Button3D";
 import { homepageHeroCopyConfiguration } from "@/app/config/homepageConfiguration";
 import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import {
@@ -57,11 +57,12 @@ export function HeroSection() {
               </BodyText>
             ))}
           </div>
-          <ThreeEffectButton
+          <Button3D
+            variant="primary"
             href={`#${homepageSectionAnchorConfiguration.projectsSectionDomId}`}
           >
             View work
-          </ThreeEffectButton>
+          </Button3D>
         </div>
       </MeshGlowBackdrop>
     </section>

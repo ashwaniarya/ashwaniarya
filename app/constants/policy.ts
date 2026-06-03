@@ -215,3 +215,32 @@ export const contentCardPolicy = {
   linkInteractiveClassName:
     "transition-colors transition-shadow hover:border-accentPrimary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
 } as const;
+
+export type Button3DVariant =
+  | "primary"
+  | "card"
+  | "nav"
+  | "inlineLink"
+  | "externalLink";
+
+/**
+ * Reusable 3D interactive primitive (`Button3D`). `canvasVariants` get the
+ * shared-canvas WebGL motif — they use translucent surfaces so the cube,
+ * rendered behind the button, shows through. Inline text-link variants stay
+ * flat (no per-link WebGL view, which would not scale across a long page).
+ */
+export const button3DPolicy = {
+  canvasVariants: ["primary", "card", "nav"] as ReadonlyArray<Button3DVariant>,
+  variantClassName: {
+    primary:
+      "relative inline-flex items-center justify-center rounded-full border border-accentPrimary/40 bg-surfaceElevated/70 px-7 py-3 text-sm font-semibold text-textPrimary shadow-sm backdrop-blur-sm transition-colors hover:border-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+    card:
+      "relative block min-w-0 rounded-lg border border-borderDefault bg-surfaceElevated/60 p-6 shadow-sm backdrop-blur-sm transition-colors transition-shadow hover:border-accentPrimary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+    nav:
+      "relative inline-flex min-h-11 items-center rounded-sm px-2 text-textPrimary/80 transition-colors hover:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:min-h-0 sm:px-1",
+    inlineLink:
+      "font-medium text-accentPrimary underline-offset-4 hover:underline",
+    externalLink:
+      "rounded-sm font-medium text-accentPrimary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+  } satisfies Record<Button3DVariant, string>,
+} as const;

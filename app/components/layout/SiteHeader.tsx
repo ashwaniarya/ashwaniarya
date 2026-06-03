@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Button3D } from "@/app/components/three/Button3D";
 import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import {
   editorialGradientTitlePolicy,
@@ -45,12 +46,9 @@ export function SiteHeader() {
                   ] ?? ""
                 }
               >
-                <Link
-                  href={navigationLink.href}
-                  className={siteHeaderNavigationPolicy.navigationLinkClassName}
-                >
+                <Button3D variant="nav" href={navigationLink.href}>
                   <NavigationLabel>{navigationLink.label}</NavigationLabel>
-                </Link>
+                </Button3D>
               </li>
             ))}
           </ul>
@@ -59,5 +57,3 @@ export function SiteHeader() {
     </header>
   );
 }
-
-

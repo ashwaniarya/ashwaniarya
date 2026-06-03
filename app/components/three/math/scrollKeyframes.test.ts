@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 
-import { clamp, keyframe, lerp } from "@/app/components/three-spike/scrollKeyframes";
+import {
+  clamp,
+  keyframe,
+  lerp,
+  sampleTimeline,
+} from "@/app/components/three/math/scrollKeyframes";
 
 describe("lerp", () => {
   it("returns the endpoints at t=0 and t=1", () => {
@@ -53,5 +58,30 @@ describe("keyframe", () => {
 
   it("throws when given no stops", () => {
     expect(() => keyframe(0.5, [])).toThrow();
+  });
+});
+
+describe("sampleTimeline", () => {
+  const stops = [
+    [0, 0],
+    [1, 100],
+  ] as const;
+
+  it("samples the timeline at the ref's current progress", () => {
+    expect(sampleTimeline({ current: 0.5 }, stops)).toBe(50);
+  });
+
+  it("treats null progress as 0", () => {
+    expect(sampleTimeline({ current: null }, stops)).toBe(0);
+  });
+
+  it("treats non-finite progress as 0 (never breaks a scene)", () => {
+    expect(sampleTimeline({ current: Number.NaN }, stops)).toBe(0);
+    expect(sampleTimeline({ current: Number.POSITIVE_INFINITY }, stops)).toBe(0);
+  });
+
+  it("clamps out-of-range progress into [0,1]", () => {
+    expect(sampleTimeline({ current: 5 }, stops)).toBe(100);
+    expect(sampleTimeline({ current: -5 }, stops)).toBe(0);
   });
 });

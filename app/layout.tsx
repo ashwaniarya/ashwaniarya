@@ -4,6 +4,8 @@ import "./globals.css";
 
 import { SiteFooter } from "@/app/components/layout/SiteFooter";
 import { SiteHeader } from "@/app/components/layout/SiteHeader";
+import { SceneCanvasMount } from "@/app/components/three/SceneCanvasMount";
+import { SceneProvider } from "@/app/components/three/SceneProvider";
 import { siteIdentityConfiguration } from "@/app/config/siteConfiguration";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -51,11 +53,14 @@ export default function RootLayout({
           "min-h-dvh text-textPrimary",
         ].join(" ")}
       >
-        <div className="flex min-h-dvh flex-col">
-          <SiteHeader />
-          <div className="flex min-h-0 flex-1 flex-col">{children}</div>
-          <SiteFooter />
-        </div>
+        <SceneProvider>
+          <SceneCanvasMount />
+          <div className="flex min-h-dvh flex-col">
+            <SiteHeader />
+            <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+            <SiteFooter />
+          </div>
+        </SceneProvider>
       </body>
     </html>
   );

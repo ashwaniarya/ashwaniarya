@@ -1,10 +1,11 @@
 /**
- * "Scroll-as-timeline" interpolation helpers for the three.js spike.
+ * "Scroll-as-timeline" interpolation helpers — the authoring math.
  *
- * `keyframe` maps a normalized scroll progress (0..1) to a value across ordered
- * stops — like keyframes on a timeline — so 3D properties can be authored
- * declaratively instead of with hand-rolled per-frame math. Pure + framework
- * free so it is trivially unit-testable.
+ * `keyframe` maps a normalized progress (0..1) to a value across ordered stops,
+ * like keyframes on a timeline. `sampleTimeline` is the runtime-facing variant:
+ * it reads a progress ref (clamped + finite-guarded) so scene `useFrame`
+ * callbacks can animate 3D properties without ever re-rendering React.
+ * Pure + framework free, so it is trivially unit-testable.
  */
 
 /** Linear interpolation between `start` and `end` at `t` (not clamped). */
@@ -56,4 +57,20 @@ export function keyframe(
 
   // Unreachable: the >= lastStop guard above covers progress past the end.
   return lastStop[1];
+}
+
+/** Minimal read-only ref shape so this stays decoupled from React's types. */
+export type ProgressRef = { readonly current: number | null };
+
+/**
+ * Sample a timeline from a live progress ref. Non-finite or null progress
+ * (e.g. a transient bad scroll value) is treated as 0 so a scene never breaks.
+ */
+export function sampleTimeline(
+  progressRef: ProgressRef,
+  stops: ReadonlyArray<Keyframe>,
+): number {
+  const raw = progressRef.current ?? 0;
+  const progress = Number.isFinite(raw) ? clamp(raw, 0, 1) : 0;
+  return keyframe(progress, stops);
 }
