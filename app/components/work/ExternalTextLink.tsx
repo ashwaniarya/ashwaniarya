@@ -23,6 +23,9 @@ export function ExternalTextLink({
       className={className}
     >
       {children}
+      {isExternal ? (
+        <span className="sr-only"> (opens in a new tab)</span>
+      ) : null}
     </Button3D>
   );
 }

@@ -1,5 +1,5 @@
 # 👋 Hi, I'm Ashwani Arya
-### Senior Full-Stack Engineer | Frontend Architect
+### Senior Full-Stack Engineer | Frontend Architect | UX/UI | AI/ML
 
 ---
 

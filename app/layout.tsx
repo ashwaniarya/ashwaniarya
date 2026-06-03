@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 import { SiteFooter } from "@/app/components/layout/SiteFooter";
@@ -53,6 +54,16 @@ export default function RootLayout({
           "min-h-dvh text-textPrimary",
         ].join(" ")}
       >
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-71D4ZMWTJR" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-71D4ZMWTJR');
+          `}
+        </Script>
         <SceneProvider>
           <SceneCanvasMount />
           <div className="flex min-h-dvh flex-col">
