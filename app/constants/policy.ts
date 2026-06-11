@@ -94,6 +94,11 @@ export const editorialGradientTitlePolicy = {
 } as const;
 
 /** Primary nav in `SiteHeader`: touch-friendly targets; `NavigationLabel` owns type; anchor owns color + focus ring. */
+export const skipToContentPolicy = {
+  skipLinkClassName:
+    "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-sm focus:bg-backgroundPage focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-accentPrimary focus:outline-none focus:ring-2 focus:ring-accentPrimary focus:ring-offset-2 focus:ring-offset-backgroundPage focus:shadow-sm",
+} as const;
+
 export const siteHeaderNavigationPolicy = {
   /**
    * Narrow: centered cluster. `sm+`: 1fr | auto | 1fr grid so Projects stays on the row midline with symmetric wings.
