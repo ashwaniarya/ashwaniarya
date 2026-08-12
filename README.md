@@ -7,14 +7,15 @@ part that ships it. From an empty folder to something live and paying.
 
 ### 🛠️ What I can build for you
 
-* 🌐 **Websites and web apps** — from a blank page to live, including the design.
-* 📱 **Mobile apps** — one codebase that runs on the web and on phones.
-* 📊 **Dashboards** — that stay fast even with a lot of data in them.
-* 🎥 **Live video and chat** — added inside a website you already have.
-* 🧩 **Chrome extensions** — tools that work on top of any website.
-* 🤖 **AI features** — chatbots, copilots, and the tools to check the AI behaves.
-* 🔌 **APIs, backends and payments** — built to keep working when things go wrong.
-* 🎨 **Design systems** — so everything your team builds looks like one product.
+* **Websites and web apps** — from a blank page to live, including the design.
+* **Mobile apps** — one codebase that runs on the web and on phones.
+* **Dashboards** — that stay fast even with a lot of data in them.
+* **Live video and chat** — added inside a website you already have.
+* **Chrome extensions** — tools that work on top of any website.
+* **AI features** — chatbots, copilots, and the tools to check the AI behaves.
+* **APIs, backends and payments** — built to keep working when things go wrong.
+* **Design systems** — so everything your team builds looks like one product.
+* **Gen AI Pipeline Workers** - for analysis engine, content engine.
 
 ### 🚀 Things I've shipped
 
