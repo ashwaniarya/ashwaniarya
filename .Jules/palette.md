@@ -1,0 +1,1 @@
+## 2024-05-24 - Accessibility: Skip-to-content\n**Learning:** The layout currently misses a skip-to-content link, limiting screen reader and keyboard accessibility.\n**Action:** Add a visually hidden skip-to-content link to `app/layout.tsx`.
