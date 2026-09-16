@@ -1,30 +1,40 @@
 # 👋 Hi, I'm Ashwani Arya
 
-**Full-stack product engineer. Available for freelance and contract work — remote.**
+**Design engineer. I ship polished product UI in React, Next.js, Tailwind and Three.js, with a filmmaker's eye for motion and type.**
 
-I build software end to end: the screens people use, the servers behind them, and the
-part that ships it. From an empty folder to something live and paying.
+Three-time founding engineer. Remote from Bangalore, overlapping US and EU hours. Available for contracts and design engineering roles.
 
-### 🛠️ What I can build for you
+### 🎬 Live work, open any of them
 
-* 🌐 **Websites and web apps** — from a blank page to live, including the design.
-* 📱 **Mobile apps** — one codebase that runs on the web and on phones.
-* 📊 **Dashboards** — that stay fast even with a lot of data in them.
-* 🎥 **Live video and chat** — added inside a website you already have.
-* 🧩 **Chrome extensions** — tools that work on top of any website.
-* 🤖 **AI features** — chatbots, copilots, and the tools to check the AI behaves.
-* 🔌 **APIs, backends and payments** — built to keep working when things go wrong.
-* 🎨 **Design systems** — so everything your team builds looks like one product.
+| Piece | What it is | Stack |
+| --- | --- | --- |
+| [syncoderslabs.com](https://syncoderslabs.com) | Cinematic studio site: decode-style hero animation, WebGL scroll backdrop behind indexable HTML | Vite, TypeScript, Three.js, GSAP |
+| [TRINETRA](https://trinetra.syncoderslabs.com) · [source](https://github.com/ashwaniarya/trinetra) | Seven-screen film promo told through scroll: instanced mandala, PMREM-lit gold, shader passes | Three.js, GLSL, GSAP |
+| [scroll-engine](https://scroll-engine.syncoderslabs.com) · [source](https://github.com/ashwaniarya/scroll-engine) | Open-source engine for scroll-driven 3D sites; culling cut draw calls from about 113 to between 4 and 47 | TypeScript, Three.js, Vitest |
+| [Pulseboard](https://pulseboard-green-chi.vercel.app) · [source](https://github.com/ashwaniarya/pulseboard) | Analytics dashboard with a token-based design system: 20 components in Storybook, 52K-row virtualized table, 264 tests | React 19, Tailwind 4, Storybook, Cypress |
+| [MindFlow](https://mindflow-ai-sepia.vercel.app) | ReAct agent in LangGraph that builds mind maps through tools, with a step budget and streamed reasoning | React Flow, LangGraph, Gemini |
+| [Cascading Filters Dashboard](https://cascading-filters-dashboard.vercel.app) | Global and local filters cascading through a table and chart, with a picture-in-picture chart | React 19, Recharts |
 
-### 🚀 Things I've shipped
+Portfolio with screenshots: [ashwaniarya.vercel.app](https://ashwaniarya.vercel.app)
 
-**Founding engineer at [GetBujo](https://getbujo.com) (2023 — 2025)** — three products, one small team.
+### 🛠️ What I do for teams
 
-* **[Wingman](https://getwingman.io/)** — live video shopping inside online stores. YC-backed,
-  ~100k reach/day, grew from $0 to **$10k MRR**.
-* **AI copilot for sales agents** — ~80 agents, ~30k conversations a month, ~**$20k MRR**.
-  Rebuilt it on WebSockets in 4 days, which helped win the LG US contract.
-* **[Bujo AI Shopping Assistant](https://chromewebstore.google.com/detail/bujo-ai-shopping-assistan/hohpkegbedejmdcebpapfafgcdgjjbnn)** — a shopping helper, live on the Chrome Web Store.
+* 🎨 **Product UI that feels finished**: layouts, typography, responsiveness, motion, micro-interactions.
+* 🧱 **Design systems**: tokens, components, Storybook as living documentation. Built two for companies.
+* 📊 **Dashboards and data-dense screens** that stay fast: virtualized tables, chart systems, streaming updates.
+* 🤖 **AI product interfaces**: streaming UI, agent loops, prompt and tag systems, copilots.
+* 🎥 **Motion and 3D on the web**: GSAP, Three.js, shaders, with performance budgets that hold.
+* 🔌 **The backend when the feature needs it**: Node, PostgreSQL, payments, WebSockets.
+
+### 🚀 Client work
+
+**Founding engineer at [GetBujo](https://getbujo.com) (2024 to 2026)**: three products, one small team.
+
+* **[Wingman](https://getwingman.io/)**: live video shopping inside online stores. YC-backed, about 100K sessions a day, grew from $0 to **$10k MRR**.
+* **AI copilot for sales agents**: about 80 agents, about 30k conversations a month, about **$20k MRR**. Rebuilt it on WebSockets in 4 days, which helped win the LG US contract.
+* **[Bujo AI Shopping Assistant](https://chromewebstore.google.com/detail/bujo-ai-shopping-assistan/hohpkegbedejmdcebpapfafgcdgjjbnn)**: a shopping helper, live on the Chrome Web Store.
+
+**Now**: owning the UI of an AI-visibility analytics product: tag system, chart rebuilds, outreach console, URL-synced views.
 
 ### 📦 Open source
 
@@ -33,9 +43,9 @@ part that ships it. From an empty folder to something live and paying.
 | [ai-secure-share](https://github.com/ashwaniarya/ai-secure-share) · [live](https://airesponseshare.com) | Turn any AI answer into a clean shareable link. Passwords, expiry, no signup. |
 | [react-nextjs-toast](https://github.com/ashwaniarya/react-nextjs-toast) ⭐24 | A small toast notification component for Next.js. |
 | [grok-web-sdk](https://github.com/ashwaniarya/grok-web-sdk) | Use your own Grok account from an AI agent, the terminal, or code. No API key. |
-| [scroll-engine](https://github.com/ashwaniarya/scroll-engine) | Engine for 3D websites that animate as you scroll. |
+| [scroll-engine](https://github.com/ashwaniarya/scroll-engine) · [demo](https://scroll-engine.syncoderslabs.com) | Engine for 3D websites that animate as you scroll. |
 | [uplift](https://github.com/ashwaniarya/uplift) ⭐2 | Gives your localhost a real domain name with HTTPS, no setup. |
-| [shop-management](https://github.com/ashwaniarya/shop-management) | Full shop system — stock, billing, reports. |
+| [shop-management](https://github.com/ashwaniarya/shop-management) | Full shop system: stock, billing, reports. |
 
 ### 💻 Stack
 
