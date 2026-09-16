@@ -1,10 +1,10 @@
-# 👋 Hi, I'm Ashwani Arya
+# Ashwani Arya
 
-**Design engineer. I ship polished product UI in React, Next.js, Tailwind and Three.js, with a filmmaker's eye for motion and type.**
+**Design engineer · 3× founding engineer · React · Next.js · Tailwind · Three.js · agent UI**
 
-Three-time founding engineer. Remote from Bangalore, overlapping US and EU hours. Available for contracts and design engineering roles.
+I ship polished product UI with a filmmaker's eye for motion and type, and I build the rest of the product when the feature needs it. Over 6+ years I have been the first or founding engineer on three products, owning frontend, backend, and infrastructure end to end. Remote from Bangalore, overlapping US and EU hours.
 
-### 🎬 Live work, open any of them
+## Live work, open any of them
 
 | Piece | What it is | Stack |
 | --- | --- | --- |
@@ -17,53 +17,31 @@ Three-time founding engineer. Remote from Bangalore, overlapping US and EU hours
 
 Portfolio with screenshots: [ashwaniarya.vercel.app](https://ashwaniarya.vercel.app)
 
-### 🛠️ What I do for teams
+## Currently
 
-* 🎨 **Product UI that feels finished**: layouts, typography, responsiveness, motion, micro-interactions.
-* 🧱 **Design systems**: tokens, components, Storybook as living documentation. Built two for companies.
-* 📊 **Dashboards and data-dense screens** that stay fast: virtualized tables, chart systems, streaming updates.
-* 🤖 **AI product interfaces**: streaming UI, agent loops, prompt and tag systems, copilots.
-* 🎥 **Motion and 3D on the web**: GSAP, Three.js, shaders, with performance budgets that hold.
-* 🔌 **The backend when the feature needs it**: Node, PostgreSQL, payments, WebSockets.
+Owning the product UI of AI-visibility (GEO) analytics at **[AIClicks](https://aiclicks.io)**: tag system, chart rebuilds, outreach console, URL-synced views, plus LLM content pipelines. *(Apr 2026 to present)*
 
-### 🚀 Client work
+## Things I've shipped
 
-**Founding engineer at [GetBujo](https://getbujo.com) (2024 to 2026)**: three products, one small team.
+- **Live video commerce at scale**: led a B2B live-video widget at [getbujo](https://getbujo.com) (YC P26) that grew from 0 to **100K user sessions/day**, with uninterrupted video calls on server-rendered sites. First engineer as the company went **$0 → $150K ARR**. *(Dec 2024 to Feb 2026)*
+- **AI copilot for sales teams**: used by 80 agents on ~30K conversations/month (**$20K MRR**); migrated REST → WebSocket in 4 days, helping close a long-term contract with LG US.
+- **AI shopping assistant**: B2C Chrome extension with streaming UI, WebSocket persistence, and LRU caching. Live on the Chrome Web Store.
+- **Voice-based AI storytelling app**: helps users improve spoken English; built solo, end to end, on the MERN stack.
+- **Fintech from scratch**: founding engineer at Tap Invest: investment and payment flows (2–3 days → 3–4 hours processing), a unified React / React Native codebase, and a server-driven page-render engine.
+- **Enterprise scale**: at UiPath, built a configurable node component integrating 200+ third-party APIs into their low-code automation platform.
 
-* **[Wingman](https://getwingman.io/)**: live video shopping inside online stores. YC-backed, about 100K sessions a day, grew from $0 to **$10k MRR**.
-* **AI copilot for sales agents**: about 80 agents, about 30k conversations a month, about **$20k MRR**. Rebuilt it on WebSockets in 4 days, which helped win the LG US contract.
-* **[Bujo AI Shopping Assistant](https://chromewebstore.google.com/detail/bujo-ai-shopping-assistan/hohpkegbedejmdcebpapfafgcdgjjbnn)**: a shopping helper, live on the Chrome Web Store.
+## Open source & projects
 
-**Now**: owning the UI of an AI-visibility analytics product: tag system, chart rebuilds, outreach console, URL-synced views.
+- **[ai-secure-share](https://github.com/ashwaniarya/ai-secure-share)**: end-to-end-encrypted AI response sharing (browser-side AES-256-GCM). Live at [airesponseshare.com](https://airesponseshare.com)
+- **[visual-workflow-studio](https://github.com/ashwaniarya/visual-workflow-studio)**: visual DAG editor with pluggable node types, execution logs, undo/redo. [Live demo](https://visual-workflow-studio.vercel.app)
+- **[react-nextjs-toast](https://github.com/ashwaniarya/react-nextjs-toast)**: toast notifications for Next.js
 
-### 📦 Open source
+## Stack
 
-| Project | What it does |
-| --- | --- |
-| [ai-secure-share](https://github.com/ashwaniarya/ai-secure-share) · [live](https://airesponseshare.com) | Turn any AI answer into a clean shareable link. Passwords, expiry, no signup. |
-| [react-nextjs-toast](https://github.com/ashwaniarya/react-nextjs-toast) ⭐24 | A small toast notification component for Next.js. |
-| [grok-web-sdk](https://github.com/ashwaniarya/grok-web-sdk) | Use your own Grok account from an AI agent, the terminal, or code. No API key. |
-| [scroll-engine](https://github.com/ashwaniarya/scroll-engine) · [demo](https://scroll-engine.syncoderslabs.com) | Engine for 3D websites that animate as you scroll. |
-| [uplift](https://github.com/ashwaniarya/uplift) ⭐2 | Gives your localhost a real domain name with HTTPS, no setup. |
-| [shop-management](https://github.com/ashwaniarya/shop-management) | Full shop system: stock, billing, reports. |
+TypeScript · React · Next.js · Tailwind · Three.js · GSAP · GLSL · Storybook · React Native · Node.js · Express · FastAPI · WebSockets · PostgreSQL · MongoDB · Prisma · AWS · Vercel · GitHub Actions · Vitest · Cypress
 
-### 💻 Stack
+## Get in touch
 
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+Open to design engineering and senior frontend roles (remote, UTC+5:30, overlapping US and EU hours), and to fixed-scope UI sprints for product teams.
 
-Also: React Native · Java / Spring Boot · Python · MongoDB · Prisma · Docker · Nginx · WebRTC · WebSockets
-
-### 📬 Get in touch
-
-Have something to build? I reply within a day.
-
-📧 [syncoders@gmail.com](mailto:syncoders@gmail.com) &nbsp;·&nbsp;
-💬 [WhatsApp](https://wa.me/917979768174) &nbsp;·&nbsp;
-💼 [LinkedIn](https://www.linkedin.com/in/ashwani-arya-1623963a0/)
+[ashwaniparker@gmail.com](mailto:ashwaniparker@gmail.com) · [LinkedIn](https://www.linkedin.com/in/ashwani-arya-1623963a0/)
