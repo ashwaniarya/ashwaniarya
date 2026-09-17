@@ -70,7 +70,7 @@ const portfolioCaseStudies = [
     slug: "getbujo",
     title: "GetBujo — Founding Engineer, Three Product Surfaces",
     metaDescription:
-      "How I shipped a live video dashboard, a Chrome extension, and an AI copilot experience as founding engineer at GetBujo—end-to-end product engineering.",
+      "How I shipped a live video dashboard, a Chrome extension, and an AI copilot experience as founding engineer at GetBujo: end-to-end product engineering.",
     role: "Founding engineer",
     company: "GetBujo",
     companySiteUrl: "https://getbujo.com",

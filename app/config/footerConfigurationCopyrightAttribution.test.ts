@@ -5,7 +5,7 @@ import { footerConfiguration } from "@/app/config/siteConfiguration";
 describe("footerConfiguration copyright attribution", () => {
   it("keeps the public footer attribution line stable for branding and legal clarity", () => {
     expect(footerConfiguration.footerCopyrightAttributionLine).toBe(
-      "Ashwani Arya, a Full Stack Product Engineer/Builder focused on shipping useful, reliable, and fast experiences end-to-end.",
+      "Ashwani Arya, design engineer and product engineer: polished product UI, motion and 3D, dashboards, and agent interfaces, shipped end to end.",
     );
   });
 });
