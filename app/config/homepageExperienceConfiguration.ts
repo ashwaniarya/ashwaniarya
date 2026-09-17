@@ -16,7 +16,7 @@ export type ExperienceFocusAreaRecord = Readonly<{
 export const homepageExperienceSectionCopyConfiguration = {
   sectionHeading: "Experience",
   sectionIntroLines: [
-    "Where I spend depth: shipping interfaces and backend systems that scale across platforms, contracts, data volume, and performance budgets.",
+    "Where I spend depth: interfaces that feel finished, hold up under real data, and stay fast on the devices people actually use.",
   ],
 } as const;
 
@@ -25,13 +25,13 @@ export const homepageExperienceFocusAreasConfiguration = [
     focusAreaKey: "crossPlatformDevelopment",
     titleLine: "Cross-platform development",
     detailLine:
-      "Web, native, and embedded webviews—shared patterns and tooling so one mental model travels across surfaces.",
+      "Web, native, and embedded webviews. Shared patterns and tooling so one mental model travels across surfaces.",
   },
   {
     focusAreaKey: "reusableComponentDesign",
     titleLine: "Reusable component design",
     detailLine:
-      "Composable UI building blocks, clear props, and design-system discipline so teams ship faster with fewer regressions.",
+      "Design tokens, composable components, and Storybook as living documentation, so teams ship faster with fewer regressions.",
   },
   {
     focusAreaKey: "apiAndContractDevelopment",
@@ -43,13 +43,13 @@ export const homepageExperienceFocusAreasConfiguration = [
     focusAreaKey: "backendDevelopment",
     titleLine: "Backend development",
     detailLine:
-      "Node.js services; normalized and denormalized database layers; data modeling across NoSQL and PostgreSQL; and payment systems built for reliability under real-world failure modes.",
+      "Node.js services, PostgreSQL and MongoDB data modeling, and payment flows built to survive real-world failure modes.",
   },
   {
     focusAreaKey: "performanceOptimization",
     titleLine: "Performance optimization",
     detailLine:
-      "Virtual scroll, lazy loading, asset budgets, and cross-device tuning so heavy views stay smooth in the field.",
+      "Virtualized tables, bundle budgets, draw-call culling, and GPU profiling so heavy views and 3D scenes stay smooth in the field.",
   },
   {
     focusAreaKey: "dataIntensiveFrontend",

@@ -7,6 +7,7 @@ export type NavigationLink = Readonly<{
 
 const primaryHomepageNavigationHref = {
   home: `/#${homepageSectionAnchorConfiguration.homeSectionDomId}`,
+  work: `/#${homepageSectionAnchorConfiguration.selectedWorkSectionDomId}`,
   projects: `/#${homepageSectionAnchorConfiguration.projectsSectionDomId}`,
   contact: `/#${homepageSectionAnchorConfiguration.contactSectionDomId}`,
 } as const;
@@ -14,14 +15,15 @@ const primaryHomepageNavigationHref = {
 export const siteIdentityConfiguration = {
   siteName: "Ashwani Arya",
   siteDescription:
-    "A small, fast personal site with selected work, product experiments, and engineering notes.",
+    "Design engineer portfolio: live product UI, motion and 3D work, dashboards, and agent interfaces by Ashwani Arya.",
   ownerName: "Ashwani Arya",
 } as const;
 
 export const navigationConfiguration = {
   navigationLinks: [
     { label: "Home", href: primaryHomepageNavigationHref.home },
-    { label: "Projects", href: primaryHomepageNavigationHref.projects },
+    { label: "Work", href: primaryHomepageNavigationHref.work },
+    { label: "Case studies", href: primaryHomepageNavigationHref.projects },
     { label: "Contact", href: primaryHomepageNavigationHref.contact },
   ] satisfies ReadonlyArray<NavigationLink>,
 } as const;

@@ -244,3 +244,20 @@ export const button3DPolicy = {
       "rounded-sm font-medium text-accentPrimary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
   } satisfies Record<Button3DVariant, string>,
 } as const;
+
+/** Homepage selected work: screenshot tiles linking to live pieces. Shares the projects section rhythm. */
+export const homepageSelectedWorkSectionPolicy = {
+  tilesListClassName:
+    "mt-6 grid list-none grid-cols-1 gap-5 p-0 sm:mt-8 sm:gap-6 md:grid-cols-2",
+  tileLinkClassName: "h-full",
+  tileFigureClassName:
+    "m-0 overflow-hidden rounded-md border border-borderDefault/70 bg-backgroundPage",
+  tileImageClassName: "block h-auto w-full",
+  tileImageSizes: "(min-width: 768px) 50vw, 100vw",
+  tileMetaRowClassName: "flex flex-wrap items-center justify-between gap-2 px-1",
+  stackListClassName: "flex list-none flex-wrap gap-1.5 p-0",
+  stackChipClassName:
+    "rounded-full border border-borderDefault/80 px-2.5 py-0.5 text-xs text-textSecondary",
+  /** Must match `WORK_SCREENSHOT_WIDTH_PX` in `scripts/optimize-work-screenshots.mjs`. */
+  selectedWorkTileImageWidthPx: 1200,
+} as const;
