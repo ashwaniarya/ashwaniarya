@@ -6,6 +6,7 @@ import "./globals.css";
 import { SiteFooter } from "@/app/components/layout/SiteFooter";
 import { SiteHeader } from "@/app/components/layout/SiteHeader";
 import { SceneCanvasMount } from "@/app/components/three/SceneCanvasMount";
+import { StructuredData } from "@/app/components/seo/StructuredData";
 import { SceneProvider } from "@/app/components/three/SceneProvider";
 import { siteIdentityConfiguration } from "@/app/config/siteConfiguration";
 
@@ -33,10 +34,40 @@ export const metadata: Metadata = {
       }
     : {}),
   title: {
-    default: siteIdentityConfiguration.siteName,
+    default: siteIdentityConfiguration.homepageTitle,
     template: `%s | ${siteIdentityConfiguration.siteName}`,
   },
-  description: siteIdentityConfiguration.siteDescription,
+  description: siteIdentityConfiguration.homepageDescription,
+  applicationName: siteIdentityConfiguration.siteName,
+  authors: [{ name: siteIdentityConfiguration.ownerName }],
+  creator: siteIdentityConfiguration.ownerName,
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    siteName: siteIdentityConfiguration.siteName,
+    title: siteIdentityConfiguration.homepageTitle,
+    description: siteIdentityConfiguration.homepageDescription,
+    locale: "en_US",
+    ...(canonicalSiteUrl ? { url: "/" } : {}),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteIdentityConfiguration.homepageTitle,
+    description: siteIdentityConfiguration.homepageDescription,
+  },
 };
 
 export default function RootLayout({
@@ -46,6 +77,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <StructuredData canonicalSiteUrl={canonicalSiteUrl} />
+      </head>
       <body
         className={[
           plusJakartaSans.variable,

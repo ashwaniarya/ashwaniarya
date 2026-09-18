@@ -32,9 +32,13 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
+
+# local agent workspace (.claude/worktrees holds a full copy of this project)
+.claude/
 
 # typescript
 *.tsbuildinfo

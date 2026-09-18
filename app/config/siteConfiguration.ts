@@ -14,9 +14,36 @@ const primaryHomepageNavigationHref = {
 
 export const siteIdentityConfiguration = {
   siteName: "Ashwani Arya",
+  /**
+   * Homepage `<title>`. Deliberately longer than `siteName`: three other engineers
+   * named Ashwani Arya outrank this site, so the title has to carry the role and
+   * stack terms that separate them.
+   */
+  homepageTitle: "Ashwani Arya — Design Engineer, React & Three.js",
   siteDescription:
     "Design engineer portfolio: live product UI, motion and 3D work, dashboards, and agent interfaces by Ashwani Arya.",
+  homepageDescription:
+    "Design engineer and three-time founding engineer. I ship polished product UI in React, Next.js, Tailwind and Three.js — live video at 100K sessions a day, design systems, and AI product interfaces. Remote from Bangalore.",
   ownerName: "Ashwani Arya",
+  ownerJobTitle: "Design Engineer",
+  ownerLocality: "Bangalore",
+  ownerCountry: "India",
+  socialProfileUrls: [
+    "https://github.com/ashwaniarya",
+    "https://www.linkedin.com/in/ashwani-arya-1623963a0/",
+    "https://syncoderslabs.com",
+  ],
+  expertiseAreas: [
+    "Design engineering",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Three.js",
+    "GSAP",
+    "Tailwind CSS",
+    "WebGL",
+    "Design systems",
+  ],
 } as const;
 
 export const navigationConfiguration = {
