@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { Card } from "@/app/components/content/Card";
 import { PageLayout } from "@/app/components/layout/PageLayout";
 import { Button3D } from "@/app/components/three/Button3D";
@@ -119,6 +121,15 @@ function ShadowSample({
     </div>
   );
 }
+
+/**
+ * Internal token reference. Kept out of the index so it cannot compete with the
+ * homepage, which it would otherwise duplicate the title of.
+ */
+export const metadata: Metadata = {
+  title: "Design System",
+  robots: { index: false, follow: false },
+};
 
 export default function DesignSystemPage() {
   return (

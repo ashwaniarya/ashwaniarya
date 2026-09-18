@@ -52,6 +52,8 @@ export type CaseStudyProductChapterConfiguration = Readonly<{
 export type CaseStudyRecord = Readonly<{
   slug: string;
   title: string;
+  /** Shorter `<title>` when `title` would truncate in search results (~60 chars). */
+  metaTitle?: string;
   metaDescription: string;
   role: string;
   company: string;
@@ -69,6 +71,7 @@ const portfolioCaseStudies = [
   {
     slug: "getbujo",
     title: "GetBujo — Founding Engineer, Three Product Surfaces",
+    metaTitle: "GetBujo — Founding Engineer",
     metaDescription:
       "How I shipped a live video dashboard, a Chrome extension, and an AI copilot experience as founding engineer at GetBujo: end-to-end product engineering.",
     role: "Founding engineer",

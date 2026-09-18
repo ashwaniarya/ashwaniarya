@@ -79,12 +79,12 @@ export function CaseStudyProductImpactSnapshot({
           className={productImpactSnapshotAccentRailClassName}
         />
         <div className="min-w-0 flex-1 space-y-3">
-          <h2
+          <h4
             id={impactSectionHeadingElementId}
             className={caseStudyProductChapterPolicy.impactSnapshotHeadingClassName}
           >
             {panelHeadingLabel}
-          </h2>
+          </h4>
           <div
             className={
               caseStudyProductChapterPolicy.impactSnapshotMetricsGridClassName
