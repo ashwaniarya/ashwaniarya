@@ -1,8 +1,8 @@
 # Ashwani Arya
 
-**Design engineer · 3× founding engineer · React · Next.js · Tailwind · Three.js · agent UI**
+**Product engineer, full-stack · 3× founding engineer · React · Next.js · Node · FastAPI · Postgres · AWS**
 
-I ship polished product UI with a filmmaker's eye for motion and type, and I build the rest of the product when the feature needs it. Over 6+ years I have been the first or founding engineer on three products, owning frontend, backend, and infrastructure end to end. Remote from Bangalore, overlapping US and EU hours.
+I design, build and run products end to end: React, Next.js and Three.js on the surface; Node, FastAPI, Postgres and AWS underneath. Over 6+ years I have been the first or founding engineer on three products, owning frontend, backend, and infrastructure. Live video at ~100k sessions a day, $0 to $10k MRR, an AI copilot at ~30k conversations a month. Remote from Bangalore, overlapping US and EU hours.
 
 ## Live work, open any of them
 
@@ -42,6 +42,6 @@ TypeScript · React · Next.js · Tailwind · Three.js · GSAP · GLSL · Storyb
 
 ## Get in touch
 
-Open to design engineering and senior frontend roles (remote, UTC+5:30, overlapping US and EU hours), and to fixed-scope UI sprints for product teams.
+Open to product engineering and full-stack roles (remote, UTC+5:30, overlapping US and EU hours), and to fixed-scope product sprints.
 
 [ashwaniparker@gmail.com](mailto:ashwaniparker@gmail.com) · [LinkedIn](https://www.linkedin.com/in/ashwani-arya-1623963a0/)

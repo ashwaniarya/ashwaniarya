@@ -1,6 +1,7 @@
 import { HeroSection } from "@/app/components/homepage/HeroSection";
 import { HomepageExperienceSection } from "@/app/components/homepage/HomepageExperienceSection";
 import { HomepageContactSection } from "@/app/components/homepage/HomepageContactSection";
+import { HomepageProductionProofSection } from "@/app/components/homepage/HomepageProductionProofSection";
 import { HomepageProjectsSection } from "@/app/components/homepage/HomepageProjectsSection";
 import { HomepageSelectedWorkSection } from "@/app/components/homepage/HomepageSelectedWorkSection";
 import { HomepageTechnologyStackSection } from "@/app/components/homepage/HomepageTechnologyStackSection";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <PageLayout>
       <HeroSection />
+      <HomepageProductionProofSection />
       <HomepageSelectedWorkSection />
       <HomepageExperienceSection />
       <HomepageProjectsSection />

@@ -261,3 +261,22 @@ export const homepageSelectedWorkSectionPolicy = {
   /** Must match `WORK_SCREENSHOT_WIDTH_PX` in `scripts/optimize-work-screenshots.mjs`. */
   selectedWorkTileImageWidthPx: 1200,
 } as const;
+
+/** Homepage production-proof strip: four KPI tiles in the shared section rhythm. */
+export const homepageProductionProofSectionPolicy = {
+  sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
+  metricCardsListClassName:
+    "mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:mt-8 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4",
+  metricTileStackClassName: "min-w-0 space-y-2",
+  /** Micro-rail + label row, mirroring `caseStudyProductChapterPolicy` (rail is `aria-hidden`). */
+  metricLabelRowClassName: "flex min-w-0 items-center gap-1.5",
+  metricLabelRailClassName: editorialMicroRailClassName,
+  metricLabelClassName:
+    "block min-w-0 text-[11px] font-bold uppercase leading-none tracking-[0.1em] text-accentSecondary/90",
+  /**
+   * Sits on top of `BodyText size="lg"` (`text-lg`). Only the `sm:` variant sets a size, so there
+   * is no same-variant font-size collision with the primitive's own class.
+   */
+  metricValueClassName:
+    "font-semibold tabular-nums tracking-tight text-textPrimary sm:text-2xl",
+} as const;

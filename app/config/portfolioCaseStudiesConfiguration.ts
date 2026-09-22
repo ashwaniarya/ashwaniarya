@@ -162,7 +162,7 @@ const portfolioCaseStudies = [
           "System building",
           "CI/CD",
           "Monitoring and logging",
-          "Vertualised Tables"
+          "Virtualized tables"
         ],
       },
       {

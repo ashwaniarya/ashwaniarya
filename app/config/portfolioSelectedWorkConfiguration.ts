@@ -20,7 +20,7 @@ export type SelectedWorkRecord = Readonly<{
 export const homepageSelectedWorkSectionCopyConfiguration = {
   sectionHeading: "Selected work",
   sectionIntroLines: [
-    "Live things I designed and built end to end. Open any of them; every one is running in production.",
+    "Live things I designed, built and deployed myself, then kept running. Open any of them; every one is in production.",
   ],
 } as const;
 
