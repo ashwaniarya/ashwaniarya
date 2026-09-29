@@ -1,3 +1,11 @@
+import type { CaseStudyPagePath } from "@/app/config/portfolioCaseStudiesConfiguration";
+import {
+  pulseboardCaseStudyPagePath,
+  pulseboardLiveAppUrl,
+  pulseboardOverviewScreenshot,
+  pulseboardSourceRepositoryUrl,
+} from "@/app/config/portfolioPulseboardCaseStudyConfiguration";
+
 export type SelectedWorkScreenshotConfiguration = Readonly<{
   webpSrc: string;
   pngSrc: string;
@@ -13,6 +21,8 @@ export type SelectedWorkRecord = Readonly<{
   summary: string;
   liveUrl: string;
   sourceUrl?: string;
+  /** Internal case-study page; when set, the tile card opens it instead of `liveUrl`. */
+  caseStudyHref?: CaseStudyPagePath;
   stackLabels: readonly string[];
   screenshot: SelectedWorkScreenshotConfiguration;
 }>;
@@ -22,6 +32,9 @@ export const homepageSelectedWorkSectionCopyConfiguration = {
   sectionIntroLines: [
     "Live things I designed, built and deployed myself, then kept running. Open any of them; every one is in production.",
   ],
+  caseStudyCueLabel: "Read the case study",
+  liveLinkLabel: "Live",
+  sourceLinkLabel: "Source",
 } as const;
 
 const portfolioSelectedWork = [
@@ -81,16 +94,11 @@ const portfolioSelectedWork = [
     kicker: "Dashboard and design system",
     summary:
       "Clinic-operations analytics with a token-based design system: about twenty components documented and tested in Storybook with axe checks, visx charts, and a 52K-row virtualized table.",
-    liveUrl: "https://pulseboard-green-chi.vercel.app",
-    sourceUrl: "https://github.com/ashwaniarya/pulseboard",
+    liveUrl: pulseboardLiveAppUrl,
+    sourceUrl: pulseboardSourceRepositoryUrl,
+    caseStudyHref: pulseboardCaseStudyPagePath,
     stackLabels: ["React 19", "Tailwind 4", "Storybook", "Cypress"],
-    screenshot: {
-      webpSrc: "/images/work/pulseboard.webp",
-      pngSrc: "/images/work/pulseboard.png",
-      alt: "Pulseboard overview in dark mode: KPI tiles with sparklines and a daily trend chart.",
-      width: 1200,
-      height: 675,
-    },
+    screenshot: pulseboardOverviewScreenshot,
   },
   {
     slug: "mindflow",
