@@ -19,13 +19,13 @@ export const siteIdentityConfiguration = {
    * named Ashwani Arya outrank this site, so the title has to carry the role and
    * stack terms that separate them.
    */
-  homepageTitle: "Ashwani Arya — Design Engineer, React & Three.js",
+  homepageTitle: "Ashwani Arya — Product Engineer: React, Node, Three.js",
   siteDescription:
-    "Design engineer portfolio: live product UI, motion and 3D work, dashboards, and agent interfaces by Ashwani Arya.",
+    "Product engineer portfolio: live video at scale, an AI copilot, dashboards and 3D interfaces by Ashwani Arya, built end to end across React, Node, FastAPI, Postgres and AWS.",
   homepageDescription:
-    "Design engineer and three-time founding engineer. I ship polished product UI in React, Next.js, Tailwind and Three.js — live video at 100K sessions a day, design systems, and AI product interfaces. Remote from Bangalore.",
+    "Product engineer, full-stack, and three-time founding engineer. Live video at ~100k sessions a day, $0 → $10k MRR, an AI copilot at ~30k conversations a month. React, Next.js, Node, FastAPI, Postgres and AWS. Remote from Bangalore.",
   ownerName: "Ashwani Arya",
-  ownerJobTitle: "Design Engineer",
+  ownerJobTitle: "Product Engineer",
   ownerLocality: "Bangalore",
   ownerCountry: "India",
   socialProfileUrls: [
@@ -34,14 +34,22 @@ export const siteIdentityConfiguration = {
     "https://syncoderslabs.com",
   ],
   expertiseAreas: [
-    "Design engineering",
+    "Product engineering",
+    "Full-stack development",
     "React",
     "Next.js",
     "TypeScript",
+    "Node.js",
+    "FastAPI",
+    "PostgreSQL",
+    "AWS",
+    "WebSockets",
+    "REST API design",
+    "System design",
     "Three.js",
+    "WebGL",
     "GSAP",
     "Tailwind CSS",
-    "WebGL",
     "Design systems",
   ],
 } as const;
@@ -76,7 +84,7 @@ export const searchConfiguration = {
 export const footerConfiguration = {
   /** Shown after the © year in `SiteFooter` (name + short descriptor). */
   footerCopyrightAttributionLine:
-    "Ashwani Arya, design engineer and product engineer: polished product UI, motion and 3D, dashboards, and agent interfaces, shipped end to end.",
+    "Ashwani Arya, product engineer: products designed, built and run end to end, frontend through infrastructure.",
 } as const;
 
 export const siteConfiguration = {

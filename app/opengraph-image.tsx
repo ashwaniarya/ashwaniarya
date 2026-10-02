@@ -20,9 +20,9 @@ const shareCardPalette = {
 const highlightedCapabilities = [
   "React",
   "Next.js",
-  "Three.js",
-  "GSAP",
-  "TypeScript",
+  "Node",
+  "Postgres",
+  "AWS",
 ];
 
 export default async function OpenGraphImage() {
@@ -87,7 +87,7 @@ export default async function OpenGraphImage() {
                 display: "flex",
               }}
             />
-            Design Engineer
+            {siteIdentityConfiguration.ownerJobTitle}
           </div>
 
           <div
@@ -112,8 +112,8 @@ export default async function OpenGraphImage() {
               display: "flex",
             }}
           >
-            Polished product UI, motion and 3D, shipped end to end. Three-time
-            founding engineer.
+            Full-stack product engineer. Three-time founding engineer: live
+            video at ~100k sessions a day.
           </div>
         </div>
 

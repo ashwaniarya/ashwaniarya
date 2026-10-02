@@ -16,40 +16,28 @@ export type ExperienceFocusAreaRecord = Readonly<{
 export const homepageExperienceSectionCopyConfiguration = {
   sectionHeading: "Experience",
   sectionIntroLines: [
-    "Where I spend depth: interfaces that feel finished, hold up under real data, and stay fast on the devices people actually use.",
+    "Where I go deep: services and data models that hold up in production, contracts that do not break silently, and interfaces that stay fast under real load.",
   ],
 } as const;
 
 export const homepageExperienceFocusAreasConfiguration = [
   {
-    focusAreaKey: "crossPlatformDevelopment",
-    titleLine: "Cross-platform development",
+    focusAreaKey: "backendDevelopment",
+    titleLine: "Backend development",
     detailLine:
-      "Web, native, and embedded webviews. Shared patterns and tooling so one mental model travels across surfaces.",
-  },
-  {
-    focusAreaKey: "reusableComponentDesign",
-    titleLine: "Reusable component design",
-    detailLine:
-      "Design tokens, composable components, and Storybook as living documentation, so teams ship faster with fewer regressions.",
+      "Node and FastAPI services, PostgreSQL and MongoDB data modeling, multi-tenant boundaries, and payment flows built to survive real-world failure modes.",
   },
   {
     focusAreaKey: "apiAndContractDevelopment",
     titleLine: "API and contract development",
     detailLine:
-      "Stable HTTP boundaries, schema-first thinking, and client typings so frontend and backend evolve without silent breakage.",
-  },
-  {
-    focusAreaKey: "backendDevelopment",
-    titleLine: "Backend development",
-    detailLine:
-      "Node.js services, PostgreSQL and MongoDB data modeling, and payment flows built to survive real-world failure modes.",
+      "REST and WebSocket boundaries, schema-first thinking, and client typings so frontend and backend evolve without silent breakage.",
   },
   {
     focusAreaKey: "performanceOptimization",
     titleLine: "Performance optimization",
     detailLine:
-      "Virtualized tables, bundle budgets, draw-call culling, and GPU profiling so heavy views and 3D scenes stay smooth in the field.",
+      "Virtualized tables, bundle budgets, connection churn under load, and GPU profiling so heavy views and 3D scenes stay smooth in the field.",
   },
   {
     focusAreaKey: "dataIntensiveFrontend",
@@ -62,5 +50,17 @@ export const homepageExperienceFocusAreasConfiguration = [
     titleLine: "Frontend architecture",
     detailLine:
       "Layering, state boundaries, and feature ownership so products stay maintainable as teams and traffic grow.",
+  },
+  {
+    focusAreaKey: "crossPlatformDevelopment",
+    titleLine: "Cross-platform development",
+    detailLine:
+      "Web, native, and embedded webviews. Shared patterns and tooling so one mental model travels across surfaces.",
+  },
+  {
+    focusAreaKey: "reusableComponentDesign",
+    titleLine: "Reusable component design",
+    detailLine:
+      "Design tokens, composable components, and Storybook as living documentation, so teams ship faster with fewer regressions.",
   },
 ] as const satisfies readonly ExperienceFocusAreaRecord[];

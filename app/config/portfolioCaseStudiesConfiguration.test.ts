@@ -73,3 +73,12 @@ describe("portfolioCaseStudiesConfiguration", () => {
     });
   });
 });
+
+describe("portfolioCaseStudiesConfiguration skill labels", () => {
+  it("spells the virtualized tables skill correctly", () => {
+    const serialisedCaseStudies = JSON.stringify(getAllCaseStudies());
+
+    expect(serialisedCaseStudies).not.toMatch(/vertualised/i);
+    expect(serialisedCaseStudies).toContain("Virtualized tables");
+  });
+});
