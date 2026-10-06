@@ -3,7 +3,6 @@ import { describe, expect, it } from "vitest";
 
 import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import { navigationConfiguration } from "@/app/config/siteConfiguration";
-import { siteHeaderNavigationPolicy } from "@/app/constants/policy";
 
 import { SiteHeader } from "./SiteHeader";
 
@@ -16,33 +15,44 @@ describe("SiteHeader", () => {
       `href="/#${homepageSectionAnchorConfiguration.homeSectionDomId}"`,
     );
     expect(html).toContain(
+      `href="/#${homepageSectionAnchorConfiguration.selectedWorkSectionDomId}"`,
+    );
+    expect(html).toContain(
       `href="/#${homepageSectionAnchorConfiguration.projectsSectionDomId}"`,
     );
     expect(html).toContain(
       `href="/#${homepageSectionAnchorConfiguration.contactSectionDomId}"`,
     );
 
-    const homeIndex = html.indexOf(navigationConfiguration.navigationLinks[0].label);
-    const projectsIndex = html.indexOf(navigationConfiguration.navigationLinks[1].label);
-    const contactIndex = html.indexOf(navigationConfiguration.navigationLinks[2].label);
-    expect(homeIndex).toBeLessThan(projectsIndex);
-    expect(projectsIndex).toBeLessThan(contactIndex);
+    const [homeIndex, workIndex, caseStudiesIndex, contactIndex] =
+      navigationConfiguration.navigationLinks.map((navigationLink) =>
+        html.indexOf(navigationLink.label),
+      );
+    expect(homeIndex).toBeGreaterThan(-1);
+    expect(homeIndex).toBeLessThan(workIndex);
+    expect(workIndex).toBeLessThan(caseStudiesIndex);
+    expect(caseStudiesIndex).toBeLessThan(contactIndex);
   });
 
-  it("uses symmetric grid nav list and per-slot alignment classes from policy", () => {
-    expect(siteHeaderNavigationPolicy.navigationListClassName).toContain("sm:grid");
-    expect(siteHeaderNavigationPolicy.navigationListClassName).toContain(
-      "sm:grid-cols-[1fr_auto_1fr]",
-    );
-    expect(siteHeaderNavigationPolicy.navigationListItemSlotClassNames).toEqual([
-      "sm:justify-self-end",
-      "sm:justify-self-center",
-      "sm:justify-self-start",
-    ]);
-
+  it("keeps the primary nav list a centered wrapping row at every breakpoint, never a fixed-column grid", () => {
     const html = renderToStaticMarkup(<SiteHeader />);
-    expect(html).toContain("sm:justify-self-end");
-    expect(html).toContain("sm:justify-self-center");
-    expect(html).toContain("sm:justify-self-start");
+    const navigationListClassTokens = /<ul class="([^"]*)"/.exec(html)?.[1].split(" ") ?? [];
+
+    expect(navigationListClassTokens).toEqual(
+      expect.arrayContaining(["flex", "flex-wrap", "justify-center"]),
+    );
+    expect(navigationListClassTokens.filter((classToken) => /(^|:)grid/.test(classToken))).toEqual(
+      [],
+    );
+  });
+
+  it("renders one identical list item per primary nav link, so no link is placed by its position", () => {
+    const html = renderToStaticMarkup(<SiteHeader />);
+    const navigationListItemOpeningTags = html.match(/<li(?:\s[^>]*)?>/g) ?? [];
+
+    expect(navigationListItemOpeningTags).toHaveLength(
+      navigationConfiguration.navigationLinks.length,
+    );
+    expect(new Set(navigationListItemOpeningTags).size).toBe(1);
   });
 });

@@ -37,15 +37,8 @@ export function SiteHeader() {
         </Link>
         <nav aria-label="Primary" className="min-w-0 w-full sm:shrink-0">
           <ul className={siteHeaderNavigationPolicy.navigationListClassName}>
-            {navigationConfiguration.navigationLinks.map((navigationLink, navigationLinkIndex) => (
-              <li
-                key={navigationLink.href}
-                className={
-                  siteHeaderNavigationPolicy.navigationListItemSlotClassNames[
-                    navigationLinkIndex
-                  ] ?? ""
-                }
-              >
+            {navigationConfiguration.navigationLinks.map((navigationLink) => (
+              <li key={navigationLink.href}>
                 <Button3D variant="nav" href={navigationLink.href}>
                   <NavigationLabel>{navigationLink.label}</NavigationLabel>
                 </Button3D>
