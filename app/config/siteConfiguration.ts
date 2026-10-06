@@ -61,6 +61,7 @@ export const navigationConfiguration = {
     { label: "Case studies", href: primaryHomepageNavigationHref.projects },
     { label: "Contact", href: primaryHomepageNavigationHref.contact },
   ] satisfies ReadonlyArray<NavigationLink>,
+  phoneHeaderCallToActionHref: primaryHomepageNavigationHref.contact,
 } as const;
 
 /**

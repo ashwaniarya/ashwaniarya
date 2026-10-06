@@ -2,14 +2,35 @@ import { describe, expect, it } from "vitest";
 
 import { siteHeaderNavigationPolicy } from "@/app/constants/policy";
 
+const tailwindSpacingUnitInPixels = 4;
+
+function readSpacingMultiplier(className: string, utilityPrefix: string): number {
+  const spacingClassToken = className
+    .split(" ")
+    .find((classToken) => classToken.startsWith(utilityPrefix));
+  return Number(spacingClassToken?.slice(utilityPrefix.length));
+}
+
 describe("siteHeaderNavigationPolicy", () => {
-  it("uses tighter horizontal gaps below sm and wider gaps from sm", () => {
-    expect(siteHeaderNavigationPolicy.navigationListClassName).toContain("gap-x-3");
-    expect(siteHeaderNavigationPolicy.navigationListClassName).toContain("sm:gap-x-8");
+  it("uses a tighter horizontal gap between nav links below sm than from sm", () => {
+    const phoneGapMultiplier = readSpacingMultiplier(
+      siteHeaderNavigationPolicy.navigationListClassName,
+      "gap-x-",
+    );
+    const smallScreenUpGapMultiplier = readSpacingMultiplier(
+      siteHeaderNavigationPolicy.navigationListClassName,
+      "sm:gap-x-",
+    );
+
+    expect(phoneGapMultiplier).toBeGreaterThan(0);
+    expect(phoneGapMultiplier).toBeLessThan(smallScreenUpGapMultiplier);
   });
 
-  it("reserves touch-friendly minimum height on small screens for nav anchors", () => {
-    expect(siteHeaderNavigationPolicy.navigationLinkClassName).toContain("min-h-11");
-    expect(siteHeaderNavigationPolicy.navigationLinkClassName).toContain("sm:min-h-0");
+  it("keeps the phone Contact pill at least 24px tall, the WCAG 2.2 AA minimum target size", () => {
+    const pillHeightInPixels =
+      readSpacingMultiplier(siteHeaderNavigationPolicy.phoneCallToActionPillClassName, "h-") *
+      tailwindSpacingUnitInPixels;
+
+    expect(pillHeightInPixels).toBeGreaterThanOrEqual(24);
   });
 });

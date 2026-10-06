@@ -95,31 +95,25 @@ export const editorialGradientTitlePolicy = {
 
 /** Primary nav in `SiteHeader`: touch-friendly targets; `NavigationLabel` owns type; anchor owns color + focus ring. */
 export const siteHeaderNavigationPolicy = {
-  /**
-   * Narrow: centered cluster. `sm+`: 1fr | auto | 1fr grid so Projects stays on the row midline with symmetric wings.
-   */
+  /** Left-aligned under the brand on phones, centered from `sm`. On phones the first link drops its left padding (the `px-2` in `button3DPolicy.variantClassName.nav`) so its label lines up with the brand; a negative list margin would align it too, but push its focus ring past the 8px phone gutter. */
   navigationListClassName:
-    "flex w-full flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:grid sm:w-full sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-x-8 sm:gap-y-0",
-  /** Grid cell alignment for Home | Projects | Contact (indexes match `navigationConfiguration.navigationLinks` order). */
-  navigationListItemSlotClassNames: [
-    "sm:justify-self-end",
-    "sm:justify-self-center",
-    "sm:justify-self-start",
-  ] as const,
-  navigationLinkClassName:
-    "inline-flex min-h-11 items-center rounded-sm px-2 text-textPrimary/80 transition-colors hover:text-accentPrimary focus-visible:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:min-h-0 sm:px-1",
+    "flex w-full flex-wrap items-center justify-start gap-x-4 gap-y-1 max-sm:[&>li:first-child>a]:pl-0 sm:justify-center sm:gap-x-8",
+  /** On phones `phoneCallToActionPillClassName` shows this link beside the brand instead, so it is exposed once at every width. */
+  phoneHiddenCallToActionListItemClassName: "max-sm:hidden",
+  phoneCallToActionPillClassName:
+    "inline-flex h-8.5 items-center rounded-full border border-accentPrimary/45 bg-accentPrimary/5 px-3.5 text-accentPrimary transition-colors hover:bg-accentPrimary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:hidden",
 } as const;
 
 /**
  * Sticky top bar for `SiteHeader`.
- * Keep vertical footprint aligned with `homepageAnchoredSectionScrollMarginPolicy` when changing padding or type scale.
+ * Keep vertical footprint aligned with `homepageAnchoredSectionScrollMarginPolicy` when changing padding, type scale or row layout.
  */
 export const siteHeaderChromePolicy = {
   headerShellClassName:
     "sticky top-0 z-10 border-b border-black/10 bg-backgroundPage/80 backdrop-blur-md",
-  /** Stacked brand then nav; centered band below `sm`, spaced column from `sm`. */
+  /** Phones: brand left and call-to-action pill right, nav wrapping to its own full-width row below. From `sm`: brand centered over the nav. */
   headerInnerRowClassName:
-    "flex w-full flex-col items-center gap-1 sm:items-center sm:justify-between sm:gap-4",
+    "flex w-full flex-wrap items-center justify-between gap-x-3 gap-y-0.5 sm:flex-col sm:gap-4",
 } as const;
 
 /** Homepage sections targeted by hash links — offset scroll so targets sit below the sticky header. */
