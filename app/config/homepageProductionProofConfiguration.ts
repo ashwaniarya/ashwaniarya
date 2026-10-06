@@ -39,8 +39,8 @@ export const homepageProductionProofMetricsConfiguration = [
   },
   {
     metricKey: "copilotMonthlyConversations",
-    valueLabel: "~30k conversations/month",
-    metricLabel: "AI copilot load",
+    valueLabel: "~30k/month",
+    metricLabel: "AI conversations",
     contextLine:
       "About 80 sales agents on an iframe copilot inside Sprinklr, backed by an in-house AI service on AWS.",
   },

@@ -1,8 +1,8 @@
 export const homepageHeroCopyConfiguration = {
   headline: "Ashwani Arya",
   descriptionLines: [
-    "Product engineer, full-stack. I design, build and run products end to end — React, Next.js and Three.js on the surface; Node, FastAPI, Postgres and AWS underneath.",
-    "Three-time founding engineer: live video at ~100k sessions a day, $0 → $10k MRR, an AI copilot at ~30k conversations a month.",
+    "Product engineer, full-stack. I take products from prototyping to productionizing to finding and solving problems through them. React, Next.js and Three.js on the surface; Node, Express, FastAPI, Postgres and AWS underneath.",
+    "Three-time founding engineer: live video at ~100k sessions a day, $0 → $10k MRR, an AI copilot at ~30k conversations a month. Currently at AIclicks, a SaaS analytics platform, building LLM features across UI/UX, frontend and backend.",
     "Remote from Bangalore, overlapping US and EU hours. Open to contracts and full-time product engineering roles.",
   ],
 } as const;

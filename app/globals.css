@@ -43,6 +43,7 @@ html {
 @theme inline {
   --font-sans: var(--font-plus-jakarta-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-lato);
 }
 
 @media (prefers-color-scheme: dark) {
