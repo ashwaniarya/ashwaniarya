@@ -15,4 +15,14 @@ describe("navigationConfiguration primary links", () => {
       { label: "Contact", href: `/#${contactSectionDomId}` },
     ]);
   });
+
+  it("promotes exactly one primary link, Contact, to the phone header call-to-action", () => {
+    const phoneHeaderCallToActionLinks = navigationConfiguration.navigationLinks.filter(
+      (navigationLink) => navigationLink.href === navigationConfiguration.phoneHeaderCallToActionHref,
+    );
+
+    expect(phoneHeaderCallToActionLinks).toEqual([
+      { label: "Contact", href: `/#${homepageSectionAnchorConfiguration.contactSectionDomId}` },
+    ]);
+  });
 });

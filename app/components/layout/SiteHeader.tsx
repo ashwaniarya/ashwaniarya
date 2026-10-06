@@ -14,6 +14,10 @@ import {
   siteIdentityConfiguration,
 } from "@/app/config/siteConfiguration";
 
+const phoneHeaderCallToActionLink = navigationConfiguration.navigationLinks.find(
+  (navigationLink) => navigationLink.href === navigationConfiguration.phoneHeaderCallToActionHref,
+);
+
 export function SiteHeader() {
   return (
     <header className={siteHeaderChromePolicy.headerShellClassName}>
@@ -35,10 +39,25 @@ export function SiteHeader() {
         >
           {siteIdentityConfiguration.siteName}
         </Link>
+        {phoneHeaderCallToActionLink ? (
+          <Link
+            href={phoneHeaderCallToActionLink.href}
+            className={siteHeaderNavigationPolicy.phoneCallToActionPillClassName}
+          >
+            <NavigationLabel>{phoneHeaderCallToActionLink.label}</NavigationLabel>
+          </Link>
+        ) : null}
         <nav aria-label="Primary" className="min-w-0 w-full sm:shrink-0">
           <ul className={siteHeaderNavigationPolicy.navigationListClassName}>
             {navigationConfiguration.navigationLinks.map((navigationLink) => (
-              <li key={navigationLink.href}>
+              <li
+                key={navigationLink.href}
+                className={
+                  navigationLink === phoneHeaderCallToActionLink
+                    ? siteHeaderNavigationPolicy.phoneHiddenCallToActionListItemClassName
+                    : undefined
+                }
+              >
                 <Button3D variant="nav" href={navigationLink.href}>
                   <NavigationLabel>{navigationLink.label}</NavigationLabel>
                 </Button3D>

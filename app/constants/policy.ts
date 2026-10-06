@@ -95,9 +95,16 @@ export const editorialGradientTitlePolicy = {
 
 /** Primary nav in `SiteHeader`: touch-friendly targets; `NavigationLabel` owns type; anchor owns color + focus ring. */
 export const siteHeaderNavigationPolicy = {
-  /** Centered cluster that wraps only when the links cannot share one row; no per-position slots, so links can be added or removed freely. */
+  /**
+   * Left-aligned under the brand on phones (`-ml-2` cancels the first link's `px-2` so its text lines up with the brand), centered from `sm`.
+   * Wraps only when the links cannot share one row; no per-position slots, so links can be added or removed freely.
+   */
   navigationListClassName:
-    "flex w-full flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-x-8",
+    "-ml-2 flex w-full flex-wrap items-center justify-start gap-x-4 gap-y-1 sm:ml-0 sm:justify-center sm:gap-x-8",
+  /** On phones `phoneCallToActionPillClassName` shows this link beside the brand instead, so it is exposed once at every width. */
+  phoneHiddenCallToActionListItemClassName: "max-sm:hidden",
+  phoneCallToActionPillClassName:
+    "inline-flex h-8.5 items-center rounded-full border border-accentPrimary/45 bg-accentPrimary/5 px-3.5 text-accentPrimary transition-colors hover:bg-accentPrimary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:hidden",
   navigationLinkClassName:
     "inline-flex min-h-11 items-center rounded-sm px-2 text-textPrimary/80 transition-colors hover:text-accentPrimary focus-visible:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:min-h-0 sm:px-1",
 } as const;
@@ -109,9 +116,9 @@ export const siteHeaderNavigationPolicy = {
 export const siteHeaderChromePolicy = {
   headerShellClassName:
     "sticky top-0 z-10 border-b border-black/10 bg-backgroundPage/80 backdrop-blur-md",
-  /** Stacked brand then nav; centered band below `sm`, spaced column from `sm`. */
+  /** Phones: brand left and call-to-action pill right, nav wrapping to its own full-width row below. From `sm`: brand centered over the nav. */
   headerInnerRowClassName:
-    "flex w-full flex-col items-center gap-1 sm:items-center sm:justify-between sm:gap-4",
+    "flex w-full flex-wrap items-center justify-between gap-x-3 gap-y-0.5 sm:flex-col sm:gap-4",
 } as const;
 
 /** Homepage sections targeted by hash links — offset scroll so targets sit below the sticky header. */

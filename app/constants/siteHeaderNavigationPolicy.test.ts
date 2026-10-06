@@ -4,7 +4,7 @@ import { siteHeaderNavigationPolicy } from "@/app/constants/policy";
 
 describe("siteHeaderNavigationPolicy", () => {
   it("uses tighter horizontal gaps below sm and wider gaps from sm", () => {
-    expect(siteHeaderNavigationPolicy.navigationListClassName).toContain("gap-x-3");
+    expect(siteHeaderNavigationPolicy.navigationListClassName).toContain("gap-x-4");
     expect(siteHeaderNavigationPolicy.navigationListClassName).toContain("sm:gap-x-8");
   });
 
