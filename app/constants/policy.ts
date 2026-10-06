@@ -135,6 +135,9 @@ export const caseStudyArticleShellPolicy = {
   caseStudyHeaderBlockBottomMarginClassName: "mb-12 sm:mb-16",
   /** Tighter stack between “Engagement overview”, “Product surfaces”, etc. */
   caseStudyBodySectionsVerticalStackClassName: "flex flex-col gap-7 sm:gap-10",
+  /** Elevated frosted card holding a case study's title block (shared by every case-study header). */
+  caseStudyHeaderCardClassName:
+    "space-y-4 rounded-xl border border-borderDefault/80 bg-surfaceElevated/95 p-4 shadow-md backdrop-blur-sm narrowPhoneUp:p-6 sm:p-8 mb-6",
 } as const;
 
 /** Short gradient spine beside Impact Metric labels and introduction h4 rows (single source of truth). */
@@ -221,13 +224,14 @@ export type Button3DVariant =
   | "card"
   | "nav"
   | "inlineLink"
-  | "externalLink";
+  | "externalLink"
+  | "pillLink";
 
 /**
  * Reusable 3D interactive primitive (`Button3D`). `canvasVariants` get the
  * shared-canvas WebGL motif — they use translucent surfaces so the cube,
- * rendered behind the button, shows through. Inline text-link variants stay
- * flat (no per-link WebGL view, which would not scale across a long page).
+ * rendered behind the button, shows through. Text-link and pill-link variants
+ * stay flat (no per-link WebGL view, which would not scale across a long page).
  */
 export const button3DPolicy = {
   canvasVariants: ["primary", "card", "nav"] as ReadonlyArray<Button3DVariant>,
@@ -242,6 +246,8 @@ export const button3DPolicy = {
       "font-medium text-accentPrimary underline-offset-4 hover:underline",
     externalLink:
       "rounded-sm font-medium text-accentPrimary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+    pillLink:
+      "inline-flex items-center rounded-full border border-borderDefault px-3.5 py-1.5 text-sm font-medium text-textPrimary transition-colors hover:border-accentPrimary/60 hover:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
   } satisfies Record<Button3DVariant, string>,
 } as const;
 
@@ -255,6 +261,9 @@ export const homepageSelectedWorkSectionPolicy = {
   tileImageClassName: "block h-auto w-full",
   tileImageSizes: "(min-width: 768px) 50vw, 100vw",
   tileMetaRowClassName: "flex flex-wrap items-center justify-between gap-2 px-1",
+  tileCaseStudyCueClassName: "inline-flex items-center gap-1 pt-1 text-sm font-medium text-accentPrimary",
+  tileCaseStudyCueIconClassName: "h-4 w-4 shrink-0",
+  tileSecondaryLinksClassName: "flex items-center gap-3",
   stackListClassName: "flex list-none flex-wrap gap-1.5 p-0",
   stackChipClassName:
     "rounded-full border border-borderDefault/80 px-2.5 py-0.5 text-xs text-textSecondary",
@@ -279,4 +288,89 @@ export const homepageProductionProofSectionPolicy = {
    */
   metricValueClassName:
     "font-semibold tabular-nums tracking-tight text-textPrimary sm:text-2xl",
+} as const;
+
+/** Pulseboard case study (`/work/pulseboard`): header link row, architecture lanes, fact cards, usage bars. */
+export const pulseboardCaseStudyPagePolicy = {
+  backLinkClassName: "inline-flex items-center gap-1.5 text-sm",
+  backLinkIconClassName: "h-4 w-4 shrink-0",
+  kickerAndTitleStackClassName: "space-y-2",
+  /** Micro-rail + kicker, mirroring the metric label rows (rail is `aria-hidden`). */
+  kickerRowClassName: "flex min-w-0 items-center gap-1.5 text-sm font-medium text-accentPrimary",
+  kickerRailClassName: editorialMicroRailClassName,
+  headerLinkListClassName: "flex list-none flex-wrap items-center gap-2 p-0",
+  /** Neither `primary` nor `pillLink` sets a gap, so icon spacing is added here. */
+  headerLinkButtonClassName: "gap-2",
+  headerLinkIconClassName: "h-4 w-4 shrink-0",
+  heroFigureClassName: "m-0 space-y-2",
+  heroPictureFrameClassName:
+    "block overflow-hidden rounded-lg border border-borderDefault/70 bg-surfaceMuted/30 shadow-sm",
+  heroImageClassName: "block h-auto w-full",
+  sectionBodyStackClassName: "space-y-6",
+  subsectionStackClassName: "space-y-3",
+  diagramFigureClassName: "m-0 space-y-5",
+  diagramLanesStackClassName: "space-y-5",
+  diagramLaneStackClassName: "space-y-2",
+  diagramLaneLabelClassName:
+    "text-xs font-medium uppercase tracking-[0.1em] text-textSecondary",
+  diagramLaneListClassName: "flex list-none flex-col gap-6 p-0 sm:flex-row sm:gap-8",
+  diagramLaneItemClassName: "relative min-w-0 sm:flex-1",
+  /** Centred in the gap before its node: points down while lanes stack, right from `sm`. */
+  diagramArrowIconClassName:
+    "absolute -top-5 left-1/2 h-4 w-4 -translate-x-1/2 rotate-90 text-textSecondary sm:-left-6 sm:top-1/2 sm:translate-x-0 sm:-translate-y-1/2 sm:rotate-0",
+  diagramNodeClassName: "h-full w-full rounded-lg border px-3 py-2.5 text-center",
+  diagramNodeLabelClassName: "text-sm font-semibold text-textPrimary",
+  diagramNodeDetailClassName: "text-xs text-textSecondary",
+  diagramToneClassNames: {
+    application: {
+      surfaceClassName: "border-accentPrimary/50 bg-accentPrimary/10",
+      iconClassName: "text-accentPrimary",
+    },
+    mockBackend: {
+      surfaceClassName: "border-accentSecondary/50 bg-accentSecondary/10",
+      iconClassName: "text-accentSecondary",
+    },
+  },
+  diagramLegendClassName: "grid gap-4 sm:grid-cols-2",
+  legendGroupStackClassName: "space-y-2",
+  legendGroupLabelRowClassName: "flex items-center gap-2",
+  legendSwatchClassName: "h-3 w-3 shrink-0 rounded-sm border",
+  iconBulletListClassName: "list-none space-y-1.5 p-0",
+  iconBulletGridClassName: "grid list-none grid-cols-1 gap-x-4 gap-y-2 p-0 sm:grid-cols-2",
+  iconBulletItemClassName: "flex items-start gap-2 text-sm text-textSecondary",
+  iconBulletIconClassName: "mt-0.5 h-4 w-4 shrink-0",
+  behaviourIconClassName: "text-accentPrimary",
+  limitIconClassName: "text-textSecondary",
+  decisionRecordListClassName: "grid list-none gap-2 p-0 text-sm sm:grid-cols-2",
+  factCardClassName:
+    "min-w-0 rounded-lg border border-borderDefault/80 bg-surfaceElevated/60 p-4",
+  factCardTitleRowClassName: "flex items-center gap-2 text-sm font-semibold text-textPrimary",
+  factCardIconClassName: "h-[18px] w-[18px] shrink-0 text-accentPrimary",
+  factCardDescriptionClassName: "mt-1 text-sm text-textSecondary",
+  designRuleGridClassName: "grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2",
+  testTierGridClassName: "grid list-none grid-cols-2 gap-3 p-0 lg:grid-cols-4",
+  performanceCardsStackClassName: "space-y-4",
+  performanceCardClassName:
+    "space-y-3 rounded-lg border border-borderDefault/80 bg-surfaceElevated/60 p-4 sm:p-5",
+  performanceCardTitleRowClassName: "flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1",
+  statGridClassName: "m-0 grid grid-cols-2 gap-3",
+  statBoxClassName: "min-w-0 rounded-lg border border-borderDefault/70 p-3",
+  statLabelClassName: "text-xs text-textSecondary",
+  statValueClassName: "m-0 text-xl font-semibold tabular-nums text-textPrimary",
+  usageBarListClassName: "list-none space-y-3 p-0",
+  usageBarGridClassName:
+    "grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-3 gap-y-1.5 text-sm",
+  usageBarLabelClassName: "min-w-0 text-textPrimary",
+  usageBarSummaryClassName: "tabular-nums text-textSecondary",
+  usageBarTrackClassName: "col-span-2 block h-2 overflow-hidden rounded-full bg-borderDefault/70",
+  usageBarFillBaseClassName: "block h-full rounded-full",
+  frameUsageFillClassName: "bg-accentSecondary",
+  bundleUsageFillClassName: "bg-accentPrimary",
+  highlightedChipClassName:
+    "rounded-full border border-accentPrimary/60 bg-accentPrimary/10 px-2.5 py-0.5 text-xs font-medium text-textPrimary",
+  ciJobChipClassName: `${homepageSelectedWorkSectionPolicy.stackChipClassName} font-mono`,
+  labelledChipRowClassName: "flex flex-wrap items-center gap-x-2 gap-y-1.5",
+  chipRowLabelClassName: "text-xs text-textSecondary",
+  inlineIconLinkClassName: "inline-flex items-center gap-1 text-sm",
+  inlineIconLinkIconClassName: "h-4 w-4 shrink-0",
 } as const;

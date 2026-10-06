@@ -1,7 +1,10 @@
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { BodyText, Caption, Heading } from "@/design-system/tokens/Typography";
 
-import { editorialGradientTitlePolicy } from "@/app/constants/policy";
+import {
+  caseStudyArticleShellPolicy,
+  editorialGradientTitlePolicy,
+} from "@/app/constants/policy";
 import type { CaseStudyRecord } from "@/app/config/portfolioCaseStudiesConfiguration";
 
 import { ExternalTextLink } from "./ExternalTextLink";
@@ -19,7 +22,7 @@ export function CaseStudyHeader({ caseStudy }: CaseStudyHeaderProps) {
   ].filter(Boolean);
 
   return (
-    <header className="space-y-4 rounded-xl border border-borderDefault/80 bg-surfaceElevated/95 p-4 shadow-md backdrop-blur-sm narrowPhoneUp:p-6 sm:p-8 mb-6">
+    <header className={caseStudyArticleShellPolicy.caseStudyHeaderCardClassName}>
       <EditorialAccentMark variant="horizontalTitle" />
       <Heading
         level="h1"

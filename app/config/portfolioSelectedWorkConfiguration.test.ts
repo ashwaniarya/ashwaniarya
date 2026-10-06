@@ -3,9 +3,11 @@ import path from "path";
 
 import { describe, expect, it } from "vitest";
 
+import { getAllCaseStudies } from "@/app/config/portfolioCaseStudiesConfiguration";
 import { getAllSelectedWork } from "@/app/config/portfolioSelectedWorkConfiguration";
 
 const publicDirectory = path.join(process.cwd(), "public");
+const appDirectory = path.join(process.cwd(), "app");
 
 describe("portfolioSelectedWorkConfiguration", () => {
   it("lists six live pieces with unique slugs and https links", () => {
@@ -29,6 +31,20 @@ describe("portfolioSelectedWorkConfiguration", () => {
   it("keeps copy free of em dashes", () => {
     for (const item of getAllSelectedWork()) {
       expect(`${item.title}${item.kicker}${item.summary}`).not.toContain("—");
+    }
+  });
+
+  it("sends Pulseboard to its case study, and every case-study link to a real page", () => {
+    const work = getAllSelectedWork();
+    const dynamicCaseStudyPaths = new Set(
+      getAllCaseStudies().map((caseStudy) => `/work/${caseStudy.slug}`),
+    );
+
+    expect(work.find((item) => item.slug === "pulseboard")?.caseStudyHref).toBe("/work/pulseboard");
+    for (const { caseStudyHref } of work) {
+      if (!caseStudyHref) continue;
+      const hasStaticPage = existsSync(path.join(appDirectory, caseStudyHref, "page.tsx"));
+      expect(hasStaticPage || dynamicCaseStudyPaths.has(caseStudyHref), caseStudyHref).toBe(true);
     }
   });
 });

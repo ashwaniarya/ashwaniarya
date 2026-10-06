@@ -5,7 +5,7 @@ export type NavigationLink = Readonly<{
   href: string;
 }>;
 
-const primaryHomepageNavigationHref = {
+export const primaryHomepageNavigationHref = {
   home: `/#${homepageSectionAnchorConfiguration.homeSectionDomId}`,
   work: `/#${homepageSectionAnchorConfiguration.selectedWorkSectionDomId}`,
   projects: `/#${homepageSectionAnchorConfiguration.projectsSectionDomId}`,

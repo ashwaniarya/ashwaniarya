@@ -1,12 +1,15 @@
 import type { ReactNode } from "react";
 
 import { Button3D } from "@/app/components/three/Button3D";
+import type { Button3DVariant } from "@/app/constants/policy";
 
 export type ExternalTextLinkProps = Readonly<{
   href: string;
   isExternal: boolean;
   children: ReactNode;
   className?: string;
+  /** Replaces the default text-link look, e.g. `pillLink` in a row of links. */
+  variant?: Button3DVariant;
 }>;
 
 export function ExternalTextLink({
@@ -14,10 +17,11 @@ export function ExternalTextLink({
   isExternal,
   children,
   className = "",
+  variant,
 }: ExternalTextLinkProps) {
   return (
     <Button3D
-      variant={isExternal ? "externalLink" : "inlineLink"}
+      variant={variant ?? (isExternal ? "externalLink" : "inlineLink")}
       href={href}
       isExternal={isExternal}
       className={className}

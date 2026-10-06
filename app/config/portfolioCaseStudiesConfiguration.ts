@@ -49,6 +49,8 @@ export type CaseStudyProductChapterConfiguration = Readonly<{
   chapterIllustration?: CaseStudyProductChapterIllustrationConfiguration;
 }>;
 
+export type CaseStudyPagePath = `/work/${string}`;
+
 export type CaseStudyRecord = Readonly<{
   slug: string;
   title: string;

@@ -4,7 +4,7 @@ import { homepageProductionProofSectionPolicy } from "@/app/constants/policy";
 import { BodyText, Caption } from "@/design-system/tokens/Typography";
 
 export type ProductionProofMetricTileProps = Readonly<{
-  metric: ProductionProofMetricRecord;
+  metric: Pick<ProductionProofMetricRecord, "metricLabel" | "valueLabel" | "contextLine">;
 }>;
 
 export function ProductionProofMetricTile({ metric }: ProductionProofMetricTileProps) {

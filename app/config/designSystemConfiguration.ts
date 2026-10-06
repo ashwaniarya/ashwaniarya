@@ -104,4 +104,5 @@ export const designSystemButton3DVariants: ReadonlyArray<Button3DVariantDoc> = [
   { variant: "nav", description: "Header navigation item with a subtle motif.", hasCanvas: true },
   { variant: "inlineLink", description: "Inline internal text link (flat, no WebGL).", hasCanvas: false },
   { variant: "externalLink", description: "External / mailto / tel link (flat, no WebGL).", hasCanvas: false },
+  { variant: "pillLink", description: "Outlined pill for a row of secondary links (flat, no WebGL).", hasCanvas: false },
 ] as const;
