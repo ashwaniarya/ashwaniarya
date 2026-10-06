@@ -95,23 +95,18 @@ export const editorialGradientTitlePolicy = {
 
 /** Primary nav in `SiteHeader`: touch-friendly targets; `NavigationLabel` owns type; anchor owns color + focus ring. */
 export const siteHeaderNavigationPolicy = {
-  /**
-   * Left-aligned under the brand on phones (`-ml-2` cancels the first link's `px-2` so its text lines up with the brand), centered from `sm`.
-   * Wraps only when the links cannot share one row; no per-position slots, so links can be added or removed freely.
-   */
+  /** Left-aligned under the brand on phones, centered from `sm`. On phones the first link drops its left padding (the `px-2` in `button3DPolicy.variantClassName.nav`) so its label lines up with the brand; a negative list margin would align it too, but push its focus ring past the 8px phone gutter. */
   navigationListClassName:
-    "-ml-2 flex w-full flex-wrap items-center justify-start gap-x-4 gap-y-1 sm:ml-0 sm:justify-center sm:gap-x-8",
+    "flex w-full flex-wrap items-center justify-start gap-x-4 gap-y-1 max-sm:[&>li:first-child>a]:pl-0 sm:justify-center sm:gap-x-8",
   /** On phones `phoneCallToActionPillClassName` shows this link beside the brand instead, so it is exposed once at every width. */
   phoneHiddenCallToActionListItemClassName: "max-sm:hidden",
   phoneCallToActionPillClassName:
     "inline-flex h-8.5 items-center rounded-full border border-accentPrimary/45 bg-accentPrimary/5 px-3.5 text-accentPrimary transition-colors hover:bg-accentPrimary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:hidden",
-  navigationLinkClassName:
-    "inline-flex min-h-11 items-center rounded-sm px-2 text-textPrimary/80 transition-colors hover:text-accentPrimary focus-visible:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:min-h-0 sm:px-1",
 } as const;
 
 /**
  * Sticky top bar for `SiteHeader`.
- * Keep vertical footprint aligned with `homepageAnchoredSectionScrollMarginPolicy` when changing padding or type scale.
+ * Keep vertical footprint aligned with `homepageAnchoredSectionScrollMarginPolicy` when changing padding, type scale or row layout.
  */
 export const siteHeaderChromePolicy = {
   headerShellClassName:
