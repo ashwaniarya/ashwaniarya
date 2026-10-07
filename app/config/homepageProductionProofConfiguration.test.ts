@@ -7,6 +7,7 @@ import {
 import { getCaseStudyBySlug } from "@/app/config/portfolioCaseStudiesConfiguration";
 
 const serialisedGetbujoCaseStudy = JSON.stringify(getCaseStudyBySlug("getbujo"));
+const maxValueLabelTokenLength = 10;
 
 describe("homepageProductionProofConfiguration", () => {
   it("exposes exactly four metrics with unique keys", () => {
@@ -21,6 +22,18 @@ describe("homepageProductionProofConfiguration", () => {
   it("keeps every metric value traceable to the getbujo case study", () => {
     for (const metric of homepageProductionProofMetricsConfiguration) {
       expect(serialisedGetbujoCaseStudy).toContain(metric.valueLabel);
+    }
+  });
+
+  it("keeps every value label token short enough for a four-column tile", () => {
+    // "/" and "→" give browsers no line-break opportunity, so a long token in the
+    // big-number slot clips the tile instead of wrapping. Nouns belong in metricLabel.
+    for (const metric of homepageProductionProofMetricsConfiguration) {
+      for (const token of metric.valueLabel.split(/\s+/)) {
+        expect(token.length, `${metric.metricKey}: "${token}"`).toBeLessThanOrEqual(
+          maxValueLabelTokenLength,
+        );
+      }
     }
   });
 

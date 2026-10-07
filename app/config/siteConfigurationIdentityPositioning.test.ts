@@ -33,4 +33,8 @@ describe("siteIdentityConfiguration positioning", () => {
       /^Product engineer, full-stack\./,
     );
   });
+
+  it("names the current aiclicks engagement in the hero", () => {
+    expect(homepageHeroCopyConfiguration.descriptionLines[1]).toMatch(/aiclicks/i);
+  });
 });

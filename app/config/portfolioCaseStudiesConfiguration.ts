@@ -174,7 +174,7 @@ const portfolioCaseStudies = [
           "No separate public product page for this copilot (company site: getbujo.com)—it ran as an iframe inside Sprinklr with an in-house AI backend.",
         productImpactSnapshot: {
           stageLabel: "YC-backed (Seed)",
-          dailyReachLabel: "~80 agents · ~30k conversations/month",
+          dailyReachLabel: "~80 agents · ~30k/month conversations",
           revenueLabel: "~$20k MRR",
         },
         bodyParagraphs: [
