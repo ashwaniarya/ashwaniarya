@@ -19,7 +19,7 @@ Portfolio with screenshots: [ashwaniarya.vercel.app](https://ashwaniarya.vercel.
 
 ## Currently
 
-Owning the product UI of AI-visibility (GEO) analytics at **[AIClicks](https://aiclicks.io)**: tag system, chart rebuilds, outreach console, URL-synced views, plus LLM content pipelines. *(Apr 2026 to present)*
+Owning the product of AI-visibility (GEO) analytics at **[AIClicks](https://aiclicks.io)**: tag system, improving accuray, designing public data infra, chart rebuilds, outreach system, URL-synced views, plus LLM content pipelines. *(Apr 2026 to present)*
 
 ## Things I've shipped
 
