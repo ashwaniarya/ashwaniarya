@@ -1,4 +1,5 @@
 import type { CaseStudyPagePath } from "@/app/config/portfolioCaseStudiesConfiguration";
+import type { CaseStudyDemoVideoConfiguration } from "@/app/config/caseStudyDemoVideoConfiguration";
 import type { SelectedWorkScreenshotConfiguration } from "@/app/config/portfolioSelectedWorkConfiguration";
 
 export type PulseboardCaseStudyLinkKey =
@@ -102,6 +103,7 @@ export type PulseboardCaseStudyConfiguration = Readonly<{
     primaryLink: PulseboardCaseStudyLinkRecord;
     secondaryLinks: readonly PulseboardCaseStudyLinkRecord[];
   }>;
+  demoVideo: CaseStudyDemoVideoConfiguration;
   heroScreenshot: SelectedWorkScreenshotConfiguration &
     Readonly<{
       caption: string;
@@ -285,6 +287,19 @@ export const pulseboardCaseStudyConfiguration = {
       { linkKey: "failureDemo", label: "Failure demo", href: pulseboardFailureDemoUrl },
       { linkKey: "benchmark", label: "52K-row benchmark", href: pulseboardTableBenchmarkUrl },
     ],
+  },
+  demoVideo: {
+    mp4Src: "/videos/work/pulseboard-demo.mp4",
+    posterSrc: "/images/work/pulseboard-demo-poster.jpg",
+    captionsSrc: "/videos/work/pulseboard-demo.en.vtt",
+    captionsLanguage: "en",
+    captionsLabel: "English",
+    width: 1600,
+    height: 900,
+    title: "Pulseboard demo",
+    durationLabel: "1:17",
+    playButtonAriaLabel: "Play the Pulseboard demo video, 1 minute 17 seconds, with voiceover",
+    videoAriaLabel: "Pulseboard demo video: filters, calls log, locations, outage handling and the virtualized table",
   },
   heroScreenshot: {
     ...pulseboardOverviewScreenshot,
