@@ -252,6 +252,10 @@ export const homepageSelectedWorkSectionPolicy = {
   tileLinkClassName: "h-full",
   tileFigureClassName:
     "m-0 overflow-hidden rounded-md border border-borderDefault/70 bg-backgroundPage",
+  tileCodePreviewPanelClassName:
+    "flex aspect-[8/5] w-full items-stretch bg-surfaceMuted/90 p-4 sm:p-5",
+  tileCodePreviewPreClassName:
+    "m-0 min-h-0 w-full flex-1 overflow-hidden whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-textSecondary sm:text-xs",
   tileImageClassName: "block h-auto w-full",
   tileImageSizes: "(min-width: 768px) 50vw, 100vw",
   tileMetaRowClassName: "flex flex-wrap items-center justify-between gap-2 px-1",

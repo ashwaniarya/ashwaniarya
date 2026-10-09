@@ -173,6 +173,7 @@ export const pulseboardLiveAppUrl = "https://pulseboard-green-chi.vercel.app";
 export const pulseboardSourceRepositoryUrl = "https://github.com/ashwaniarya/pulseboard";
 
 export const pulseboardOverviewScreenshot = {
+  previewKind: "screenshot",
   webpSrc: "/images/work/pulseboard.webp",
   pngSrc: "/images/work/pulseboard.png",
   alt: "Pulseboard overview in dark mode: KPI tiles with sparklines and a daily trend chart.",

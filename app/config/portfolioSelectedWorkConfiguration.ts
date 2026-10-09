@@ -6,13 +6,27 @@ import {
   pulseboardSourceRepositoryUrl,
 } from "@/app/config/portfolioPulseboardCaseStudyConfiguration";
 
-export type SelectedWorkScreenshotConfiguration = Readonly<{
+export type SelectedWorkScreenshotPreviewConfiguration = Readonly<{
+  previewKind: "screenshot";
   webpSrc: string;
   pngSrc: string;
   alt: string;
   width: number;
   height: number;
 }>;
+
+/** @deprecated Use `SelectedWorkScreenshotPreviewConfiguration` in new code. */
+export type SelectedWorkScreenshotConfiguration = SelectedWorkScreenshotPreviewConfiguration;
+
+export type SelectedWorkCodePreviewConfiguration = Readonly<{
+  previewKind: "code";
+  accessibilityLabel: string;
+  codeLines: readonly string[];
+}>;
+
+export type SelectedWorkTilePreviewConfiguration =
+  | SelectedWorkScreenshotPreviewConfiguration
+  | SelectedWorkCodePreviewConfiguration;
 
 export type SelectedWorkRecord = Readonly<{
   slug: string;
@@ -24,7 +38,7 @@ export type SelectedWorkRecord = Readonly<{
   /** Internal case-study page; when set, the tile card opens it instead of `liveUrl`. */
   caseStudyHref?: CaseStudyPagePath;
   stackLabels: readonly string[];
-  screenshot: SelectedWorkScreenshotConfiguration;
+  tilePreview: SelectedWorkTilePreviewConfiguration;
 }>;
 
 export const homepageSelectedWorkSectionCopyConfiguration = {
@@ -46,12 +60,13 @@ const portfolioSelectedWork = [
       "Plans, composes, and renders music mixes on a schedule. Express and Prisma API, BullMQ worker with ffmpeg and AI adapters, Next.js 15 dashboard, tiered file retention, and a disk guard.",
     liveUrl: "https://mixpilot-web-three.vercel.app",
     stackLabels: ["Next.js 15", "Express", "Prisma", "BullMQ"],
-    screenshot: {
+    tilePreview: {
+      previewKind: "screenshot",
       webpSrc: "/images/work/automixpilot.webp",
       pngSrc: "/images/work/automixpilot.png",
-      alt: "AutoMixPilot dashboard for scheduling and rendering music-channel mixes.",
-      width: 1200,
-      height: 750,
+      alt: "AutoMixPilot landing page: music channel on autopilot with genre controls and a waveform hero.",
+      width: 1024,
+      height: 594,
     },
   },
   {
@@ -62,12 +77,17 @@ const portfolioSelectedWork = [
       "Permission-gated Postgres access for AI agents over MCP. Organisations, invitations, live Prisma migrations, and 257 tests with spec-first, adversarial review on every change. Private repo; demo on request.",
     liveUrl: "https://ashwaniarya.vercel.app/#contact",
     stackLabels: ["MCP", "Prisma", "PostgreSQL", "Vitest"],
-    screenshot: {
-      webpSrc: "/images/work/postgres-mcp.webp",
-      pngSrc: "/images/work/postgres-mcp.png",
-      alt: "postgres-mcp product concept: governed database access for AI agents.",
-      width: 1200,
-      height: 750,
+    tilePreview: {
+      previewKind: "code",
+      accessibilityLabel: "postgres-mcp permission model and scoped SQL access for AI agents.",
+      codeLines: [
+        "// postgres-mcp · org-scoped agent access",
+        'mcp.connect({ orgId, role: "analyst" })',
+        "await db.withScope(user, async (tx) => {",
+        '  return tx.$queryRaw`SELECT ...`',
+        "})",
+        "// invitations · live migrations · 257 tests",
+      ],
     },
   },
   {
@@ -78,12 +98,13 @@ const portfolioSelectedWork = [
       "Inventory and invoicing for parts shops. Express, Prisma, PostgreSQL, Next.js 15, and OIDC with PKCE. Deadlock-free invoices in one transaction with ordered locks; a single-origin proxy fixed DNS failures on Indian carriers.",
     liveUrl: "https://github.com/ashwaniarya/shop-management",
     stackLabels: ["Next.js 15", "Express", "Prisma", "OIDC"],
-    screenshot: {
+    tilePreview: {
+      previewKind: "screenshot",
       webpSrc: "/images/work/shop-management.webp",
       pngSrc: "/images/work/shop-management.png",
-      alt: "Shop Management app screens for parts inventory and invoicing.",
-      width: 1200,
-      height: 750,
+      alt: "Shop Management sign-in screen for the parts counter workstation.",
+      width: 1024,
+      height: 594,
     },
   },
   {
@@ -96,7 +117,7 @@ const portfolioSelectedWork = [
     sourceUrl: pulseboardSourceRepositoryUrl,
     caseStudyHref: pulseboardCaseStudyPagePath,
     stackLabels: ["React 19", "Tailwind 4", "Storybook", "Cypress"],
-    screenshot: pulseboardOverviewScreenshot,
+    tilePreview: pulseboardOverviewScreenshot,
   },
   {
     slug: "ai-secure-share",
@@ -106,12 +127,13 @@ const portfolioSelectedWork = [
       "End-to-end encrypted sharing for AI-generated answers so teams can pass along model output without exposing prompts or data in the clear.",
     liveUrl: "https://airesponseshare.com",
     stackLabels: ["Next.js", "TypeScript", "E2E encryption"],
-    screenshot: {
+    tilePreview: {
+      previewKind: "screenshot",
       webpSrc: "/images/work/ai-secure-share.webp",
       pngSrc: "/images/work/ai-secure-share.png",
-      alt: "ai-secure-share interface for sharing encrypted AI responses.",
-      width: 1200,
-      height: 750,
+      alt: "ai-secure-share landing page: encrypted AI response sharing with agent CLI install.",
+      width: 1024,
+      height: 594,
     },
   },
   {
@@ -122,12 +144,15 @@ const portfolioSelectedWork = [
       "Dev tools for AI agents: grok-web-sdk (logged-in Grok as MCP, CLI, and HTTP tools without an API key), PromptBoard (SwiftUI overlay for saved prompts in coding tools), and trello-skill (Claude Code plugin for Trello).",
     liveUrl: "https://github.com/ashwaniarya/grok-web-sdk",
     stackLabels: ["MCP", "Claude Code", "TypeScript", "SwiftUI"],
-    screenshot: {
-      webpSrc: "/images/work/agent-dev-tools.webp",
-      pngSrc: "/images/work/agent-dev-tools.png",
-      alt: "Agent dev tools collage: MCP bridges and prompt overlays for AI coding workflows.",
-      width: 1200,
-      height: 750,
+    tilePreview: {
+      previewKind: "code",
+      accessibilityLabel: "Open-source agent dev tools: grok-web-sdk, PromptBoard, and trello-skill.",
+      codeLines: [
+        "// grok-web-sdk · MCP + CLI, no API key",
+        'tools: ["grok.chat", "grok.search"]',
+        "// PromptBoard · saved prompts at cursor",
+        "// trello-skill · Claude Code ↔ Trello",
+      ],
     },
   },
   {
@@ -138,7 +163,8 @@ const portfolioSelectedWork = [
       "Marketing site for a generative-media studio. Hand-written CSS, a decode-style hero animation that respects reduced motion, and a WebGL scroll backdrop behind crawlable HTML.",
     liveUrl: "https://syncoderslabs.com",
     stackLabels: ["Vite", "TypeScript", "Three.js", "GSAP"],
-    screenshot: {
+    tilePreview: {
+      previewKind: "screenshot",
       webpSrc: "/images/work/syncoderslabs.webp",
       pngSrc: "/images/work/syncoderslabs.png",
       alt: "Syncoders Labs homepage: bold display headline over a dark generative backdrop.",
@@ -155,7 +181,8 @@ const portfolioSelectedWork = [
     liveUrl: "https://scroll-engine.syncoderslabs.com",
     sourceUrl: "https://github.com/ashwaniarya/scroll-engine",
     stackLabels: ["TypeScript", "Three.js", "GSAP", "Vitest"],
-    screenshot: {
+    tilePreview: {
+      previewKind: "screenshot",
       webpSrc: "/images/work/scroll-engine.webp",
       pngSrc: "/images/work/scroll-engine.png",
       alt: "scroll-engine demo title: layered renders, one scroll, live props.",
@@ -171,7 +198,8 @@ const portfolioSelectedWork = [
       "A ReAct agent in LangGraph that plans a mind map through tools, with a step budget and streamed reasoning. Predicted branch colours, tidy-tree Smart Align, and double-click markdown editing on the canvas.",
     liveUrl: "https://mindflow-ai-sepia.vercel.app",
     stackLabels: ["React Flow", "LangGraph", "Gemini", "Tailwind 4"],
-    screenshot: {
+    tilePreview: {
+      previewKind: "screenshot",
       webpSrc: "/images/work/mindflow.webp",
       pngSrc: "/images/work/mindflow.png",
       alt: "MindFlow canvas showing a colour-coded mind map about SEO visibility with a history sidebar.",
@@ -188,7 +216,8 @@ const portfolioSelectedWork = [
     liveUrl: "https://trinetra.syncoderslabs.com",
     sourceUrl: "https://github.com/ashwaniarya/trinetra",
     stackLabels: ["Three.js", "GLSL", "GSAP ScrollTrigger"],
-    screenshot: {
+    tilePreview: {
+      previewKind: "screenshot",
       webpSrc: "/images/work/trinetra.webp",
       pngSrc: "/images/work/trinetra.png",
       alt: "TRINETRA title card in gold serif type over drifting embers.",

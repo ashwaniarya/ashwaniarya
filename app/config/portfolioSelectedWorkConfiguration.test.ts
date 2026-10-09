@@ -20,12 +20,21 @@ describe("portfolioSelectedWorkConfiguration", () => {
     }
   });
 
-  it("ships both screenshot formats for every piece", () => {
+  it("ships both screenshot formats for every screenshot-based tile", () => {
     for (const item of getAllSelectedWork()) {
-      expect(existsSync(path.join(publicDirectory, item.screenshot.webpSrc))).toBe(true);
-      expect(existsSync(path.join(publicDirectory, item.screenshot.pngSrc))).toBe(true);
-      expect(item.screenshot.alt.length).toBeGreaterThan(10);
+      if (item.tilePreview.previewKind !== "screenshot") continue;
+      const { webpSrc, pngSrc, alt } = item.tilePreview;
+      expect(existsSync(path.join(publicDirectory, webpSrc))).toBe(true);
+      expect(existsSync(path.join(publicDirectory, pngSrc))).toBe(true);
+      expect(alt.length).toBeGreaterThan(10);
     }
+  });
+
+  it("uses code previews for private or tooling entries without public captures", () => {
+    const codePreviewSlugs = getAllSelectedWork()
+      .filter((item) => item.tilePreview.previewKind === "code")
+      .map((item) => item.slug);
+    expect(codePreviewSlugs).toEqual(["postgres-mcp", "agent-dev-tools"]);
   });
 
   it("keeps copy free of em dashes", () => {
