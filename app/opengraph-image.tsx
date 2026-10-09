@@ -112,8 +112,8 @@ export default async function OpenGraphImage() {
               display: "flex",
             }}
           >
-            Full-stack product engineer. Three-time founding engineer: live
-            video at ~100k sessions a day.
+            Independent contract engineer. Four-time founding engineer: live
+            video at ~100k sessions a day, $0 → $150K ARR at getbujo.
           </div>
         </div>
 

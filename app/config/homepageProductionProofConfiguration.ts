@@ -18,7 +18,7 @@ export type ProductionProofMetricRecord = Readonly<{
 export const homepageProductionProofSectionCopyConfiguration = {
   sectionHeading: "In production",
   sectionIntroLines: [
-    "Numbers from the founding-engineer work at GetBujo. Each one is unpacked in the case study below.",
+    "Numbers from the founding-engineer work at getbujo (YC P26). Each one is unpacked in the case study below.",
   ],
 } as const;
 
@@ -32,10 +32,10 @@ export const homepageProductionProofMetricsConfiguration = [
   },
   {
     metricKey: "liveVideoRevenueRamp",
-    valueLabel: "$0 → $10,000 MRR",
-    metricLabel: "Revenue ramp",
+    valueLabel: "$0 → $150K ARR",
+    metricLabel: "Company revenue ramp",
     contextLine:
-      "First engineer on the product, from nothing shipped to paying retailers on a multi-tenant platform.",
+      "First engineer on the product, from nothing shipped to $150K ARR on a multi-tenant live-video platform.",
   },
   {
     metricKey: "copilotMonthlyConversations",

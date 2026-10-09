@@ -10,10 +10,10 @@ const publicDirectory = path.join(process.cwd(), "public");
 const appDirectory = path.join(process.cwd(), "app");
 
 describe("portfolioSelectedWorkConfiguration", () => {
-  it("lists six live pieces with unique slugs and https links", () => {
+  it("lists ten live pieces with unique slugs and https links", () => {
     const work = getAllSelectedWork();
-    expect(work).toHaveLength(6);
-    expect(new Set(work.map((item) => item.slug)).size).toBe(6);
+    expect(work).toHaveLength(10);
+    expect(new Set(work.map((item) => item.slug)).size).toBe(10);
     for (const item of work) {
       expect(item.liveUrl).toMatch(/^https:\/\//);
       if (item.sourceUrl) expect(item.sourceUrl).toMatch(/^https:\/\/github\.com\//);

@@ -4,12 +4,12 @@ import { homepageHeroCopyConfiguration } from "@/app/config/homepageConfiguratio
 import { siteIdentityConfiguration } from "@/app/config/siteConfiguration";
 
 describe("siteIdentityConfiguration positioning", () => {
-  it("presents the owner as a product engineer in JSON-LD and the share card", () => {
-    expect(siteIdentityConfiguration.ownerJobTitle).toBe("Product Engineer");
+  it("presents the owner as an independent contract engineer in JSON-LD and the share card", () => {
+    expect(siteIdentityConfiguration.ownerJobTitle).toBe("Independent Contract Engineer");
   });
 
   it("carries the backend and infrastructure terms in knowsAbout", () => {
-    for (const expertiseArea of ["Node.js", "FastAPI", "PostgreSQL", "AWS"]) {
+    for (const expertiseArea of ["Node.js", "FastAPI", "PostgreSQL", "AWS", "Stripe"]) {
       expect(siteIdentityConfiguration.expertiseAreas).toContain(expertiseArea);
     }
   });
@@ -28,13 +28,19 @@ describe("siteIdentityConfiguration positioning", () => {
     expect(siteIdentityConfiguration.homepageTitle.length).toBeLessThanOrEqual(60);
   });
 
-  it("opens the hero with the full-stack product engineer line", () => {
+  it("opens the hero with the independent contract engineer line", () => {
     expect(homepageHeroCopyConfiguration.descriptionLines[0]).toMatch(
-      /^Product engineer, full-stack\./,
+      /^Independent contract engineer/,
     );
   });
 
   it("names the current aiclicks engagement in the hero", () => {
     expect(homepageHeroCopyConfiguration.descriptionLines[1]).toMatch(/aiclicks/i);
+  });
+
+  it("does not use job-seeker or relocation wording in the hero", () => {
+    const heroCopy = homepageHeroCopyConfiguration.descriptionLines.join(" ");
+    expect(heroCopy).not.toMatch(/full-time/i);
+    expect(heroCopy).not.toMatch(/relocation/i);
   });
 });

@@ -5,7 +5,7 @@ import { footerConfiguration } from "@/app/config/siteConfiguration";
 describe("footerConfiguration copyright attribution", () => {
   it("keeps the public footer attribution line stable for branding and legal clarity", () => {
     expect(footerConfiguration.footerCopyrightAttributionLine).toBe(
-      "Ashwani Arya, product engineer: from prototyping to productionizing to finding and solving problems through the product. Currently at AIclicks, a SaaS analytics platform.",
+      "Ashwani Arya, independent contract engineer: fractional and contract founding-engineer builds for EU startups. Remote contract at AIClicks since Apr 2026.",
     );
   });
 });
