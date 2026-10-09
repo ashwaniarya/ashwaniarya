@@ -19,36 +19,36 @@ export const siteIdentityConfiguration = {
    * named Ashwani Arya outrank this site, so the title has to carry the role and
    * stack terms that separate them.
    */
-  homepageTitle: "Ashwani Arya — Product Engineer: React, Node, Three.js",
+  homepageTitle: "Ashwani Arya — Contract Founding Engineer",
   siteDescription:
-    "Product engineer portfolio: live video at scale, an AI copilot, dashboards and 3D interfaces by Ashwani Arya, built end to end across React, Node, FastAPI, Postgres and AWS.",
+    "Independent contract engineer portfolio: fractional and contract founding-engineer builds for EU startups. Live video at scale, AI copilot, dashboards, and full-stack SaaS by Ashwani Arya.",
   homepageDescription:
-    "Product engineer, full-stack, and three-time founding engineer. Live video at ~100k sessions a day, $0 → $10k MRR, an AI copilot at ~30k conversations a month. React, Next.js, Node, FastAPI, Postgres and AWS. Remote from Bangalore.",
+    "Independent contract engineer and four-time founding engineer. Live video at ~100k sessions a day, getbujo $0 → $150K ARR, an AI copilot at ~30k conversations a month. React, Next.js, Node, FastAPI, Postgres, Stripe, and AWS. Remote from Bangalore.",
   ownerName: "Ashwani Arya",
-  ownerJobTitle: "Product Engineer",
+  ownerJobTitle: "Independent Contract Engineer",
   ownerLocality: "Bangalore",
   ownerCountry: "India",
   socialProfileUrls: [
     "https://github.com/ashwaniarya",
-    "https://www.linkedin.com/in/ashwani-arya-1623963a0/",
     "https://syncoderslabs.com",
   ],
   expertiseAreas: [
-    "Product engineering",
-    "Full-stack development",
+    "Contract product engineering",
+    "Fractional founding engineer",
     "React",
     "Next.js",
     "TypeScript",
     "Node.js",
+    "Python",
     "FastAPI",
     "PostgreSQL",
+    "Stripe",
     "AWS",
     "WebSockets",
     "REST API design",
-    "System design",
+    "MCP",
+    "Claude Code",
     "Three.js",
-    "WebGL",
-    "GSAP",
     "Tailwind CSS",
     "Design systems",
   ],
@@ -85,7 +85,7 @@ export const searchConfiguration = {
 export const footerConfiguration = {
   /** Shown after the © year in `SiteFooter` (name + short descriptor). */
   footerCopyrightAttributionLine:
-    "Ashwani Arya, product engineer: from prototyping to productionizing to finding and solving problems through the product. Currently at AIclicks, a SaaS analytics platform.",
+    "Ashwani Arya, independent contract engineer: fractional and contract founding-engineer builds for EU startups. Remote contract at AIClicks since Apr 2026.",
 } as const;
 
 export const siteConfiguration = {
@@ -95,5 +95,3 @@ export const siteConfiguration = {
   searchConfiguration,
   footerConfiguration,
 } as const;
-
-

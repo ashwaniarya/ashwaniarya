@@ -3,8 +3,7 @@ export type ContactChannelKey =
   | "call"
   | "whatsapp"
   | "location"
-  | "github"
-  | "linkedin";
+  | "github";
 
 export type ContactChannelRecord = Readonly<{
   channelKey: ContactChannelKey;
@@ -16,7 +15,7 @@ export type ContactChannelRecord = Readonly<{
 export const homepageContactSectionCopyConfiguration = {
   sectionHeading: "Contact",
   sectionIntroLines: [
-    "Reach out for collaborations, product work, architectural designing, or a quick hello—I am remote-first. I would love to hear from you.",
+    "Reach out for fractional or contract founding-engineer work, a scoped build, or a quick hello. I am remote-first from Bangalore with EU and US time-zone overlap.",
   ],
 } as const;
 
@@ -24,8 +23,8 @@ export const homepageContactChannelsConfiguration = [
   {
     channelKey: "email",
     rowLabel: "Email",
-    displayText: "syncoders@gmail.com",
-    href: "mailto:syncoders@gmail.com",
+    displayText: "ashwaniparker@gmail.com",
+    href: "mailto:ashwaniparker@gmail.com",
   },
   {
     channelKey: "call",
@@ -42,18 +41,12 @@ export const homepageContactChannelsConfiguration = [
   {
     channelKey: "location",
     rowLabel: "Address",
-    displayText: "Remote",
+    displayText: "Remote (Bangalore, IST)",
   },
   {
     channelKey: "github",
     rowLabel: "GitHub",
     displayText: "github.com/ashwaniarya",
     href: "https://github.com/ashwaniarya",
-  },
-  {
-    channelKey: "linkedin",
-    rowLabel: "LinkedIn",
-    displayText: "ashwani-arya",
-    href: "https://www.linkedin.com/in/ashwani-arya-1623963a0/",
   },
 ] as const satisfies readonly ContactChannelRecord[];

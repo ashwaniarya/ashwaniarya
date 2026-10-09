@@ -79,9 +79,9 @@ const portfolioCaseStudies = [
     role: "Founding engineer",
     company: "GetBujo",
     companySiteUrl: "https://getbujo.com",
-    credentialsLine: "Early-stage product",
-    location: "Remote",
-    dateRange: "2023 — 2025",
+    credentialsLine: "YC P26",
+    location: "Bangalore",
+    dateRange: "Dec 2024 — Feb 2026",
     summary:
       "End-to-end ownership across three product streams: live video and dashboards, a browser extension, and AI-assisted workflows—shipping iteratively with a small team.",
     highlights: [
@@ -105,7 +105,7 @@ const portfolioCaseStudies = [
         productImpactSnapshot: {
           stageLabel: "YC-backed (Seed)",
           dailyReachLabel: "~100k/day",
-          revenueLabel: "$0 → $10,000 MRR",
+          revenueLabel: "$0 → $150K ARR",
         },
         chapterIllustration: {
           webpSrc: "/get-wingman.webp",
