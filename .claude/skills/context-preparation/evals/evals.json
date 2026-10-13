@@ -1,0 +1,23 @@
+{
+  "skill_name": "context-preparation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to add a 'Writing' section to the homepage that lists three blog posts with title, date and a one-line summary, between Selected Work and Experience. Prepare the context before we plan anything.",
+      "expected_output": "A Context Brief at docs/context/homepage-writing-section.md that names HomepageSelectedWorkSection and HomepageExperienceSection as the analogs, points at app/config for the new configuration module and app/constants/policy.ts for spacing classes, lists the co-located test files to add first, includes a Mermaid diagram of the homepage section order, and raises the open question of where post content lives given the architecture doc's no-Markdown rule.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "the header nav collapses weirdly on narrow phones, the Contact pill overlaps the brand. can you gather what you need to know about the header before touching it",
+      "expected_output": "A Context Brief for a bug task that reads SiteHeader.tsx and SiteHeader.test.tsx, siteHeaderNavigationPolicy, layoutViewportBreakpoints and siteConfiguration navigation links, cites the recent commit fe92f9d about one nav row on desktop, proposes the first failing test for the narrow-phone layout, and includes a flow or state diagram of the header's breakpoint behaviour.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "/context-preparation move the pulseboard case study copy out of the component files into app/config so the text is editable without touching JSX",
+      "expected_output": "A Context Brief for a refactor task that inventories the pulseboard components and the existing portfolioPulseboardCaseStudyConfiguration module, lists which copy already lives in config versus JSX, cites commits 623b3de and 221f884, and sets a TDD handoff where configuration tests are written before the move.",
+      "files": []
+    }
+  ]
+}

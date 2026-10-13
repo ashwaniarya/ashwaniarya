@@ -37,8 +37,11 @@ yarn-error.log*
 # vercel
 .vercel
 
-# local agent workspace (.claude/worktrees holds a full copy of this project)
-.claude/
+# local agent workspace (.claude/worktrees holds a full copy of this project);
+# shared agent skills in .claude/skills/ are tracked on purpose
+.claude/*
+!.claude/skills/
+.claude/settings.local.json
 
 # typescript
 *.tsbuildinfo
