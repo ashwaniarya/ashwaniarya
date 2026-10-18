@@ -9,6 +9,7 @@ import { SceneCanvasMount } from "@/app/components/three/SceneCanvasMount";
 import { StructuredData } from "@/app/components/seo/StructuredData";
 import { SceneProvider } from "@/app/components/three/SceneProvider";
 import { siteIdentityConfiguration } from "@/app/config/siteConfiguration";
+import { skipToContentPolicy } from "@/app/constants/policy";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -95,6 +96,9 @@ export default function RootLayout({
           "min-h-dvh text-textPrimary",
         ].join(" ")}
       >
+        <a href="#main-content" className={skipToContentPolicy.skipLinkClassName}>
+          Skip to main content
+        </a>
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-71D4ZMWTJR" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
