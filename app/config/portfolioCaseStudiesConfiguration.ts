@@ -255,6 +255,147 @@ const portfolioCaseStudies = [
       },
     ],
   },
+  {
+    slug: "aiclicks",
+    title: "AIclicks: Product Engineer, AI Visibility Analytics",
+    metaTitle: "AIclicks: Product Engineer",
+    metaDescription:
+      "Contract product engineering at AIclicks: prompt tagging and bulk workflows, a mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
+    role: "Product engineer (contract)",
+    company: "AIclicks",
+    companySiteUrl: "https://aiclicks.io",
+    credentialsLine: "GEO analytics SaaS",
+    location: "Remote",
+    dateRange: "Apr 2026 to Nov 2026",
+    summary:
+      "Owned features end to end across a Next.js dashboard, a FastAPI backend on Postgres and two Python workers: prompt tagging and bulk workflows, the mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
+    highlights: [
+      "Six repositories, full stack: dashboard, API, two pipeline workers, recommendations service",
+      "Cited-sources payload cut from 19 MB to about 2 MB with brotli compression",
+      "Sole author of the explorer-preprocess worker and the Get Mentioned recommendations service",
+    ],
+    engagementOverviewParagraphs: [
+      "AIclicks tracks how AI assistants mention and cite brands. I joined as a contract product engineer and took customer problems from ticket to merged PR across the whole stack: schema and migrations, FastAPI routes, Postgres rollups and indexes, background workers, and the React dashboard. Work went out as small PRs behind feature flags, merged to a dev branch and released to main.",
+    ],
+    productChapters: [
+      {
+        heading: "Prompt tags and bulk workflows",
+        segmentLabel: "B2B SaaS",
+        productPageLink: {
+          url: "https://aiclicks.io",
+          label: "AIclicks (aiclicks.io)",
+        },
+        availabilityCaption: "Dashboard features for paying customers; no public demo.",
+        introductionSections: [
+          {
+            sectionHeading: "Problem",
+            sectionBody:
+              "Customers tracked hundreds of prompts per brand with no way to group, filter or act on them in bulk, and analytics views lost their state on refresh.",
+          },
+          {
+            sectionHeading: "My role",
+            sectionBody: "Schema, API, and dashboard UI for every feature in this chapter.",
+          },
+        ],
+        bodyParagraphs: [
+          "Built the tag system for prompts and topics: schema, API, tag chips in the prompts table, a dashboard tag filter, and bulk tag assignment at topic level. Added select-all and bulk actions on the prompts table with server-side selection semantics, so a customer can tag, pause or delete a whole filtered set at once.",
+          "Made the analytics views stateful: filters, tabs and sort live in the URL, prompt analytics sorting and a dynamic timeline follow one shared date range, and a project picker lets users who belong to several brands switch without losing context. A domain-view rollup aggregates brand pages across tracked domains.",
+        ],
+        impactBullets: [
+          "Tagging and bulk actions replaced one-prompt-at-a-time edits.",
+          "Filters persist in the URL, so a view can be shared as a link.",
+          "Prompt analytics sort and timeline follow one shared range state.",
+        ],
+        skills: [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "Radix UI",
+          "Tailwind",
+          "recharts",
+          "URL state",
+          "FastAPI (Python)",
+          "Postgres",
+          "Row-level security",
+          "Jest",
+        ],
+      },
+      {
+        heading: "Data Explorer, first version and groundwork",
+        segmentLabel: "Public data product",
+        availabilityCaption:
+          "Shipped behind a feature flag as a first version; the rollup infrastructure needed a redesign before it could run across the full dataset.",
+        introductionSections: [
+          {
+            sectionHeading: "Problem",
+            sectionBody:
+              "AIclicks wanted a public explorer over its citation data: which sources AI assistants cite, per brand and per day. The raw tables were too large to query live.",
+          },
+          {
+            sectionHeading: "My role",
+            sectionBody: "Rollup design, the nightly worker, the API routes and the explorer views.",
+          },
+        ],
+        bodyParagraphs: [
+          "Designed the rollup tables and wrote the nightly explorer-preprocess worker as sole author: day planning, roll-day jobs, a claim guard with takeover, retry and heal paths, roll versioning and a late scan for stragglers. A gate serves a rollup only once it is complete for the day. The worker runs on a VM under Docker Compose.",
+          "On the API side I added the explorer metric cards, a citations API, a lean cited-sources endpoint, an influence route and an untracked-mentions route, backed by a GIN index on citations and a function-based query path. Compressing the cited-sources endpoint with brotli took the payload from 19 MB to about 2 MB, measured before and after the change.",
+          "This shipped as a first version. The rollup infrastructure needed a redesign before it could run across the full dataset, and that work was not finished when the engagement ended.",
+        ],
+        impactBullets: [
+          "Cited-sources payload 19 MB to about 2 MB with brotli (measured before and after).",
+          "Nightly rollups with claim, retry and heal paths in production.",
+          "Explorer routes and views live behind a feature flag.",
+        ],
+        skills: [
+          "Postgres rollups",
+          "GIN indexes",
+          "SQL functions",
+          "Python workers",
+          "Docker Compose",
+          "FastAPI (Python)",
+          "brotli",
+          "Next.js",
+          "Feature flags",
+        ],
+      },
+      {
+        heading: "Mention pipeline and recommendations",
+        segmentLabel: "Data pipeline",
+        availabilityCaption: "Internal pipeline and operator tooling; no public page.",
+        introductionSections: [
+          {
+            sectionHeading: "Problem",
+            sectionBody:
+              "Mention detection missed subdomains and social hosts, credits were charged inconsistently, onboarding snapshots raced the first analysis, and the recommendations service had no operator view.",
+          },
+          {
+            sectionHeading: "My role",
+            sectionBody:
+              "Worker and backend fixes, and sole author of the Get Mentioned path in the recommendations service.",
+          },
+        ],
+        bodyParagraphs: [
+          "In the pipeline worker I added citation host matching and a test suite for the mention matcher before touching classification, fixed the stage-5 social host classifier, credited a brand's subdomains to the brand, and reworked mention credit accounting. On the backend I fixed the onboarding snapshot race so a new brand's first snapshot waits for its first analysis.",
+          "In the recommendations service I built the Get Mentioned path: citations enrichment with an on-demand variant, a ScrapingBee rate limiter, title-group jobs, scheduled mention fetches, Engage Online v2, the first phase of outreach feedback, and a reco-ops dashboard so operators can see job state without reading logs.",
+        ],
+        impactBullets: [
+          "Matcher behaviour covered by tests before classification changes.",
+          "Subdomains and social hosts credited to the right brand.",
+          "Operators see job state in a dashboard instead of logs.",
+        ],
+        skills: [
+          "Python 3.12",
+          "asyncio",
+          "Postgres",
+          "ScrapingBee",
+          "LLM pipelines",
+          "FastAPI (Python)",
+          "pytest",
+          "Operator dashboards",
+        ],
+      },
+    ],
+  },
 ] as const satisfies readonly CaseStudyRecord[];
 
 export function getAllCaseStudies(): readonly CaseStudyRecord[] {
