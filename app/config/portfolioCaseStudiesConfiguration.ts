@@ -271,7 +271,8 @@ const portfolioCaseStudies = [
       "Owned features end to end across a Next.js dashboard, a FastAPI backend on Postgres and two Python workers: prompt tagging and bulk workflows, a multi-stage LLM pipeline for prompt discovery, the mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
     highlights: [
       "About 1,900 commits and about 500 PR merges across five repositories (git log, Apr to Oct 2026)",
-      "Cited-sources payload cut from 19 MB to about 2 MB with brotli compression (measured before and after)",
+      "Cited-sources payload 18.7 MB to 2.0 MB (9.34x) with brotli, measured in the real app stack",
+      "Explorer reach queries 153.9 s to 30.9 s across 14 benchmark queries after a citations GIN index, identical results (prod, one run each)",
       "Multi-stage LLM pipeline for prompt discovery: topic clustering, planning, generation, similarity filter, LLM judge",
     ],
     engagementOverviewParagraphs: [
@@ -301,9 +302,10 @@ const portfolioCaseStudies = [
         bodyParagraphs: [
           "Built the tag system for prompts and topics: schema, API, tag chips in the prompts table, a dashboard tag filter, and bulk tag assignment at topic level. Added select-all and bulk actions on the prompts table with server-side selection semantics, so a customer can tag, pause or delete a whole filtered set at once.",
           "Made the analytics views stateful: filters, tabs and sort live in the URL, prompt analytics sorting and a dynamic timeline follow one shared date range, and a project picker lets users who belong to several brands switch without losing context. A domain-view rollup aggregates brand pages across tracked domains.",
+          "Bulk topic delete went from one request per topic to one request for the whole set. On a 5,000-prompt fixture with a real Redis: 2,399 ms to 316 ms, 78 cache scans to 3, 26 webhooks to 1, 78 commits to 1.",
         ],
         impactBullets: [
-          "Tagging and bulk actions replaced one-prompt-at-a-time edits.",
+          "Bulk delete of 5,000 prompts: 2,399 ms to 316 ms and 78 commits to 1 (fixture, real Redis).",
           "Filters persist in the URL, so a view can be shared as a link.",
           "Prompt analytics sort and timeline follow one shared range state.",
         ],
@@ -375,13 +377,14 @@ const portfolioCaseStudies = [
         ],
         bodyParagraphs: [
           "Designed the rollup tables and wrote the nightly explorer-preprocess worker as sole author: day planning, roll-day jobs, a claim guard with takeover, retry and heal paths, roll versioning and a late scan for stragglers. A gate serves a rollup only once it is complete for the day. The worker runs on a VM under Docker Compose.",
-          "On the API side I added the explorer metric cards, a citations API, a lean cited-sources endpoint, an influence route and an untracked-mentions route, backed by a GIN index on citations and a function-based query path. Compressing the cited-sources endpoint with brotli took the payload from 19 MB to about 2 MB, measured before and after the change.",
+          "On the API side I added the explorer metric cards, a citations API, a lean cited-sources endpoint, an influence route and an untracked-mentions route, backed by a GIN index on citations and a function-based query path. Compressing the cited-sources endpoint with brotli took the payload from 18.7 MB to 2.0 MB, a 9.34x cut measured in the real app stack.",
           "This shipped as a first version. The rollup infrastructure needed a redesign before it could run across the full dataset, and that work was not finished when the engagement ended.",
         ],
         impactBullets: [
-          "Cited-sources payload 19 MB to about 2 MB with brotli (measured before and after).",
-          "Nightly rollups with claim, retry and heal paths in production.",
-          "Explorer routes and views live behind a feature flag.",
+          "Cited-sources payload 18.7 MB to 2.0 MB (9.34x) with brotli q4; 57 ms CPU against 238 ms for gzip.",
+          "Reach queries after the citations GIN index: 106.8 s to 1.9 s on the heaviest site class, 153.9 s to 30.9 s over 14 queries with identical results (prod, one run each). Index 1.92 GiB on a 55 GiB table.",
+          "Brand tab query 4.1 to 5.9 s down to under 0.1 s with a daily-brands rollup (prod mirror).",
+          "Nightly worker: 90 of 90 days rolled, 0 errors, 163 to 190 s per day (prod, Oct 2026).",
         ],
         skills: [
           "Postgres rollups",
@@ -416,8 +419,9 @@ const portfolioCaseStudies = [
           "In the recommendations service I built the Get Mentioned path: citations enrichment with an on-demand variant, a ScrapingBee rate limiter, title-group jobs, scheduled mention fetches, Engage Online v2, the first phase of outreach feedback, and a reco-ops dashboard so operators can see job state without reading logs.",
         ],
         impactBullets: [
-          "Matcher behaviour covered by tests before classification changes.",
-          "Subdomains and social hosts credited to the right brand.",
+          "Matcher review removed 1,814 wrong detections and kept all 5,674 correct ones (16,502 competitor rows against 38,804 page titles).",
+          "Subdomain credit fix: 13.4% of tracked brands had uncredited subdomain mentions before it (prod read, checksum verified).",
+          "Stage-5 brand-name fix recovered 15.8% more mentions for one customer, 174 snapshots rewritten and verified three ways.",
           "Operators see job state in a dashboard instead of logs.",
         ],
         skills: [
