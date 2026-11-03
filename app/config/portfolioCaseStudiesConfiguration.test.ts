@@ -53,7 +53,7 @@ describe("portfolioCaseStudiesConfiguration", () => {
     expect(liveVideoChapter?.productImpactSnapshot).toEqual({
       stageLabel: "YC-backed (Seed)",
       dailyReachLabel: "~100k/day",
-      revenueLabel: "$0 → $10,000 MRR",
+      revenueLabel: "$0 → $150K ARR",
     });
     expect(liveVideoChapter?.chapterIllustration).toEqual({
       webpSrc: "/get-wingman.webp",
@@ -68,7 +68,7 @@ describe("portfolioCaseStudiesConfiguration", () => {
     );
     expect(copilotChapter?.productImpactSnapshot).toEqual({
       stageLabel: "YC-backed (Seed)",
-      dailyReachLabel: "~80 agents · ~30k conversations/month",
+      dailyReachLabel: "~80 agents · ~30k/month conversations",
       revenueLabel: "~$20k MRR",
     });
   });

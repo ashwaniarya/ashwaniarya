@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { Geist_Mono, Lato, Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -19,6 +19,12 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const lato = Lato({
+  variable: "--font-lato",
+  subsets: ["latin"],
+  weight: ["700"],
 });
 
 const canonicalSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
@@ -84,7 +90,8 @@ export default function RootLayout({
         className={[
           plusJakartaSans.variable,
           geistMono.variable,
-          "antialiased",
+          lato.variable,
+          "font-sans antialiased",
           "min-h-dvh text-textPrimary",
         ].join(" ")}
       >

@@ -5,73 +5,65 @@ export type TechnologyStackCategoryRecord = Readonly<{
 
 export const homepageTechnologyStackCategoriesConfiguration = [
   {
-    categoryTitle: "Systems",
-    itemLabels: ["Payment Systems","BFF (Backend for Frontend)", "Investment Management System", "Design Systems", "RESTful APIs"],
-  },
-  {
-    categoryTitle: "Programming Languages",
-    itemLabels: ["JavaScript", "TypeScript", "Java"],
-  },
-  {
-    categoryTitle: "Frameworks",
-    itemLabels: [
-      "ReactJS",
-      "React Native",
-      "Vite",
-      "NextJS",
-      "ExpressJS",
-      "Spring Boot (JPA)",
-    ],
-  },
-  {
     categoryTitle: "Frontend",
     itemLabels: [
-      "Vanilla JS",
-      "Web APIs",
-      "Material UI",
+      "ReactJS",
+      "NextJS",
+      "TypeScript",
       "Tailwind CSS",
-      "Shadcn UI",
+      "React Native",
+      "Chrome extensions",
+      "Storybook",
+      "visx",
     ],
   },
   {
-    categoryTitle: "Backend",
-    itemLabels: ["NodeJS"],
+    categoryTitle: "Backend & data",
+    itemLabels: [
+      "NodeJS",
+      "ExpressJS",
+      "NestJS",
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Prisma",
+      "MongoDB",
+      "Redis",
+      "BullMQ",
+    ],
   },
   {
-    categoryTitle: "Tools",
+    categoryTitle: "Payments",
     itemLabels: [
-      "Babel",
+      "Stripe PaymentIntents",
+      "Stripe Payment Links",
+      "Stripe Invoices",
+      "Stripe webhooks",
+    ],
+  },
+  {
+    categoryTitle: "AI toolchain",
+    itemLabels: ["Claude Code", "Codex", "MCP", "LangGraph"],
+  },
+  {
+    categoryTitle: "Ship & run",
+    itemLabels: [
       "Docker",
-      "Apache",
-      "PM2",
-      "Nginx",
-      "Git",
-      "GitHub",
-      "Bash",
+      "AWS",
+      "Vercel Deployment",
+      "GitHub Actions",
+      "Datadog",
+      "PostHog",
+      "Vitest",
+      "Cypress",
     ],
   },
   {
-    categoryTitle: "Databases",
-    itemLabels: ["MongoDB", "Mongoose ORM", "PostgreSQL", "Prisma"],
+    categoryTitle: "APIs & realtime",
+    itemLabels: ["RESTful APIs", "WebSockets", "Socket.io", "OIDC"],
   },
   {
-    categoryTitle: "Platforms",
-    itemLabels: ["AWS", "Vercel Functions", "CDN"],
-  },
-  {
-    categoryTitle: "Library",
-    itemLabels: [
-      "Jest",
-      "React Testing Library",
-      "Redux",
-      "Context API",
-      "Radio (in-house Pub/Sub engine)",
-      "Socket.io",
-    ],
-  },
-
-  {
-    categoryTitle: "CI/CD",
-    itemLabels: ["GitHub Actions", "Vercel Deployment"],
+    categoryTitle: "Motion & 3D",
+    itemLabels: ["Three.js", "GSAP", "WebGL"],
   },
 ] as const satisfies readonly TechnologyStackCategoryRecord[];

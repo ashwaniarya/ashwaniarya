@@ -36,7 +36,7 @@ function collectStringValues(configurationNode: unknown): string[] {
 }
 
 describe("portfolioPulseboardCaseStudyConfiguration", () => {
-  const { links, heroScreenshot, performance } = pulseboardCaseStudyConfiguration;
+  const { links, demoVideo, heroScreenshot, performance } = pulseboardCaseStudyConfiguration;
 
   it("points every outbound link at an https URL", () => {
     const outboundHrefs = collectHrefValues(pulseboardCaseStudyConfiguration);
@@ -46,6 +46,12 @@ describe("portfolioPulseboardCaseStudyConfiguration", () => {
     );
     for (const outboundHref of outboundHrefs) {
       expect(outboundHref).toMatch(/^https:\/\//);
+    }
+  });
+
+  it("ships the demo video, its poster and its captions", () => {
+    for (const assetSrc of [demoVideo.mp4Src, demoVideo.posterSrc, demoVideo.captionsSrc]) {
+      expect(existsSync(path.join(publicDirectory, assetSrc)), assetSrc).toBe(true);
     }
   });
 

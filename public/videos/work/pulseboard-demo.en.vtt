@@ -1,0 +1,112 @@
+WEBVTT
+
+00:00:00.547 --> 00:00:02.764
+Founders hire me to take products
+
+00:00:02.764 --> 00:00:04.633
+from prototype to production.
+
+00:00:04.950 --> 00:00:06.453
+This is Pulseboard,
+
+00:00:06.471 --> 00:00:08.275
+an operations dashboard for
+
+00:00:08.275 --> 00:00:09.908
+multi-location clinics.
+
+00:00:11.507 --> 00:00:13.182
+Change the date range or the
+
+00:00:13.182 --> 00:00:15.328
+locations, and every number
+
+00:00:15.328 --> 00:00:17.279
+and chart updates together.
+
+00:00:17.813 --> 00:00:19.653
+Filters live in the URL,
+
+00:00:19.653 --> 00:00:21.651
+so any view is shareable.
+
+00:00:22.447 --> 00:00:24.287
+The calls log holds nearly
+
+00:00:24.287 --> 00:00:26.131
+seventeen thousand records.
+
+00:00:26.642 --> 00:00:29.048
+Search and status filters respond
+
+00:00:29.048 --> 00:00:29.938
+instantly.
+
+00:00:31.137 --> 00:00:32.989
+Locations compares offices
+
+00:00:32.989 --> 00:00:35.276
+side by side: answer rate,
+
+00:00:35.276 --> 00:00:37.605
+no-shows, ratings and revenue.
+
+00:00:38.497 --> 00:00:40.113
+I design for failure,
+
+00:00:40.113 --> 00:00:42.787
+too. Flip the mock API into
+
+00:00:42.787 --> 00:00:43.901
+a full outage,
+
+00:00:43.966 --> 00:00:45.428
+and the app keeps the last
+
+00:00:45.428 --> 00:00:46.619
+loaded values,
+
+00:00:46.619 --> 00:00:48.429
+with clear retry paths.
+
+00:00:49.227 --> 00:00:51.220
+The same table renders fifty-five
+
+00:00:51.220 --> 00:00:52.299
+thousand rows,
+
+00:00:52.352 --> 00:00:54.050
+while keeping only a couple
+
+00:00:54.050 --> 00:00:55.914
+of dozen in the DOM,
+
+00:00:55.914 --> 00:00:57.699
+so scrolling stays smooth.
+
+00:00:59.897 --> 00:01:00.947
+A dark theme,
+
+00:01:00.947 --> 00:01:02.704
+a tested design system,
+
+00:01:02.704 --> 00:01:04.343
+and documented architecture
+
+00:01:04.343 --> 00:01:06.993
+decisions. Built to hand over
+
+00:01:06.993 --> 00:01:08.107
+to your team.
+
+00:01:09.107 --> 00:01:10.161
+I'm Ashwani,
+
+00:01:10.180 --> 00:01:11.926
+a contract founding engineer
+
+00:01:11.926 --> 00:01:13.464
+for EU startups.
+
+00:01:13.986 --> 00:01:15.347
+Let's build yours.

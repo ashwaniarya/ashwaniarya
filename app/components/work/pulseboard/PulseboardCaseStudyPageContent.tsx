@@ -9,12 +9,14 @@ import {
 import { resolvePulseboardDesignSystemRuleIcon } from "@/app/config/pulseboardCaseStudyIconRegistry";
 import {
   caseStudyArticleShellPolicy,
+  caseStudyDemoVideoPolicy,
   homepageProductionProofSectionPolicy,
   pulseboardCaseStudyPagePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Caption, Heading } from "@/design-system/tokens/Typography";
 
 import { CaseStudyArticleShell } from "../CaseStudyArticleShell";
+import { CaseStudyDemoVideoPlayer } from "../CaseStudyDemoVideoPlayer";
 import { CaseStudyReadingCanvas } from "../CaseStudyReadingCanvas";
 import { CaseStudySection } from "../CaseStudySection";
 import { ExternalTextLink } from "../ExternalTextLink";
@@ -28,6 +30,7 @@ export function PulseboardCaseStudyPageContent() {
   const {
     header,
     links,
+    demoVideo,
     heroScreenshot,
     glance,
     architecture,
@@ -43,6 +46,9 @@ export function PulseboardCaseStudyPageContent() {
       <CaseStudyArticleShell>
         <div className={caseStudyArticleShellPolicy.caseStudyHeaderBlockBottomMarginClassName}>
           <PulseboardCaseStudyHeader header={header} links={links} />
+          <figure className={caseStudyDemoVideoPolicy.figureClassName} aria-label={demoVideo.title}>
+            <CaseStudyDemoVideoPlayer demoVideo={demoVideo} />
+          </figure>
           <figure className={pulseboardCaseStudyPagePolicy.heroFigureClassName}>
             <picture className={pulseboardCaseStudyPagePolicy.heroPictureFrameClassName}>
               <source srcSet={heroScreenshot.webpSrc} type="image/webp" />

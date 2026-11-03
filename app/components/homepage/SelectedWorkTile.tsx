@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { TbArrowRight } from "react-icons/tb";
 
+import { SelectedWorkTilePreview } from "@/app/components/homepage/SelectedWorkTilePreview";
 import { Button3D } from "@/app/components/three/Button3D";
 import {
   homepageSelectedWorkSectionCopyConfiguration,
@@ -14,7 +14,7 @@ export type SelectedWorkTileProps = Readonly<{
 }>;
 
 export function SelectedWorkTile({ work }: SelectedWorkTileProps) {
-  const { screenshot, caseStudyHref, sourceUrl } = work;
+  const { tilePreview, caseStudyHref, sourceUrl } = work;
 
   return (
     <article className="flex h-full flex-col gap-3">
@@ -24,20 +24,7 @@ export function SelectedWorkTile({ work }: SelectedWorkTileProps) {
         isExternal={!caseStudyHref}
         className={homepageSelectedWorkSectionPolicy.tileLinkClassName}
       >
-        <figure className={homepageSelectedWorkSectionPolicy.tileFigureClassName}>
-          <picture>
-            <source srcSet={screenshot.webpSrc} type="image/webp" />
-            <Image
-              src={screenshot.pngSrc}
-              alt={screenshot.alt}
-              width={screenshot.width}
-              height={screenshot.height}
-              sizes={homepageSelectedWorkSectionPolicy.tileImageSizes}
-              className={homepageSelectedWorkSectionPolicy.tileImageClassName}
-              unoptimized
-            />
-          </picture>
-        </figure>
+        <SelectedWorkTilePreview tilePreview={tilePreview} />
         <div className="mt-4 space-y-1">
           <Caption>{work.kicker}</Caption>
           <Heading level="h3">{work.title}</Heading>

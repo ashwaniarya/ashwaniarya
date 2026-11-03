@@ -252,6 +252,10 @@ export const homepageSelectedWorkSectionPolicy = {
   tileLinkClassName: "h-full",
   tileFigureClassName:
     "m-0 overflow-hidden rounded-md border border-borderDefault/70 bg-backgroundPage",
+  tileCodePreviewPanelClassName:
+    "flex aspect-[8/5] w-full items-stretch bg-surfaceMuted/90 p-4 sm:p-5",
+  tileCodePreviewPreClassName:
+    "m-0 min-h-0 w-full flex-1 overflow-hidden whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-textSecondary sm:text-xs",
   tileImageClassName: "block h-auto w-full",
   tileImageSizes: "(min-width: 768px) 50vw, 100vw",
   tileMetaRowClassName: "flex flex-wrap items-center justify-between gap-2 px-1",
@@ -367,4 +371,22 @@ export const pulseboardCaseStudyPagePolicy = {
   chipRowLabelClassName: "text-xs text-textSecondary",
   inlineIconLinkClassName: "inline-flex items-center gap-1 text-sm",
   inlineIconLinkIconClassName: "h-4 w-4 shrink-0",
+} as const;
+
+/** Click-to-play case study demo video: poster first, nothing but the poster is fetched until play. */
+export const caseStudyDemoVideoPolicy = {
+  /** Same air below as the header card, so the video and the screenshot under it read as separate figures. */
+  figureClassName: "m-0 mb-6",
+  frameClassName:
+    "relative block overflow-hidden rounded-lg border border-borderDefault/70 bg-surfaceMuted/30 shadow-sm",
+  videoClassName: "block h-auto w-full bg-black",
+  /** `none` keeps the page weight to the poster until the visitor presses play. */
+  videoPreload: "none",
+  /** Pill sits bottom-left so it never covers the title card in the poster. */
+  playButtonClassName:
+    "group absolute inset-0 flex w-full items-end justify-start p-3 transition-colors hover:bg-black/5 focus-visible:outline-none narrowPhoneUp:p-4 sm:p-5 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accentPrimary",
+  playButtonDiscClassName:
+    "flex items-center gap-2 rounded-full border border-white/25 bg-black/55 py-2.5 pl-3.5 pr-4 text-sm font-semibold text-white shadow-lg backdrop-blur-md transition-transform group-hover:scale-105 group-focus-visible:scale-105",
+  playButtonIconClassName: "h-5 w-5 shrink-0",
+  durationLabelClassName: "tabular-nums text-white/70",
 } as const;

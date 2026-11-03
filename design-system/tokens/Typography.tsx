@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 
 const headingLevelClasses = {
-  h1: "text-3xl font-semibold leading-tight tracking-tight text-textPrimary sm:text-4xl",
-  h2: "text-2xl font-semibold leading-tight tracking-tight text-textPrimary",
-  h3: "text-xl font-semibold leading-snug text-textPrimary",
-  h4: "text-lg font-semibold leading-snug text-textPrimary",
+  h1: "font-heading text-3xl font-semibold leading-tight tracking-tight text-textPrimary sm:text-4xl",
+  h2: "font-heading text-2xl font-semibold leading-tight tracking-tight text-textPrimary",
+  h3: "font-heading text-xl font-semibold leading-snug text-textPrimary",
+  h4: "font-heading text-lg font-semibold leading-snug text-textPrimary",
 } as const;
 
 const bodySizeClasses = {
