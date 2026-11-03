@@ -260,7 +260,7 @@ const portfolioCaseStudies = [
     title: "AIclicks: Product Engineer, AI Visibility Analytics",
     metaTitle: "AIclicks: Product Engineer",
     metaDescription:
-      "Contract product engineering at AIclicks: prompt tagging and bulk workflows, a mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
+      "Contract product engineering at AIclicks: prompt tagging and bulk workflows, a multi-stage LLM pipeline for prompt discovery, a mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
     role: "Product engineer (contract)",
     company: "AIclicks",
     companySiteUrl: "https://aiclicks.io",
@@ -268,14 +268,15 @@ const portfolioCaseStudies = [
     location: "Remote",
     dateRange: "Apr 2026 to Nov 2026",
     summary:
-      "Owned features end to end across a Next.js dashboard, a FastAPI backend on Postgres and two Python workers: prompt tagging and bulk workflows, the mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
+      "Owned features end to end across a Next.js dashboard, a FastAPI backend on Postgres and two Python workers: prompt tagging and bulk workflows, a multi-stage LLM pipeline for prompt discovery, the mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
     highlights: [
-      "Six repositories, full stack: dashboard, API, two pipeline workers, recommendations service",
-      "Cited-sources payload cut from 19 MB to about 2 MB with brotli compression",
-      "Sole author of the explorer-preprocess worker and the Get Mentioned recommendations service",
+      "About 1,900 commits and about 500 PR merges across five repositories (git log, Apr to Oct 2026)",
+      "Cited-sources payload cut from 19 MB to about 2 MB with brotli compression (measured before and after)",
+      "Multi-stage LLM pipeline for prompt discovery: topic clustering, planning, generation, similarity filter, LLM judge",
     ],
     engagementOverviewParagraphs: [
       "AIclicks tracks how AI assistants mention and cite brands. I joined as a contract product engineer and took customer problems from ticket to merged PR across the whole stack: schema and migrations, FastAPI routes, Postgres rollups and indexes, background workers, and the React dashboard. Work went out as small PRs behind feature flags, merged to a dev branch and released to main.",
+      "Measured from git log across the five repositories I committed to, Apr to Oct 2026: about 1,900 commits, about 500 PR merges, roughly 225,000 lines added and 45,000 removed, excluding lockfiles and generated files. Commit counts include merge commits.",
     ],
     productChapters: [
       {
@@ -318,6 +319,42 @@ const portfolioCaseStudies = [
           "Postgres",
           "Row-level security",
           "Jest",
+        ],
+      },
+      {
+        heading: "Prompt discovery: a multi-stage LLM pipeline with topic clustering",
+        segmentLabel: "LLM pipeline",
+        availabilityCaption: "Backend feature behind the prompt-discovery route; no public page.",
+        introductionSections: [
+          {
+            sectionHeading: "Problem",
+            sectionBody:
+              "Customers needed new prompts to track, but single-shot generation repeated themes the brand already covered and drifted away from what the brand wanted to rank for.",
+          },
+          {
+            sectionHeading: "My role",
+            sectionBody:
+              "Designed and built the pipeline, its tests and the route; the team made later edits.",
+          },
+        ],
+        bodyParagraphs: [
+          "Built the generate-cluster-prompts pipeline in the FastAPI backend as eight stages. It embeds the brand's existing prompts, reduces them with PCA and clusters them with KMeans, picking k by a silhouette sweep from 5 to 40. Pools under 50 prompts skip clustering, and a clustering failure falls back to one bucket. A small model then labels each cluster as a topic.",
+          "A planning call to a larger model reads the labelled topics and returns a brief: saturated themes to avoid, forbidden phrases, and an instruction for the writer. A generation call writes 8 to 12 candidate prompts under geo-targeting rules. Candidates pass a cosine-similarity filter against the existing pool with two bands (0.70 and 0.92); the gray zone goes to an LLM judge, survivors are re-ranked by alignment minus avoidance similarity, and the top 10 are returned, with optional scoring.",
+          "In the recommendations service I extended the content-ideas path with the same idea at a different layer: a breadth-first search over co-cited URLs forms clusters, and each of the top 10 clusters gets one model call with its top 25 URLs to name the topic.",
+        ],
+        impactBullets: [
+          "Topic clustering replaced single-shot generation, so new prompts avoid saturated themes.",
+          "Two cosine bands plus an LLM judge keep near-duplicates out without rejecting useful variants.",
+          "Pipeline and cluster-stats behaviour covered by 10 tests I wrote; the content-ideas topic step has 17.",
+        ],
+        skills: [
+          "Python 3.12",
+          "OpenAI models",
+          "Embeddings",
+          "scikit-learn (PCA, KMeans, silhouette)",
+          "Prompt design",
+          "FastAPI (Python)",
+          "pytest",
         ],
       },
       {
