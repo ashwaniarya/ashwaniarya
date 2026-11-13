@@ -158,7 +158,7 @@ export const caseStudyProductChapterPolicy = {
   productChapterBodyStackWhenAfterImpactClassName: "pt-4 prose-rhythm",
   /** Optional h4-led blocks (Overview / Problem / My role) above technical paragraphs. */
   productChapterIntroductionOuterStackClassName: "space-y-4",
-  productChapterIntroductionSectionBlockClassName: "space-y-2 rounded-lg border border-borderDefault/60 bg-surfaceMuted/70 p-4",
+  productChapterIntroductionSectionBlockClassName: "space-y-2 rounded-lg border border-borderDefault/30 bg-surfaceMuted/30 p-3 sm:p-4",
   /** Micro-rail + h4 row; rail uses `productChapterEditorialMicroRailClassName` (`aria-hidden` in component). */
   productChapterIntroductionHeadingRowClassName:
     "flex min-w-0 items-center gap-1.5",
@@ -168,23 +168,23 @@ export const caseStudyProductChapterPolicy = {
   /** Section wrapper — chrome lives on `impactSnapshotPanelFrameClassName`. */
   impactSnapshotPanelClassName: "min-w-0",
   /**
-   * Highlight rail + wash: light mode reads as a soft violet→cyan glass strip; dark mode uses the same
+   * Highlight rail + wash: light mode reads as a soft teal glass strip; dark mode uses the same
    * structure with deeper surfaces (tokens in `globals.css`).
    */
   impactSnapshotPanelFrameClassName:
-    "flex gap-3 overflow-hidden rounded-xl border border-accentPrimary/25 bg-gradient-to-br from-accentPrimary/[0.12] via-surfaceMuted to-accentSecondary/[0.10] p-3 shadow-sm ring-1 ring-inset ring-borderDefault/40 narrowPhoneUp:gap-3.5 narrowPhoneUp:p-4 sm:gap-4",
+    "flex gap-3 overflow-hidden rounded-xl border border-borderDefault/30 bg-gradient-to-br from-accentPrimary/[0.05] via-surfaceMuted/40 to-accentSecondary/[0.04] p-3 narrowPhoneUp:gap-3.5 narrowPhoneUp:p-4 sm:gap-4",
   impactSnapshotHeadingClassName:
     "text-xs font-semibold uppercase tracking-[0.14em] text-accentHighlight",
   impactSnapshotMetricsGridClassName:
     "grid grid-cols-1 gap-2.5 sm:grid-cols-3 sm:gap-3",
   impactSnapshotMetricCellClassName:
-    "min-w-0 space-y-2 rounded-lg border border-borderDefault/70 bg-surfaceElevated/55 px-3 py-2.5 shadow-sm backdrop-blur-[2px] narrowPhoneUp:px-3.5 narrowPhoneUp:py-3",
+    "min-w-0 space-y-2 rounded-lg border border-borderDefault/30 bg-surfaceElevated/30 px-3 py-2.5 narrowPhoneUp:px-3.5 narrowPhoneUp:py-3",
   /** Flex row: micro-rail + label; rail is decorative only (`aria-hidden` in component). */
   impactSnapshotMetricLabelRowClassName:
     "flex min-w-0 items-center gap-1.5",
   impactSnapshotMetricLabelRailClassName: editorialMicroRailClassName,
   impactSnapshotMetricLabelClassName:
-    "block min-w-0 truncate text-[11px] font-bold uppercase leading-none tracking-[0.1em] text-accentSecondary/90",
+    "block min-w-0 truncate text-[11px] font-bold uppercase leading-none tracking-[0.1em] text-textSecondary",
   impactSnapshotMetricValueClassName:
     "font-semibold tabular-nums tracking-tight text-textPrimary",
   /** Full-width figure inside prose column; matches chapter card chrome. */
@@ -264,7 +264,7 @@ export const homepageSelectedWorkSectionPolicy = {
   tileSecondaryLinksClassName: "flex items-center gap-3",
   stackListClassName: "flex list-none flex-wrap gap-1.5 p-0",
   stackChipClassName:
-    "rounded-full border border-borderDefault/80 px-2.5 py-0.5 text-xs text-textSecondary",
+    "rounded-full border border-borderDefault/30 px-2 py-0.5 text-xs text-textSecondary",
   /** Must match `WORK_SCREENSHOT_WIDTH_PX` in `scripts/optimize-work-screenshots.mjs`. */
   selectedWorkTileImageWidthPx: 1200,
 } as const;

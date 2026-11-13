@@ -39,7 +39,7 @@ function CaseStudyProductChapterIntroductionSection({
             caseStudyProductChapterPolicy.productChapterEditorialMicroRailClassName
           }
         />
-        <Heading level="h4" className="min-w-0 flex-1 text-sm uppercase tracking-[0.14em] text-accentPrimary">
+        <Heading level="h4" className="min-w-0 flex-1 text-sm uppercase tracking-[0.14em] text-textSecondary">
           {section.sectionHeading}
         </Heading>
       </div>
@@ -150,7 +150,7 @@ export function CaseStudyProductChapter({
             </BodyText>
           ))}
           {chapter.impactBullets.length > 0 ? (
-            <ul className="list-outside list-disc ml-5 space-y-4 pt-2 text-textPrimary marker:text-accentPrimary">
+            <ul className="list-outside list-disc ml-5 space-y-4 pt-2 text-textPrimary marker:text-accentPrimary/40">
               {chapter.impactBullets.map((bullet, index) => (
                 <li key={`${chapter.heading}-impact-${index}`} className="pl-1">
                   <EmphasizedFigures text={bullet} />
@@ -163,12 +163,12 @@ export function CaseStudyProductChapter({
         {chapter.skills.length > 0 ? (
           <div className={caseStudyProductChapterPolicy.productChapterSkillsSectionClassName}>
             <Caption className="font-semibold text-textPrimary">Skills</Caption>
-            <ul className="mt-3 flex list-none flex-wrap gap-2 p-0">
+            <ul className="mt-3 flex list-none flex-wrap gap-1.5 p-0">
               {chapter.skills.map((skill, index) => (
                 <li
                   data-chip
                   key={`${chapter.heading}-skill-${index}`}
-                  className="rounded-full border border-borderDefault bg-surfaceMuted px-3 py-1 text-sm font-medium text-textPrimary"
+                  className="rounded-full border border-borderDefault/30 bg-surfaceMuted/50 px-2.5 py-0.5 text-xs text-textSecondary"
                 >
                   {skill}
                 </li>

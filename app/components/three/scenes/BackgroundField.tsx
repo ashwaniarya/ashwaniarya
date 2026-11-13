@@ -4,7 +4,7 @@
  * The animated depth grid, rendered into the shared canvas as a fullscreen
  * <View>. Reads the scroll/pointer refs (via the authoring hooks) every frame
  * and drives a traveling Z-extrude wave + amplitude (scroll), a parallax tilt
- * (pointer), and a violet -> cyan shimmer. Self-contained: brings its own
+ * (pointer), and a slate shimmer. Self-contained: brings its own
  * camera + lights since each drei View has an isolated scene. The grid is
  * lighter on small screens.
  */
@@ -22,8 +22,8 @@ type BlockLayout = { x: number; y: number; distance: number };
 
 const BLOCK_SIZE = 0.04;
 const BLOCK_SPACING = 0.28;
-const BLOCK_COLOR_NEAR = new THREE.Color("#8b5cf6");
-const BLOCK_COLOR_FAR = new THREE.Color("#06b6d4");
+const BLOCK_COLOR_NEAR = new THREE.Color("#2a3b3c");
+const BLOCK_COLOR_FAR = new THREE.Color("#1f2c2d");
 
 function buildLayout(columnCount: number, rowCount: number): BlockLayout[] {
   const blocks: BlockLayout[] = [];
@@ -97,7 +97,7 @@ export function BackgroundField() {
       <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={45} />
       <ambientLight intensity={0.7} />
       <directionalLight position={[6, 8, 10]} intensity={1.5} />
-      <pointLight position={[-8, -5, 6]} intensity={2.2} decay={0} color="#06b6d4" />
+      <pointLight position={[-8, -5, 6]} intensity={2.2} decay={0} color="#1f2c2d" />
       <group ref={groupRef}>
         <Instances limit={layout.length}>
           <boxGeometry args={[BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE]} />
