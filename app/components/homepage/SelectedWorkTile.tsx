@@ -1,7 +1,7 @@
 import { TbArrowRight } from "react-icons/tb";
 
 import { SelectedWorkTilePreview } from "@/app/components/homepage/SelectedWorkTilePreview";
-import { Button3D } from "@/app/components/three/Button3D";
+import { InteractiveLink } from "@/app/components/content/InteractiveLink";
 import {
   homepageSelectedWorkSectionCopyConfiguration,
   type SelectedWorkRecord,
@@ -18,7 +18,7 @@ export function SelectedWorkTile({ work }: SelectedWorkTileProps) {
 
   return (
     <article className="flex h-full flex-col gap-3">
-      <Button3D
+      <InteractiveLink
         variant="card"
         href={caseStudyHref ?? work.liveUrl}
         isExternal={!caseStudyHref}
@@ -41,7 +41,7 @@ export function SelectedWorkTile({ work }: SelectedWorkTileProps) {
             </span>
           ) : null}
         </div>
-      </Button3D>
+      </InteractiveLink>
       <div className={homepageSelectedWorkSectionPolicy.tileMetaRowClassName}>
         <ul className={homepageSelectedWorkSectionPolicy.stackListClassName}>
           {work.stackLabels.map((label) => (
@@ -53,14 +53,14 @@ export function SelectedWorkTile({ work }: SelectedWorkTileProps) {
         {caseStudyHref || sourceUrl ? (
           <div className={homepageSelectedWorkSectionPolicy.tileSecondaryLinksClassName}>
             {caseStudyHref ? (
-              <Button3D variant="externalLink" href={work.liveUrl} isExternal className="text-sm">
+              <InteractiveLink variant="externalLink" href={work.liveUrl} isExternal className="text-sm">
                 {homepageSelectedWorkSectionCopyConfiguration.liveLinkLabel}
-              </Button3D>
+              </InteractiveLink>
             ) : null}
             {sourceUrl ? (
-              <Button3D variant="externalLink" href={sourceUrl} isExternal className="text-sm">
+              <InteractiveLink variant="externalLink" href={sourceUrl} isExternal className="text-sm">
                 {homepageSelectedWorkSectionCopyConfiguration.sourceLinkLabel}
-              </Button3D>
+              </InteractiveLink>
             ) : null}
           </div>
         ) : null}

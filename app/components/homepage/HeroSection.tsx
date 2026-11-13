@@ -1,7 +1,7 @@
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import { HomepageHeroProfileImage } from "@/app/components/homepage/HomepageHeroProfileImage";
-import { Button3D } from "@/app/components/three/Button3D";
+import { InteractiveLink } from "@/app/components/content/InteractiveLink";
 import { homepageHeroCopyConfiguration } from "@/app/config/homepageConfiguration";
 import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import {
@@ -57,12 +57,12 @@ export function HeroSection() {
               </BodyText>
             ))}
           </div>
-          <Button3D
+          <InteractiveLink
             variant="primary"
             href={`#${homepageSectionAnchorConfiguration.projectsSectionDomId}`}
           >
             View work
-          </Button3D>
+          </InteractiveLink>
         </div>
       </MeshGlowBackdrop>
     </section>

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Button3D } from "@/app/components/three/Button3D";
+import { InteractiveLink } from "@/app/components/content/InteractiveLink";
 import type { Button3DVariant } from "@/app/constants/policy";
 
 export type ExternalTextLinkProps = Readonly<{
@@ -20,7 +20,7 @@ export function ExternalTextLink({
   variant,
 }: ExternalTextLinkProps) {
   return (
-    <Button3D
+    <InteractiveLink
       variant={variant ?? (isExternal ? "externalLink" : "inlineLink")}
       href={href}
       isExternal={isExternal}
@@ -30,6 +30,6 @@ export function ExternalTextLink({
       {isExternal ? (
         <span className="sr-only"> (opens in a new tab)</span>
       ) : null}
-    </Button3D>
+    </InteractiveLink>
   );
 }

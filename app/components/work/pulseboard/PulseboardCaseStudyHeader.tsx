@@ -2,7 +2,7 @@ import { createElement } from "react";
 import { TbArrowLeft } from "react-icons/tb";
 
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
-import { Button3D } from "@/app/components/three/Button3D";
+import { InteractiveLink } from "@/app/components/content/InteractiveLink";
 import type {
   PulseboardCaseStudyConfiguration,
   PulseboardCaseStudyLinkRecord,
@@ -50,14 +50,14 @@ function PulseboardCaseStudyHeaderLink({ link, variant }: PulseboardCaseStudyHea
 export function PulseboardCaseStudyHeader({ header, links }: PulseboardCaseStudyHeaderProps) {
   return (
     <header className={caseStudyArticleShellPolicy.caseStudyHeaderCardClassName}>
-      <Button3D
+      <InteractiveLink
         variant="inlineLink"
         href={primaryHomepageNavigationHref.work}
         className={pulseboardCaseStudyPagePolicy.backLinkClassName}
       >
         <TbArrowLeft aria-hidden className={pulseboardCaseStudyPagePolicy.backLinkIconClassName} />
         {header.backLinkLabel}
-      </Button3D>
+      </InteractiveLink>
       <EditorialAccentMark variant="horizontalTitle" />
       <div className={pulseboardCaseStudyPagePolicy.kickerAndTitleStackClassName}>
         <p className={pulseboardCaseStudyPagePolicy.kickerRowClassName}>

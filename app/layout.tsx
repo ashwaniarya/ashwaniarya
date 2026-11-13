@@ -3,11 +3,10 @@ import { Geist_Mono, Lato, Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
+import { DriftingGlowBackground } from "@/app/components/layout/DriftingGlowBackground";
 import { SiteFooter } from "@/app/components/layout/SiteFooter";
 import { SiteHeader } from "@/app/components/layout/SiteHeader";
-import { SceneCanvasMount } from "@/app/components/three/SceneCanvasMount";
 import { StructuredData } from "@/app/components/seo/StructuredData";
-import { SceneProvider } from "@/app/components/three/SceneProvider";
 import { siteIdentityConfiguration, siteOriginUrl } from "@/app/config/siteConfiguration";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -85,6 +84,7 @@ export default function RootLayout({
           "min-h-dvh text-textPrimary",
         ].join(" ")}
       >
+        <DriftingGlowBackground />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-71D4ZMWTJR" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
@@ -95,14 +95,11 @@ export default function RootLayout({
             gtag('config', 'G-71D4ZMWTJR');
           `}
         </Script>
-        <SceneProvider>
-          <SceneCanvasMount />
-          <div className="flex min-h-dvh flex-col">
-            <SiteHeader />
-            <div className="flex min-h-0 flex-1 flex-col">{children}</div>
-            <SiteFooter />
-          </div>
-        </SceneProvider>
+        <div className="flex min-h-dvh flex-col">
+          <SiteHeader />
+          <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+          <SiteFooter />
+        </div>
       </body>
     </html>
   );

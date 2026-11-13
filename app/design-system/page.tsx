@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { Card } from "@/app/components/content/Card";
 import { PageLayout } from "@/app/components/layout/PageLayout";
-import { Button3D } from "@/app/components/three/Button3D";
+import { InteractiveLink } from "@/app/components/content/InteractiveLink";
 import {
   designSystemButton3DVariants,
   designSystemColorTokens,
@@ -261,37 +261,37 @@ export default function DesignSystemPage() {
           <div className="flex flex-wrap items-center gap-6">
             <div className="space-y-2">
               <p className="text-xs text-textSecondary">primary</p>
-              <Button3D variant="primary" href="#three-d-heading">
+              <InteractiveLink variant="primary" href="#three-d-heading">
                 Primary action
-              </Button3D>
+              </InteractiveLink>
             </div>
             <div className="space-y-2">
               <p className="text-xs text-textSecondary">nav</p>
-              <Button3D variant="nav" href="#three-d-heading">
+              <InteractiveLink variant="nav" href="#three-d-heading">
                 Nav item
-              </Button3D>
+              </InteractiveLink>
             </div>
             <div className="space-y-2">
               <p className="text-xs text-textSecondary">inlineLink</p>
-              <Button3D variant="inlineLink" href="#three-d-heading">
+              <InteractiveLink variant="inlineLink" href="#three-d-heading">
                 Inline link
-              </Button3D>
+              </InteractiveLink>
             </div>
             <div className="space-y-2">
               <p className="text-xs text-textSecondary">externalLink</p>
-              <Button3D variant="externalLink" href="https://example.com" isExternal>
+              <InteractiveLink variant="externalLink" href="https://example.com" isExternal>
                 External link
-              </Button3D>
+              </InteractiveLink>
             </div>
           </div>
           <div className="space-y-2">
             <p className="text-xs text-textSecondary">card</p>
-            <Button3D variant="card" href="#three-d-heading" className="max-w-sm">
+            <InteractiveLink variant="card" href="#three-d-heading" className="max-w-sm">
               <Heading level="h3">3D card</Heading>
               <BodyText size="sm" className="mt-2">
                 Translucent surface with the shared-canvas motif behind the content.
               </BodyText>
-            </Button3D>
+            </InteractiveLink>
           </div>
           <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             {designSystemButton3DVariants.map((entry) => (

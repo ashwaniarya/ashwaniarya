@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Button3D } from "@/app/components/three/Button3D";
+import { InteractiveLink } from "@/app/components/content/InteractiveLink";
 import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import {
   editorialGradientTitlePolicy,
@@ -58,9 +58,9 @@ export function SiteHeader() {
                     : undefined
                 }
               >
-                <Button3D variant="nav" href={navigationLink.href}>
+                <InteractiveLink variant="nav" href={navigationLink.href}>
                   <NavigationLabel>{navigationLink.label}</NavigationLabel>
-                </Button3D>
+                </InteractiveLink>
               </li>
             ))}
           </ul>
