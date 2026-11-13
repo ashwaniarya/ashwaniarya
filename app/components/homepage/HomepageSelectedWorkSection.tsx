@@ -1,4 +1,5 @@
 import { SelectedWorkTile } from "@/app/components/homepage/SelectedWorkTile";
+import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
@@ -10,6 +11,7 @@ import {
   homepageAnchoredSectionScrollMarginPolicy,
   homepageProjectsSectionPolicy,
   homepageSelectedWorkSectionPolicy,
+  homepageScrollHighlightPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
@@ -18,7 +20,7 @@ export function HomepageSelectedWorkSection() {
   const work = getAllSelectedWork();
 
   return (
-    <section
+    <ScrollHighlightSection
       id={homepageSectionAnchorConfiguration.selectedWorkSectionDomId}
       aria-labelledby="homepage-selected-work-heading"
       className={[
@@ -40,8 +42,11 @@ export function HomepageSelectedWorkSection() {
             homepageProjectsSectionPolicy.headingMaxWidthClassName,
           ].join(" ")}
         >
-          <EditorialAccentMark variant="horizontalTitle" />
-          <Heading level="h2" id="homepage-selected-work-heading">
+          <EditorialAccentMark
+            variant="horizontalTitle"
+            className={homepageScrollHighlightPolicy.accentBarClassName}
+          />
+          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-selected-work-heading">
             {homepageSelectedWorkSectionCopyConfiguration.sectionHeading}
           </Heading>
           {homepageSelectedWorkSectionCopyConfiguration.sectionIntroLines.map((line, index) => (
@@ -55,13 +60,17 @@ export function HomepageSelectedWorkSection() {
         </header>
 
         <ul className={homepageSelectedWorkSectionPolicy.tilesListClassName}>
-          {work.map((item) => (
-            <li key={item.slug} className="min-w-0">
+          {work.map((item, index) => (
+            <li
+              key={item.slug}
+              className={`min-w-0 ${homepageScrollHighlightPolicy.staggerItemClassName}`}
+              style={{ transitionDelay: `${index * homepageScrollHighlightPolicy.staggerStepMilliseconds}ms` }}
+            >
               <SelectedWorkTile work={item} />
             </li>
           ))}
         </ul>
       </MeshGlowBackdrop>
-    </section>
+    </ScrollHighlightSection>
   );
 }

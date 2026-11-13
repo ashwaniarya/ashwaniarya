@@ -1,4 +1,5 @@
 import { ExperienceFocusAreaTile } from "@/app/components/homepage/ExperienceFocusAreaTile";
+import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import {
@@ -8,13 +9,14 @@ import {
 import {
   homepageExperienceSectionPolicy,
   homepageProjectsSectionPolicy,
+  homepageScrollHighlightPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
 
 export function HomepageExperienceSection() {
   return (
-    <section
+    <ScrollHighlightSection
       aria-labelledby="homepage-experience-heading"
       className={homepageExperienceSectionPolicy.sectionClassName}
       data-test="homepage-experience-section"
@@ -32,8 +34,11 @@ export function HomepageExperienceSection() {
             homepageProjectsSectionPolicy.headingMaxWidthClassName,
           ].join(" ")}
         >
-          <EditorialAccentMark variant="horizontalTitle" />
-          <Heading level="h2" id="homepage-experience-heading">
+          <EditorialAccentMark
+            variant="horizontalTitle"
+            className={homepageScrollHighlightPolicy.accentBarClassName}
+          />
+          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-experience-heading">
             {homepageExperienceSectionCopyConfiguration.sectionHeading}
           </Heading>
           {homepageExperienceSectionCopyConfiguration.sectionIntroLines.map((line, index) => (
@@ -50,13 +55,17 @@ export function HomepageExperienceSection() {
         </header>
 
         <ul className={homepageExperienceSectionPolicy.focusAreaCardsListClassName}>
-          {homepageExperienceFocusAreasConfiguration.map((focusArea) => (
-            <li key={focusArea.focusAreaKey} className="min-w-0">
+          {homepageExperienceFocusAreasConfiguration.map((focusArea, index) => (
+            <li
+              key={focusArea.focusAreaKey}
+              className={`min-w-0 ${homepageScrollHighlightPolicy.staggerItemClassName}`}
+              style={{ transitionDelay: `${index * homepageScrollHighlightPolicy.staggerStepMilliseconds}ms` }}
+            >
               <ExperienceFocusAreaTile focusArea={focusArea} />
             </li>
           ))}
         </ul>
       </MeshGlowBackdrop>
-    </section>
+    </ScrollHighlightSection>
   );
 }

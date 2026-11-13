@@ -1,4 +1,5 @@
 import { ProductionProofMetricTile } from "@/app/components/homepage/ProductionProofMetricTile";
+import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import {
@@ -8,13 +9,14 @@ import {
 import {
   homepageProductionProofSectionPolicy,
   homepageProjectsSectionPolicy,
+  homepageScrollHighlightPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
 
 export function HomepageProductionProofSection() {
   return (
-    <section
+    <ScrollHighlightSection
       aria-labelledby="homepage-production-proof-heading"
       className={homepageProductionProofSectionPolicy.sectionClassName}
       data-test="homepage-production-proof-section"
@@ -32,8 +34,11 @@ export function HomepageProductionProofSection() {
             homepageProjectsSectionPolicy.headingMaxWidthClassName,
           ].join(" ")}
         >
-          <EditorialAccentMark variant="horizontalTitle" />
-          <Heading level="h2" id="homepage-production-proof-heading">
+          <EditorialAccentMark
+            variant="horizontalTitle"
+            className={homepageScrollHighlightPolicy.accentBarClassName}
+          />
+          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-production-proof-heading">
             {homepageProductionProofSectionCopyConfiguration.sectionHeading}
           </Heading>
           {homepageProductionProofSectionCopyConfiguration.sectionIntroLines.map((line, index) => (
@@ -50,13 +55,17 @@ export function HomepageProductionProofSection() {
         </header>
 
         <ul className={homepageProductionProofSectionPolicy.metricCardsListClassName}>
-          {homepageProductionProofMetricsConfiguration.map((metric) => (
-            <li key={metric.metricKey} className="min-w-0">
+          {homepageProductionProofMetricsConfiguration.map((metric, index) => (
+            <li
+              key={metric.metricKey}
+              className={`min-w-0 ${homepageScrollHighlightPolicy.staggerItemClassName}`}
+              style={{ transitionDelay: `${index * homepageScrollHighlightPolicy.staggerStepMilliseconds}ms` }}
+            >
               <ProductionProofMetricTile metric={metric} />
             </li>
           ))}
         </ul>
       </MeshGlowBackdrop>
-    </section>
+    </ScrollHighlightSection>
   );
 }

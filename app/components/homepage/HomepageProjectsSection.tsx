@@ -1,4 +1,5 @@
 import { CaseStudySummaryCard } from "@/app/components/homepage/CaseStudySummaryCard";
+import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import { homepageProjectsSectionCopyConfiguration } from "@/app/config/homepageConfiguration";
@@ -7,6 +8,7 @@ import { getAllCaseStudies } from "@/app/config/portfolioCaseStudiesConfiguratio
 import {
   homepageAnchoredSectionScrollMarginPolicy,
   homepageProjectsSectionPolicy,
+  homepageScrollHighlightPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
@@ -15,7 +17,7 @@ export function HomepageProjectsSection() {
   const caseStudies = getAllCaseStudies();
 
   return (
-    <section
+    <ScrollHighlightSection
       id={homepageSectionAnchorConfiguration.projectsSectionDomId}
       aria-labelledby="homepage-projects-heading"
       className={[
@@ -37,8 +39,11 @@ export function HomepageProjectsSection() {
             homepageProjectsSectionPolicy.headingMaxWidthClassName,
           ].join(" ")}
         >
-          <EditorialAccentMark variant="horizontalTitle" />
-          <Heading level="h2" id="homepage-projects-heading">
+          <EditorialAccentMark
+            variant="horizontalTitle"
+            className={homepageScrollHighlightPolicy.accentBarClassName}
+          />
+          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-projects-heading">
             {homepageProjectsSectionCopyConfiguration.sectionHeading}
           </Heading>
           {homepageProjectsSectionCopyConfiguration.sectionIntroLines.map(
@@ -63,14 +68,18 @@ export function HomepageProjectsSection() {
           </BodyText>
         ) : (
           <ul className={homepageProjectsSectionPolicy.cardsListClassName}>
-            {caseStudies.map((caseStudy) => (
-              <li key={caseStudy.slug} className="min-w-0">
+            {caseStudies.map((caseStudy, index) => (
+              <li
+                key={caseStudy.slug}
+                className={`min-w-0 ${homepageScrollHighlightPolicy.staggerItemClassName}`}
+                style={{ transitionDelay: `${index * homepageScrollHighlightPolicy.staggerStepMilliseconds}ms` }}
+              >
                 <CaseStudySummaryCard caseStudy={caseStudy} />
               </li>
             ))}
           </ul>
         )}
       </MeshGlowBackdrop>
-    </section>
+    </ScrollHighlightSection>
   );
 }

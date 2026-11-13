@@ -271,6 +271,22 @@ export const homepageSelectedWorkSectionPolicy = {
   selectedWorkTileImageWidthPx: 1200,
 } as const;
 
+/** Homepage section highlight on first scroll into view, driven by `data-scroll-highlight` on `ScrollHighlightSection`. */
+export const homepageScrollHighlightPolicy = {
+  triggerViewportFraction: 0.85,
+  triggerRootMargin: "0px 0px -15% 0px",
+  sectionGroupClassName: "group/scroll-highlight",
+  accentBarClassName:
+    "origin-left transition-transform duration-700 ease-out motion-reduce:transition-none group-data-[scroll-highlight=pending]/scroll-highlight:scale-x-0",
+  headingClassName:
+    "transition-[opacity,translate] duration-500 ease-out motion-reduce:transition-none group-data-[scroll-highlight=pending]/scroll-highlight:translate-y-2 group-data-[scroll-highlight=pending]/scroll-highlight:opacity-0",
+  staggerStepMilliseconds: 80,
+  staggerItemClassName:
+    "transition-[opacity,translate] duration-500 ease-out motion-reduce:transition-none group-data-[scroll-highlight=pending]/scroll-highlight:translate-y-4 group-data-[scroll-highlight=pending]/scroll-highlight:opacity-0 group-data-[scroll-highlight=pending]/scroll-highlight:transition-none",
+  keyFigureClassName:
+    "transition-colors delay-300 duration-500 motion-reduce:transition-none group-data-[scroll-highlight=shown]/scroll-highlight:text-accentPrimary",
+} as const;
+
 /** Homepage production-proof strip: four KPI tiles in the shared section rhythm. */
 export const homepageProductionProofSectionPolicy = {
   sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
