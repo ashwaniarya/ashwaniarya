@@ -1,20 +1,15 @@
 import type { MetadataRoute } from "next";
 
-const canonicalSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+import { siteOriginUrl as siteOrigin } from "@/app/config/siteConfiguration";
 
 export default function robots(): MetadataRoute.Robots {
-  const siteOrigin = canonicalSiteUrl?.endsWith("/")
-    ? canonicalSiteUrl.slice(0, -1)
-    : canonicalSiteUrl;
-
   return {
     rules: {
       userAgent: "*",
       allow: "/",
       disallow: ["/design-system"],
     },
-    ...(siteOrigin
-      ? { sitemap: `${siteOrigin}/sitemap.xml`, host: siteOrigin }
-      : {}),
+    sitemap: `${siteOrigin}/sitemap.xml`,
+    host: siteOrigin,
   };
 }

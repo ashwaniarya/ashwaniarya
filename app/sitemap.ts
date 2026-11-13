@@ -3,17 +3,9 @@ import type { MetadataRoute } from "next";
 import { getAllCaseStudies } from "@/app/config/portfolioCaseStudiesConfiguration";
 import { getAllSelectedWork } from "@/app/config/portfolioSelectedWorkConfiguration";
 
-const canonicalSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+import { siteOriginUrl as siteOrigin } from "@/app/config/siteConfiguration";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteOrigin = canonicalSiteUrl?.endsWith("/")
-    ? canonicalSiteUrl.slice(0, -1)
-    : canonicalSiteUrl;
-
-  if (!siteOrigin) {
-    return [];
-  }
-
   const lastModifiedDate = new Date();
 
   const caseStudyPagePaths = new Set([
