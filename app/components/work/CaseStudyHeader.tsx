@@ -30,9 +30,18 @@ export function CaseStudyHeader({ caseStudy }: CaseStudyHeaderProps) {
       >
         {caseStudy.title}
       </Heading>
-      <BodyText className="text-textSecondary">{caseStudy.summary}</BodyText>
+      <BodyText size="lg" className="text-textSecondary">{caseStudy.summary}</BodyText>
       <div className="flex flex-col gap-2 border-t border-borderDefault/60 pt-4">
-        <Caption>{metaLineParts.join(" · ")}</Caption>
+        <div className="flex flex-wrap gap-x-6 gap-y-1">
+          {metaLineParts.map((metaLinePart, index) => (
+            <Caption
+              key={metaLinePart}
+              className={index === 0 ? "font-semibold text-textPrimary" : ""}
+            >
+              {metaLinePart}
+            </Caption>
+          ))}
+        </div>
         {caseStudy.credentialsLine ? (
           <Caption>{caseStudy.credentialsLine}</Caption>
         ) : null}

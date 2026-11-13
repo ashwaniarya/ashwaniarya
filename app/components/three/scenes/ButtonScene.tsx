@@ -14,8 +14,8 @@ import * as THREE from "three";
 
 import { lerp } from "@/app/components/three/math/scrollKeyframes";
 
-const COLOR_IDLE = "#8b5cf6";
-const COLOR_ACTIVE = "#06b6d4";
+const COLOR_IDLE = "#2a3b3c";
+const COLOR_ACTIVE = "#9DB0AE";
 
 type ButtonSceneProps = { active: boolean; pressed: boolean };
 

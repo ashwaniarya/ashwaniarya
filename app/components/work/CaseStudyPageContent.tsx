@@ -33,7 +33,7 @@ export function CaseStudyPageContent({ caseStudy }: CaseStudyPageContentProps) {
           ))}
         </CaseStudySection>
         <CaseStudySection title="Product surfaces">
-          <div className="space-y-6">
+          <div className="space-y-10">
             {caseStudy.productChapters.map((chapter) => (
               <CaseStudyProductChapter key={chapter.heading} chapter={chapter} />
             ))}

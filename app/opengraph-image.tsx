@@ -7,14 +7,14 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 const shareCardPalette = {
-  backgroundPage: "#0a0c18",
-  surfaceMuted: "#0f1424",
-  textPrimary: "#f1f5f9",
-  textSecondary: "#94a3b8",
-  accentPrimary: "#a78bfa",
-  accentSecondary: "#38bdf8",
-  accentHighlight: "#e879f9",
-  borderDefault: "#334155",
+  backgroundPage: "#0d1315",
+  surfaceMuted: "#131b1d",
+  textPrimary: "#e3eceb",
+  textSecondary: "#9db0ae",
+  accentPrimary: "#5fcdb4",
+  accentSecondary: "#5fcdb4",
+  accentHighlight: "#5fcdb4",
+  borderDefault: "#1f2c2d",
 } as const;
 
 const highlightedCapabilities = [
