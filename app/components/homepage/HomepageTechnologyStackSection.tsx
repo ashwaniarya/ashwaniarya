@@ -1,4 +1,5 @@
 import { TechnologyCategoryCard } from "@/app/components/homepage/TechnologyCategoryCard";
+import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import { homepageTechnologyStackCategoriesConfiguration } from "@/app/config/homepageTechnologyStackConfiguration";
@@ -6,13 +7,14 @@ import { homepageTechnologyStackSectionCopyConfiguration } from "@/app/config/ho
 import {
   homepageProjectsSectionPolicy,
   homepageTechnologyStackSectionPolicy,
+  homepageScrollHighlightPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
 
 export function HomepageTechnologyStackSection() {
   return (
-    <section
+    <ScrollHighlightSection
       aria-labelledby="homepage-technology-stack-heading"
       className={homepageTechnologyStackSectionPolicy.sectionClassName}
       data-test="homepage-technology-stack-section"
@@ -30,8 +32,11 @@ export function HomepageTechnologyStackSection() {
             homepageProjectsSectionPolicy.headingMaxWidthClassName,
           ].join(" ")}
         >
-          <EditorialAccentMark variant="horizontalTitle" />
-          <Heading level="h2" id="homepage-technology-stack-heading">
+          <EditorialAccentMark
+            variant="horizontalTitle"
+            className={homepageScrollHighlightPolicy.accentBarClassName}
+          />
+          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-technology-stack-heading">
             {homepageTechnologyStackSectionCopyConfiguration.sectionHeading}
           </Heading>
           {homepageTechnologyStackSectionCopyConfiguration.sectionIntroLines.map(
@@ -50,8 +55,12 @@ export function HomepageTechnologyStackSection() {
         </header>
 
         <ul className={homepageProjectsSectionPolicy.cardsListClassName}>
-          {homepageTechnologyStackCategoriesConfiguration.map((category) => (
-            <li key={category.categoryTitle} className="min-w-0">
+          {homepageTechnologyStackCategoriesConfiguration.map((category, index) => (
+            <li
+              key={category.categoryTitle}
+              className={`min-w-0 ${homepageScrollHighlightPolicy.staggerItemClassName}`}
+              style={{ transitionDelay: `${index * homepageScrollHighlightPolicy.staggerStepMilliseconds}ms` }}
+            >
               <TechnologyCategoryCard
                 categoryTitle={category.categoryTitle}
                 itemLabels={category.itemLabels}
@@ -60,6 +69,6 @@ export function HomepageTechnologyStackSection() {
           ))}
         </ul>
       </MeshGlowBackdrop>
-    </section>
+    </ScrollHighlightSection>
   );
 }

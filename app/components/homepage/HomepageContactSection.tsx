@@ -1,4 +1,5 @@
 import { ContactChannelRow } from "@/app/components/homepage/ContactChannelRow";
+import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import {
@@ -10,13 +11,14 @@ import {
   homepageAnchoredSectionScrollMarginPolicy,
   homepageContactSectionPolicy,
   homepageProjectsSectionPolicy,
+  homepageScrollHighlightPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
 
 export function HomepageContactSection() {
   return (
-    <section
+    <ScrollHighlightSection
       id={homepageSectionAnchorConfiguration.contactSectionDomId}
       aria-labelledby="homepage-contact-heading"
       className={[
@@ -38,8 +40,11 @@ export function HomepageContactSection() {
             homepageProjectsSectionPolicy.headingMaxWidthClassName,
           ].join(" ")}
         >
-          <EditorialAccentMark variant="horizontalTitle" />
-          <Heading level="h2" id="homepage-contact-heading">
+          <EditorialAccentMark
+            variant="horizontalTitle"
+            className={homepageScrollHighlightPolicy.accentBarClassName}
+          />
+          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-contact-heading">
             {homepageContactSectionCopyConfiguration.sectionHeading}
           </Heading>
           {homepageContactSectionCopyConfiguration.sectionIntroLines.map(
@@ -58,11 +63,11 @@ export function HomepageContactSection() {
         </header>
 
         <ul className={homepageContactSectionPolicy.channelListClassName}>
-          {homepageContactChannelsConfiguration.map((channel) => (
-            <ContactChannelRow key={channel.channelKey} channel={channel} />
+          {homepageContactChannelsConfiguration.map((channel, index) => (
+            <ContactChannelRow key={channel.channelKey} channel={channel} staggerIndex={index} />
           ))}
         </ul>
       </MeshGlowBackdrop>
-    </section>
+    </ScrollHighlightSection>
   );
 }

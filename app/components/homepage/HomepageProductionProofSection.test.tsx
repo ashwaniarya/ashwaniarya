@@ -5,7 +5,10 @@ import {
   homepageProductionProofMetricsConfiguration,
   homepageProductionProofSectionCopyConfiguration,
 } from "@/app/config/homepageProductionProofConfiguration";
-import { homepageProductionProofSectionPolicy } from "@/app/constants/policy";
+import {
+  homepageProductionProofSectionPolicy,
+  homepageScrollHighlightPolicy,
+} from "@/app/constants/policy";
 
 import { HomepageProductionProofSection } from "./HomepageProductionProofSection";
 
@@ -49,5 +52,14 @@ describe("HomepageProductionProofSection", () => {
     expect(renderedMarkup).toContain(
       homepageProductionProofSectionPolicy.metricValueClassName,
     );
+  });
+
+  it("ships the scroll highlight hooks without a hidden state in server markup", () => {
+    expect(renderedMarkup).not.toContain("data-scroll-highlight");
+    expect(renderedMarkup).toContain(homepageScrollHighlightPolicy.accentBarClassName);
+    expect(renderedMarkup).toContain(homepageScrollHighlightPolicy.headingClassName);
+    expect(renderedMarkup).toContain(homepageScrollHighlightPolicy.keyFigureClassName);
+    expect(renderedMarkup).toContain(homepageScrollHighlightPolicy.staggerItemClassName);
+    expect(renderedMarkup).toContain("transition-delay:240ms");
   });
 });

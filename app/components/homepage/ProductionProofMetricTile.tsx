@@ -1,6 +1,9 @@
 import { Card } from "@/app/components/content/Card";
 import type { ProductionProofMetricRecord } from "@/app/config/homepageProductionProofConfiguration";
-import { homepageProductionProofSectionPolicy } from "@/app/constants/policy";
+import {
+  homepageProductionProofSectionPolicy,
+  homepageScrollHighlightPolicy,
+} from "@/app/constants/policy";
 import { BodyText, Caption } from "@/design-system/tokens/Typography";
 
 export type ProductionProofMetricTileProps = Readonly<{
@@ -22,7 +25,10 @@ export function ProductionProofMetricTile({ metric }: ProductionProofMetricTileP
         </div>
         <BodyText
           size="lg"
-          className={homepageProductionProofSectionPolicy.metricValueClassName}
+          className={[
+            homepageProductionProofSectionPolicy.metricValueClassName,
+            homepageScrollHighlightPolicy.keyFigureClassName,
+          ].join(" ")}
         >
           {metric.valueLabel}
         </BodyText>
