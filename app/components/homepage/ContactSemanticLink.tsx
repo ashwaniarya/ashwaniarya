@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Button3D } from "@/app/components/three/Button3D";
+import { InteractiveLink } from "@/app/components/content/InteractiveLink";
 
 export type ContactSemanticLinkProps = Readonly<{
   href: string;
@@ -8,15 +8,15 @@ export type ContactSemanticLinkProps = Readonly<{
   className?: string;
 }>;
 
-/** Mail/phone handoff via the Button3D primitive (externalLink: no `target` on mailto/tel). */
+/** Mail/phone handoff via the InteractiveLink primitive (externalLink: no `target` on mailto/tel). */
 export function ContactSemanticLink({
   href,
   children,
   className = "",
 }: ContactSemanticLinkProps) {
   return (
-    <Button3D variant="externalLink" href={href} isExternal className={className}>
+    <InteractiveLink variant="externalLink" href={href} isExternal className={className}>
       {children}
-    </Button3D>
+    </InteractiveLink>
   );
 }

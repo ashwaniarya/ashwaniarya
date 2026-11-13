@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Button3D } from "@/app/components/three/Button3D";
+import { InteractiveLink } from "@/app/components/content/InteractiveLink";
 import { contentCardPolicy } from "@/app/constants/policy";
 
 export type CardProps = Readonly<{
@@ -12,9 +12,9 @@ export type CardProps = Readonly<{
 export function Card({ children, href, className = "" }: CardProps) {
   if (href) {
     return (
-      <Button3D variant="card" href={href} className={className}>
+      <InteractiveLink variant="card" href={href} className={className}>
         {children}
-      </Button3D>
+      </InteractiveLink>
     );
   }
 

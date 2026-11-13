@@ -35,10 +35,50 @@
     0 0 0 1px rgb(31 44 45 / 0.6);
 }
 
-/* Page background lives on <html> so the home-page WebGL canvas (a fixed -z-10
-   layer behind a transparent <body>) shows through. */
+/* Page background lives on <html> so the fixed -z-10 DriftingGlowBackground shows through the transparent <body>. */
 html {
   background-color: rgb(var(--color-background-page));
+}
+
+.drifting-glow {
+  position: absolute;
+  width: 70vmax;
+  height: 70vmax;
+  border-radius: 9999px;
+  animation: drifting-glow-drift 26s ease-in-out infinite alternate;
+}
+
+.drifting-glow-primary {
+  top: -30vmax;
+  left: -20vmax;
+  background: radial-gradient(circle, rgb(var(--color-accent-primary) / 0.1), transparent 65%);
+}
+
+.drifting-glow-secondary {
+  right: -25vmax;
+  bottom: -35vmax;
+  background: radial-gradient(circle, rgb(var(--color-accent-highlight) / 0.07), transparent 65%);
+  animation-duration: 34s;
+  animation-direction: alternate-reverse;
+}
+
+.drifting-glow-tertiary {
+  top: 20%;
+  left: 30%;
+  background: radial-gradient(circle, rgb(var(--color-surface-elevated) / 0.9), transparent 60%);
+  animation-duration: 43s;
+}
+
+@keyframes drifting-glow-drift {
+  to {
+    transform: translate3d(10vmax, 8vmax, 0) scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drifting-glow {
+    animation: none;
+  }
 }
 
 @theme inline {
