@@ -1,5 +1,3 @@
-import { Fragment } from "react";
-
 import type {
   CaseStudyProductChapterConfiguration,
   CaseStudyProductChapterIntroductionSectionConfiguration,
@@ -7,6 +5,7 @@ import type {
 import { caseStudyProductChapterPolicy } from "@/app/constants/policy";
 import { BodyText, Caption, Heading } from "@/design-system/tokens/Typography";
 
+import { EmphasizedFigures } from "./EmphasizedFigures";
 import { ExternalTextLink } from "./ExternalTextLink";
 import { CaseStudyProductChapterIllustration } from "./CaseStudyProductChapterIllustration";
 import {
@@ -40,11 +39,13 @@ function CaseStudyProductChapterIntroductionSection({
             caseStudyProductChapterPolicy.productChapterEditorialMicroRailClassName
           }
         />
-        <Heading level="h4" className="min-w-0 flex-1">
+        <Heading level="h4" className="min-w-0 flex-1 text-sm uppercase tracking-[0.14em] text-accentPrimary">
           {section.sectionHeading}
         </Heading>
       </div>
-      <BodyText className="text-textPrimary">{section.sectionBody}</BodyText>
+      <BodyText className="text-textPrimary">
+        <EmphasizedFigures text={section.sectionBody} />
+      </BodyText>
     </div>
   );
 }
@@ -145,14 +146,14 @@ export function CaseStudyProductChapter({
               key={`${chapter.heading}-body-${index}`}
               className="text-textPrimary"
             >
-              {paragraph}
+              <EmphasizedFigures text={paragraph} />
             </BodyText>
           ))}
           {chapter.impactBullets.length > 0 ? (
-            <ul className="list-outside list-disc ml-5 space-y-3 pt-1 text-base leading-6 text-textPrimary marker:text-accentPrimary">
+            <ul className="list-outside list-disc ml-5 space-y-4 pt-2 text-textPrimary marker:text-accentPrimary">
               {chapter.impactBullets.map((bullet, index) => (
                 <li key={`${chapter.heading}-impact-${index}`} className="pl-1">
-                  {bullet}
+                  <EmphasizedFigures text={bullet} />
                 </li>
               ))}
             </ul>
@@ -162,21 +163,17 @@ export function CaseStudyProductChapter({
         {chapter.skills.length > 0 ? (
           <div className={caseStudyProductChapterPolicy.productChapterSkillsSectionClassName}>
             <Caption className="font-semibold text-textPrimary">Skills</Caption>
-            <p className="mt-3 text-sm leading-6 text-textPrimary">
+            <ul className="mt-3 flex list-none flex-wrap gap-2 p-0">
               {chapter.skills.map((skill, index) => (
-                <Fragment key={`${chapter.heading}-skill-${index}`}>
-                  {index > 0 ? (
-                    <span
-                      className="font-normal text-textSecondary"
-                      aria-hidden
-                    >
-                      {" · "}
-                    </span>
-                  ) : null}
-                  <span className="font-bold">{skill}</span>
-                </Fragment>
+                <li
+                  data-chip
+                  key={`${chapter.heading}-skill-${index}`}
+                  className="rounded-full border border-borderDefault bg-surfaceMuted px-3 py-1 text-sm font-medium text-textPrimary"
+                >
+                  {skill}
+                </li>
               ))}
-            </p>
+            </ul>
           </div>
         ) : null}
       </div>

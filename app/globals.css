@@ -95,3 +95,49 @@ html {
   }
 }
 
+
+@utility case-study-reading {
+  & p,
+  & li:not([data-chip]) {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    max-width: 36rem;
+  }
+
+  & p + p,
+  & p + ul,
+  & ul + p {
+    margin-top: 1.15rem;
+  }
+
+  & .text-xs {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  & h1 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  & h2 {
+    font-size: 1.75rem;
+    line-height: 1.25;
+  }
+
+  & h3 {
+    font-size: 1.3125rem;
+  }
+
+  @media (min-width: 640px) {
+    & h1 {
+      font-size: 2.5rem;
+    }
+  }
+
+  & a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}

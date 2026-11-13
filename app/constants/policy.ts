@@ -101,7 +101,7 @@ export const siteHeaderNavigationPolicy = {
   /** On phones `phoneCallToActionPillClassName` shows this link beside the brand instead, so it is exposed once at every width. */
   phoneHiddenCallToActionListItemClassName: "max-sm:hidden",
   phoneCallToActionPillClassName:
-    "inline-flex h-8.5 items-center rounded-full border border-accentPrimary/45 bg-accentPrimary/5 px-3.5 text-accentPrimary transition-colors hover:bg-accentPrimary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:hidden",
+    "inline-flex h-11 items-center rounded-full border border-accentPrimary/45 bg-accentPrimary/5 px-3.5 text-accentPrimary transition-colors hover:bg-accentPrimary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:hidden",
 } as const;
 
 /**
@@ -124,11 +124,11 @@ export const homepageAnchoredSectionScrollMarginPolicy = {
 /** Vertical rhythm inside long-form case study article wrapper (header + sections). */
 export const caseStudyArticleShellPolicy = {
   /** Article column — spacing comes from child wrappers so header vs body sections can differ. */
-  articleShellColumnClassName: "mx-auto flex flex-col",
+  articleShellColumnClassName: "case-study-reading mx-auto flex flex-col",
   /** Air between the elevated header card and the first prose section. */
   caseStudyHeaderBlockBottomMarginClassName: "mb-12 sm:mb-16",
   /** Tighter stack between “Engagement overview”, “Product surfaces”, etc. */
-  caseStudyBodySectionsVerticalStackClassName: "flex flex-col gap-7 sm:gap-10",
+  caseStudyBodySectionsVerticalStackClassName: "flex flex-col gap-10 sm:gap-12",
   /** Elevated frosted card holding a case study's title block (shared by every case-study header). */
   caseStudyHeaderCardClassName:
     "space-y-4 rounded-xl border border-borderDefault/80 bg-surfaceElevated/95 p-4 shadow-md backdrop-blur-sm narrowPhoneUp:p-6 sm:p-8 mb-6",
@@ -141,7 +141,7 @@ const editorialMicroRailClassName =
 /** Product chapter cards: gradient accent rail matches editorial marks + title gradient stops. */
 export const caseStudyProductChapterPolicy = {
   shellFlexClassName:
-    "flex gap-2 rounded-xl border border-borderDefault/80 bg-surfaceElevated p-3 shadow-md narrowPhoneUp:gap-3 narrowPhoneUp:p-4 sm:gap-4 sm:p-5",
+    "flex gap-2 rounded-xl border border-borderDefault/80 bg-surfaceElevated p-3 shadow-md narrowPhoneUp:gap-3 narrowPhoneUp:p-4 sm:gap-5 sm:p-7",
   accentGradientRailClassName:
     "w-[3px] sm:w-[4px] shrink-0 self-stretch rounded-full bg-gradient-to-b from-accentPrimary/80 via-accentHighlight/90 to-accentSecondary/80",
   /** Heading row: title + segment chip; bottom padding before first ruled block. */
@@ -153,12 +153,12 @@ export const caseStudyProductChapterPolicy = {
   /** Primary external link + optional `availabilityCaption` stack under the chapter title. */
   productPageLinkAvailabilityStackClassName: "space-y-2",
   /** Body + impact bullets when a rule sits above (no Impact KPI strip, or flush spacing handled separately). */
-  productChapterBodyStackWhenTopRuleClassName: "border-t border-borderDefault pt-5 prose-rhythm",
+  productChapterBodyStackWhenTopRuleClassName: "border-t border-borderDefault pt-6 prose-rhythm",
   /** Body after Impact KPI strip: no extra rule; tighter top padding. */
   productChapterBodyStackWhenAfterImpactClassName: "pt-4 prose-rhythm",
   /** Optional h4-led blocks (Overview / Problem / My role) above technical paragraphs. */
-  productChapterIntroductionOuterStackClassName: "prose-rhythm",
-  productChapterIntroductionSectionBlockClassName: "prose-rhythm",
+  productChapterIntroductionOuterStackClassName: "space-y-4",
+  productChapterIntroductionSectionBlockClassName: "space-y-2 rounded-lg border border-borderDefault/60 bg-surfaceMuted/70 p-4",
   /** Micro-rail + h4 row; rail uses `productChapterEditorialMicroRailClassName` (`aria-hidden` in component). */
   productChapterIntroductionHeadingRowClassName:
     "flex min-w-0 items-center gap-1.5",
