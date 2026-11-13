@@ -12,6 +12,12 @@ export const primaryHomepageNavigationHref = {
   contact: `/#${homepageSectionAnchorConfiguration.contactSectionDomId}`,
 } as const;
 
+const productionSiteOrigin = "https://ashwaniarya.vercel.app";
+
+export const siteOriginUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL || productionSiteOrigin
+).replace(/\/$/, "");
+
 export const siteIdentityConfiguration = {
   siteName: "Ashwani Arya",
   /**

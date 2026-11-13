@@ -49,7 +49,8 @@ describe("sitemap", () => {
     expect(sitemapUrls.filter((sitemapUrl) => sitemapUrl === "https://example.com/work/getbujo")).toHaveLength(1);
   });
 
-  it("returns no entries without a canonical site URL", async () => {
-    expect(await loadSitemapWithSiteUrl("")).toEqual([]);
+  it("falls back to the production origin without a canonical site URL", async () => {
+    const [homepageEntry] = await loadSitemapWithSiteUrl("");
+    expect(homepageEntry.url).toBe("https://ashwaniarya.vercel.app");
   });
 });

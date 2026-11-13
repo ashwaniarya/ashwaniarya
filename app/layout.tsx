@@ -8,7 +8,7 @@ import { SiteHeader } from "@/app/components/layout/SiteHeader";
 import { SceneCanvasMount } from "@/app/components/three/SceneCanvasMount";
 import { StructuredData } from "@/app/components/seo/StructuredData";
 import { SceneProvider } from "@/app/components/three/SceneProvider";
-import { siteIdentityConfiguration } from "@/app/config/siteConfiguration";
+import { siteIdentityConfiguration, siteOriginUrl } from "@/app/config/siteConfiguration";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -27,18 +27,8 @@ const lato = Lato({
   weight: ["700"],
 });
 
-const canonicalSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-
 export const metadata: Metadata = {
-  ...(canonicalSiteUrl
-    ? {
-        metadataBase: new URL(
-          canonicalSiteUrl.endsWith("/")
-            ? canonicalSiteUrl.slice(0, -1)
-            : canonicalSiteUrl,
-        ),
-      }
-    : {}),
+  metadataBase: new URL(siteOriginUrl),
   title: {
     default: siteIdentityConfiguration.homepageTitle,
     template: `%s | ${siteIdentityConfiguration.siteName}`,
@@ -67,7 +57,7 @@ export const metadata: Metadata = {
     title: siteIdentityConfiguration.homepageTitle,
     description: siteIdentityConfiguration.homepageDescription,
     locale: "en_US",
-    ...(canonicalSiteUrl ? { url: "/" } : {}),
+    url: "/",
   },
   twitter: {
     card: "summary_large_image",
@@ -84,7 +74,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <StructuredData canonicalSiteUrl={canonicalSiteUrl} />
+        <StructuredData canonicalSiteUrl={siteOriginUrl} />
       </head>
       <body
         className={[
