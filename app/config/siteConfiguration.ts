@@ -65,13 +65,13 @@ export const navigationConfiguration = {
 } as const;
 
 /**
- * Page shell padding (with `meshEditorialSurfacePolicy`): per-side sum ≈ 24px / 36px / 64px
+ * Page shell padding: per-side sum ≈ 24px / 36px / 64px
  * below narrowPhoneMinWidth / 420–639px / sm+ so ultra-narrow phones are not double-guttered by main+mesh.
  */
 export const layoutConfiguration = {
-  maximumPageWidthClassName: "max-w-5xl",
-  pageHorizontalPaddingClassName: "px-2 narrowPhoneUp:px-5 sm:px-8",
-  pageVerticalPaddingClassName: "py-6 narrowPhoneUp:py-8 sm:py-10",
+  maximumPageWidthClassName: "max-w-3xl",
+  pageHorizontalPaddingClassName: "px-4 narrowPhoneUp:px-5 sm:px-8",
+  pageVerticalPaddingClassName: "py-10 sm:py-16",
   /** Tighter vertical padding below `sm` so the sticky bar wastes less viewport. */
   headerVerticalPaddingClassName: "py-2 sm:py-4",
   footerVerticalPaddingClassName: "py-6",

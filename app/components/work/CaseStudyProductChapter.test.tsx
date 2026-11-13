@@ -76,10 +76,7 @@ describe("CaseStudyProductChapter", () => {
       caseStudyProductChapterPolicy.productChapterIntroductionSectionBlockClassName,
     );
     expect(html).toContain(
-      caseStudyProductChapterPolicy.productChapterIntroductionHeadingRowClassName,
-    );
-    expect(html).toContain(
-      caseStudyProductChapterPolicy.productChapterEditorialMicroRailClassName,
+      caseStudyProductChapterPolicy.productChapterIntroductionHeadingClassName,
     );
   });
 });

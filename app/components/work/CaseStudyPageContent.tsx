@@ -7,7 +7,6 @@ import { caseStudyArticleShellPolicy } from "@/app/constants/policy";
 import { CaseStudyArticleShell } from "./CaseStudyArticleShell";
 import { CaseStudyHeader } from "./CaseStudyHeader";
 import { CaseStudyProductChapter } from "./CaseStudyProductChapter";
-import { CaseStudyReadingCanvas } from "./CaseStudyReadingCanvas";
 import { CaseStudySection } from "./CaseStudySection";
 
 export type CaseStudyPageContentProps = Readonly<{
@@ -16,7 +15,6 @@ export type CaseStudyPageContentProps = Readonly<{
 
 export function CaseStudyPageContent({ caseStudy }: CaseStudyPageContentProps) {
   return (
-    <CaseStudyReadingCanvas>
       <CaseStudyArticleShell>
         <div className={caseStudyArticleShellPolicy.caseStudyHeaderBlockBottomMarginClassName}>
           <CaseStudyHeader caseStudy={caseStudy} />
@@ -41,6 +39,5 @@ export function CaseStudyPageContent({ caseStudy }: CaseStudyPageContentProps) {
         </CaseStudySection>
         </div>
       </CaseStudyArticleShell>
-    </CaseStudyReadingCanvas>
   );
 }

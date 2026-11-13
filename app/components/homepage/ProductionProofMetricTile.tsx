@@ -11,15 +11,9 @@ export function ProductionProofMetricTile({ metric }: ProductionProofMetricTileP
   return (
     <Card className="h-full">
       <div className={homepageProductionProofSectionPolicy.metricTileStackClassName}>
-        <div className={homepageProductionProofSectionPolicy.metricLabelRowClassName}>
-          <span
-            aria-hidden="true"
-            className={homepageProductionProofSectionPolicy.metricLabelRailClassName}
-          />
-          <span className={homepageProductionProofSectionPolicy.metricLabelClassName}>
-            {metric.metricLabel}
-          </span>
-        </div>
+        <span className={homepageProductionProofSectionPolicy.metricLabelClassName}>
+          {metric.metricLabel}
+        </span>
         <BodyText
           size="lg"
           className={homepageProductionProofSectionPolicy.metricValueClassName}

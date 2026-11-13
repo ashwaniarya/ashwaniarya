@@ -5,32 +5,15 @@ import type { CaseStudyProductImpactSnapshotConfiguration } from "@/app/config/p
 import { caseStudyProductChapterPolicy } from "@/app/constants/policy";
 import { BodyText } from "@/design-system/tokens/Typography";
 
-const productImpactSnapshotAccentRailClassName =
-  caseStudyProductChapterPolicy.accentGradientRailClassName;
-
 function CaseStudyProductImpactSnapshotMetricTitle({
   labelText,
 }: Readonly<{ labelText: string }>) {
   return (
-    <div
-      className={
-        caseStudyProductChapterPolicy.impactSnapshotMetricLabelRowClassName
-      }
+    <span
+      className={caseStudyProductChapterPolicy.impactSnapshotMetricLabelClassName}
     >
-      <span
-        aria-hidden
-        className={
-          caseStudyProductChapterPolicy.impactSnapshotMetricLabelRailClassName
-        }
-      />
-      <span
-        className={
-          caseStudyProductChapterPolicy.impactSnapshotMetricLabelClassName
-        }
-      >
-        {labelText}
-      </span>
-    </div>
+      {labelText}
+    </span>
   );
 }
 
@@ -74,11 +57,7 @@ export function CaseStudyProductImpactSnapshot({
       <div
         className={caseStudyProductChapterPolicy.impactSnapshotPanelFrameClassName}
       >
-        <div
-          aria-hidden
-          className={productImpactSnapshotAccentRailClassName}
-        />
-        <div className="min-w-0 flex-1 space-y-3">
+        <div className="min-w-0 space-y-3">
           <h4
             id={impactSectionHeadingElementId}
             className={caseStudyProductChapterPolicy.impactSnapshotHeadingClassName}

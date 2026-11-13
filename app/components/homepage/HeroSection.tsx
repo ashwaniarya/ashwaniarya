@@ -1,14 +1,10 @@
-import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
-import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import { HomepageHeroProfileImage } from "@/app/components/homepage/HomepageHeroProfileImage";
 import { Button3D } from "@/app/components/three/Button3D";
 import { homepageHeroCopyConfiguration } from "@/app/config/homepageConfiguration";
 import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import {
-  editorialGradientTitlePolicy,
   homepageAnchoredSectionScrollMarginPolicy,
   homepageHeroPolicy,
-  meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
 
@@ -22,18 +18,10 @@ export function HeroSection() {
         homepageAnchoredSectionScrollMarginPolicy.scrollMarginTopClassName,
       ].join(" ")}
     >
-      <MeshGlowBackdrop
-        className={[
-          meshEditorialSurfacePolicy.shellBaseClassName,
-          meshEditorialSurfacePolicy.homepageMeshShellShadowClassName,
-          meshEditorialSurfacePolicy.homepageHeroPaddingClassName,
-        ].join(" ")}
-      >
         <div className={homepageHeroPolicy.heroImageWrapperClassName}>
           <HomepageHeroProfileImage />
         </div>
         <div className={homepageHeroPolicy.heroTitleStackClassName}>
-          <EditorialAccentMark variant="horizontalTitle" />
           <div
             className={[
               homepageHeroPolicy.heroTextContrastPanelClassName,
@@ -44,7 +32,6 @@ export function HeroSection() {
           >
             <Heading
               level="h1"
-              className={editorialGradientTitlePolicy.gradientTextClassName}
             >
               {homepageHeroCopyConfiguration.headline}
             </Heading>
@@ -64,7 +51,6 @@ export function HeroSection() {
             View work
           </Button3D>
         </div>
-      </MeshGlowBackdrop>
     </section>
   );
 }

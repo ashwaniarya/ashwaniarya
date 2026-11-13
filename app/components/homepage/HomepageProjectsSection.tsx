@@ -1,13 +1,10 @@
 import { CaseStudySummaryCard } from "@/app/components/homepage/CaseStudySummaryCard";
-import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
-import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import { homepageProjectsSectionCopyConfiguration } from "@/app/config/homepageConfiguration";
 import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import { getAllCaseStudies } from "@/app/config/portfolioCaseStudiesConfiguration";
 import {
   homepageAnchoredSectionScrollMarginPolicy,
   homepageProjectsSectionPolicy,
-  meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
 
@@ -24,20 +21,12 @@ export function HomepageProjectsSection() {
       ].join(" ")}
       data-test="homepage-projects-section"
     >
-      <MeshGlowBackdrop
-        className={[
-          meshEditorialSurfacePolicy.shellBaseClassName,
-          meshEditorialSurfacePolicy.homepageMeshShellShadowClassName,
-          meshEditorialSurfacePolicy.homepageProjectsPaddingClassName,
-        ].join(" ")}
-      >
         <header
           className={[
             homepageProjectsSectionPolicy.headerStackClassName,
             homepageProjectsSectionPolicy.headingMaxWidthClassName,
           ].join(" ")}
         >
-          <EditorialAccentMark variant="horizontalTitle" />
           <Heading level="h2" id="homepage-projects-heading">
             {homepageProjectsSectionCopyConfiguration.sectionHeading}
           </Heading>
@@ -70,7 +59,6 @@ export function HomepageProjectsSection() {
             ))}
           </ul>
         )}
-      </MeshGlowBackdrop>
     </section>
   );
 }

@@ -1,7 +1,6 @@
 import { createElement } from "react";
 import { TbArrowLeft } from "react-icons/tb";
 
-import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { Button3D } from "@/app/components/three/Button3D";
 import type {
   PulseboardCaseStudyConfiguration,
@@ -11,7 +10,6 @@ import { resolvePulseboardCaseStudyLinkIcon } from "@/app/config/pulseboardCaseS
 import { primaryHomepageNavigationHref } from "@/app/config/siteConfiguration";
 import {
   caseStudyArticleShellPolicy,
-  editorialGradientTitlePolicy,
   pulseboardCaseStudyPagePolicy,
   type Button3DVariant,
 } from "@/app/constants/policy";
@@ -58,13 +56,11 @@ export function PulseboardCaseStudyHeader({ header, links }: PulseboardCaseStudy
         <TbArrowLeft aria-hidden className={pulseboardCaseStudyPagePolicy.backLinkIconClassName} />
         {header.backLinkLabel}
       </Button3D>
-      <EditorialAccentMark variant="horizontalTitle" />
       <div className={pulseboardCaseStudyPagePolicy.kickerAndTitleStackClassName}>
         <p className={pulseboardCaseStudyPagePolicy.kickerRowClassName}>
-          <span aria-hidden="true" className={pulseboardCaseStudyPagePolicy.kickerRailClassName} />
           {header.kicker}
         </p>
-        <Heading level="h1" className={editorialGradientTitlePolicy.gradientTextClassName}>
+        <Heading level="h1">
           {header.title}
         </Heading>
       </div>

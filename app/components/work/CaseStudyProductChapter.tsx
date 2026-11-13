@@ -28,21 +28,12 @@ function CaseStudyProductChapterIntroductionSection({
         caseStudyProductChapterPolicy.productChapterIntroductionSectionBlockClassName
       }
     >
-      <div
-        className={
-          caseStudyProductChapterPolicy.productChapterIntroductionHeadingRowClassName
-        }
+      <Heading
+        level="h4"
+        className={caseStudyProductChapterPolicy.productChapterIntroductionHeadingClassName}
       >
-        <span
-          aria-hidden
-          className={
-            caseStudyProductChapterPolicy.productChapterEditorialMicroRailClassName
-          }
-        />
-        <Heading level="h4" className="min-w-0 flex-1 text-sm uppercase tracking-[0.14em] text-accentPrimary">
-          {section.sectionHeading}
-        </Heading>
-      </div>
+        {section.sectionHeading}
+      </Heading>
       <BodyText className="text-textPrimary">
         <EmphasizedFigures text={section.sectionBody} />
       </BodyText>
@@ -64,22 +55,12 @@ export function CaseStudyProductChapter({
 
   return (
     <div className={caseStudyProductChapterPolicy.shellFlexClassName}>
-      <div
-        aria-hidden
-        className={caseStudyProductChapterPolicy.accentGradientRailClassName}
-      />
-      <div className="min-w-0 flex-1">
+      <div className="min-w-0">
         <div className={caseStudyProductChapterPolicy.chapterTitleRowClassName}>
           <Heading level="h3">{chapter.heading}</Heading>
-          <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-accentHighlight/40 bg-surfaceMuted px-3 py-1">
-            <span
-              aria-hidden
-              className="h-1.5 w-1.5 shrink-0 rounded-full bg-accentHighlight"
-            />
-            <Caption className="font-medium text-textPrimary">
-              {chapter.segmentLabel}
-            </Caption>
-          </span>
+          <Caption className="shrink-0 text-textSecondary">
+            {chapter.segmentLabel}
+          </Caption>
         </div>
 
         <div className={caseStudyProductChapterPolicy.productChapterBorderedSectionTopCPlassName}>
@@ -150,7 +131,7 @@ export function CaseStudyProductChapter({
             </BodyText>
           ))}
           {chapter.impactBullets.length > 0 ? (
-            <ul className="list-outside list-disc ml-5 space-y-4 pt-2 text-textPrimary marker:text-accentPrimary">
+            <ul className="list-outside list-disc ml-5 space-y-4 pt-2 text-textPrimary marker:text-textSecondary">
               {chapter.impactBullets.map((bullet, index) => (
                 <li key={`${chapter.heading}-impact-${index}`} className="pl-1">
                   <EmphasizedFigures text={bullet} />
@@ -168,7 +149,7 @@ export function CaseStudyProductChapter({
                 <li
                   data-chip
                   key={`${chapter.heading}-skill-${index}`}
-                  className="rounded-full border border-borderDefault bg-surfaceMuted px-3 py-1 text-sm font-medium text-textPrimary"
+                  className="rounded-full bg-surfaceMuted px-3 py-1 text-sm text-textSecondary"
                 >
                   {skill}
                 </li>

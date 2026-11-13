@@ -1,6 +1,4 @@
 import { ExperienceFocusAreaTile } from "@/app/components/homepage/ExperienceFocusAreaTile";
-import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
-import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import {
   homepageExperienceFocusAreasConfiguration,
   homepageExperienceSectionCopyConfiguration,
@@ -8,7 +6,6 @@ import {
 import {
   homepageExperienceSectionPolicy,
   homepageProjectsSectionPolicy,
-  meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
 
@@ -19,20 +16,12 @@ export function HomepageExperienceSection() {
       className={homepageExperienceSectionPolicy.sectionClassName}
       data-test="homepage-experience-section"
     >
-      <MeshGlowBackdrop
-        className={[
-          meshEditorialSurfacePolicy.shellBaseClassName,
-          meshEditorialSurfacePolicy.homepageMeshShellShadowClassName,
-          meshEditorialSurfacePolicy.homepageProjectsPaddingClassName,
-        ].join(" ")}
-      >
         <header
           className={[
             homepageProjectsSectionPolicy.headerStackClassName,
             homepageProjectsSectionPolicy.headingMaxWidthClassName,
           ].join(" ")}
         >
-          <EditorialAccentMark variant="horizontalTitle" />
           <Heading level="h2" id="homepage-experience-heading">
             {homepageExperienceSectionCopyConfiguration.sectionHeading}
           </Heading>
@@ -56,7 +45,6 @@ export function HomepageExperienceSection() {
             </li>
           ))}
         </ul>
-      </MeshGlowBackdrop>
     </section>
   );
 }

@@ -7,10 +7,10 @@ export function SiteFooter() {
   const copyrightYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-black/10 bg-backgroundPage">
+    <footer className="border-t border-borderDefault bg-backgroundPage">
       <div
         className={[
-          "mx-auto w-full text-sm text-textPrimary/70",
+          "mx-auto w-full text-sm text-textSecondary",
           layoutConfiguration.maximumPageWidthClassName,
           layoutConfiguration.pageHorizontalPaddingClassName,
           layoutConfiguration.footerVerticalPaddingClassName,

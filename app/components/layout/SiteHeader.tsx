@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Button3D } from "@/app/components/three/Button3D";
 import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import {
-  editorialGradientTitlePolicy,
   siteHeaderChromePolicy,
   siteHeaderNavigationPolicy,
 } from "@/app/constants/policy";
@@ -34,7 +33,6 @@ export function SiteHeader() {
           href={`/#${homepageSectionAnchorConfiguration.homeSectionDomId}`}
           className={[
             "inline-flex min-h-11 min-w-0 shrink-0 items-center text-sm font-semibold tracking-tight sm:min-h-0 sm:text-base",
-            editorialGradientTitlePolicy.gradientTextClassName,
           ].join(" ")}
         >
           {siteIdentityConfiguration.siteName}
