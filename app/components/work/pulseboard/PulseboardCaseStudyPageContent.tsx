@@ -17,6 +17,7 @@ import { BodyText, Caption, Heading } from "@/design-system/tokens/Typography";
 
 import { CaseStudyArticleShell } from "../CaseStudyArticleShell";
 import { CaseStudyDemoVideoPlayer } from "../CaseStudyDemoVideoPlayer";
+import { CaseStudyReadingCanvas } from "../CaseStudyReadingCanvas";
 import { CaseStudySection } from "../CaseStudySection";
 import { ExternalTextLink } from "../ExternalTextLink";
 import { PulseboardArchitectureDiagram } from "./PulseboardArchitectureDiagram";
@@ -41,6 +42,7 @@ export function PulseboardCaseStudyPageContent() {
   } = pulseboardCaseStudyConfiguration;
 
   return (
+    <CaseStudyReadingCanvas>
       <CaseStudyArticleShell>
         <div className={caseStudyArticleShellPolicy.caseStudyHeaderBlockBottomMarginClassName}>
           <PulseboardCaseStudyHeader header={header} links={links} />
@@ -196,5 +198,6 @@ export function PulseboardCaseStudyPageContent() {
           </CaseStudySection>
         </div>
       </CaseStudyArticleShell>
+    </CaseStudyReadingCanvas>
   );
 }

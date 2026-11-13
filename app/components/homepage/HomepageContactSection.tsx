@@ -1,4 +1,6 @@
 import { ContactChannelRow } from "@/app/components/homepage/ContactChannelRow";
+import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
+import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import {
   homepageContactChannelsConfiguration,
   homepageContactSectionCopyConfiguration,
@@ -8,6 +10,7 @@ import {
   homepageAnchoredSectionScrollMarginPolicy,
   homepageContactSectionPolicy,
   homepageProjectsSectionPolicy,
+  meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
 
@@ -22,12 +25,20 @@ export function HomepageContactSection() {
       ].join(" ")}
       data-test="homepage-contact-section"
     >
+      <MeshGlowBackdrop
+        className={[
+          meshEditorialSurfacePolicy.shellBaseClassName,
+          meshEditorialSurfacePolicy.homepageMeshShellShadowClassName,
+          meshEditorialSurfacePolicy.homepageProjectsPaddingClassName,
+        ].join(" ")}
+      >
         <header
           className={[
             homepageProjectsSectionPolicy.headerStackClassName,
             homepageProjectsSectionPolicy.headingMaxWidthClassName,
           ].join(" ")}
         >
+          <EditorialAccentMark variant="horizontalTitle" />
           <Heading level="h2" id="homepage-contact-heading">
             {homepageContactSectionCopyConfiguration.sectionHeading}
           </Heading>
@@ -51,6 +62,7 @@ export function HomepageContactSection() {
             <ContactChannelRow key={channel.channelKey} channel={channel} />
           ))}
         </ul>
+      </MeshGlowBackdrop>
     </section>
   );
 }

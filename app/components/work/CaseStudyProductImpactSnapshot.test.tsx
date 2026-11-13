@@ -44,7 +44,10 @@ describe("CaseStudyProductImpactSnapshot", () => {
     );
     expect(html).toContain("Impact Metric");
     expect(html).toContain(
-      caseStudyProductChapterPolicy.impactSnapshotMetricLabelClassName,
+      caseStudyProductChapterPolicy.impactSnapshotMetricLabelRowClassName,
+    );
+    expect(html).toContain(
+      caseStudyProductChapterPolicy.impactSnapshotMetricLabelRailClassName,
     );
     expect(html).toContain("Early");
     expect(html).toContain("~100k/day");

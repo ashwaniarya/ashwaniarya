@@ -1,4 +1,6 @@
 import { SelectedWorkTile } from "@/app/components/homepage/SelectedWorkTile";
+import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
+import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import { homepageSectionAnchorConfiguration } from "@/app/config/homepageSectionAnchorConfiguration";
 import {
   getAllSelectedWork,
@@ -8,6 +10,7 @@ import {
   homepageAnchoredSectionScrollMarginPolicy,
   homepageProjectsSectionPolicy,
   homepageSelectedWorkSectionPolicy,
+  meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
 
@@ -24,12 +27,20 @@ export function HomepageSelectedWorkSection() {
       ].join(" ")}
       data-test="homepage-selected-work-section"
     >
+      <MeshGlowBackdrop
+        className={[
+          meshEditorialSurfacePolicy.shellBaseClassName,
+          meshEditorialSurfacePolicy.homepageMeshShellShadowClassName,
+          meshEditorialSurfacePolicy.homepageProjectsPaddingClassName,
+        ].join(" ")}
+      >
         <header
           className={[
             homepageProjectsSectionPolicy.headerStackClassName,
             homepageProjectsSectionPolicy.headingMaxWidthClassName,
           ].join(" ")}
         >
+          <EditorialAccentMark variant="horizontalTitle" />
           <Heading level="h2" id="homepage-selected-work-heading">
             {homepageSelectedWorkSectionCopyConfiguration.sectionHeading}
           </Heading>
@@ -50,6 +61,7 @@ export function HomepageSelectedWorkSection() {
             </li>
           ))}
         </ul>
+      </MeshGlowBackdrop>
     </section>
   );
 }

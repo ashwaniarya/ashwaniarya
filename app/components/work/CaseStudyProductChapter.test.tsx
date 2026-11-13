@@ -76,7 +76,10 @@ describe("CaseStudyProductChapter", () => {
       caseStudyProductChapterPolicy.productChapterIntroductionSectionBlockClassName,
     );
     expect(html).toContain(
-      caseStudyProductChapterPolicy.productChapterIntroductionHeadingClassName,
+      caseStudyProductChapterPolicy.productChapterIntroductionHeadingRowClassName,
+    );
+    expect(html).toContain(
+      caseStudyProductChapterPolicy.productChapterEditorialMicroRailClassName,
     );
   });
 });

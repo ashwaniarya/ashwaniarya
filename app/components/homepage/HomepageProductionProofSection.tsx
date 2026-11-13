@@ -1,4 +1,6 @@
 import { ProductionProofMetricTile } from "@/app/components/homepage/ProductionProofMetricTile";
+import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
+import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import {
   homepageProductionProofMetricsConfiguration,
   homepageProductionProofSectionCopyConfiguration,
@@ -6,6 +8,7 @@ import {
 import {
   homepageProductionProofSectionPolicy,
   homepageProjectsSectionPolicy,
+  meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
 
@@ -16,12 +19,20 @@ export function HomepageProductionProofSection() {
       className={homepageProductionProofSectionPolicy.sectionClassName}
       data-test="homepage-production-proof-section"
     >
+      <MeshGlowBackdrop
+        className={[
+          meshEditorialSurfacePolicy.shellBaseClassName,
+          meshEditorialSurfacePolicy.homepageMeshShellShadowClassName,
+          meshEditorialSurfacePolicy.homepageProjectsPaddingClassName,
+        ].join(" ")}
+      >
         <header
           className={[
             homepageProjectsSectionPolicy.headerStackClassName,
             homepageProjectsSectionPolicy.headingMaxWidthClassName,
           ].join(" ")}
         >
+          <EditorialAccentMark variant="horizontalTitle" />
           <Heading level="h2" id="homepage-production-proof-heading">
             {homepageProductionProofSectionCopyConfiguration.sectionHeading}
           </Heading>
@@ -45,6 +56,7 @@ export function HomepageProductionProofSection() {
             </li>
           ))}
         </ul>
+      </MeshGlowBackdrop>
     </section>
   );
 }

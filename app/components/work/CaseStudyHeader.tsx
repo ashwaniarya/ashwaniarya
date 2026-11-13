@@ -1,7 +1,9 @@
+import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { BodyText, Caption, Heading } from "@/design-system/tokens/Typography";
 
 import {
   caseStudyArticleShellPolicy,
+  editorialGradientTitlePolicy,
 } from "@/app/constants/policy";
 import type { CaseStudyRecord } from "@/app/config/portfolioCaseStudiesConfiguration";
 
@@ -21,8 +23,10 @@ export function CaseStudyHeader({ caseStudy }: CaseStudyHeaderProps) {
 
   return (
     <header className={caseStudyArticleShellPolicy.caseStudyHeaderCardClassName}>
+      <EditorialAccentMark variant="horizontalTitle" />
       <Heading
         level="h1"
+        className={editorialGradientTitlePolicy.gradientTextClassName}
       >
         {caseStudy.title}
       </Heading>

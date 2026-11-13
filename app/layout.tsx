@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Newsreader, Plus_Jakarta_Sans } from "next/font/google";
+import { Geist_Mono, Lato, Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
 import { SiteFooter } from "@/app/components/layout/SiteFooter";
 import { SiteHeader } from "@/app/components/layout/SiteHeader";
+import { SceneCanvasMount } from "@/app/components/three/SceneCanvasMount";
 import { StructuredData } from "@/app/components/seo/StructuredData";
+import { SceneProvider } from "@/app/components/three/SceneProvider";
 import { siteIdentityConfiguration } from "@/app/config/siteConfiguration";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -19,10 +21,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
+const lato = Lato({
+  variable: "--font-lato",
   subsets: ["latin"],
-  weight: ["500", "600"],
+  weight: ["700"],
 });
 
 const canonicalSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
@@ -88,7 +90,7 @@ export default function RootLayout({
         className={[
           plusJakartaSans.variable,
           geistMono.variable,
-          newsreader.variable,
+          lato.variable,
           "font-sans antialiased",
           "min-h-dvh text-textPrimary",
         ].join(" ")}
@@ -103,11 +105,14 @@ export default function RootLayout({
             gtag('config', 'G-71D4ZMWTJR');
           `}
         </Script>
-        <div className="flex min-h-dvh flex-col">
-          <SiteHeader />
-          <div className="flex min-h-0 flex-1 flex-col">{children}</div>
-          <SiteFooter />
-        </div>
+        <SceneProvider>
+          <SceneCanvasMount />
+          <div className="flex min-h-dvh flex-col">
+            <SiteHeader />
+            <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+            <SiteFooter />
+          </div>
+        </SceneProvider>
       </body>
     </html>
   );

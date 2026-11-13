@@ -1,7 +1,7 @@
 export const homepageHeroPolicy = {
   heroSectionSpacingClassName: "space-y-4",
   heroImageWrapperClassName:
-    "mx-auto flex h-[176px] w-[176px] items-center justify-center rounded-full",
+    "mx-auto flex h-[176px] w-[176px] items-center justify-center rounded-full border border-borderDefault bg-backgroundPage/80 shadow-sm",
   heroImageSizePx: 160,
   /** Outer hero portrait frame (tailwind `h/w-[176px]`); used for `sizes` on raster profile images. */
   heroProfilePictureFrameOuterEdgePx: 176,
@@ -16,7 +16,9 @@ export const homepageHeroPolicy = {
   heroTextStackSpacingClassName: "prose-rhythm",
   heroTextAlignmentClassName: "text-center",
   heroTextWrapperClassName: "mx-auto w-full max-w-2xl",
-  heroTextContrastPanelClassName: "",
+  /** Frosted panel so copy stays legible over mesh glow orbs. */
+  heroTextContrastPanelClassName:
+    "rounded-xl bg-surfaceElevated/95 px-4 py-3 shadow-sm ring-1 ring-borderDefault/70 backdrop-blur-sm narrowPhoneUp:px-5 narrowPhoneUp:py-4 sm:px-6 sm:py-5",
 } as const;
 
 export const projectSectionPolicy = {
@@ -24,7 +26,7 @@ export const projectSectionPolicy = {
   containerClassName:
     "grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-10 items-stretch",
   panelBaseClassName:
-    "rounded-lg border border-borderDefault bg-backgroundPage",
+    "rounded-lg border border-borderDefault bg-backgroundPage shadow-sm",
   panelPaddingClassName: "p-6 sm:p-8",
   panelLeftClassName: "overflow-hidden",
   panelRightClassName: "overflow-hidden",
@@ -32,17 +34,17 @@ export const projectSectionPolicy = {
 
 /** Homepage projects block: heading → intro → card list (no duplicate panel chrome). */
 export const homepageProjectsSectionPolicy = {
-  sectionClassName: "mt-16 border-t border-borderDefault pt-12 sm:mt-20 sm:pt-16",
+  sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
   headerStackClassName: "prose-rhythm",
   headingMaxWidthClassName: "max-w-2xl",
   introMaxWidthClassName: "max-w-prose",
   cardsListClassName:
-    "mt-8 grid list-none grid-cols-1 gap-6 p-0",
+    "mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:mt-8 sm:gap-5 md:grid-cols-2",
 } as const;
 
 /** Homepage technology stack: same rhythm as projects; cards reuse projects grid classes. */
 export const homepageTechnologyStackSectionPolicy = {
-  sectionClassName: "mt-16 border-t border-borderDefault pt-12 sm:mt-20 sm:pt-16",
+  sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
   technologyItemListClassName: "mt-3 list-none space-y-2 p-0",
   technologyItemRowClassName: "flex items-start gap-2.5",
   technologyItemIconClassName:
@@ -51,9 +53,9 @@ export const homepageTechnologyStackSectionPolicy = {
 
 /** Homepage experience focus areas: icon-led tiles in the projects grid rhythm. */
 export const homepageExperienceSectionPolicy = {
-  sectionClassName: "mt-16 border-t border-borderDefault pt-12 sm:mt-20 sm:pt-16",
+  sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
   focusAreaCardsListClassName:
-    "mt-8 grid list-none grid-cols-1 gap-6 p-0",
+    "mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:mt-8 sm:gap-5 md:grid-cols-2",
   focusAreaTileRowClassName: "flex gap-3 sm:gap-4",
   focusAreaTileIconClassName: "mt-0.5 h-5 w-5 shrink-0 text-textSecondary",
   focusAreaTileTextStackClassName: "min-w-0 space-y-1.5",
@@ -61,12 +63,34 @@ export const homepageExperienceSectionPolicy = {
 
 /** Homepage contact: channel list under mesh shell (matches stack section rhythm). */
 export const homepageContactSectionPolicy = {
-  sectionClassName: "mt-16 border-t border-borderDefault pt-12 sm:mt-20 sm:pt-16",
+  sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
   channelListClassName: "mt-6 list-none space-y-4 p-0 sm:mt-8",
   channelRowClassName: "flex items-start gap-3 sm:gap-4",
   channelIconClassName: "mt-0.5 h-5 w-5 shrink-0 text-textSecondary",
   channelLabelClassName: "w-28 shrink-0 text-sm font-medium text-textPrimary sm:w-32",
   channelValueClassName: "min-w-0 flex-1 text-sm text-textSecondary",
+} as const;
+
+/** Editorial mesh surfaces (shared with work case study canvas). */
+export const meshEditorialSurfacePolicy = {
+  /** Border + fill only — compose with a shadow token below. */
+  shellBaseClassName: "rounded-2xl border border-borderDefault/70 bg-surfaceMuted",
+  /** Home: keep the frame light; the old case-study shadow felt heavy on marketing pages. */
+  homepageMeshShellShadowClassName: "shadow-sm",
+  /** Work: deeper lift for long-form reading depth. */
+  caseStudyMeshShellShadowClassName: "shadow-caseStudyElevated",
+  caseStudyPaddingClassName:
+    "px-2 py-2 narrowPhoneUp:px-4 narrowPhoneUp:py-4 sm:px-8 sm:py-11",
+  homepageHeroPaddingClassName:
+    "px-2 py-5 narrowPhoneUp:px-4 narrowPhoneUp:py-6 sm:px-8 sm:py-8",
+  homepageProjectsPaddingClassName:
+    "px-2 py-6 narrowPhoneUp:px-4 narrowPhoneUp:py-8 sm:px-8 sm:py-10",
+} as const;
+
+/** Primary display titles (hero name, case study document title) — clip gradient to glyphs. */
+export const editorialGradientTitlePolicy = {
+  gradientTextClassName:
+    "bg-gradient-to-r from-textPrimary via-accentPrimary to-accentSecondary bg-clip-text text-transparent",
 } as const;
 
 /** Primary nav in `SiteHeader`: touch-friendly targets; `NavigationLabel` owns type; anchor owns color + focus ring. */
@@ -77,7 +101,7 @@ export const siteHeaderNavigationPolicy = {
   /** On phones `phoneCallToActionPillClassName` shows this link beside the brand instead, so it is exposed once at every width. */
   phoneHiddenCallToActionListItemClassName: "max-sm:hidden",
   phoneCallToActionPillClassName:
-    "inline-flex h-11 items-center rounded-full border border-borderDefault px-3.5 text-textPrimary transition-colors hover:border-accentPrimary hover:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:hidden",
+    "inline-flex h-11 items-center rounded-full border border-accentPrimary/45 bg-accentPrimary/5 px-3.5 text-accentPrimary transition-colors hover:bg-accentPrimary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:hidden",
 } as const;
 
 /**
@@ -86,7 +110,7 @@ export const siteHeaderNavigationPolicy = {
  */
 export const siteHeaderChromePolicy = {
   headerShellClassName:
-    "sticky top-0 z-10 border-b border-borderDefault bg-backgroundPage/95",
+    "sticky top-0 z-10 border-b border-black/10 bg-backgroundPage/80 backdrop-blur-md",
   /** Phones: brand left and call-to-action pill right, nav wrapping to its own full-width row below. From `sm`: brand centered over the nav. */
   headerInnerRowClassName:
     "flex w-full flex-wrap items-center justify-between gap-x-3 gap-y-0.5 sm:flex-col sm:gap-4",
@@ -105,57 +129,88 @@ export const caseStudyArticleShellPolicy = {
   caseStudyHeaderBlockBottomMarginClassName: "mb-12 sm:mb-16",
   /** Tighter stack between “Engagement overview”, “Product surfaces”, etc. */
   caseStudyBodySectionsVerticalStackClassName: "flex flex-col gap-10 sm:gap-12",
-  caseStudyHeaderCardClassName: "space-y-4 mb-6",
+  /** Elevated frosted card holding a case study's title block (shared by every case-study header). */
+  caseStudyHeaderCardClassName:
+    "space-y-4 rounded-xl border border-borderDefault/80 bg-surfaceElevated/95 p-4 shadow-md backdrop-blur-sm narrowPhoneUp:p-6 sm:p-8 mb-6",
 } as const;
 
-/** Product chapters: plain stacked text, hairline between chapters. */
+/** Short gradient spine beside Impact Metric labels and introduction h4 rows (single source of truth). */
+const editorialMicroRailClassName =
+  "h-2 w-px shrink-0 rounded-full bg-gradient-to-b from-accentPrimary via-accentHighlight to-accentSecondary opacity-90";
+
+/** Product chapter cards: gradient accent rail matches editorial marks + title gradient stops. */
 export const caseStudyProductChapterPolicy = {
   shellFlexClassName:
-    "border-t border-borderDefault pt-10 first:border-t-0 first:pt-0",
+    "flex gap-2 rounded-xl border border-borderDefault/80 bg-surfaceElevated p-3 shadow-md narrowPhoneUp:gap-3 narrowPhoneUp:p-4 sm:gap-5 sm:p-7",
+  accentGradientRailClassName:
+    "w-[3px] sm:w-[4px] shrink-0 self-stretch rounded-full bg-gradient-to-b from-accentPrimary/80 via-accentHighlight/90 to-accentSecondary/80",
   /** Heading row: title + segment chip; bottom padding before first ruled block. */
   chapterTitleRowClassName:
     "flex flex-col gap-2 pb-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3",
   /** Link / illustration / impact blocks that sit below a horizontal rule. */
   productChapterBorderedSectionTopCPlassName:
-    "pt-5",
+    "border-t border-borderDefault pt-4",
   /** Primary external link + optional `availabilityCaption` stack under the chapter title. */
   productPageLinkAvailabilityStackClassName: "space-y-2",
   /** Body + impact bullets when a rule sits above (no Impact KPI strip, or flush spacing handled separately). */
-  productChapterBodyStackWhenTopRuleClassName: "pt-6 prose-rhythm",
+  productChapterBodyStackWhenTopRuleClassName: "border-t border-borderDefault pt-6 prose-rhythm",
   /** Body after Impact KPI strip: no extra rule; tighter top padding. */
   productChapterBodyStackWhenAfterImpactClassName: "pt-4 prose-rhythm",
   /** Optional h4-led blocks (Overview / Problem / My role) above technical paragraphs. */
-  productChapterIntroductionOuterStackClassName: "space-y-6",
-  productChapterIntroductionSectionBlockClassName: "space-y-2",
-  productChapterIntroductionHeadingClassName: "block min-w-0 font-sans text-xs font-medium uppercase leading-none tracking-[0.12em] text-textSecondary",
+  productChapterIntroductionOuterStackClassName: "space-y-4",
+  productChapterIntroductionSectionBlockClassName: "space-y-2 rounded-lg border border-borderDefault/60 bg-surfaceMuted/70 p-4",
+  /** Micro-rail + h4 row; rail uses `productChapterEditorialMicroRailClassName` (`aria-hidden` in component). */
+  productChapterIntroductionHeadingRowClassName:
+    "flex min-w-0 items-center gap-1.5",
+  productChapterEditorialMicroRailClassName: editorialMicroRailClassName,
   /** Skills block at chapter foot. */
-  productChapterSkillsSectionClassName: "pt-6",
+  productChapterSkillsSectionClassName: "border-t border-borderDefault pt-5",
   /** Section wrapper — chrome lives on `impactSnapshotPanelFrameClassName`. */
   impactSnapshotPanelClassName: "min-w-0",
-  impactSnapshotPanelFrameClassName: "space-y-3",
-  impactSnapshotHeadingClassName: "block min-w-0 font-sans text-xs font-medium uppercase leading-none tracking-[0.12em] text-textSecondary",
+  /**
+   * Highlight rail + wash: light mode reads as a soft violet→cyan glass strip; dark mode uses the same
+   * structure with deeper surfaces (tokens in `globals.css`).
+   */
+  impactSnapshotPanelFrameClassName:
+    "flex gap-3 overflow-hidden rounded-xl border border-accentPrimary/25 bg-gradient-to-br from-accentPrimary/[0.12] via-surfaceMuted to-accentSecondary/[0.10] p-3 shadow-sm ring-1 ring-inset ring-borderDefault/40 narrowPhoneUp:gap-3.5 narrowPhoneUp:p-4 sm:gap-4",
+  impactSnapshotHeadingClassName:
+    "text-xs font-semibold uppercase tracking-[0.14em] text-accentHighlight",
   impactSnapshotMetricsGridClassName:
-    "grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6",
+    "grid grid-cols-1 gap-2.5 sm:grid-cols-3 sm:gap-3",
   impactSnapshotMetricCellClassName:
-    "min-w-0 space-y-1.5",
+    "min-w-0 space-y-2 rounded-lg border border-borderDefault/70 bg-surfaceElevated/55 px-3 py-2.5 shadow-sm backdrop-blur-[2px] narrowPhoneUp:px-3.5 narrowPhoneUp:py-3",
+  /** Flex row: micro-rail + label; rail is decorative only (`aria-hidden` in component). */
+  impactSnapshotMetricLabelRowClassName:
+    "flex min-w-0 items-center gap-1.5",
+  impactSnapshotMetricLabelRailClassName: editorialMicroRailClassName,
   impactSnapshotMetricLabelClassName:
-    "block min-w-0 truncate text-xs leading-none text-textSecondary",
+    "block min-w-0 truncate text-[11px] font-bold uppercase leading-none tracking-[0.1em] text-accentSecondary/90",
   impactSnapshotMetricValueClassName:
-    "font-medium tabular-nums text-textPrimary",
+    "font-semibold tabular-nums tracking-tight text-textPrimary",
   /** Full-width figure inside prose column; matches chapter card chrome. */
   chapterIllustrationFigureClassName:
-    "mt-4 overflow-hidden rounded-md border border-borderDefault",
+    "mt-4 overflow-hidden rounded-lg border border-borderDefault/70 bg-surfaceMuted/30 shadow-sm",
   chapterIllustrationImageClassName:
     "h-auto w-full object-cover object-top",
   /** Responsive hint for chapter screenshots (max ~65ch prose width). */
   chapterIllustrationImageSizes: "(max-width: 640px) 100vw, 42rem",
 } as const;
 
+/** Mesh orb strengths — lower = less color bleed through typography. */
+export const meshGlowBackdropPolicy = {
+  violetOrbClassName:
+    "pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-glowViolet/16 blur-3xl",
+  cyanOrbClassName:
+    "pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-glowCyan/14 blur-3xl",
+  accentWashOrbClassName:
+    "pointer-events-none absolute left-1/2 top-1/3 h-48 w-96 -translate-x-1/2 rounded-full bg-accentPrimary/7 blur-3xl",
+} as const;
+
 export const contentCardPolicy = {
   containerBaseClassName:
-    "block min-w-0 border-t border-borderDefault pt-5",
+    "block min-w-0 rounded-lg border border-borderDefault bg-backgroundPage p-6 shadow-sm",
   linkInteractiveClassName:
-    "transition-colors hover:border-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+    "transition-colors transition-shadow hover:border-accentPrimary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
 } as const;
 
 export type Button3DVariant =
@@ -173,14 +228,14 @@ export type Button3DVariant =
  * stay flat (no per-link WebGL view, which would not scale across a long page).
  */
 export const button3DPolicy = {
-  canvasVariants: [] as ReadonlyArray<Button3DVariant>,
+  canvasVariants: ["primary", "card", "nav"] as ReadonlyArray<Button3DVariant>,
   variantClassName: {
     primary:
-      "relative inline-flex min-h-11 items-center justify-center rounded-full border border-textPrimary px-6 py-2.5 text-sm font-medium text-textPrimary transition-colors hover:border-accentPrimary hover:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+      "relative inline-flex items-center justify-center rounded-full border border-accentPrimary/40 bg-surfaceElevated/70 px-7 py-3 text-sm font-semibold text-textPrimary shadow-sm backdrop-blur-sm transition-colors hover:border-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
     card:
-      "relative block min-w-0 border-t border-borderDefault pt-5 transition-colors hover:border-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+      "relative block min-w-0 rounded-lg border border-borderDefault bg-surfaceElevated/60 p-6 shadow-sm backdrop-blur-sm transition-colors transition-shadow hover:border-accentPrimary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
     nav:
-      "relative inline-flex min-h-11 items-center rounded-sm px-2 text-textSecondary transition-colors hover:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:min-h-0 sm:px-1",
+      "relative inline-flex min-h-11 items-center rounded-sm px-2 text-textPrimary/80 transition-colors hover:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:min-h-0 sm:px-1",
     inlineLink:
       "font-medium text-accentPrimary underline-offset-4 hover:underline",
     externalLink:
@@ -193,12 +248,12 @@ export const button3DPolicy = {
 /** Homepage selected work: screenshot tiles linking to live pieces. Shares the projects section rhythm. */
 export const homepageSelectedWorkSectionPolicy = {
   tilesListClassName:
-    "mt-8 grid list-none grid-cols-1 gap-12 p-0",
+    "mt-6 grid list-none grid-cols-1 gap-5 p-0 sm:mt-8 sm:gap-6 md:grid-cols-2",
   tileLinkClassName: "h-full",
   tileFigureClassName:
-    "m-0 overflow-hidden rounded-md border border-borderDefault bg-backgroundPage",
+    "m-0 overflow-hidden rounded-md border border-borderDefault/70 bg-backgroundPage",
   tileCodePreviewPanelClassName:
-    "flex aspect-[8/5] w-full items-stretch bg-surfaceMuted p-4 sm:p-5",
+    "flex aspect-[8/5] w-full items-stretch bg-surfaceMuted/90 p-4 sm:p-5",
   tileCodePreviewPreClassName:
     "m-0 min-h-0 w-full flex-1 overflow-hidden whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-textSecondary sm:text-xs",
   tileImageClassName: "block h-auto w-full",
@@ -209,24 +264,28 @@ export const homepageSelectedWorkSectionPolicy = {
   tileSecondaryLinksClassName: "flex items-center gap-3",
   stackListClassName: "flex list-none flex-wrap gap-1.5 p-0",
   stackChipClassName:
-    "rounded-full bg-surfaceMuted px-2.5 py-0.5 text-xs text-textSecondary",
+    "rounded-full border border-borderDefault/80 px-2.5 py-0.5 text-xs text-textSecondary",
   /** Must match `WORK_SCREENSHOT_WIDTH_PX` in `scripts/optimize-work-screenshots.mjs`. */
   selectedWorkTileImageWidthPx: 1200,
 } as const;
 
 /** Homepage production-proof strip: four KPI tiles in the shared section rhythm. */
 export const homepageProductionProofSectionPolicy = {
-  sectionClassName: "mt-16 border-t border-borderDefault pt-12 sm:mt-20 sm:pt-16",
+  sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
   metricCardsListClassName:
-    "mt-8 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2",
+    "mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:mt-8 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4",
   metricTileStackClassName: "min-w-0 space-y-2",
-  metricLabelClassName: "block min-w-0 font-sans text-xs font-medium uppercase leading-none tracking-[0.12em] text-textSecondary",
+  /** Micro-rail + label row, mirroring `caseStudyProductChapterPolicy` (rail is `aria-hidden`). */
+  metricLabelRowClassName: "flex min-w-0 items-center gap-1.5",
+  metricLabelRailClassName: editorialMicroRailClassName,
+  metricLabelClassName:
+    "block min-w-0 text-[11px] font-bold uppercase leading-none tracking-[0.1em] text-accentSecondary/90",
   /**
    * Sits on top of `BodyText size="lg"` (`text-lg`). Only the `sm:` variant sets a size, so there
    * is no same-variant font-size collision with the primitive's own class.
    */
   metricValueClassName:
-    "font-medium tabular-nums text-textPrimary sm:text-2xl",
+    "font-semibold tabular-nums tracking-tight text-textPrimary sm:text-2xl",
 } as const;
 
 /** Pulseboard case study (`/work/pulseboard`): header link row, architecture lanes, fact cards, usage bars. */
@@ -234,14 +293,16 @@ export const pulseboardCaseStudyPagePolicy = {
   backLinkClassName: "inline-flex items-center gap-1.5 text-sm",
   backLinkIconClassName: "h-4 w-4 shrink-0",
   kickerAndTitleStackClassName: "space-y-2",
-  kickerRowClassName: "block min-w-0 font-sans text-xs font-medium uppercase leading-none tracking-[0.12em] text-textSecondary",
+  /** Micro-rail + kicker, mirroring the metric label rows (rail is `aria-hidden`). */
+  kickerRowClassName: "flex min-w-0 items-center gap-1.5 text-sm font-medium text-accentPrimary",
+  kickerRailClassName: editorialMicroRailClassName,
   headerLinkListClassName: "flex list-none flex-wrap items-center gap-2 p-0",
   /** Neither `primary` nor `pillLink` sets a gap, so icon spacing is added here. */
   headerLinkButtonClassName: "gap-2",
   headerLinkIconClassName: "h-4 w-4 shrink-0",
   heroFigureClassName: "m-0 space-y-2",
   heroPictureFrameClassName:
-    "block overflow-hidden rounded-md border border-borderDefault",
+    "block overflow-hidden rounded-lg border border-borderDefault/70 bg-surfaceMuted/30 shadow-sm",
   heroImageClassName: "block h-auto w-full",
   sectionBodyStackClassName: "space-y-6",
   subsectionStackClassName: "space-y-3",
@@ -264,8 +325,8 @@ export const pulseboardCaseStudyPagePolicy = {
       iconClassName: "text-accentPrimary",
     },
     mockBackend: {
-      surfaceClassName: "border-borderDefault bg-surfaceMuted",
-      iconClassName: "text-textSecondary",
+      surfaceClassName: "border-accentSecondary/50 bg-accentSecondary/10",
+      iconClassName: "text-accentSecondary",
     },
   },
   diagramLegendClassName: "grid gap-4 sm:grid-cols-2",
@@ -280,7 +341,7 @@ export const pulseboardCaseStudyPagePolicy = {
   limitIconClassName: "text-textSecondary",
   decisionRecordListClassName: "grid list-none gap-2 p-0 text-sm sm:grid-cols-2",
   factCardClassName:
-    "min-w-0 border-t border-borderDefault pt-3",
+    "min-w-0 rounded-lg border border-borderDefault/80 bg-surfaceElevated/60 p-4",
   factCardTitleRowClassName: "flex items-center gap-2 text-sm font-semibold text-textPrimary",
   factCardIconClassName: "h-[18px] w-[18px] shrink-0 text-accentPrimary",
   factCardDescriptionClassName: "mt-1 text-sm text-textSecondary",
@@ -288,10 +349,10 @@ export const pulseboardCaseStudyPagePolicy = {
   testTierGridClassName: "grid list-none grid-cols-2 gap-3 p-0 lg:grid-cols-4",
   performanceCardsStackClassName: "space-y-4",
   performanceCardClassName:
-    "space-y-3 border-t border-borderDefault pt-5",
+    "space-y-3 rounded-lg border border-borderDefault/80 bg-surfaceElevated/60 p-4 sm:p-5",
   performanceCardTitleRowClassName: "flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1",
   statGridClassName: "m-0 grid grid-cols-2 gap-3",
-  statBoxClassName: "min-w-0",
+  statBoxClassName: "min-w-0 rounded-lg border border-borderDefault/70 p-3",
   statLabelClassName: "text-xs text-textSecondary",
   statValueClassName: "m-0 text-xl font-semibold tabular-nums text-textPrimary",
   usageBarListClassName: "list-none space-y-3 p-0",
@@ -301,10 +362,10 @@ export const pulseboardCaseStudyPagePolicy = {
   usageBarSummaryClassName: "tabular-nums text-textSecondary",
   usageBarTrackClassName: "col-span-2 block h-2 overflow-hidden rounded-full bg-borderDefault/70",
   usageBarFillBaseClassName: "block h-full rounded-full",
-  frameUsageFillClassName: "bg-textSecondary",
+  frameUsageFillClassName: "bg-accentSecondary",
   bundleUsageFillClassName: "bg-accentPrimary",
   highlightedChipClassName:
-    "rounded-full bg-surfaceMuted px-2.5 py-0.5 text-xs font-medium text-textPrimary",
+    "rounded-full border border-accentPrimary/60 bg-accentPrimary/10 px-2.5 py-0.5 text-xs font-medium text-textPrimary",
   ciJobChipClassName: `${homepageSelectedWorkSectionPolicy.stackChipClassName} font-mono`,
   labelledChipRowClassName: "flex flex-wrap items-center gap-x-2 gap-y-1.5",
   chipRowLabelClassName: "text-xs text-textSecondary",
@@ -317,7 +378,7 @@ export const caseStudyDemoVideoPolicy = {
   /** Same air below as the header card, so the video and the screenshot under it read as separate figures. */
   figureClassName: "m-0 mb-6",
   frameClassName:
-    "relative block overflow-hidden rounded-md border border-borderDefault",
+    "relative block overflow-hidden rounded-lg border border-borderDefault/70 bg-surfaceMuted/30 shadow-sm",
   videoClassName: "block h-auto w-full bg-black",
   /** `none` keeps the page weight to the poster until the visitor presses play. */
   videoPreload: "none",
