@@ -55,9 +55,11 @@ export const homepageTechnologyStackSectionPolicy = {
 export const homepageExperienceSectionPolicy = {
   sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
   focusAreaCardsListClassName:
-    "mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:mt-8 sm:gap-5 md:grid-cols-2",
-  focusAreaTileRowClassName: "flex gap-3 sm:gap-4",
-  focusAreaTileIconClassName: "mt-0.5 h-5 w-5 shrink-0 text-textSecondary",
+    "mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:mt-8 sm:gap-5",
+  focusAreaTileRowClassName: "flex items-start gap-4",
+  focusAreaTileIconBadgeClassName:
+    "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-accentPrimary/25 bg-accentPrimary/10",
+  focusAreaTileIconClassName: "h-5 w-5 text-accentPrimary",
   focusAreaTileTextStackClassName: "min-w-0 space-y-1.5",
 } as const;
 

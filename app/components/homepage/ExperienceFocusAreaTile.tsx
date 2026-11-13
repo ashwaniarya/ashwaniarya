@@ -16,10 +16,12 @@ export function ExperienceFocusAreaTile({ focusArea }: ExperienceFocusAreaTilePr
   return (
     <Card className="h-full">
       <div className={homepageExperienceSectionPolicy.focusAreaTileRowClassName}>
-        {createElement(Icon, {
-          "aria-hidden": true,
-          className: homepageExperienceSectionPolicy.focusAreaTileIconClassName,
-        })}
+        <span className={homepageExperienceSectionPolicy.focusAreaTileIconBadgeClassName}>
+          {createElement(Icon, {
+            "aria-hidden": true,
+            className: homepageExperienceSectionPolicy.focusAreaTileIconClassName,
+          })}
+        </span>
         <div className={homepageExperienceSectionPolicy.focusAreaTileTextStackClassName}>
           <Heading level="h3">{focusArea.titleLine}</Heading>
           <BodyText size="sm" className="text-textSecondary">
