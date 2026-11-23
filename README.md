@@ -1,48 +1,33 @@
 # Ashwani Arya
 
-**Product engineer, full-stack · 3× founding engineer · React · Next.js · Node · FastAPI · Postgres · AWS**
+**Full-stack engineer, 6+ years. Frontend, backend, payments and AI. Founding-engineer experience at two startups.**
 
-I design, build and run products end to end: React, Next.js and Three.js on the surface; Node, FastAPI, Postgres and AWS underneath. Over 6+ years I have been the first or founding engineer on three products, owning frontend, backend, and infrastructure. Live video at ~100k sessions a day, $0 to $10k MRR, an AI copilot at ~30k conversations a month. Remote from Bangalore, overlapping US and EU hours.
+## About
+I build products end to end. I started as a full-stack engineer, specialised in frontend (React, Next.js, TypeScript), then went deeper into backends and business systems: Node.js (NestJS, Express) and FastAPI services, payment and investment flows, and Stripe. I like being the first engineer on a product and owning it from first commit to production. Remote Bangalore.
 
-## Live work, open any of them
+## What I build
+| Area | What I do | Tools |
+|---|---|---|
+| Frontend | Frontend architecture, atomic-design systems, server-driven UI | React, Next.js, TypeScript |
+| Backend | APIs and services, data models | Node.js (NestJS, Express), FastAPI, MySQL |
+| Payments | Payment and investment services, Stripe PaymentIntents and invoices, idempotent ledger | Stripe |
+| AI / LLM | Embeddings, semantic clustering, topic extraction, theming of 5K-10K prompts, ML sentiment analysis on conversations | Python, LLM APIs |
+| Real-time video | Video-commerce on the Zoom SDK, call starts tuned well below the ~24s default | Zoom SDK, EC2, Railway |
+| Infra | Small PaaS and deploy tooling, hosting on EC2 and Railway | Go, Terraform, AWS |
 
-| Piece | What it is | Stack |
-| --- | --- | --- |
-| [syncoderslabs.com](https://syncoderslabs.com) | Cinematic studio site: decode-style hero animation, WebGL scroll backdrop behind indexable HTML | Vite, TypeScript, Three.js, GSAP |
-| [TRINETRA](https://trinetra.syncoderslabs.com) · [source](https://github.com/ashwaniarya/trinetra) | Seven-screen film promo told through scroll: instanced mandala, PMREM-lit gold, shader passes | Three.js, GLSL, GSAP |
-| [scroll-engine](https://scroll-engine.syncoderslabs.com) · [source](https://github.com/ashwaniarya/scroll-engine) | Open-source engine for scroll-driven 3D sites; culling cut draw calls from about 113 to between 4 and 47 | TypeScript, Three.js, Vitest |
-| [Pulseboard](https://pulseboard-green-chi.vercel.app) · [source](https://github.com/ashwaniarya/pulseboard) | Analytics dashboard with a token-based design system: 20 components in Storybook, 52K-row virtualized table, 264 tests | React 19, Tailwind 4, Storybook, Cypress |
-| [MindFlow](https://mindflow-ai-sepia.vercel.app) | ReAct agent in LangGraph that builds mind maps through tools, with a step budget and streamed reasoning | React Flow, LangGraph, Gemini |
-| [Cascading Filters Dashboard](https://cascading-filters-dashboard.vercel.app) | Global and local filters cascading through a table and chart, with a picture-in-picture chart | React 19, Recharts |
+## Selected work
+- **getbujo (YC P26, now Cignara)**: first engineer. Joined as frontend, grew into full-stack, company went from $0 to about $150K ARR. Built the live-video commerce widget: 100K-150K sessions delivered to devices at lower cost, with about 4K-5K people actually opening it. FastAPI backend.
+- **Tap Invest**: founding engineer. Frontend architecture, backend payment and investment services, MySQL data model, an atomic-design system, and a server-driven UI ops tool that cut listing time from 3-4 days to about 4 hours.
+- **AIClicks** (contract): NestJS and Stripe. Raised AI mention-detection accuracy from 90% to 98%.
+- **My own products**: [EnvSecure](https://envsecure.syncoderslabs.com) (secrets governance for AI agents), [Syncoders Labs](https://syncoderslabs.com), AutoMixPilot.
 
-Portfolio with screenshots: [ashwaniarya.vercel.app](https://ashwaniarya.vercel.app)
+## Open source
+- [pulseboard](https://github.com/ashwaniarya/pulseboard): React 19 analytics frontend with Storybook and Cypress
+- [mindflow-ai](https://github.com/ashwaniarya/mindflow-ai): agentic mind-map builder (LangGraph, Gemini)
+- [minirail](https://github.com/ashwaniarya/minirail): small Railway-style PaaS (Go, Terraform, DigitalOcean)
+- [effective-agent](https://github.com/ashwaniarya/effective-agent): guardrails for AI coding agents
+- [ai-secure-share](https://github.com/ashwaniarya/ai-secure-share): secure AI response sharing
+- [scroll-engine](https://github.com/ashwaniarya/scroll-engine): scroll-driven 3D site engine
 
-## Currently
-
-Running [Syncoders Labs](https://syncoderslabs.com) and taking on product engineering contracts.
-
-## Things I've shipped
-
-- **AI-visibility (GEO) analytics at [AIClicks](https://aiclicks.io)**: contract product engineer, about 1,900 commits across five repos (git log, Apr to Oct 2026). Shipped the prompt tag system and bulk workflows, a multi-stage LLM pipeline for prompt discovery (topic clustering, planning, generation, similarity filter, LLM judge), URL-synced views, the mention and citation pipeline fixes, a recommendations service, and the first version of a public Data Explorer (cited-sources payload 18.7 MB to 2.0 MB with brotli, reach queries 153.9 s to 30.9 s with a GIN index). [Case study](https://ashwaniarya.vercel.app/work/aiclicks). *(Apr 2026 to Nov 2026)*
-- **Live video commerce at scale**: led a B2B live-video widget at [getbujo](https://getbujo.com) (YC P26) that grew from 0 to **100K user sessions/day**, with uninterrupted video calls on server-rendered sites. First engineer as the company went **$0 → $150K ARR**. *(Dec 2024 to Feb 2026)*
-- **AI copilot for sales teams**: used by 80 agents on ~30K conversations/month (**$20K MRR**); migrated REST → WebSocket in 4 days, helping close a long-term contract with LG US.
-- **AI shopping assistant**: B2C Chrome extension with streaming UI, WebSocket persistence, and LRU caching. Live on the Chrome Web Store.
-- **Voice-based AI storytelling app**: helps users improve spoken English; built solo, end to end, on the MERN stack.
-- **Fintech from scratch**: founding engineer at Tap Invest: investment and payment flows (2–3 days → 3–4 hours processing), a unified React / React Native codebase, and a server-driven page-render engine.
-- **Enterprise scale**: at UiPath, built a configurable node component integrating 200+ third-party APIs into their low-code automation platform.
-
-## Open source & projects
-
-- **[ai-secure-share](https://github.com/ashwaniarya/ai-secure-share)**: end-to-end-encrypted AI response sharing (browser-side AES-256-GCM). Live at [airesponseshare.com](https://airesponseshare.com)
-- **[visual-workflow-studio](https://github.com/ashwaniarya/visual-workflow-studio)**: visual DAG editor with pluggable node types, execution logs, undo/redo. [Live demo](https://visual-workflow-studio.vercel.app)
-- **[react-nextjs-toast](https://github.com/ashwaniarya/react-nextjs-toast)**: toast notifications for Next.js
-
-## Stack
-
-TypeScript · React · Next.js · Tailwind · Three.js · GSAP · GLSL · Storybook · React Native · Node.js · Express · FastAPI · WebSockets · PostgreSQL · MongoDB · Prisma · AWS · Vercel · GitHub Actions · Vitest · Cypress
-
-## Get in touch
-
-Open to product engineering and full-stack roles (remote, UTC+5:30, overlapping US and EU hours), and to fixed-scope product sprints.
-
-[ashwaniparker@gmail.com](mailto:ashwaniparker@gmail.com) · [LinkedIn](https://www.linkedin.com/in/ashwani-arya-1623963a0/)
+## Contact
+Portfolio: [ashwaniarya.vercel.app](https://ashwaniarya.vercel.app) · Email: [ashwaniparker@gmail.com](mailto:ashwaniparker@gmail.com)
