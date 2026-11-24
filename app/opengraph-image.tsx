@@ -17,13 +17,7 @@ const shareCardPalette = {
   borderDefault: "#1f2c2d",
 } as const;
 
-const highlightedCapabilities = [
-  "React",
-  "Next.js",
-  "Node",
-  "Postgres",
-  "AWS",
-];
+const highlightedCapabilities = siteIdentityConfiguration.shareCardCapabilityLabels;
 
 export default async function OpenGraphImage() {
   return new ImageResponse(
@@ -112,8 +106,7 @@ export default async function OpenGraphImage() {
               display: "flex",
             }}
           >
-            Independent contract engineer. Four-time founding engineer: live
-            video at ~100k sessions a day, $0 → $150K ARR at getbujo.
+            {siteIdentityConfiguration.shareCardSummary}
           </div>
         </div>
 
@@ -153,7 +146,7 @@ export default async function OpenGraphImage() {
               fontWeight: 600,
             }}
           >
-            Remote from Bangalore
+            {siteIdentityConfiguration.shareCardLocationLine}
           </div>
         </div>
       </div>

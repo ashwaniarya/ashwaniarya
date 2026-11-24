@@ -5,7 +5,7 @@ import { footerConfiguration } from "@/app/config/siteConfiguration";
 describe("footerConfiguration copyright attribution", () => {
   it("keeps the public footer attribution line stable for branding and legal clarity", () => {
     expect(footerConfiguration.footerCopyrightAttributionLine).toBe(
-      "Ashwani Arya, independent contract engineer: fractional and contract founding-engineer builds for EU startups. Remote contract at AIClicks since Apr 2026.",
+      "Ashwani Arya, product engineer in Bengaluru. 7+ years. Open to remote or Bengaluru, full-time or contract.",
     );
   });
 });

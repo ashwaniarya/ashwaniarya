@@ -57,7 +57,7 @@ const portfolioSelectedWork = [
     title: "AutoMixPilot",
     kicker: "Music-channel SaaS",
     summary:
-      "Plans, composes, and renders music mixes on a schedule. Express and Prisma API, BullMQ worker with ffmpeg and AI adapters, Next.js 15 dashboard, tiered file retention, and a disk guard.",
+      "A query in, a finished AI music video out.",
     liveUrl: "https://mixpilot-web-three.vercel.app",
     stackLabels: ["Next.js 15", "Express", "Prisma", "BullMQ"],
     tilePreview: {
@@ -141,7 +141,7 @@ const portfolioSelectedWork = [
     title: "Agent dev tools",
     kicker: "Open-source AI tooling",
     summary:
-      "Dev tools for AI agents: grok-web-sdk (logged-in Grok as MCP, CLI, and HTTP tools without an API key), PromptBoard (SwiftUI overlay for saved prompts in coding tools), and trello-skill (Claude Code plugin for Trello).",
+      "Dev tools for AI agents: grok-web-sdk (logged-in Grok as MCP, CLI, and HTTP tools without an API key), PromptBoard (SwiftUI overlay for saved prompts in coding tools), and a Trello MCP server for AI agents.",
     liveUrl: "https://github.com/ashwaniarya/grok-web-sdk",
     stackLabels: ["MCP", "Claude Code", "TypeScript", "SwiftUI"],
     tilePreview: {
@@ -151,7 +151,7 @@ const portfolioSelectedWork = [
         "// grok-web-sdk · MCP + CLI, no API key",
         'tools: ["grok.chat", "grok.search"]',
         "// PromptBoard · saved prompts at cursor",
-        "// trello-skill · Claude Code ↔ Trello",
+        "// Trello MCP server for AI agents",
       ],
     },
   },

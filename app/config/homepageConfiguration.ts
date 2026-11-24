@@ -1,23 +1,23 @@
 export const homepageHeroCopyConfiguration = {
   headline: "Ashwani Arya",
   descriptionLines: [
-    "Independent contract engineer with 6+ years taking unclear problems to production. I take fractional or contract founding-engineer builds, mainly for EU startups, working directly with founders as a solo contractor, not an agency.",
-    "Four-time founding engineer (AIClicks, getbujo YC P26, Tap Invest, BackTick): live video at ~100k sessions a day, getbujo $0 → $150K ARR, an AI copilot at ~30k conversations a month. Remote contract at AIClicks since Apr 2026 across React, TypeScript, FastAPI, Python workers, and Stripe-backed outreach.",
-    "Based in Bangalore (IST), remote with overlap for Europe and US time zones. AI-native: I ship daily with Claude Code, Codex, and MCP; every change passes tests and review.",
+    "Product engineer in Bengaluru, 7+ years. I build products end to end: UI, backend, AI and payments, and I like automating the slow parts of a business.",
+    "At getbujo I built the merchant side: AI copilot, co-browsing, video calling and chat. I moved calling into a global UI with clear join states and cut Zoom join time from 24s to 6s. AIClicks (Apr–Nov 2026, contract, ended): a recommendation engine across 6 platforms, and AI mention-detection accuracy from 90% to 98%.",
+    "Tap Invest onboarding went from 2–3 days to 3–4 hours. Earlier: UiPath (SDE 2, Frontend) and GeekyAnts. Open to remote or Bengaluru, full-time or contract.",
   ],
 } as const;
 
 export const homepageProjectsSectionCopyConfiguration = {
   sectionHeading: "Case studies",
   sectionIntroLines: [
-    "Longer write-ups of production work: founding-engineer engagements spanning live video at scale, an AI copilot, and a browser extension, with the numbers each one moved.",
+    "Longer write-ups of production work: the getbujo merchant product, and the AIClicks contract that ended in Nov 2026.",
   ],
 } as const;
 
 export const homepageTechnologyStackSectionCopyConfiguration = {
   sectionHeading: "Technology stack",
   sectionIntroLines: [
-    "What I reach for in contract builds: TypeScript, React, and Next.js on the surface; Node, Express, and FastAPI for services; PostgreSQL, Prisma, Redis, and BullMQ for data and jobs; Stripe for payments; Docker, Railway, and Vercel to run it. Claude Code, Codex, and MCP for AI-native delivery.",
+    "React, Next.js, and TypeScript on the surface. Node.js with NestJS and Express for services. Stripe for payments. Embeddings, semantic clustering, and topic extraction when the product needs them.",
   ],
 } as const;
 

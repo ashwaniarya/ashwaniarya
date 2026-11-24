@@ -4,7 +4,7 @@
 export const caseStudyProductImpactSnapshotCopyConfiguration = {
   /** Visible section title — pairs with `aria-labelledby` on the snapshot `<section>`. */
   panelHeadingLabel: "Impact Metric",
-  stageMetricLabel: "Stage",
-  dailyReachMetricLabel: "Daily reach",
-  revenueMetricLabel: "Revenue",
+  stageMetricLabel: "Join time",
+  dailyReachMetricLabel: "Sessions",
+  revenueMetricLabel: "Opens",
 } as const;

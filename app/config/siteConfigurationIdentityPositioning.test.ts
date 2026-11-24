@@ -4,14 +4,20 @@ import { homepageHeroCopyConfiguration } from "@/app/config/homepageConfiguratio
 import { siteIdentityConfiguration } from "@/app/config/siteConfiguration";
 
 describe("siteIdentityConfiguration positioning", () => {
-  it("presents the owner as an independent contract engineer in JSON-LD and the share card", () => {
-    expect(siteIdentityConfiguration.ownerJobTitle).toBe("Independent Contract Engineer");
+  it("presents the owner as a product engineer in JSON-LD and the share card", () => {
+    expect(siteIdentityConfiguration.ownerJobTitle).toBe("Product Engineer");
+    expect(siteIdentityConfiguration.ownerLocality).toBe("Bengaluru");
   });
 
-  it("carries the backend and infrastructure terms in knowsAbout", () => {
-    for (const expertiseArea of ["Node.js", "FastAPI", "PostgreSQL", "AWS", "Stripe"]) {
+  it("carries the approved stack in knowsAbout", () => {
+    for (const expertiseArea of ["React", "Next.js", "TypeScript", "Node.js", "NestJS", "Express", "Stripe"]) {
       expect(siteIdentityConfiguration.expertiseAreas).toContain(expertiseArea);
     }
+  });
+
+  it("does not list skills the profile does not claim", () => {
+    const expertiseText = siteIdentityConfiguration.expertiseAreas.join(" ");
+    expect(expertiseText).not.toMatch(/FastAPI|Azure|Salesforce|Nuxt|Figma|Fabric/i);
   });
 
   it("drops the design-engineer framing from title and descriptions", () => {
@@ -28,19 +34,24 @@ describe("siteIdentityConfiguration positioning", () => {
     expect(siteIdentityConfiguration.homepageTitle.length).toBeLessThanOrEqual(60);
   });
 
-  it("opens the hero with the independent contract engineer line", () => {
+  it("opens the hero with the product engineer line", () => {
     expect(homepageHeroCopyConfiguration.descriptionLines[0]).toMatch(
-      /^Independent contract engineer/,
+      /^Product engineer in Bengaluru, 7\+ years/,
     );
   });
 
-  it("names the current aiclicks engagement in the hero", () => {
-    expect(homepageHeroCopyConfiguration.descriptionLines[1]).toMatch(/aiclicks/i);
+  it("names the ended aiclicks contract in the hero", () => {
+    const heroCopy = homepageHeroCopyConfiguration.descriptionLines.join(" ");
+    expect(heroCopy).toMatch(/aiclicks/i);
+    expect(heroCopy).toMatch(/ended/i);
+    expect(heroCopy).not.toMatch(/present/i);
+    expect(heroCopy).not.toMatch(/current/i);
   });
 
-  it("does not use job-seeker or relocation wording in the hero", () => {
+  it("states remote or Bengaluru, full-time or contract", () => {
     const heroCopy = homepageHeroCopyConfiguration.descriptionLines.join(" ");
-    expect(heroCopy).not.toMatch(/full-time/i);
+    expect(heroCopy).toMatch(/full-time or contract/i);
+    expect(heroCopy).toMatch(/Bengaluru/);
     expect(heroCopy).not.toMatch(/relocation/i);
   });
 });

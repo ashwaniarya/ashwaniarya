@@ -16,51 +16,51 @@ export type ExperienceFocusAreaRecord = Readonly<{
 export const homepageExperienceSectionCopyConfiguration = {
   sectionHeading: "Experience",
   sectionIntroLines: [
-    "Where I go deep: services and data models that hold up in production, contracts that do not break silently, and interfaces that stay fast under real load.",
+    "Product engineer in Bengaluru, 7+ years. The tiles below are getbujo, AIClicks (ended Nov 2026), Tap Invest, then UiPath and GeekyAnts.",
   ],
 } as const;
 
 export const homepageExperienceFocusAreasConfiguration = [
   {
     focusAreaKey: "backendDevelopment",
-    titleLine: "Backend development",
+    titleLine: "AIClicks (ended)",
     detailLine:
-      "Node and FastAPI services, PostgreSQL and MongoDB data modeling, multi-tenant boundaries, and payment flows built to survive real-world failure modes.",
+      "Apr–Nov 2026, contract, ended. Recommendation engine pulling posts from 6 platforms. Raised AI mention-detection accuracy from 90% to 98%. Stripe PaymentIntents and Invoices.",
   },
   {
     focusAreaKey: "apiAndContractDevelopment",
-    titleLine: "API and contract development",
+    titleLine: "getbujo merchant side",
     detailLine:
-      "REST and WebSocket boundaries, schema-first thinking, and client typings so frontend and backend evolve without silent breakage.",
+      "AI copilot, co-browsing, video calling and chat. When salespeople got confused on calls, I moved calling into a global UI with clear join states.",
   },
   {
     focusAreaKey: "performanceOptimization",
-    titleLine: "Performance optimization",
+    titleLine: "Zoom join time",
     detailLine:
-      "Virtualized tables, bundle budgets, connection churn under load, and GPU profiling so heavy views and 3D scenes stay smooth in the field.",
+      "That global calling UI cut Zoom join time from 24s to 6s, which reduced call churn.",
   },
   {
     focusAreaKey: "dataIntensiveFrontend",
-    titleLine: "Data-intensive frontends",
+    titleLine: "Dashboards and sentiment",
     detailLine:
-      "Large datasets, streaming updates, and interactive dashboards where rendering and network strategy matter as much as pixels.",
+      "A per-call sentiment score, plus sales and merchant dashboards with AI video summaries. The widget delivered 100K–150K sessions, with 4K–5K opens.",
   },
   {
     focusAreaKey: "frontendArchitecture",
-    titleLine: "Frontend architecture",
+    titleLine: "Tap Invest",
     detailLine:
-      "Layering, state boundaries, and feature ownership so products stay maintainable as teams and traffic grow.",
+      "Automated onboarding for asset-leasing companies, from document checks to the public listing page, cutting it from 2–3 days to 3–4 hours. Also built an atomic-design system.",
   },
   {
     focusAreaKey: "crossPlatformDevelopment",
-    titleLine: "Cross-platform development",
+    titleLine: "UiPath and GeekyAnts",
     detailLine:
-      "Web, native, and embedded webviews. Shared patterns and tooling so one mental model travels across surfaces.",
+      "Earlier: UiPath (SDE 2, Frontend) and GeekyAnts.",
   },
   {
     focusAreaKey: "reusableComponentDesign",
-    titleLine: "Reusable component design",
+    titleLine: "Own builds",
     detailLine:
-      "Design tokens, composable components, and Storybook as living documentation, so teams ship faster with fewer regressions.",
+      "AutoMixPilot (a query in, a finished AI music video out) and a Trello MCP server for AI agents. Also worked with embeddings, semantic clustering and topic extraction.",
   },
 ] as const satisfies readonly ExperienceFocusAreaRecord[];
