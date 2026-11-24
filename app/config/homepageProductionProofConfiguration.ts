@@ -1,8 +1,8 @@
 export type ProductionProofMetricKey =
-  | "liveVideoDailySessions"
-  | "liveVideoRevenueRamp"
-  | "copilotMonthlyConversations"
-  | "copilotMonthlyRevenue";
+  | "zoomJoinTime"
+  | "widgetSessionsDelivered"
+  | "widgetOpens"
+  | "perCallSentiment";
 
 export type ProductionProofMetricRecord = Readonly<{
   metricKey: ProductionProofMetricKey;
@@ -18,37 +18,35 @@ export type ProductionProofMetricRecord = Readonly<{
 export const homepageProductionProofSectionCopyConfiguration = {
   sectionHeading: "In production",
   sectionIntroLines: [
-    "Numbers from the founding-engineer work at getbujo (YC P26). Each one is unpacked in the case study below.",
+    "Numbers from the merchant product at getbujo. Each one is unpacked in the case study below.",
   ],
 } as const;
 
 export const homepageProductionProofMetricsConfiguration = [
   {
-    metricKey: "liveVideoDailySessions",
-    valueLabel: "~100k/day",
-    metricLabel: "Live video sessions",
+    metricKey: "zoomJoinTime",
+    valueLabel: "24s → 6s",
+    metricLabel: "Zoom join",
     contextLine:
-      "Wingman widget embedded in server-rendered retailer storefronts, calls surviving full-page navigations.",
+      "Calling moved into a global UI with clear join states. Zoom join time went from 24s to 6s, which reduced call churn.",
   },
   {
-    metricKey: "liveVideoRevenueRamp",
-    valueLabel: "$0 → $150K ARR",
-    metricLabel: "Company revenue ramp",
-    contextLine:
-      "First engineer on the product, from nothing shipped to $150K ARR on a multi-tenant live-video platform.",
+    metricKey: "widgetSessionsDelivered",
+    valueLabel: "100K–150K",
+    metricLabel: "Widget sessions",
+    contextLine: "The widget delivered 100K–150K sessions.",
   },
   {
-    metricKey: "copilotMonthlyConversations",
-    valueLabel: "~30k/month",
-    metricLabel: "AI conversations",
-    contextLine:
-      "About 80 sales agents on an iframe copilot inside Sprinklr, backed by an in-house AI service on AWS.",
+    metricKey: "widgetOpens",
+    valueLabel: "4K–5K",
+    metricLabel: "Widget opens",
+    contextLine: "Those sessions came with 4K–5K opens.",
   },
   {
-    metricKey: "copilotMonthlyRevenue",
-    valueLabel: "~$20k MRR",
-    metricLabel: "Copilot revenue line",
+    metricKey: "perCallSentiment",
+    valueLabel: "Sentiment",
+    metricLabel: "Per-call score",
     contextLine:
-      "REST to WebSocket migration in four calendar days, cited as a factor in winning a long-term LG US contract.",
+      "Each call got a sentiment score, with sales and merchant dashboards and AI video summaries.",
   },
 ] as const satisfies readonly ProductionProofMetricRecord[];

@@ -30,10 +30,10 @@ describe("productImpactSnapshotHasRenderableContent", () => {
 });
 
 describe("CaseStudyProductImpactSnapshot", () => {
-  it("renders Stage and Daily reach and omits Revenue when revenueLabel is undefined", () => {
+  it("renders join time and sessions and omits opens when revenueLabel is undefined", () => {
     const html = renderToStaticMarkup(
       <CaseStudyProductImpactSnapshot
-        snapshot={{ stageLabel: "Early", dailyReachLabel: "~100k/day" }}
+        snapshot={{ stageLabel: "24s → 6s", dailyReachLabel: "100K–150K" }}
       />,
     );
     expect(html).toContain(
@@ -49,27 +49,27 @@ describe("CaseStudyProductImpactSnapshot", () => {
     expect(html).toContain(
       caseStudyProductChapterPolicy.impactSnapshotMetricLabelRailClassName,
     );
-    expect(html).toContain("Early");
-    expect(html).toContain("~100k/day");
-    expect(html).toContain("Stage");
-    expect(html).toContain("Daily reach");
-    expect(html).not.toContain("Revenue");
+    expect(html).toContain("24s → 6s");
+    expect(html).toContain("100K–150K");
+    expect(html).toContain("Join time");
+    expect(html).toContain("Sessions");
+    expect(html).not.toContain("Opens");
     expect(html).toContain('aria-labelledby="');
     expect(html).toContain("<section");
   });
 
-  it("renders Revenue row when revenueLabel is provided", () => {
+  it("renders the opens row when revenueLabel is provided", () => {
     const html = renderToStaticMarkup(
       <CaseStudyProductImpactSnapshot
         snapshot={{
-          stageLabel: "Early",
-          dailyReachLabel: "~80 agents",
-          revenueLabel: "~$20k MRR",
+          stageLabel: "24s → 6s",
+          dailyReachLabel: "100K–150K",
+          revenueLabel: "4K–5K",
         }}
       />,
     );
-    expect(html).toContain("Revenue");
-    expect(html).toContain("~$20k MRR");
+    expect(html).toContain("Opens");
+    expect(html).toContain("4K–5K");
   });
 
   it("renders nothing when snapshot has no non-empty values", () => {

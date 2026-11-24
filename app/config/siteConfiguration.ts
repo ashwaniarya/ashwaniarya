@@ -25,37 +25,36 @@ export const siteIdentityConfiguration = {
    * named Ashwani Arya outrank this site, so the title has to carry the role and
    * stack terms that separate them.
    */
-  homepageTitle: "Ashwani Arya — Contract Founding Engineer",
+  homepageTitle: "Ashwani Arya — Product Engineer",
   siteDescription:
-    "Independent contract engineer portfolio: fractional and contract founding-engineer builds for EU startups. Live video at scale, AI copilot, dashboards, and full-stack SaaS by Ashwani Arya.",
+    "Product engineer in Bengaluru with 7+ years. End-to-end UI, backend, AI and payments. React, Next.js, TypeScript, Node.js (NestJS, Express), and Stripe.",
   homepageDescription:
-    "Independent contract engineer and four-time founding engineer. Live video at ~100k sessions a day, getbujo $0 → $150K ARR, an AI copilot at ~30k conversations a month. React, Next.js, Node, FastAPI, Postgres, Stripe, and AWS. Remote from Bangalore.",
+    "Product engineer in Bengaluru with 7+ years. I build products end to end: UI, backend, AI and payments. React, Next.js, TypeScript, Node.js (NestJS, Express), and Stripe. Open to remote or Bengaluru, full-time or contract.",
   ownerName: "Ashwani Arya",
-  ownerJobTitle: "Independent Contract Engineer",
-  ownerLocality: "Bangalore",
+  ownerJobTitle: "Product Engineer",
+  ownerLocality: "Bengaluru",
   ownerCountry: "India",
+  shareCardSummary:
+    "Product engineer in Bengaluru. 7+ years building UI, backend, AI and payments.",
+  shareCardLocationLine: "Bengaluru · remote",
+  shareCardCapabilityLabels: ["React", "Next.js", "TypeScript", "Node", "Stripe"],
   socialProfileUrls: [
     "https://github.com/ashwaniarya",
     "https://syncoderslabs.com",
   ],
   expertiseAreas: [
-    "Contract product engineering",
-    "Fractional founding engineer",
+    "Product engineering",
     "React",
     "Next.js",
     "TypeScript",
     "Node.js",
-    "Python",
-    "FastAPI",
-    "PostgreSQL",
+    "NestJS",
+    "Express",
     "Stripe",
-    "AWS",
     "WebSockets",
     "REST API design",
     "MCP",
-    "Claude Code",
-    "Three.js",
-    "Tailwind CSS",
+    "Embeddings",
     "Design systems",
   ],
 } as const;
@@ -91,7 +90,7 @@ export const searchConfiguration = {
 export const footerConfiguration = {
   /** Shown after the © year in `SiteFooter` (name + short descriptor). */
   footerCopyrightAttributionLine:
-    "Ashwani Arya, independent contract engineer: fractional and contract founding-engineer builds for EU startups. Remote contract at AIClicks since Apr 2026.",
+    "Ashwani Arya, product engineer in Bengaluru. 7+ years. Open to remote or Bengaluru, full-time or contract.",
 } as const;
 
 export const siteConfiguration = {

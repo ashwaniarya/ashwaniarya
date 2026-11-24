@@ -51,9 +51,9 @@ describe("portfolioCaseStudiesConfiguration", () => {
       "Powered by Bujo — live video and co-browsing embedded in retailers’ SSR storefronts; more at getbujo.com.",
     );
     expect(liveVideoChapter?.productImpactSnapshot).toEqual({
-      stageLabel: "YC-backed (Seed)",
-      dailyReachLabel: "~100k/day",
-      revenueLabel: "$0 → $150K ARR",
+      stageLabel: "24s → 6s",
+      dailyReachLabel: "100K–150K",
+      revenueLabel: "4K–5K",
     });
     expect(liveVideoChapter?.chapterIllustration).toEqual({
       webpSrc: "/get-wingman.webp",
@@ -66,11 +66,7 @@ describe("portfolioCaseStudiesConfiguration", () => {
     const copilotChapter = caseStudy?.productChapters.find((chapter) =>
       chapter.heading.toLowerCase().includes("copilot"),
     );
-    expect(copilotChapter?.productImpactSnapshot).toEqual({
-      stageLabel: "YC-backed (Seed)",
-      dailyReachLabel: "~80 agents · ~30k/month conversations",
-      revenueLabel: "~$20k MRR",
-    });
+    expect(copilotChapter?.productImpactSnapshot).toBeUndefined();
   });
 });
 

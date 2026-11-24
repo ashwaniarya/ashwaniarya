@@ -23,8 +23,6 @@ export const homepageTechnologyStackCategoriesConfiguration = [
       "NodeJS",
       "ExpressJS",
       "NestJS",
-      "Python",
-      "FastAPI",
       "PostgreSQL",
       "Prisma",
       "MongoDB",

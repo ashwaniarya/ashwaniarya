@@ -15,7 +15,7 @@ export type ContactChannelRecord = Readonly<{
 export const homepageContactSectionCopyConfiguration = {
   sectionHeading: "Contact",
   sectionIntroLines: [
-    "Reach out for fractional or contract founding-engineer work, a scoped build, or a quick hello. I am remote-first from Bangalore with EU and US time-zone overlap.",
+    "Open to remote or Bengaluru, full-time or contract. A scoped build or a quick hello both work.",
   ],
 } as const;
 
@@ -41,7 +41,7 @@ export const homepageContactChannelsConfiguration = [
   {
     channelKey: "location",
     rowLabel: "Address",
-    displayText: "Remote (Bangalore, IST)",
+    displayText: "Bengaluru (remote or on site)",
   },
   {
     channelKey: "github",
