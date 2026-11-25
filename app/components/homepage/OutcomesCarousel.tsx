@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
   type KeyboardEvent,
+  type MouseEvent,
   type PointerEvent,
   type ReactNode,
 } from "react";
@@ -30,6 +31,10 @@ export type OutcomesCarouselProps = Readonly<{
 }>;
 
 const dragThresholdPx = 40;
+/** A mouse press only becomes a drag (and captures the pointer) after this much movement, so plain clicks reach links and buttons in cards. */
+const dragStartThresholdPx = 6;
+/** Presses that start on these never begin a drag: text fields and selects keep their own mouse behaviour. */
+const dragExcludedTargetSelector = "input, textarea, select, [contenteditable]";
 
 function prefersReducedMotion(): boolean {
   return (
@@ -88,10 +93,13 @@ function OutcomesCarouselTrack({
   const regionId = useId();
   const [activePage, setActivePage] = useState(0);
   const dragRef = useRef<{
+    pointerId: number;
     startX: number;
     startScroll: number;
     startPage: number;
+    captured: boolean;
   } | null>(null);
+  const suppressNextClickRef = useRef(false);
   const [isDragging, setIsDragging] = useState(false);
 
   const pageSize = getOutcomesCarouselPageSize(layoutName);
@@ -112,20 +120,21 @@ function OutcomesCarouselTrack({
     };
   }, []);
 
-  // Fit the scroller to the active page, so a short page does not leave a gap above the controls.
+  // Reserve the tallest page's height, so paging never moves the content below (no layout shift on swipe or wheel).
   useEffect(() => {
     const scroller = scrollerRef.current;
-    const page = scroller?.children[activePage] as HTMLElement | undefined;
-    if (!scroller || !page) return;
+    if (!scroller) return;
+    const pageElements = Array.from(scroller.children) as HTMLElement[];
     const fit = () => {
       const { paddingTop, paddingBottom } = getComputedStyle(scroller);
-      scroller.style.height = `${page.offsetHeight + parseFloat(paddingTop) + parseFloat(paddingBottom)}px`;
+      const tallest = Math.max(0, ...pageElements.map((page) => page.offsetHeight));
+      scroller.style.height = `${tallest + parseFloat(paddingTop) + parseFloat(paddingBottom)}px`;
     };
     fit();
     const resizeObserver = new ResizeObserver(fit);
-    resizeObserver.observe(page);
+    for (const page of pageElements) resizeObserver.observe(page);
     return () => resizeObserver.disconnect();
-  }, [activePage]);
+  }, [pageCount]);
 
   const goToPage = (page: number) => {
     const scroller = scrollerRef.current;
@@ -151,35 +160,54 @@ function OutcomesCarouselTrack({
   };
 
   // Touch and pen scroll natively (snap does the paging); a mouse drag pages on release.
+  // The pointer is captured only once the press has moved past dragStartThresholdPx, so a
+  // plain click on a link or button inside a card is delivered to that element as usual.
   const onPointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (
       event.pointerType !== "mouse" ||
+      event.button !== 0 ||
       !hasMultiplePages ||
-      !scrollerRef.current
+      !scrollerRef.current ||
+      (event.target as Element).closest?.(dragExcludedTargetSelector)
     )
       return;
     dragRef.current = {
+      pointerId: event.pointerId,
       startX: event.clientX,
       startScroll: scrollerRef.current.scrollLeft,
       startPage: activePage,
+      captured: false,
     };
-    event.currentTarget.setPointerCapture(event.pointerId);
-    setIsDragging(true);
   };
   const onPointerMove = (event: PointerEvent<HTMLDivElement>) => {
     const drag = dragRef.current;
     if (!drag || !scrollerRef.current) return;
-    scrollerRef.current.scrollLeft =
-      drag.startScroll - (event.clientX - drag.startX);
+    const deltaX = event.clientX - drag.startX;
+    if (!drag.captured) {
+      if (Math.abs(deltaX) < dragStartThresholdPx) return;
+      drag.captured = true;
+      event.currentTarget.setPointerCapture(drag.pointerId);
+      setIsDragging(true);
+    }
+    scrollerRef.current.scrollLeft = drag.startScroll - deltaX;
   };
   const endDrag = (event: PointerEvent<HTMLDivElement>) => {
     const drag = dragRef.current;
     if (!drag) return;
     dragRef.current = null;
+    if (!drag.captured) return;
     setIsDragging(false);
+    // The click that follows a real drag must not open a link under the cursor.
+    suppressNextClickRef.current = true;
     const deltaX = event.clientX - drag.startX;
     const step = Math.abs(deltaX) < dragThresholdPx ? 0 : deltaX < 0 ? 1 : -1;
     goToPage(drag.startPage + step);
+  };
+  const onClickCapture = (event: MouseEvent<HTMLDivElement>) => {
+    if (!suppressNextClickRef.current) return;
+    suppressNextClickRef.current = false;
+    event.preventDefault();
+    event.stopPropagation();
   };
 
   return (
@@ -204,16 +232,13 @@ function OutcomesCarouselTrack({
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
+        onClickCapture={onClickCapture}
+        onDragStart={(event) => event.preventDefault()}
         data-test="outcomes-carousel-scroller"
       >
         {pages.map((pageItems, pageIndex) => (
           <ul
             key={pageIndex}
-            aria-label={
-              hasMultiplePages
-                ? `Page ${pageIndex + 1} of ${pageCount}`
-                : undefined
-            }
             className={`${policy.carouselPageClassName} ${
               layoutName === "wide"
                 ? policy.carouselWidePageGridClassName
@@ -249,9 +274,9 @@ function OutcomesCarouselTrack({
               type="button"
               aria-label="Previous page of outcomes"
               aria-controls={regionId}
-              disabled={activePage <= 0}
+              aria-disabled={activePage <= 0}
               className={policy.carouselArrowButtonClassName}
-              onClick={() => goToPage(activePage - 1)}
+              onClick={() => { if (activePage > 0) goToPage(activePage - 1); }}
               data-test="outcomes-carousel-prev"
             >
               <TbChevronLeft aria-hidden className="h-5 w-5" />
@@ -276,9 +301,9 @@ function OutcomesCarouselTrack({
               type="button"
               aria-label="Next page of outcomes"
               aria-controls={regionId}
-              disabled={activePage >= pageCount - 1}
+              aria-disabled={activePage >= pageCount - 1}
               className={policy.carouselArrowButtonClassName}
-              onClick={() => goToPage(activePage + 1)}
+              onClick={() => { if (activePage < pageCount - 1) goToPage(activePage + 1); }}
               data-test="outcomes-carousel-next"
             >
               <TbChevronRight aria-hidden className="h-5 w-5" />

@@ -348,7 +348,7 @@ export const homepageProductionProofSectionPolicy = {
   carouselDotsRowClassName: "flex items-center",
   /** Transitions only text and border colour, so the focus outline is accent from the first frame. */
   carouselArrowButtonClassName:
-    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-textSecondary/70 text-textPrimary transition-[color,border-color] hover:border-accentPrimary hover:text-accentPrimary disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-textSecondary/70 disabled:hover:text-textPrimary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary motion-reduce:transition-none",
+    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-textSecondary/70 text-textPrimary transition-[color,border-color] hover:border-accentPrimary hover:text-accentPrimary aria-disabled:cursor-not-allowed aria-disabled:opacity-40 aria-disabled:hover:border-textSecondary/70 aria-disabled:hover:text-textPrimary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary motion-reduce:transition-none",
   /** 32px hit area around an 8px dot; the active dot is filled and wider. */
   carouselDotButtonClassName:
     "group/dot inline-flex h-8 w-8 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-accentPrimary",
