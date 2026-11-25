@@ -180,8 +180,8 @@ const portfolioSelectedWork = [
     stackLabels: ["Vite", "TypeScript", "Three.js", "GSAP"],
     tilePreview: {
       previewKind: "screenshot",
-      webpSrc: "/images/work/syncoderslabs.webp",
-      pngSrc: "/images/work/syncoderslabs.png",
+      webpSrc: "/images/work/syncoderslabs-2026-11.webp",
+      pngSrc: "/images/work/syncoderslabs-2026-11.png",
       alt: "Syncoders Labs homepage: the headline 'We will help you.' over a dark particle backdrop.",
       width: 1200,
       height: 750,
