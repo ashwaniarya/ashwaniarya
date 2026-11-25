@@ -63,8 +63,6 @@ export const homepageWorkHistoryConfiguration = [
     detailLines: [
       "Automated onboarding for asset-leasing companies, from document checks to the public listing page, cutting it from 2-3 days to 3-4 hours. Also built an atomic-design system.",
       "Architected the frontend web app from scratch.",
-      // Ashwani's Q1 (keep the two ~10x claims?) is pending. If dropped, delete the next two lines and
-      // the two ~10x cards in homepageProductionProofConfiguration.ts. Source: /workspace/cv/build_cv_tree.py:80-82.
       "Built a server-driven page-render engine that reads layout from the database: about 10x less ops work.",
       "Created the company design system and the designer-to-developer handoff: about 10x faster feature delivery.",
     ],
