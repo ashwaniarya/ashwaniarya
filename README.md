@@ -1,9 +1,9 @@
 # Ashwani Arya
 
-**Product engineer in Bengaluru, 7+ years. I build products end to end: UI, backend, AI and payments.**
+**Product engineer and builder in Bengaluru, 7+ years. I take ambiguous business problems, ship the first version fast, and iterate to maximise outcomes.**
 
 ## About
-I build products end to end. I started as a full-stack engineer, specialised in frontend (React, Next.js, TypeScript), then went deeper into backends and business systems: Node.js (NestJS, Express) and FastAPI services, payment and investment flows, and Stripe. I like being the first engineer on a product and owning it from first commit to production. Remote Bengaluru.
+I build products end to end, from the first version to production: UI, backend, AI and payments. My background: frontend first (React, Next.js, TypeScript), then deeper into backends and business systems: Node.js (NestJS, Express) and FastAPI services, payment and investment flows, and Stripe. I like being the first engineer on a product and owning it from first commit to production. Remote Bengaluru.
 
 ## What I build
 | Area | What I do | Tools |

@@ -62,6 +62,9 @@ export const homepageWorkHistoryConfiguration = [
     dateRange: "Dec 2021 to Aug 2023",
     detailLines: [
       "Automated onboarding for asset-leasing companies, from document checks to the public listing page, cutting it from 2-3 days to 3-4 hours. Also built an atomic-design system.",
+      "Architected the frontend web app from scratch.",
+      "Built a server-driven page-render engine that reads layout from the database: about 10x less ops work.",
+      "Created the company design system and the designer-to-developer handoff: about 10x faster feature delivery.",
     ],
   },
   {

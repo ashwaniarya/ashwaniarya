@@ -112,8 +112,9 @@ export default async function OpenGraphImage() {
               display: "flex",
             }}
           >
-            Product engineer in Bengaluru, 7+ years. I build products end to
-            end: UI, backend, AI and payments.
+            Product engineer and builder in Bengaluru. I take ambiguous
+            business problems, ship the first version fast, and iterate to
+            maximise outcomes.
           </div>
         </div>
 

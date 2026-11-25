@@ -26,11 +26,11 @@ export const siteIdentityConfiguration = {
    * named Ashwani Arya outrank this site, so the title has to carry the role and
    * stack terms that separate them.
    */
-  homepageTitle: "Ashwani Arya: Product Engineer in Bengaluru",
+  homepageTitle: "Ashwani Arya: Product Engineer and Builder, Bengaluru",
   siteDescription:
-    "Portfolio of Ashwani Arya, product engineer in Bengaluru with 7+ years. I build products end to end: UI, backend, AI and payments.",
+    "Portfolio of Ashwani Arya, product engineer and builder in Bengaluru with 7+ years. I take ambiguous business problems, ship the first version fast, and iterate to maximise outcomes.",
   homepageDescription:
-    "Product engineer in Bengaluru, 7+ years: UI, backend, AI and payments. Cut Zoom join time from 24s to 6s at getbujo and raised AI mention-detection accuracy from 90% to 98% at AIClicks. React, Next.js, TypeScript, Node.js and Stripe. Open to remote or Bengaluru, full-time or contract.",
+    "Product engineer and builder in Bengaluru, 7+ years. I take ambiguous business problems, ship the first version fast, and iterate to maximise outcomes. Cut Zoom join time from 24s to 6s at getbujo and raised AI mention-detection accuracy from 90% to 98% at AIClicks. React, Next.js, TypeScript, Node.js and Stripe. Open to remote or Bengaluru, full-time or contract.",
   ownerName: "Ashwani Arya",
   ownerJobTitle: "Product Engineer",
   ownerLocality: "Bengaluru",

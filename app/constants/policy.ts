@@ -323,18 +323,50 @@ export const homepageScrollHighlightPolicy = {
     "transition-colors delay-300 duration-500 motion-reduce:transition-none group-data-[scroll-highlight=shown]/scroll-highlight:text-accentPrimary",
 } as const;
 
-/** Homepage production-proof strip: four KPI tiles in the shared section rhythm. */
+/** Homepage production-proof strip: KPI tiles in a paged carousel (2x2 below `lg`, 3x2 at `lg`). */
 export const homepageProductionProofSectionPolicy = {
   sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
+  /** Plain 2 to 4 column tile grid, still used by the Pulseboard case study. */
   metricCardsListClassName:
     "mt-5 grid list-none grid-cols-2 gap-3 p-0 sm:mt-6 lg:grid-cols-4",
+  /** Both layouts are server-rendered; CSS shows the one for the current width. */
+  carouselCompactTrackClassName: "lg:hidden",
+  carouselWideTrackClassName: "hidden lg:block",
+  /** Horizontal snap scroller; each child is one full-width page. */
+  carouselScrollerClassName: [
+    "relative mt-5 -mx-1 flex items-start overflow-x-auto overscroll-x-contain px-1 pt-1 pb-2 scroll-px-1 sm:mt-6",
+    "snap-x snap-mandatory motion-safe:scroll-smooth data-[dragging=true]:snap-none data-[dragging=true]:scroll-auto data-[dragging=true]:cursor-grabbing data-[dragging=true]:select-none",
+    "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
+  ].join(" "),
+  /** One page: full scroller width; a margin after it keeps pages apart. */
+  carouselPageClassName:
+    "m-0 grid w-full shrink-0 snap-start snap-always list-none content-start gap-3 p-0 [&:not(:last-child)]:mr-3",
+  carouselCompactPageGridClassName: "grid-cols-2",
+  carouselWidePageGridClassName: "grid-cols-3",
+  carouselControlsRowClassName: "mt-3 flex items-center justify-end gap-2",
+  carouselDotsRowClassName: "flex items-center",
+  /** Transitions only text and border colour, so the focus outline is accent from the first frame. */
+  carouselArrowButtonClassName:
+    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-textSecondary/70 text-textPrimary transition-[color,border-color] hover:border-accentPrimary hover:text-accentPrimary aria-disabled:cursor-not-allowed aria-disabled:opacity-40 aria-disabled:hover:border-textSecondary/70 aria-disabled:hover:text-textPrimary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary motion-reduce:transition-none",
+  /** 32px hit area around an 8px dot; the active dot is filled and wider. */
+  carouselDotButtonClassName:
+    "group/dot inline-flex h-8 w-8 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-accentPrimary",
+  carouselDotClassName:
+    "block h-2 w-2 rounded-full border border-textSecondary/80 transition-[width,background-color] motion-reduce:transition-none group-aria-[current=true]/dot:w-4 group-aria-[current=true]/dot:border-accentPrimary group-aria-[current=true]/dot:bg-accentPrimary",
   metricTileStackClassName: "min-w-0 space-y-1.5",
   /** Micro-rail + label row, mirroring `caseStudyProductChapterPolicy` (rail is `aria-hidden`). */
   metricLabelRowClassName: "flex min-w-0 items-center gap-1.5",
   metricLabelRailClassName: editorialMicroRailClassName,
   metricLabelClassName:
-    "block min-w-0 text-[11px] font-bold uppercase leading-tight tracking-[0.1em] text-accentSecondary/90",
+    "block min-w-0 hyphens-auto text-[11px] font-bold uppercase leading-tight tracking-[0.04em] text-accentSecondary/90 [overflow-wrap:anywhere] sm:tracking-[0.1em]",
   metricTileCardClassName: "h-full p-4! sm:p-5!",
+  /** "Built at" and "In production" pills under each outcome. Text only, no logos (Ashwani, 25 Nov 2026). */
+  metricPillRowClassName: "flex flex-wrap gap-1.5 pt-1",
+  metricBuiltAtPillClassName:
+    "inline-flex items-center rounded-full border border-textSecondary/40 px-2 py-0.5 text-[11px] font-medium leading-4 text-textSecondary",
+  metricInProductionPillClassName:
+    "inline-flex items-center rounded-full border border-accentPrimary/50 bg-accentPrimary/10 px-2 py-0.5 text-[11px] font-medium leading-4 text-accentPrimary",
   /**
    * Sits on top of `BodyText size="lg"` (`text-lg`). Only the `sm:` variant sets a size, so there
    * is no same-variant font-size collision with the primitive's own class.

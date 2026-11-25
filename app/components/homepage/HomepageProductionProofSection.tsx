@@ -1,3 +1,4 @@
+import { OutcomesCarousel } from "@/app/components/homepage/OutcomesCarousel";
 import { ProductionProofMetricTile } from "@/app/components/homepage/ProductionProofMetricTile";
 import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
@@ -17,7 +18,7 @@ import { BodyText, Heading } from "@/design-system/tokens/Typography";
 export function HomepageProductionProofSection() {
   return (
     <ScrollHighlightSection
-      aria-labelledby="homepage-production-proof-heading"
+      aria-labelledby="homepage-outcomes-achieved-heading"
       className={homepageProductionProofSectionPolicy.sectionClassName}
       data-test="homepage-production-proof-section"
     >
@@ -38,7 +39,7 @@ export function HomepageProductionProofSection() {
             variant="horizontalTitle"
             className={homepageScrollHighlightPolicy.accentBarClassName}
           />
-          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-production-proof-heading">
+          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-outcomes-achieved-heading">
             {homepageProductionProofSectionCopyConfiguration.sectionHeading}
           </Heading>
           {homepageProductionProofSectionCopyConfiguration.sectionIntroLines.map((line, index) => (
@@ -54,17 +55,15 @@ export function HomepageProductionProofSection() {
           ))}
         </header>
 
-        <ul className={homepageProductionProofSectionPolicy.metricCardsListClassName}>
-          {homepageProductionProofMetricsConfiguration.map((metric, index) => (
-            <li
-              key={metric.metricKey}
-              className={`min-w-0 ${homepageScrollHighlightPolicy.staggerItemClassName}`}
-              style={{ transitionDelay: `${index * homepageScrollHighlightPolicy.staggerStepMilliseconds}ms` }}
-            >
-              <ProductionProofMetricTile metric={metric} />
-            </li>
+        <OutcomesCarousel
+          label={homepageProductionProofSectionCopyConfiguration.carouselLabel}
+          itemClassName={homepageScrollHighlightPolicy.staggerItemClassName}
+          staggerStepMilliseconds={homepageScrollHighlightPolicy.staggerStepMilliseconds}
+        >
+          {homepageProductionProofMetricsConfiguration.map((metric) => (
+            <ProductionProofMetricTile key={metric.metricKey} metric={metric} />
           ))}
-        </ul>
+        </OutcomesCarousel>
       </MeshGlowBackdrop>
     </ScrollHighlightSection>
   );
