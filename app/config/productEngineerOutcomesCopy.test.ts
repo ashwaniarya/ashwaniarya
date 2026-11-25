@@ -12,8 +12,8 @@ const roleText = (roleKey: string) =>
   homepageWorkHistoryConfiguration.find((role) => role.roleKey === roleKey)!.detailLines.join(" ");
 const caseStudyText = (slug: string) => getCaseStudyBySlug(slug)!.engagementOverviewParagraphs.join(" ");
 
-describe("product engineer positioning and outcomes (facts from Ashwani, 25 Nov 2026)", () => {
-  it("uses Ashwani's positioning line verbatim in About, keeping the hero at two lines", () => {
+describe("product engineer positioning and outcomes (confirmed facts relayed by Head, 25 Nov 2026)", () => {
+  it("uses the approved positioning line in About, keeping the hero at two lines", () => {
     expect(homepageAboutMeCopyConfiguration.paragraphs[0]).toContain(positioningLine);
     expect(homepageHeroCopyConfiguration.descriptionLines).toHaveLength(2);
   });
@@ -56,6 +56,10 @@ describe("product engineer positioning and outcomes (facts from Ashwani, 25 Nov 
       "$150K ARR",
       "100K/day sessions",
       "99%",
+      "30,000 chats",
+      "950+ commits",
+      "a four-day WebSocket migration",
+      "$20K monthly",
     ]) {
       expect(findRetiredClaims(claim), claim).not.toEqual([]);
     }

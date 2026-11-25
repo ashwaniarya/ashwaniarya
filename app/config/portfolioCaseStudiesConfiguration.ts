@@ -268,7 +268,7 @@ const portfolioCaseStudies = [
     engagementOverviewParagraphs: [
       "AIclicks tracks how AI assistants mention and cite brands. I joined as Founding Engineer, Full Stack, on contract, and took customer problems from ticket to merged PR across the whole stack: schema and migrations, FastAPI routes, Postgres rollups and indexes, background workers, and the React dashboard. Work went out as small PRs behind feature flags, merged to a dev branch and released to main.",
       "Work spanned the five repositories I committed to, Apr to Oct 2026.",
-      "Starting point: an existing codebase, with me as the sole contractor on its product surfaces. First version: a recommendation engine, a scheduled worker pulling posts from 6 platforms, and Stripe PaymentIntents and Invoices with an idempotent ledger. Iteration: mention detection. Outcome: accuracy went from 90% to 98% across 6 platforms.",
+      "Starting point: an existing codebase, with me as the sole contractor on its product surfaces. First version: a recommendation engine (a scheduled worker pulling posts from 6 platforms), plus Stripe PaymentIntents and Invoices with an idempotent ledger. Iteration: mention detection. Outcome: accuracy went from 90% to 98% across 6 platforms.",
     ],
     productChapters: [
       {

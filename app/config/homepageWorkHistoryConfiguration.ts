@@ -25,7 +25,7 @@ export const homepageWorkHistoryConfiguration = [
     engagementLabel: "Remote contract, ended",
     detailLines: [
       "Sole contractor on the product surfaces of an existing codebase.",
-      "First version: a recommendation engine, a scheduled worker pulling posts from 6 platforms, plus Stripe PaymentIntents and Invoices with an idempotent ledger.",
+      "First version: a recommendation engine (a scheduled worker pulling posts from 6 platforms), plus Stripe PaymentIntents and Invoices with an idempotent ledger.",
       "Iterated on mention detection: accuracy went from 90% to 98% across 6 platforms.",
     ],
   },
@@ -37,7 +37,7 @@ export const homepageWorkHistoryConfiguration = [
     detailLines: [
       "Built the platform end to end: AI copilot, co-browsing, video calling and chat.",
       "Salespeople were confused about calls, so I moved calling into a global UI with clear join states and cut Zoom join time from 24s to 6s, which reduced call churn.",
-      "Then added a per-call sentiment score and sales and merchant dashboards with AI video summaries, and moved from AWS EC2 to Railway to cut DevOps load. The widget delivered 100K to 150K sessions, with 4K to 5K opens.",
+      "Also added a per-call sentiment score and sales and merchant dashboards with AI video summaries, and moved from AWS EC2 to Railway to cut DevOps load. The widget delivered 100K to 150K sessions, with 4K to 5K opens.",
     ],
   },
   {
