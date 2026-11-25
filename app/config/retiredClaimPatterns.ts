@@ -6,12 +6,12 @@
 export const retiredClaimPatterns: readonly RegExp[] = [
   /since apr(il)? 2026/i,
   /\bYC\b|\bP26\b|y combinator/i,
-  /100k ?(\/ ?day|per day|sessions a day|a day|daily)/i,
-  /150k arr|\$0 ?(→|to) ?\$?150k/i,
-  /30k ?(\/ ?mo(nth)?\b|chats|conversations)|30,?000 (chats|conversations)/i,
-  /20k (in )?(monthly|mrr)|\bmrr\b/i,
-  /80 (sales )?agents|LG US/i,
-  /\b5 ?s(ec(onds?)?)?\b[^.]*\bjoin|\bjoin[^.]*\b5 ?s(ec(onds?)?)?\b/i,
+  /100k ?(\/ ?day|per day|sessions a day|a day|daily|-day)/i,
+  /\$?150(k|,000) ?(arr|annual recurring revenue)|\$0 ?(→|to|-) ?\$?150k/i,
+  /\b30 ?(k|,?000)\+? ?(\/ ?mo(nth)?\b|(chats|conversations)\b|(per|a) month)/i,
+  /\$?20 ?(k|,?000)\+? ?((in )?monthly|\/ ?mo(nth)?\b|(per|a) month)|\bmrr\b/i,
+  /\b80\+? (sales )?agents|LG US/i,
+  /\b5 ?s(ec(onds?)?)?\b[^.]{0,80}\bjoin|\bjoin[^.]{0,80}\b5 ?s(ec(onds?)?)?\b/i,
   /\b99(\.\d+)?\s?%/i,
   /\b(257|264|10|17) tests\b/i,
   /18\.7 ?MB|2\.0 ?MB|9\.34 ?x/i,
@@ -19,7 +19,7 @@ export const retiredClaimPatterns: readonly RegExp[] = [
   /52[,.]?555|52k(-| )row/i,
   /about (twenty|20) components/i,
   /113 to between 4 and 47/i,
-  /1,?900 commits|\b950\+? commits|500 PR merges|225,?000 lines|45,?000 removed/i,
+  /1,?900 commits|\b950 ?(\+|-plus)? (\w+ )?commits|500 PR merges|225,?000 lines|45,?000 removed/i,
   /153\.9|30\.9 s|106\.8|1\.9 s\b|1\.92 GiB|55 GiB/i,
   /2,?399 ms|316 ms|78 cache scans|26 webhooks|78 commits/i,
   /90 of 90 days|163 to 190/i,
@@ -27,10 +27,16 @@ export const retiredClaimPatterns: readonly RegExp[] = [
   /13\.4 ?%|15\.8 ?%|174 snapshots/i,
   /64\.7 ms|10\.2 ms|16\.7 ms|lines ≥ ?90|branches ≥ ?85/i,
   /5K-10K prompts|3-4 days to about 4 hours|about 40 KB|9 e2e specs/i,
-  /websockets?\b[^.]*\b(4|four) days/i,
-  /\b(4|four)[- ]day[^.]*websocket/i,
+  /web ?sockets?\b[^.]{0,80}\b(4|four)[- ]days?\b/i,
+  /\b(4|four)[- ]days?\b[^.,;]{0,40}\bweb ?sockets?\b/i,
 ];
 
 export function findRetiredClaims(text: string): string[] {
-  return retiredClaimPatterns.filter((pattern) => pattern.test(text)).map((pattern) => pattern.source);
+  // Fold typographic spaces, dashes and slashes so NBSP, thin space or an en dash cannot slip a claim past the ASCII patterns.
+  const normalised = text
+    .normalize("NFKC")
+    .replace(/[\u00a0\u1680\u2000-\u200b\u202f\u205f\u3000]/g, " ")
+    .replace(/[\u2010-\u2015\u2212]/g, "-")
+    .replace(/[\u2044\u2215]/g, "/");
+  return retiredClaimPatterns.filter((pattern) => pattern.test(normalised)).map((pattern) => pattern.source);
 }

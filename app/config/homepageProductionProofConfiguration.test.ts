@@ -22,9 +22,10 @@ describe("homepageProductionProofConfiguration", () => {
   it("keeps every metric value traceable to the Experience timeline", () => {
     for (const metric of homepageProductionProofMetricsConfiguration) {
       // Tiles use a compact "100K-150K" range; the timeline spells it "100K to 150K".
-      expect(serialisedWorkHistory).toContain(
-        metric.valueLabel.replace(" → ", " to ").replace(/(\d+K)-(\d+K)/g, "$1 to $2"),
-      );
+      const expected = metric.valueLabel.replace(" → ", " to ").replace(/(\d+K)-(\d+K)/g, "$1 to $2");
+      // Boundaries stop a fragment such as "0K-150K" passing as a substring of "100K to 150K".
+      const escaped = expected.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      expect(serialisedWorkHistory).toMatch(new RegExp(`(?<![\\w.])${escaped}(?![\\w])`));
     }
   });
 
