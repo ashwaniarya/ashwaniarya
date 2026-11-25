@@ -153,7 +153,7 @@ export default async function OpenGraphImage() {
               fontWeight: 600,
             }}
           >
-            Remote from Bangalore
+            Remote from Bengaluru
           </div>
         </div>
       </div>
