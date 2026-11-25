@@ -297,7 +297,7 @@ export const pulseboardCaseStudyConfiguration = {
       {
         metricLabel: "Tests",
         valueLabel: `${pulseboardTestTiers.length} tiers`,
-        contextLine: "Unit, behavioural and smoke",
+        contextLine: "Unit, two behavioural tiers and smoke",
       },
       {
         metricLabel: "CI",

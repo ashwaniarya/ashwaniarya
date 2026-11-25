@@ -36,6 +36,8 @@ export type SelectedWorkRecord = Readonly<{
   tagline: string;
   summary: string;
   liveUrl: string;
+  /** Footer cue when there is no case study and `liveUrl` is not a live app (contact or source). */
+  cueLabel?: string;
   sourceUrl?: string;
   /** Internal case-study page; when set, the tile card opens it instead of `liveUrl`. */
   caseStudyHref?: CaseStudyPagePath;
@@ -81,6 +83,7 @@ const portfolioSelectedWork = [
     summary:
       "Permission-gated Postgres access for AI agents over MCP. Organisations, invitations and live Prisma migrations. Private repo; demo on request.",
     liveUrl: "https://ashwaniarya.vercel.app/#contact",
+    cueLabel: "Ask for a demo",
     stackLabels: ["MCP", "Prisma", "PostgreSQL", "Vitest"],
     tilePreview: {
       previewKind: "code",
@@ -103,6 +106,7 @@ const portfolioSelectedWork = [
     summary:
       "Inventory and invoicing for parts shops. Express, Prisma, PostgreSQL, Next.js 15, and OIDC with PKCE. Deadlock-free invoices in one transaction with ordered locks; a single-origin proxy fixed DNS failures on Indian carriers.",
     liveUrl: "https://github.com/ashwaniarya/shop-management",
+    cueLabel: "View the source",
     stackLabels: ["Next.js 15", "Express", "Prisma"],
     tilePreview: {
       previewKind: "screenshot",
@@ -152,6 +156,7 @@ const portfolioSelectedWork = [
     summary:
       "Dev tools for AI agents: grok-web-sdk (logged-in Grok as MCP, CLI, and HTTP tools without an API key), PromptBoard (SwiftUI overlay for saved prompts in coding tools), and trello-skill (Claude Code plugin for Trello).",
     liveUrl: "https://github.com/ashwaniarya/grok-web-sdk",
+    cueLabel: "View the source",
     stackLabels: ["MCP", "Claude Code", "TypeScript", "SwiftUI"],
     tilePreview: {
       previewKind: "code",

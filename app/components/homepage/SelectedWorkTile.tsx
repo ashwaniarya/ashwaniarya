@@ -45,7 +45,7 @@ export function SelectedWorkTile({ work }: SelectedWorkTileProps) {
         </ul>
         <div className={policy.tileFooterClassName}>
           <span aria-hidden="true" className={policy.tileCaseStudyCueClassName}>
-            {caseStudyHref ? copy.caseStudyCueLabel : copy.liveCueLabel}
+            {caseStudyHref ? copy.caseStudyCueLabel : (work.cueLabel ?? copy.liveCueLabel)}
             <TbArrowRight className={policy.tileCaseStudyCueIconClassName} />
           </span>
           {caseStudyHref || sourceUrl ? (

@@ -261,7 +261,7 @@ const portfolioCaseStudies = [
     highlights: [
       "Owned features end to end across five repositories",
       "Brotli compression on the cited-sources payload, measured in the real app stack",
-      "Explorer reach queries much faster after a citations GIN index, identical results (prod)",
+      "Explorer reach queries use a citations GIN index, with identical results (prod)",
       "Multi-stage LLM pipeline for prompt discovery: topic clustering, planning, generation, similarity filter, LLM judge",
     ],
     engagementOverviewParagraphs: [
@@ -291,10 +291,10 @@ const portfolioCaseStudies = [
         bodyParagraphs: [
           "Built the tag system for prompts and topics: schema, API, tag chips in the prompts table, a dashboard tag filter, and bulk tag assignment at topic level. Added select-all and bulk actions on the prompts table with server-side selection semantics, so a customer can tag, pause or delete a whole filtered set at once.",
           "Made the analytics views stateful: filters, tabs and sort live in the URL, prompt analytics sorting and a dynamic timeline follow one shared date range, and a project picker lets users who belong to several brands switch without losing context. A domain-view rollup aggregates brand pages across tracked domains.",
-          "Bulk topic delete went from one request per topic to one request for the whole set, with far fewer cache scans, webhooks and commits.",
+          "Bulk topic delete went from one request per topic to one request for the whole set.",
         ],
         impactBullets: [
-          "Bulk delete now runs as one request instead of one per topic (fixture, real Redis).",
+          "Bulk delete now runs as one request instead of one per topic.",
           "Filters persist in the URL, so a view can be shared as a link.",
           "Prompt analytics sort and timeline follow one shared range state.",
         ],
@@ -371,8 +371,8 @@ const portfolioCaseStudies = [
         ],
         impactBullets: [
           "Cited-sources payload compressed with brotli q4, at lower CPU cost than gzip.",
-          "Reach queries much faster after the citations GIN index, with identical results (prod).",
-          "Faster brand tab query with a daily-brands rollup (prod mirror).",
+          "Reach queries use the citations GIN index, with identical results (prod).",
+          "Brand tab query served from a daily-brands rollup (prod mirror).",
           "Nightly worker rolled every planned day without errors (prod, Oct 2026).",
         ],
         skills: [

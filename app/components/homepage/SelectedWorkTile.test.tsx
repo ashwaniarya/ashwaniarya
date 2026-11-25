@@ -101,4 +101,22 @@ describe("SelectedWorkTile", () => {
       expect(work.tagline.length, work.slug).toBeLessThanOrEqual(60);
     }
   });
+
+  it("shows a cue that matches each card's link type", () => {
+    const { liveCueLabel } = homepageSelectedWorkSectionCopyConfiguration;
+    for (const work of allSelectedWork) {
+      const markup = renderToStaticMarkup(<SelectedWorkTile work={work} />);
+      const isContact = work.liveUrl.includes("#contact");
+      const isSource = work.liveUrl.startsWith("https://github.com/");
+      const expected = work.caseStudyHref
+        ? caseStudyCueLabel
+        : isContact
+          ? "Ask for a demo"
+          : isSource
+            ? "View the source"
+            : liveCueLabel;
+      expect(markup, work.slug).toContain(`>${expected}<`);
+      if (expected !== liveCueLabel) expect(markup, work.slug).not.toContain(liveCueLabel);
+    }
+  });
 });
