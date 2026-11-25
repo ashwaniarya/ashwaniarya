@@ -23,6 +23,8 @@ import { homepageProductionProofSectionPolicy } from "@/app/constants/policy";
 
 export type OutcomesCarouselProps = Readonly<{
   label: string;
+  /** Plural noun for the arrow labels, e.g. "Next page of outcomes". */
+  pageNoun?: string;
   /** One node per card, rendered inside an `<li>`. */
   children: ReactNode;
   itemClassName?: string;
@@ -34,7 +36,7 @@ const dragThresholdPx = 40;
 /** A mouse press only becomes a drag (and captures the pointer) after this much movement, so plain clicks reach links and buttons in cards. */
 const dragStartThresholdPx = 6;
 /** Presses that start on these never begin a drag: text fields and selects keep their own mouse behaviour. */
-const dragExcludedTargetSelector = "input, textarea, select, [contenteditable]";
+const dragExcludedTargetSelector = "input, textarea, select, [contenteditable], dialog";
 
 function prefersReducedMotion(): boolean {
   return (
@@ -70,6 +72,7 @@ type TrackProps = Readonly<{
   layoutName: OutcomesCarouselLayoutName;
   visibilityClassName: string;
   label: string;
+  pageNoun: string;
   items: readonly ReactNode[];
   itemClassName: string;
   staggerStepMilliseconds: number;
@@ -84,6 +87,7 @@ function OutcomesCarouselTrack({
   layoutName,
   visibilityClassName,
   label,
+  pageNoun,
   items,
   itemClassName,
   staggerStepMilliseconds,
@@ -148,7 +152,8 @@ function OutcomesCarouselTrack({
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (!hasMultiplePages) return;
+    // Only keys pressed on the region itself page it: fields and dialogs inside cards keep their own keys.
+    if (!hasMultiplePages || event.target !== event.currentTarget) return;
     const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
     if (step !== undefined) {
       event.preventDefault();
@@ -272,7 +277,7 @@ function OutcomesCarouselTrack({
           >
             <button
               type="button"
-              aria-label="Previous page of outcomes"
+              aria-label={`Previous page of ${pageNoun}`}
               aria-controls={regionId}
               aria-disabled={activePage <= 0}
               className={policy.carouselArrowButtonClassName}
@@ -299,7 +304,7 @@ function OutcomesCarouselTrack({
             </div>
             <button
               type="button"
-              aria-label="Next page of outcomes"
+              aria-label={`Next page of ${pageNoun}`}
               aria-controls={regionId}
               aria-disabled={activePage >= pageCount - 1}
               className={policy.carouselArrowButtonClassName}
@@ -329,13 +334,14 @@ function OutcomesCarouselTrack({
  */
 export function OutcomesCarousel({
   label,
+  pageNoun = "outcomes",
   children,
   itemClassName = "",
   staggerStepMilliseconds = 0,
 }: OutcomesCarouselProps) {
   const items = Children.toArray(children);
   const policy = homepageProductionProofSectionPolicy;
-  const shared = { label, items, itemClassName, staggerStepMilliseconds };
+  const shared = { label, pageNoun, items, itemClassName, staggerStepMilliseconds };
   return (
     <>
       <OutcomesCarouselTrack

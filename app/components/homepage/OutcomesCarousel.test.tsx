@@ -14,13 +14,25 @@ beforeAll(() => {
     disconnect() {}
   } as unknown as typeof ResizeObserver;
   window.matchMedia = ((query: string) => ({
-    matches: false,
+    matches: query.includes("reduce") ? prefersReducedMotion : false,
     media: query,
     addEventListener() {},
     removeEventListener() {},
   })) as unknown as typeof window.matchMedia;
-  HTMLElement.prototype.scrollTo = function scrollTo() {} as typeof HTMLElement.prototype.scrollTo;
+  HTMLElement.prototype.scrollTo = scrollTo as unknown as typeof HTMLElement.prototype.scrollTo;
+  // jsdom has no layout: place each carousel page 300px after the previous one.
+  Object.defineProperty(HTMLElement.prototype, "offsetLeft", {
+    configurable: true,
+    get(this: HTMLElement) {
+      if (this.dataset.test !== "outcomes-carousel-page" || !this.parentElement) return 0;
+      return Array.from(this.parentElement.children).indexOf(this) * pageWidthPx;
+    },
+  });
 });
+
+let prefersReducedMotion = false;
+const pageWidthPx = 300;
+const scrollTo = vi.fn();
 
 let container: HTMLDivElement;
 let root: Root;
@@ -42,6 +54,8 @@ const items = Array.from({ length: 8 }, (_, index) => (
 ));
 
 beforeEach(() => {
+  prefersReducedMotion = false;
+  scrollTo.mockClear();
   linkClicks.mockClear();
   setPointerCapture.mockClear();
   HTMLElement.prototype.setPointerCapture = setPointerCapture;
@@ -144,5 +158,62 @@ describe("OutcomesCarousel behaviour", () => {
     // The next plain click goes through again.
     act(() => link.click());
     expect(linkClicks).toHaveBeenCalledTimes(1);
+  });
+
+  const region = () => inCompact<HTMLElement>('[data-test="outcomes-carousel-scroller"]');
+  const press = (target: Element, key: string) =>
+    act(() => {
+      target.dispatchEvent(new KeyboardEvent("keydown", { key, bubbles: true, cancelable: true }));
+    });
+
+  it("pages forward on ArrowRight and back on ArrowLeft (not swapped), and End and Home jump to the ends", () => {
+    press(region(), "ArrowRight");
+    expect(status()).toBe("Page 2 of 2");
+    press(region(), "ArrowLeft");
+    expect(status()).toBe("Page 1 of 2");
+    press(region(), "End");
+    expect(status()).toBe("Page 2 of 2");
+    press(region(), "Home");
+    expect(status()).toBe("Page 1 of 2");
+  });
+
+  it("ignores arrow keys pressed inside a card (fields and dialogs keep their own keys)", () => {
+    const link = allInCompact('[data-test="card-link"]')[0];
+    press(link, "ArrowRight");
+    press(link, "End");
+    expect(status()).toBe("Page 1 of 2");
+  });
+
+  it("scrolls smoothly by default but jumps with behavior auto under reduced motion", () => {
+    act(() => inCompact<HTMLButtonElement>('[data-test="outcomes-carousel-next"]').click());
+    expect(scrollTo).toHaveBeenLastCalledWith({ left: pageWidthPx, behavior: "smooth" });
+    prefersReducedMotion = true;
+    act(() => inCompact<HTMLButtonElement>('[data-test="outcomes-carousel-prev"]').click());
+    expect(scrollTo).toHaveBeenLastCalledWith({ left: 0, behavior: "auto" });
+  });
+
+  it("tracks the page from the scroll position during native scrolling (swipe or wheel)", () => {
+    const scroller = region();
+    let scrollLeft = 0;
+    Object.defineProperty(scroller, "scrollLeft", { configurable: true, get: () => scrollLeft, set: (value: number) => (scrollLeft = value) });
+    scrollLeft = 260;
+    act(() => {
+      scroller.dispatchEvent(new Event("scroll"));
+    });
+    expect(status()).toBe("Page 2 of 2");
+    expect(allInCompact('[data-test="outcomes-carousel-dot"]')[1].getAttribute("aria-current")).toBe("true");
+    scrollLeft = 40;
+    act(() => {
+      scroller.dispatchEvent(new Event("scroll"));
+    });
+    expect(status()).toBe("Page 1 of 2");
+  });
+
+  it("removes its scroll listeners on unmount", () => {
+    const scrollers = Array.from(container.querySelectorAll<HTMLElement>('[data-test="outcomes-carousel-scroller"]'));
+    const removed = scrollers.map((scroller) => vi.spyOn(scroller, "removeEventListener"));
+    act(() => root.unmount());
+    for (const spy of removed) expect(spy).toHaveBeenCalledWith("scroll", expect.any(Function));
+    root = createRoot(container);
   });
 });

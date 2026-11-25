@@ -477,3 +477,31 @@ export const caseStudyDemoVideoPolicy = {
   playButtonIconClassName: "h-5 w-5 shrink-0",
   durationLabelClassName: "tabular-nums text-white/70",
 } as const;
+
+/** Services section: Contra service cards plus the Custom application card and its inquiry dialog. */
+export const homepageServicesSectionPolicy = {
+  cardClassName: "flex h-full flex-col gap-2 p-3.5! sm:p-5!",
+  cardTitleClassName: "text-sm sm:text-base font-semibold leading-snug text-textPrimary [overflow-wrap:anywhere]",
+  priceClassName: "text-xl font-semibold text-accentPrimary",
+  tagRowClassName: "flex flex-wrap gap-1.5",
+  tagClassName:
+    "inline-flex items-center rounded-full border border-textSecondary/40 px-2 py-0.5 text-[11px] font-medium leading-4 text-textSecondary",
+  cardFooterClassName: "mt-auto pt-2",
+  bookLinkClassName:
+    "inline-flex min-h-10 items-center whitespace-nowrap rounded-full border border-accentPrimary/70 px-3 text-[13px] font-medium text-accentPrimary sm:px-3.5 sm:text-sm transition-colors hover:bg-accentPrimary/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
+  dialogClassName:
+    "m-auto w-[min(34rem,calc(100vw-2rem))] max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-xl border border-borderDefault bg-surfaceElevated p-5 text-textPrimary shadow-2xl backdrop:bg-black/70 sm:p-6",
+  dialogHeaderClassName: "mb-4 flex items-start justify-between gap-4",
+  dialogCloseButtonClassName:
+    "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-textSecondary/60 text-textPrimary hover:border-accentPrimary hover:text-accentPrimary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
+  formStackClassName: "space-y-4",
+  fieldLabelClassName: "mb-1 block text-sm font-medium text-textPrimary",
+  fieldInputClassName:
+    "block w-full rounded-lg border border-textSecondary/50 bg-backgroundPage px-3 py-2 text-base text-textPrimary placeholder:text-textSecondary/70 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accentPrimary aria-invalid:border-red-400",
+  fieldErrorClassName: "mt-1 text-sm text-red-300",
+  fieldRowClassName: "grid gap-4 sm:grid-cols-2",
+  honeypotClassName: "absolute -left-[10000px] h-px w-px overflow-hidden",
+  submitButtonClassName:
+    "inline-flex min-h-11 items-center justify-center rounded-full border border-accentPrimary/70 bg-accentPrimary/10 px-5 text-sm font-semibold text-textPrimary hover:bg-accentPrimary/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary disabled:opacity-60",
+  statusClassName: "text-sm text-textSecondary",
+} as const;

@@ -4,5 +4,6 @@ export const homepageSectionAnchorConfiguration = {
   aboutSectionDomId: "about",
   selectedWorkSectionDomId: "work",
   projectsSectionDomId: "projects",
+  servicesSectionDomId: "services",
   contactSectionDomId: "contact",
 } as const;
