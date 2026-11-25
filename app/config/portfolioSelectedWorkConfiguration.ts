@@ -172,17 +172,17 @@ const portfolioSelectedWork = [
   {
     slug: "syncoderslabs",
     title: "Syncoders Labs",
-    kicker: "Cinematic studio site",
-    tagline: "Marketing site for a generative-media studio.",
+    kicker: "Agency site",
+    tagline: "AI agents, LLM-based products and full-stack solutions.",
     summary:
-      "Marketing site for a generative-media studio. Hand-written CSS, a decode-style hero animation that respects reduced motion, and a WebGL scroll backdrop behind crawlable HTML.",
+      "Marketing site for an AI-native agency.",
     liveUrl: "https://syncoderslabs.com",
     stackLabels: ["Vite", "TypeScript", "Three.js", "GSAP"],
     tilePreview: {
       previewKind: "screenshot",
       webpSrc: "/images/work/syncoderslabs.webp",
       pngSrc: "/images/work/syncoderslabs.png",
-      alt: "Syncoders Labs homepage: bold display headline over a dark generative backdrop.",
+      alt: "Syncoders Labs homepage: the headline 'We will help you.' over a dark particle backdrop.",
       width: 1200,
       height: 750,
     },
