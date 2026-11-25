@@ -27,11 +27,11 @@ export type ProductionProofMetricRecord = Readonly<{
 }>;
 
 export const homepageProductionProofSectionCopyConfiguration = {
-  sectionHeading: "In production",
+  sectionHeading: "Outcomes achieved",
   sectionIntroLines: [
     "Numbers from getbujo, AIClicks and Tap Invest. The roles behind them are in Experience below.",
   ],
-  carouselLabel: "Production outcomes",
+  carouselLabel: "Outcomes achieved",
 } as const;
 
 export const homepageProductionProofMetricsConfiguration = [
@@ -77,6 +77,8 @@ export const homepageProductionProofMetricsConfiguration = [
     contextLine: "Tap Invest, architected the frontend web app from scratch",
     sourceReference: "Ashwani, 25 Nov 2026 2:10 PM IST, relayed by Head",
   },
+  // Ashwani's Q1 (keep the two ~10x claims?) is pending. If dropped, delete the next two cards and
+  // the two matching Tap Invest lines in homepageWorkHistoryConfiguration.ts.
   {
     metricKey: "tapInvestRenderEngineOpsWork",
     valueLabel: "~10x",

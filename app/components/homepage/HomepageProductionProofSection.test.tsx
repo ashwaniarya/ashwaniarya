@@ -19,8 +19,8 @@ const asMarkup = (className: string) => className.replaceAll("&", "&amp;");
 describe("HomepageProductionProofSection", () => {
   it("labels the section for assistive technology and end-to-end selectors", () => {
     expect(renderedMarkup).toContain('data-test="homepage-production-proof-section"');
-    expect(renderedMarkup).toContain('aria-labelledby="homepage-production-proof-heading"');
-    expect(renderedMarkup).toContain('id="homepage-production-proof-heading"');
+    expect(renderedMarkup).toContain('aria-labelledby="homepage-outcomes-achieved-heading"');
+    expect(renderedMarkup).toContain('id="homepage-outcomes-achieved-heading"');
   });
 
   it("renders the section heading and intro copy", () => {

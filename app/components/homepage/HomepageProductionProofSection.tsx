@@ -18,7 +18,7 @@ import { BodyText, Heading } from "@/design-system/tokens/Typography";
 export function HomepageProductionProofSection() {
   return (
     <ScrollHighlightSection
-      aria-labelledby="homepage-production-proof-heading"
+      aria-labelledby="homepage-outcomes-achieved-heading"
       className={homepageProductionProofSectionPolicy.sectionClassName}
       data-test="homepage-production-proof-section"
     >
@@ -39,7 +39,7 @@ export function HomepageProductionProofSection() {
             variant="horizontalTitle"
             className={homepageScrollHighlightPolicy.accentBarClassName}
           />
-          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-production-proof-heading">
+          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-outcomes-achieved-heading">
             {homepageProductionProofSectionCopyConfiguration.sectionHeading}
           </Heading>
           {homepageProductionProofSectionCopyConfiguration.sectionIntroLines.map((line, index) => (

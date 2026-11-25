@@ -71,6 +71,21 @@ describe("homepageProductionProofConfiguration", () => {
     }
   });
 
+  it("names the section with Ashwani's phrase", () => {
+    expect(homepageProductionProofSectionCopyConfiguration.sectionHeading).toBe("Outcomes achieved");
+    expect(homepageProductionProofSectionCopyConfiguration.carouselLabel).toBe("Outcomes achieved");
+  });
+
+  it("backs the Tap Invest frontend and ~10x cards with lines in the Tap Invest timeline entry", () => {
+    const tapInvestLines = homepageWorkHistoryConfiguration.find((role) => role.roleKey === "tapinvest")!.detailLines;
+    expect(tapInvestLines).toContain("Architected the frontend web app from scratch.");
+    expect(tapInvestLines.join(" ")).toContain("server-driven page-render engine that reads layout from the database: about 10x less ops work");
+    expect(tapInvestLines.join(" ")).toContain(
+      "design system and the designer-to-developer handoff: about 10x faster feature delivery",
+    );
+    expect(tapInvestLines.join(" ")).not.toMatch(/[\u2013\u2014]/);
+  });
+
   it("carries no excluded or retired claim on any card", () => {
     expect(findRetiredClaims(JSON.stringify(homepageProductionProofMetricsConfiguration))).toEqual([]);
     expect(findRetiredClaims(JSON.stringify(homepageProductionProofSectionCopyConfiguration))).toEqual([]);
