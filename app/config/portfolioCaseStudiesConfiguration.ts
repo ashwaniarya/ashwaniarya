@@ -133,7 +133,7 @@ const portfolioCaseStudies = [
         impactBullets: [
           "E-commerce + SSR navigation: addressed full-page rebuilds that broke sales-led flows when users moved between sections.",
           "Multi-tab experience for widget users.",
-          "Dashboard for mulitiple tenants.",
+          "Dashboard for multiple tenants.",
           "Configurable brandable UI for the widget.",
           "Cross-platform in-browser video that stays coherent for “rep guides shopper” sessions, not only landing → call.",
           "Single launcher UX across two legacy widgets: shared affordance, shared telemetry hooks, less user confusion at join time.",
@@ -260,7 +260,7 @@ const portfolioCaseStudies = [
       "Owned features end to end across a Next.js dashboard, a FastAPI backend on Postgres and two Python workers: prompt tagging and bulk workflows, a multi-stage LLM pipeline for prompt discovery, the mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
     highlights: [
       "About 1,900 commits and about 500 PR merges across five repositories (git log, Apr to Oct 2026)",
-      "Cited-sources payload 18.7 MB to 2.0 MB (9.34x) with brotli, measured in the real app stack",
+      "Brotli compression on the cited-sources payload, measured in the real app stack",
       "Explorer reach queries 153.9 s to 30.9 s across 14 benchmark queries after a citations GIN index, identical results (prod, one run each)",
       "Multi-stage LLM pipeline for prompt discovery: topic clustering, planning, generation, similarity filter, LLM judge",
     ],
@@ -336,7 +336,7 @@ const portfolioCaseStudies = [
         impactBullets: [
           "Topic clustering replaced single-shot generation, so new prompts avoid saturated themes.",
           "Two cosine bands plus an LLM judge keep near-duplicates out without rejecting useful variants.",
-          "Pipeline and cluster-stats behaviour covered by 10 tests I wrote; the content-ideas topic step has 17.",
+          "Pipeline and cluster-stats behaviour covered by tests I wrote, as is the content-ideas topic step.",
         ],
         skills: [
           "Python 3.12",
@@ -366,13 +366,13 @@ const portfolioCaseStudies = [
         ],
         bodyParagraphs: [
           "Designed the rollup tables and wrote the nightly explorer-preprocess worker as sole author: day planning, roll-day jobs, a claim guard with takeover, retry and heal paths, roll versioning and a late scan for stragglers. A gate serves a rollup only once it is complete for the day. The worker runs on a VM under Docker Compose.",
-          "On the API side I added the explorer metric cards, a citations API, a lean cited-sources endpoint, an influence route and an untracked-mentions route, backed by a GIN index on citations and a function-based query path. Compressing the cited-sources endpoint with brotli took the payload from 18.7 MB to 2.0 MB, a 9.34x cut measured in the real app stack.",
+          "On the API side I added the explorer metric cards, a citations API, a lean cited-sources endpoint, an influence route and an untracked-mentions route, backed by a GIN index on citations and a function-based query path. Compressing the cited-sources endpoint with brotli cut the payload size, measured in the real app stack.",
           "This shipped as a first version. The rollup infrastructure needed a redesign before it could run across the full dataset, and that work was not finished when the engagement ended.",
         ],
         impactBullets: [
-          "Cited-sources payload 18.7 MB to 2.0 MB (9.34x) with brotli q4; 57 ms CPU against 238 ms for gzip.",
+          "Cited-sources payload compressed with brotli q4, at lower CPU cost than gzip.",
           "Reach queries after the citations GIN index: 106.8 s to 1.9 s on the heaviest site class, 153.9 s to 30.9 s over 14 queries with identical results (prod, one run each). Index 1.92 GiB on a 55 GiB table.",
-          "Brand tab query 4.1 to 5.9 s down to under 0.1 s with a daily-brands rollup (prod mirror).",
+          "Faster brand tab query with a daily-brands rollup (prod mirror).",
           "Nightly worker: 90 of 90 days rolled, 0 errors, 163 to 190 s per day (prod, Oct 2026).",
         ],
         skills: [

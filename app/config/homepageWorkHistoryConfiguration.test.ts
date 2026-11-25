@@ -33,6 +33,7 @@ describe("homepageWorkHistoryConfiguration", () => {
   it("keeps the timeline copy free of em dashes and retired claims", () => {
     const copy = JSON.stringify([homepageWorkHistoryConfiguration, homepageWorkHistorySectionCopyConfiguration]);
     expect(copy).not.toContain("\u2014");
+    expect(copy).not.toContain("\u2013");
     expect(copy).not.toMatch(/YC P26|150K ARR|100k\/day/);
   });
 });

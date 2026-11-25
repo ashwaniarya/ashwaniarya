@@ -74,7 +74,7 @@ const portfolioSelectedWork = [
     title: "postgres-mcp",
     kicker: "Multi-tenant MCP SaaS",
     summary:
-      "Permission-gated Postgres access for AI agents over MCP. Organisations, invitations, live Prisma migrations, and 257 tests with spec-first, adversarial review on every change. Private repo; demo on request.",
+      "Permission-gated Postgres access for AI agents over MCP. Organisations, invitations and live Prisma migrations. Private repo; demo on request.",
     liveUrl: "https://ashwaniarya.vercel.app/#contact",
     stackLabels: ["MCP", "Prisma", "PostgreSQL", "Vitest"],
     tilePreview: {
@@ -86,7 +86,7 @@ const portfolioSelectedWork = [
         "await db.withScope(user, async (tx) => {",
         '  return tx.$queryRaw`SELECT ...`',
         "})",
-        "// invitations · live migrations · 257 tests",
+        "// invitations · live migrations",
       ],
     },
   },
@@ -112,7 +112,7 @@ const portfolioSelectedWork = [
     title: "Pulseboard",
     kicker: "Dashboard and design system",
     summary:
-      "Clinic-operations analytics with a token-based design system: about twenty components documented and tested in Storybook with axe checks, visx charts, and a 52K-row virtualized table.",
+      "Clinic-operations analytics with a token-based design system documented in Storybook with axe checks, visx charts and a virtualized table.",
     liveUrl: pulseboardLiveAppUrl,
     sourceUrl: pulseboardSourceRepositoryUrl,
     caseStudyHref: pulseboardCaseStudyPagePath,
@@ -177,7 +177,7 @@ const portfolioSelectedWork = [
     title: "scroll-engine",
     kicker: "Open-source 3D scroll engine",
     summary:
-      "A TypeScript engine for scroll-driven 3D sites: composited layer renderers, GLSL shader layers, and visibility culling that cut steady-state draw calls from about 113 to between 4 and 47.",
+      "A TypeScript engine for scroll-driven 3D sites: composited layer renderers, GLSL shader layers and visibility culling.",
     liveUrl: "https://scroll-engine.syncoderslabs.com",
     sourceUrl: "https://github.com/ashwaniarya/scroll-engine",
     stackLabels: ["TypeScript", "Three.js", "GSAP", "Vitest"],

@@ -30,9 +30,9 @@ export const homepageProductionProofMetricsConfiguration = [
   },
   {
     metricKey: "getbujoWidgetSessions",
-    valueLabel: "100K–150K",
+    valueLabel: "100K-150K",
     metricLabel: "Widget sessions",
-    contextLine: "getbujo, with 4K–5K opens",
+    contextLine: "getbujo, with 4K-5K opens",
   },
   {
     metricKey: "aiclicksMentionDetectionAccuracy",

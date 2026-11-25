@@ -35,7 +35,7 @@ export const homepageWorkHistoryConfiguration = [
     dateRange: "Dec 2024 to Feb 2026",
     detailLines: [
       "Built the merchant side: AI copilot, co-browsing, video calling and chat. Moved calling into a global UI with clear join states and cut Zoom join time from 24s to 6s, which reduced call churn.",
-      "Per-call sentiment score, sales and merchant dashboards with AI video summaries. The widget delivered 100K–150K sessions, with 4K–5K opens.",
+      "Per-call sentiment score, sales and merchant dashboards with AI video summaries. The widget delivered 100K-150K sessions, with 4K-5K opens.",
     ],
   },
   {
@@ -59,7 +59,7 @@ export const homepageWorkHistoryConfiguration = [
     title: "Founding Engineer, Full Stack",
     dateRange: "Dec 2021 to Aug 2023",
     detailLines: [
-      "Automated onboarding for asset-leasing companies, from document checks to the public listing page, cutting it from 2–3 days to 3–4 hours. Also built an atomic-design system.",
+      "Automated onboarding for asset-leasing companies, from document checks to the public listing page, cutting it from 2-3 days to 3-4 hours. Also built an atomic-design system.",
     ],
   },
   {

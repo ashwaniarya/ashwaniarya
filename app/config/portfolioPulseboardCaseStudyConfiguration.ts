@@ -262,7 +262,7 @@ export const pulseboardCaseStudyConfiguration = {
   pagePath: pulseboardCaseStudyPagePath,
   metaTitle: "Pulseboard: dashboard and design system",
   metaDescription:
-    "How Pulseboard works: a React 19 clinic dashboard with a token-based design system, a 52K-row virtualized table, CI-enforced bundle budgets and 264 tests.",
+    "How Pulseboard works: a React 19 clinic dashboard with a token-based design system, a virtualized table, CI-enforced bundle budgets and a test suite.",
   header: {
     backLinkLabel: "All work",
     kicker: "Case study · dashboard and design system",
@@ -286,7 +286,7 @@ export const pulseboardCaseStudyConfiguration = {
       { linkKey: "storybook", label: "Storybook", href: pulseboardStorybookUrl },
       { linkKey: "source", label: "Source", href: pulseboardSourceRepositoryUrl },
       { linkKey: "failureDemo", label: "Failure demo", href: pulseboardFailureDemoUrl },
-      { linkKey: "benchmark", label: "52K-row benchmark", href: pulseboardTableBenchmarkUrl },
+      { linkKey: "benchmark", label: "Table benchmark", href: pulseboardTableBenchmarkUrl },
     ],
   },
   demoVideo: {
@@ -434,7 +434,7 @@ export const pulseboardCaseStudyConfiguration = {
         { statLabel: "Mount", statValue: `${virtualizedTableBenchmark.mountMilliseconds} ms` },
         {
           statLabel: "Rows in the DOM",
-          statValue: `${virtualizedTableBenchmark.fewestRenderedRows}–${virtualizedTableBenchmark.mostRenderedRows}`,
+          statValue: `${virtualizedTableBenchmark.fewestRenderedRows} to ${virtualizedTableBenchmark.mostRenderedRows}`,
         },
       ],
       frameUsageLabel: `p95 frame ${virtualizedTableBenchmark.p95FrameMilliseconds} ms of a ${virtualizedTableBenchmark.frameBudgetMilliseconds} ms budget`,
