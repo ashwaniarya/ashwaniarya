@@ -90,6 +90,7 @@ const portfolioCaseStudies = [
     ],
     engagementOverviewParagraphs: [
       "GetBujo needed a senior engineer who could move fast across the stack and build a cost-effective, scalable platform. I joined as Founding Engineer to turn ambiguous problems into shippable product: live collaboration, distribution through the browser, and AI-assisted workflows tied back to clear dashboards.",
+      "Problem: salespeople were confused about calls, and joining a Zoom call took 24s. First version: I built the platform end to end. Iteration: I moved calling into a global UI with clear join states and cut Zoom join time from 24s to 6s, added a per-call sentiment score and sales and merchant dashboards with AI video summaries, and moved from AWS EC2 to Railway to cut DevOps load. Outcome: less call churn, and the widget delivered 100K to 150K sessions, with 4K to 5K opens.",
     ],
     productChapters: [
       {
@@ -267,6 +268,7 @@ const portfolioCaseStudies = [
     engagementOverviewParagraphs: [
       "AIclicks tracks how AI assistants mention and cite brands. I joined as Founding Engineer, Full Stack, on contract, and took customer problems from ticket to merged PR across the whole stack: schema and migrations, FastAPI routes, Postgres rollups and indexes, background workers, and the React dashboard. Work went out as small PRs behind feature flags, merged to a dev branch and released to main.",
       "Work spanned the five repositories I committed to, Apr to Oct 2026.",
+      "Starting point: an existing codebase, with me as the sole contractor on its product surfaces. First version: a recommendation engine, a scheduled worker pulling posts from 6 platforms, and Stripe PaymentIntents and Invoices with an idempotent ledger. Iteration: mention detection. Outcome: accuracy went from 90% to 98% across 6 platforms.",
     ],
     productChapters: [
       {

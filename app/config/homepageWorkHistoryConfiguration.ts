@@ -24,8 +24,9 @@ export const homepageWorkHistoryConfiguration = [
     dateRange: "Apr 2026 to Nov 2026",
     engagementLabel: "Remote contract, ended",
     detailLines: [
-      "Recommendation engine pulling posts from 6 platforms.",
-      "Raised AI mention-detection accuracy from 90% to 98%. Stripe PaymentIntents and Invoices.",
+      "Sole contractor on the product surfaces of an existing codebase.",
+      "First version: a recommendation engine, a scheduled worker pulling posts from 6 platforms, plus Stripe PaymentIntents and Invoices with an idempotent ledger.",
+      "Iterated on mention detection: accuracy went from 90% to 98% across 6 platforms.",
     ],
   },
   {
@@ -34,8 +35,9 @@ export const homepageWorkHistoryConfiguration = [
     title: "Founding Engineer",
     dateRange: "Dec 2024 to Feb 2026",
     detailLines: [
-      "Built the merchant side: AI copilot, co-browsing, video calling and chat. Moved calling into a global UI with clear join states and cut Zoom join time from 24s to 6s, which reduced call churn.",
-      "Per-call sentiment score, sales and merchant dashboards with AI video summaries. The widget delivered 100K-150K sessions, with 4K-5K opens.",
+      "Built the platform end to end: AI copilot, co-browsing, video calling and chat.",
+      "Salespeople were confused about calls, so I moved calling into a global UI with clear join states and cut Zoom join time from 24s to 6s, which reduced call churn.",
+      "Then added a per-call sentiment score and sales and merchant dashboards with AI video summaries, and moved from AWS EC2 to Railway to cut DevOps load. The widget delivered 100K to 150K sessions, with 4K to 5K opens.",
     ],
   },
   {
