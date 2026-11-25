@@ -63,7 +63,6 @@ describe("portfolioCaseStudiesConfiguration", () => {
       chapter.heading.toLowerCase().includes("copilot"),
     );
     expect(copilotChapter?.productImpactSnapshot).toBeUndefined();
-    expect(JSON.stringify(caseStudy)).not.toMatch(/YC|150K ARR|30k|20k MRR|80 agents|LG US/);
   });
 });
 

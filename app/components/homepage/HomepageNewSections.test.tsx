@@ -37,9 +37,17 @@ describe("HomepageSelectedWorkSection", () => {
   it("wraps the cards in a focusable, labelled scroll-snap region with prev/next buttons", () => {
     expect(markup).toContain('role="region"');
     expect(markup).toContain('tabindex="0"');
-    expect(markup).toContain(homepageSelectedWorkSectionPolicy.tilesListClassName);
-    expect(markup).toContain("snap-mandatory");
+    const scrollerTag = markup.match(/<div[^>]*data-test="selected-work-scroller"[^>]*>/)?.[0] ?? "";
+    expect(scrollerTag).toContain("snap-x");
+    expect(scrollerTag).toContain("snap-mandatory");
+    const listTag = markup.match(/<ul class="[^"]*"/)?.[0] ?? "";
+    expect(listTag).toContain(homepageSelectedWorkSectionPolicy.tilesListClassName);
+    expect(listTag).not.toContain("snap-");
     expect(markup).toContain('aria-label="Next project"');
+    const regionId = scrollerTag.match(/id="([^"]+)"/)?.[1];
+    expect(regionId).toBeTruthy();
+    expect(markup.match(new RegExp(`aria-controls="${regionId}"`, "g"))).toHaveLength(2);
+    expect(markup).toMatch(/aria-label="Previous project"[^>]*disabled=""|disabled=""[^>]*aria-label="Previous project"/);
   });
 });
 

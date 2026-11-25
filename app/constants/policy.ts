@@ -116,7 +116,7 @@ export const siteHeaderNavigationPolicy = {
   /** On phones `phoneCallToActionPillClassName` shows this link beside the brand instead, so it is exposed once at every width. */
   phoneHiddenCallToActionListItemClassName: "max-sm:hidden",
   phoneCallToActionPillClassName:
-    "inline-flex h-11 items-center rounded-full border border-accentPrimary/45 bg-accentPrimary/5 px-3.5 text-accentPrimary transition-colors hover:bg-accentPrimary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:hidden",
+    "inline-flex h-11 items-center rounded-full border border-accentPrimary/70 bg-accentPrimary/5 px-3.5 text-accentPrimary transition-colors hover:bg-accentPrimary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:hidden",
 } as const;
 
 /**
@@ -246,9 +246,9 @@ export const button3DPolicy = {
   canvasVariants: ["primary", "card", "nav"] as ReadonlyArray<Button3DVariant>,
   variantClassName: {
     primary:
-      "relative inline-flex items-center justify-center rounded-full border border-accentPrimary/40 bg-surfaceElevated/70 px-7 py-3 text-sm font-semibold text-textPrimary shadow-sm backdrop-blur-sm transition-colors hover:border-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+      "relative inline-flex items-center justify-center rounded-full border border-accentPrimary/70 bg-surfaceElevated/70 px-7 py-3 text-sm font-semibold text-textPrimary shadow-sm backdrop-blur-sm transition-colors hover:border-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
     card:
-      "relative block min-w-0 rounded-lg border border-borderDefault bg-surfaceElevated/60 p-6 shadow-sm backdrop-blur-sm transition-colors transition-shadow hover:border-accentPrimary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+      "relative block min-w-0 rounded-xl border border-borderDefault bg-gradient-to-b from-surfaceElevated to-backgroundPage p-5 shadow-[inset_0_1px_0_0_rgb(255_255_255/0.05),0_10px_30px_-18px_rgb(0_0_0/0.9)] transition-[border-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-accentPrimary/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary motion-reduce:transition-none sm:p-6",
     nav:
       "relative inline-flex min-h-11 items-center rounded-sm px-2 text-textPrimary/80 transition-colors hover:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:min-h-0 sm:px-1",
     inlineLink:
@@ -256,7 +256,7 @@ export const button3DPolicy = {
     externalLink:
       "rounded-sm font-medium text-accentPrimary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
     pillLink:
-      "inline-flex items-center rounded-full border border-borderDefault px-3.5 py-1.5 text-sm font-medium text-textPrimary transition-colors hover:border-accentPrimary/60 hover:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+      "inline-flex items-center rounded-full border border-textSecondary/60 px-3.5 py-1.5 text-sm font-medium text-textPrimary transition-colors hover:border-accentPrimary/60 hover:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
   } satisfies Record<Button3DVariant, string>,
 } as const;
 
@@ -264,13 +264,13 @@ export const button3DPolicy = {
 export const homepageSelectedWorkSectionPolicy = {
   /** Horizontal scroll-snap row. The scroller is focusable so arrow keys scroll it. */
   scrollerClassName:
-    "mt-6 -mx-1 overflow-x-auto overscroll-x-contain scroll-smooth scroll-px-1 px-1 pt-1 pb-4 [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary sm:mt-8",
-  tilesListClassName: "flex list-none snap-x snap-mandatory gap-4 p-0 sm:gap-5",
+    "mt-6 -mx-1 snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth scroll-px-1 px-1 pt-1 pb-4 [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary sm:mt-8",
+  tilesListClassName: "flex list-none gap-4 p-0 sm:gap-5",
   /** Fixed width per breakpoint so every card in the row is the same size; mobile peeks the next card. */
   tileListItemClassName: "w-[80%] shrink-0 snap-start snap-always sm:w-[17rem]",
   scrollControlsRowClassName: "mt-2 flex items-center justify-end gap-2",
   scrollControlButtonClassName:
-    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-textSecondary/70 text-textPrimary transition-colors hover:border-accentPrimary hover:text-accentPrimary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
+    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-textSecondary/70 text-textPrimary transition-colors hover:border-accentPrimary hover:text-accentPrimary disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-textSecondary/70 disabled:hover:text-textPrimary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
   /** 3:4 card. The primary link stretches over the whole card; secondary links sit above it. */
   tileCardClassName: [
     "group relative flex aspect-[3/4] w-full flex-col overflow-hidden rounded-xl",

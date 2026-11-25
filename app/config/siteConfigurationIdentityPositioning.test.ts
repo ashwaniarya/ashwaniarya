@@ -40,7 +40,7 @@ describe("siteIdentityConfiguration positioning", () => {
     expect(homepageHeroCopyConfiguration.descriptionLines[1]).toMatch(/Open to remote or Bengaluru/);
   });
 
-  it("never presents AIClicks as a current engagement or repeats retired claims", () => {
+  it("keeps hero, SEO and footer copy free of em dashes (retired claims: retiredClaimPatterns.test.ts)", () => {
     const publicCopy = [
       ...homepageHeroCopyConfiguration.descriptionLines,
       siteIdentityConfiguration.homepageTitle,
@@ -48,11 +48,6 @@ describe("siteIdentityConfiguration positioning", () => {
       siteIdentityConfiguration.homepageDescription,
       footerConfiguration.footerCopyrightAttributionLine,
     ].join(" ");
-    expect(publicCopy).not.toMatch(/since Apr 2026/i);
-    expect(publicCopy).not.toMatch(/YC P26/);
-    expect(publicCopy).not.toMatch(/100k\/day|100k sessions a day/i);
-    expect(publicCopy).not.toMatch(/150K ARR/i);
-    expect(publicCopy).not.toMatch(/30k conversations|20k MRR/i);
     expect(publicCopy).not.toContain("\u2014");
   });
 });
