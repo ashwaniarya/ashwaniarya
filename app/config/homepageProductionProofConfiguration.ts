@@ -20,8 +20,12 @@ export type ProductionProofMetricRecord = Readonly<{
    */
   valueLabel: string;
   metricLabel: string;
-  /** Company the number comes from. */
-  contextLine: string;
+  /** Company the work was built at, shown as a "Built at" pill (exact name as in the Experience timeline). */
+  builtAt: "getbujo" | "AIClicks" | "Tap Invest";
+  /** True only when the work shipped to production; shows the "In production" pill. */
+  inProduction: boolean;
+  /** Optional detail under the value. The company lives in `builtAt`, so it is not repeated here. */
+  contextLine?: string;
   /** Fact source, kept in config so reviewers can trace every card. Not rendered. */
   sourceReference: string;
 }>;
@@ -32,6 +36,8 @@ export const homepageProductionProofSectionCopyConfiguration = {
     "Numbers from getbujo, AIClicks and Tap Invest. The roles behind them are in Experience below.",
   ],
   carouselLabel: "Outcomes achieved",
+  builtAtPillPrefix: "Built at",
+  inProductionPillLabel: "In production",
 } as const;
 
 export const homepageProductionProofMetricsConfiguration = [
@@ -39,56 +45,69 @@ export const homepageProductionProofMetricsConfiguration = [
     metricKey: "getbujoZoomJoinTime",
     valueLabel: "24s → 6s",
     metricLabel: "Zoom join time",
-    contextLine: "getbujo",
+    builtAt: "getbujo",
+    inProduction: true,
     sourceReference: experienceTimelineSourceReference,
   },
   {
     metricKey: "getbujoWidgetSessions",
     valueLabel: "100K-150K",
     metricLabel: "Widget sessions",
-    contextLine: "getbujo, with 4K-5K opens",
+    builtAt: "getbujo",
+    inProduction: true,
+    contextLine: "With 4K-5K opens",
     sourceReference: experienceTimelineSourceReference,
   },
   {
     metricKey: "aiclicksMentionDetectionAccuracy",
     valueLabel: "90% → 98%",
     metricLabel: "Mention-detection accuracy",
-    contextLine: "AIClicks",
+    builtAt: "AIClicks",
+    inProduction: true,
     sourceReference: experienceTimelineSourceReference,
   },
   {
     metricKey: "aiclicksRecommendationSources",
     valueLabel: "6 platforms",
     metricLabel: "Recommendation engine sources",
-    contextLine: "AIClicks",
+    builtAt: "AIClicks",
+    inProduction: true,
     sourceReference: experienceTimelineSourceReference,
   },
   {
     metricKey: "tapInvestOnboardingTime",
     valueLabel: "2-3 days → 3-4 hrs",
     metricLabel: "Onboarding time",
-    contextLine: "Tap Invest, automated onboarding for new asset-leasing businesses, from document checks to the listing on the app",
+    builtAt: "Tap Invest",
+    inProduction: true,
+    contextLine: "Automated onboarding for new asset-leasing businesses, from document checks to the listing on the app",
     sourceReference: experienceTimelineSourceReference,
   },
   {
     metricKey: "tapInvestFrontendFromScratch",
     valueLabel: "Built from scratch",
     metricLabel: "Frontend web app",
-    contextLine: "Tap Invest, architecture and build",
+    builtAt: "Tap Invest",
+    inProduction: true,
+    contextLine: "Architecture and build",
     sourceReference: "Ashwani, 25 Nov 2026 2:10 PM IST, relayed by Head",
   },
   {
     metricKey: "tapInvestRenderEngineOpsWork",
     valueLabel: "~10x",
     metricLabel: "Less ops work",
-    contextLine: "Tap Invest, server-driven page-render engine reading layout from the database",
+    builtAt: "Tap Invest",
+    inProduction: true,
+    contextLine: "Server-driven page-render engine reading layout from the database",
     sourceReference: "/workspace/cv/build_cv_tree.py:80-81 (tap_render)",
   },
   {
     metricKey: "tapInvestDesignSystemDelivery",
     valueLabel: "~10x",
     metricLabel: "Faster feature delivery",
-    contextLine: "Tap Invest, company design system and designer-to-developer handoff",
+    builtAt: "Tap Invest",
+    inProduction: true,
+    contextLine: "Company design system and designer-to-developer handoff",
     sourceReference: "/workspace/cv/build_cv_tree.py:82 (tap_ds)",
   },
 ] as const satisfies readonly ProductionProofMetricRecord[];

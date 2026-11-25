@@ -1,5 +1,8 @@
 import { Card } from "@/app/components/content/Card";
-import type { ProductionProofMetricRecord } from "@/app/config/homepageProductionProofConfiguration";
+import {
+  homepageProductionProofSectionCopyConfiguration,
+  type ProductionProofMetricRecord,
+} from "@/app/config/homepageProductionProofConfiguration";
 import {
   homepageProductionProofSectionPolicy,
   homepageScrollHighlightPolicy,
@@ -7,7 +10,9 @@ import {
 import { BodyText, Caption } from "@/design-system/tokens/Typography";
 
 export type ProductionProofMetricTileProps = Readonly<{
-  metric: Pick<ProductionProofMetricRecord, "metricLabel" | "valueLabel" | "contextLine">;
+  /** `builtAt` and `inProduction` are optional so the Pulseboard case study can reuse the tile without pills. */
+  metric: Pick<ProductionProofMetricRecord, "metricLabel" | "valueLabel" | "contextLine"> &
+    Partial<Pick<ProductionProofMetricRecord, "builtAt" | "inProduction">>;
 }>;
 
 export function ProductionProofMetricTile({ metric }: ProductionProofMetricTileProps) {
@@ -32,7 +37,22 @@ export function ProductionProofMetricTile({ metric }: ProductionProofMetricTileP
         >
           {metric.valueLabel}
         </BodyText>
-        <Caption className="text-textSecondary">{metric.contextLine}</Caption>
+        {metric.contextLine ? <Caption className="text-textSecondary">{metric.contextLine}</Caption> : null}
+        {metric.builtAt ? (
+        <div className={homepageProductionProofSectionPolicy.metricPillRowClassName}>
+          <span data-test="outcome-built-at-pill" className={homepageProductionProofSectionPolicy.metricBuiltAtPillClassName}>
+            {homepageProductionProofSectionCopyConfiguration.builtAtPillPrefix} {metric.builtAt}
+          </span>
+          {metric.inProduction ? (
+            <span
+              data-test="outcome-in-production-pill"
+              className={homepageProductionProofSectionPolicy.metricInProductionPillClassName}
+            >
+              {homepageProductionProofSectionCopyConfiguration.inProductionPillLabel}
+            </span>
+          ) : null}
+        </div>
+        ) : null}
       </div>
     </Card>
   );

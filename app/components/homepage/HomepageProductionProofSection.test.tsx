@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import {
   homepageProductionProofMetricsConfiguration,
   homepageProductionProofSectionCopyConfiguration,
+  type ProductionProofMetricRecord,
 } from "@/app/config/homepageProductionProofConfiguration";
 import {
   homepageProductionProofSectionPolicy,
@@ -63,8 +64,21 @@ describe("HomepageProductionProofSection", () => {
   it("renders every metric label, value and context line", () => {
     for (const metric of homepageProductionProofMetricsConfiguration) {
       expect(renderedMarkup).toContain(metric.metricLabel);
-      expect(renderedMarkup).toContain(metric.contextLine);
+      const contextLine = (metric as ProductionProofMetricRecord).contextLine;
+      if (contextLine) expect(renderedMarkup).toContain(contextLine);
     }
+  });
+
+  it("renders a Built at pill and an In production pill on every outcome card, as text with no images", () => {
+    // Two layouts are server-rendered, so each card appears twice.
+    const cardCount = homepageProductionProofMetricsConfiguration.length * 2;
+    expect(renderedMarkup.split('data-test="outcome-built-at-pill"').length - 1).toBe(cardCount);
+    expect(renderedMarkup.split('data-test="outcome-in-production-pill"').length - 1).toBe(cardCount);
+    for (const company of ["getbujo", "AIClicks", "Tap Invest"]) {
+      expect(renderedMarkup).toContain(`Built at ${company}</span>`);
+    }
+    expect(renderedMarkup).toContain(asMarkup(homepageProductionProofSectionPolicy.metricInProductionPillClassName));
+    expect(renderedMarkup).not.toMatch(/<img/);
   });
 
   it("does not render internal source references", () => {

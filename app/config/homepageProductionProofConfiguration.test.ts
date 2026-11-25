@@ -4,12 +4,14 @@ import {
   experienceTimelineSourceReference,
   homepageProductionProofMetricsConfiguration,
   homepageProductionProofSectionCopyConfiguration,
+  type ProductionProofMetricRecord,
 } from "@/app/config/homepageProductionProofConfiguration";
 import { homepageWorkHistoryConfiguration } from "@/app/config/homepageWorkHistoryConfiguration";
 import { findRetiredClaims } from "@/app/config/retiredClaimPatterns";
 
 const serialisedWorkHistory = JSON.stringify(homepageWorkHistoryConfiguration);
 const maxValueLabelTokenLength = 10;
+const typedMetrics: readonly ProductionProofMetricRecord[] = homepageProductionProofMetricsConfiguration;
 
 describe("homepageProductionProofConfiguration", () => {
   it("exposes exactly eight metrics with unique keys", () => {
@@ -43,8 +45,9 @@ describe("homepageProductionProofConfiguration", () => {
       valueLabel: "2-3 days → 3-4 hrs",
       metricLabel: "Onboarding time",
     });
-    expect(tapInvest?.contextLine).toBe(
-      "Tap Invest, automated onboarding for new asset-leasing businesses, from document checks to the listing on the app",
+    expect(tapInvest?.builtAt).toBe("Tap Invest");
+    expect((tapInvest as ProductionProofMetricRecord | undefined)?.contextLine).toBe(
+      "Automated onboarding for new asset-leasing businesses, from document checks to the listing on the app",
     );
   });
 
@@ -55,7 +58,8 @@ describe("homepageProductionProofConfiguration", () => {
     expect(byKey.tapInvestFrontendFromScratch).toMatchObject({
       valueLabel: "Built from scratch",
       metricLabel: "Frontend web app",
-      contextLine: "Tap Invest, architecture and build",
+      builtAt: "Tap Invest",
+      contextLine: "Architecture and build",
     });
     expect(byKey.tapInvestRenderEngineOpsWork).toMatchObject({ valueLabel: "~10x", metricLabel: "Less ops work" });
     expect(byKey.tapInvestDesignSystemDelivery).toMatchObject({
@@ -95,9 +99,7 @@ describe("homepageProductionProofConfiguration", () => {
   });
 
   it("splits the tiles two from getbujo, two from AIClicks and four from Tap Invest", () => {
-    const sources = homepageProductionProofMetricsConfiguration.map((metric) =>
-      metric.contextLine.split(",")[0],
-    );
+    const sources = homepageProductionProofMetricsConfiguration.map((metric) => metric.builtAt);
     expect(sources).toEqual([
       "getbujo",
       "getbujo",
@@ -125,17 +127,35 @@ describe("homepageProductionProofConfiguration", () => {
   it("fills every copy field on every metric", () => {
     for (const metric of homepageProductionProofMetricsConfiguration) {
       expect(metric.metricLabel.trim().length).toBeGreaterThan(0);
-      expect(metric.contextLine.trim().length).toBeGreaterThan(0);
     }
+    for (const metric of typedMetrics) {
+      if (metric.contextLine !== undefined) expect(metric.contextLine.trim().length).toBeGreaterThan(0);
+    }
+  });
+
+  it("labels every outcome with where it was built, using the Experience timeline company name, and no logos", () => {
+    const timelineCompanies = homepageWorkHistoryConfiguration.map((role) => role.company);
+    for (const metric of typedMetrics) {
+      expect(timelineCompanies, metric.metricKey).toContain(metric.builtAt);
+      // The company is carried by the pill, so the caption does not repeat it.
+      expect(metric.contextLine ?? "", metric.metricKey).not.toMatch(/^(getbujo|AIClicks|Tap Invest)\b/);
+    }
+    expect(JSON.stringify(homepageProductionProofMetricsConfiguration)).not.toMatch(/logo|\.(svg|png|webp)/i);
+  });
+
+  it("marks all eight outcomes as shipped to production (each describes live production work)", () => {
+    expect(typedMetrics.every((metric) => metric.inProduction === true)).toBe(true);
+    expect(homepageProductionProofSectionCopyConfiguration.builtAtPillPrefix).toBe("Built at");
+    expect(homepageProductionProofSectionCopyConfiguration.inProductionPillLabel).toBe("In production");
   });
 
   it("renders section copy without em dashes so the strip stays scannable", () => {
     const sectionCopy = [
       homepageProductionProofSectionCopyConfiguration.sectionHeading,
       ...homepageProductionProofSectionCopyConfiguration.sectionIntroLines,
-      ...homepageProductionProofMetricsConfiguration.flatMap((metric) => [
+      ...typedMetrics.flatMap((metric) => [
         metric.metricLabel,
-        metric.contextLine,
+        metric.contextLine ?? "",
       ]),
     ].join(" ");
 

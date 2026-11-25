@@ -361,6 +361,12 @@ export const homepageProductionProofSectionPolicy = {
   metricLabelClassName:
     "block min-w-0 hyphens-auto text-[11px] font-bold uppercase leading-tight tracking-[0.04em] text-accentSecondary/90 [overflow-wrap:anywhere] sm:tracking-[0.1em]",
   metricTileCardClassName: "h-full p-4! sm:p-5!",
+  /** "Built at" and "In production" pills under each outcome. Text only, no logos (Ashwani, 25 Nov 2026). */
+  metricPillRowClassName: "flex flex-wrap gap-1.5 pt-1",
+  metricBuiltAtPillClassName:
+    "inline-flex items-center rounded-full border border-textSecondary/40 px-2 py-0.5 text-[11px] font-medium leading-4 text-textSecondary",
+  metricInProductionPillClassName:
+    "inline-flex items-center rounded-full border border-accentPrimary/50 bg-accentPrimary/10 px-2 py-0.5 text-[11px] font-medium leading-4 text-accentPrimary",
   /**
    * Sits on top of `BodyText size="lg"` (`text-lg`). Only the `sm:` variant sets a size, so there
    * is no same-variant font-size collision with the primitive's own class.
