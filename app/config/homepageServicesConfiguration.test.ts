@@ -70,4 +70,12 @@ describe("homepageServicesConfiguration", () => {
     expect(findRetiredClaims(JSON.stringify(homepageServicesConfiguration))).toEqual([]);
     expect(homepageServicesSectionCopyConfiguration.sectionIntroLines.join(" ")).toMatch(/product engineer and builder/);
   });
+
+  it("pins the privacy and required-fields lines shown in the inquiry dialog", () => {
+    expect(homepageServicesSectionCopyConfiguration.customApplication.privacyLine).toBe(
+      "Your message goes to my inbox by email. I use it only to reply to you.",
+    );
+    expect(homepageServicesSectionCopyConfiguration.customApplication.requiredFieldsLine).toBe("All fields are required.");
+  });
 });
+

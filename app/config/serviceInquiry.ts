@@ -15,6 +15,12 @@ export const serviceInquiryTimelineOptions = [
   "Flexible",
 ] as const;
 
+/**
+ * Default inquiry recipient, also the client-side fallback mailto. Server env SERVICE_INQUIRY_TO overrides
+ * it (Ashwani approved syncoders@gmail.com as the Resend account and recipient, 25 Nov 2026, 3:47 PM IST).
+ */
+export const serviceInquiryDefaultRecipient = "syncoders@gmail.com";
+
 /** Hidden field real people never fill. A filled value means a bot; the server accepts and drops it. */
 export const serviceInquiryHoneypotFieldName = "company_website";
 

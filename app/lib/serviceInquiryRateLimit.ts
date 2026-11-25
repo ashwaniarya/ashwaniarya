@@ -8,7 +8,7 @@
 export const serviceInquiryRateLimitConfiguration = {
   maxRequestsPerWindow: 3,
   windowMilliseconds: 10 * 60 * 1000,
-  /** Bounds memory: the oldest entries are dropped past this many tracked IPs. */
+  /** Bounds memory: past this many live clients, new keys are refused (429) until windows expire. */
   maxTrackedClients: 5000,
 } as const;
 
@@ -28,10 +28,15 @@ export function createServiceInquiryRateLimiter(
     const entry = windows.get(clientKey);
     if (!entry || now - entry.windowStart >= configuration.windowMilliseconds) {
       windows.delete(clientKey);
-      windows.set(clientKey, { windowStart: now, count: 1 });
-      if (windows.size > configuration.maxTrackedClients) {
-        windows.delete(windows.keys().next().value as string);
+      if (windows.size >= configuration.maxTrackedClients) {
+        // Full: drop expired windows first. If every tracked client is still live, refuse the new key
+        // rather than evicting an active (possibly blocked) one, so a flood cannot unblock anybody.
+        for (const [key, value] of windows) {
+          if (now - value.windowStart >= configuration.windowMilliseconds) windows.delete(key);
+        }
+        if (windows.size >= configuration.maxTrackedClients) return false;
       }
+      windows.set(clientKey, { windowStart: now, count: 1 });
       return true;
     }
     if (entry.count >= configuration.maxRequestsPerWindow) return false;

@@ -3,10 +3,10 @@
 import { createContext, useContext, useId, useRef, useState, type FormEvent, type KeyboardEvent, type ReactNode } from "react";
 import { TbX } from "react-icons/tb";
 
-import { homepageContactChannelsConfiguration } from "@/app/config/homepageContactConfiguration";
 import { homepageServicesSectionCopyConfiguration } from "@/app/config/homepageServicesConfiguration";
 import {
   normaliseServiceInquiry,
+  serviceInquiryDefaultRecipient,
   serviceInquiryBudgetOptions,
   serviceInquiryHoneypotFieldName,
   serviceInquiryLimits,
@@ -23,7 +23,6 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 const sendFailedMessage = "The form could not send right now. Please email me instead.";
 
-const emailChannel = homepageContactChannelsConfiguration.find((channel) => channel.channelKey === "email");
 const focusableSelector = 'a[href], button:not([disabled]), input:not([tabindex="-1"]), select, textarea';
 const fieldOrder: readonly ServiceInquiryField[] = ["name", "email", "need", "budget", "timeline"];
 
@@ -49,6 +48,7 @@ export function ServiceInquiryDialogProvider({ children }: Readonly<{ children: 
   const [errors, setErrors] = useState<ServiceInquiryErrors>({});
   const [status, setStatus] = useState<Status>("idle");
   const [statusMessage, setStatusMessage] = useState("");
+  const [fallbackEmail, setFallbackEmail] = useState<string>(serviceInquiryDefaultRecipient);
   const fieldId = (field: string) => `${idPrefix}-${field}`;
 
   const open = () => {
@@ -103,7 +103,8 @@ export function ServiceInquiryDialogProvider({ children }: Readonly<{ children: 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(raw),
       });
-      const body = (await response.json().catch(() => ({}))) as { ok?: boolean; errors?: ServiceInquiryErrors; message?: string };
+      const body = (await response.json().catch(() => ({}))) as { ok?: boolean; errors?: ServiceInquiryErrors; message?: string; contactEmail?: string };
+      if (body.contactEmail) setFallbackEmail(body.contactEmail);
       if (response.ok && body.ok) {
         setStatus("success");
         setStatusMessage("Thanks, your message is on its way. I will reply by email.");
@@ -219,10 +220,12 @@ export function ServiceInquiryDialogProvider({ children }: Readonly<{ children: 
               </button>
               <p role="status" aria-live="polite" className={policy.statusClassName} data-test="inquiry-status">
                 {status === "error" ? statusMessage : status === "submitting" ? statusMessage : ""}
-                {status === "error" && emailChannel ? (
+                {status === "error" ? (
                   <>
                     {" "}
-                    <a href={emailChannel.href} className="text-accentPrimary underline">{emailChannel.displayText}</a>
+                    <a href={`mailto:${fallbackEmail}`} className="text-accentPrimary underline" data-test="inquiry-fallback-email">
+                      {fallbackEmail}
+                    </a>
                   </>
                 ) : null}
               </p>

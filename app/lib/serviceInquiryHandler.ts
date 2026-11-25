@@ -1,5 +1,6 @@
 import {
   normaliseServiceInquiry,
+  serviceInquiryDefaultRecipient,
   serviceInquiryHoneypotFieldName,
   validateServiceInquiry,
 } from "@/app/config/serviceInquiry";
@@ -13,7 +14,42 @@ export type ServiceInquiryHandlerDependencies = Readonly<{
   deliver: ServiceInquiryDeliverer;
   /** Optional "Thanks for your inquiry" email to the sender, tried only after the owner email is delivered. */
   sendAutoReply?: ServiceInquiryAutoReplySender;
+  /**
+   * Runs work after the response is sent (Next's `after()` in the route), so the auto-reply never delays
+   * the 200 and timing does not reveal whether it is enabled. Defaults to fire-and-forget.
+   */
+  runAfterResponse?: (task: () => Promise<unknown>) => void;
+  /** Mailto shown when delivery fails: the same address inquiries go to (SERVICE_INQUIRY_TO). */
+  fallbackEmail?: string;
 }>;
+
+/**
+ * Reads the body as a stream and stops once it passes `limit` bytes, so a chunked upload with no
+ * Content-Length is never buffered in full. Returns null when over the limit.
+ */
+async function readBodyWithinLimit(request: Request, limit: number): Promise<string | null> {
+  if (!request.body) return "";
+  const reader = request.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > limit) {
+      await reader.cancel().catch(() => undefined);
+      return null;
+    }
+    chunks.push(value);
+  }
+  const bytes = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return new TextDecoder().decode(bytes);
+}
 
 const json = (status: number, body: Record<string, unknown>) => Response.json(body, { status });
 
@@ -26,8 +62,8 @@ export async function handleServiceInquiry(request: Request, dependencies: Servi
     return json(415, { ok: false, error: "unsupported_media_type" });
   }
   if (Number(request.headers.get("content-length") ?? "0") > maxBodyBytes) return json(413, { ok: false, error: "too_large" });
-  const rawText = await request.text();
-  if (rawText.length > maxBodyBytes) return json(413, { ok: false, error: "too_large" });
+  const rawText = await readBodyWithinLimit(request, maxBodyBytes);
+  if (rawText === null) return json(413, { ok: false, error: "too_large" });
   let raw: Record<string, unknown>;
   try {
     const parsed: unknown = JSON.parse(rawText);
@@ -46,13 +82,18 @@ export async function handleServiceInquiry(request: Request, dependencies: Servi
 
   const result = await dependencies.deliver(inquiry);
   if (result.delivered) {
-    // Best effort: an auto-reply problem never changes the answer (or reveals whether it is enabled).
-    await dependencies.sendAutoReply?.(inquiry).catch(() => undefined);
+    // Best effort, after the response: an auto-reply problem never changes the answer or its timing.
+    const sendAutoReply = dependencies.sendAutoReply;
+    if (sendAutoReply) {
+      const task = () => sendAutoReply(inquiry).catch(() => undefined);
+      (dependencies.runAfterResponse ?? ((run) => void run()))(task);
+    }
     return json(200, { ok: true });
   }
   return json(503, {
     ok: false,
     error: result.reason,
     message: "The form could not send right now. Please email me instead.",
+    contactEmail: dependencies.fallbackEmail ?? serviceInquiryDefaultRecipient,
   });
 }

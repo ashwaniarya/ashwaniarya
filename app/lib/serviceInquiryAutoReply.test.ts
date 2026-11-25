@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { normaliseServiceInquiry } from "@/app/config/serviceInquiry";
 import {
   buildServiceInquiryAutoReply,
+  createServiceInquiryAutoReplyCaps,
   createResendServiceInquiryAutoReplySender,
   isServiceInquiryAutoReplyEnabled,
 } from "@/app/lib/serviceInquiryDelivery";
@@ -45,13 +46,14 @@ describe("auto-reply gate", () => {
 });
 
 describe("auto-reply email", () => {
-  it("sends one plain thank-you to the inquirer, replying to SERVICE_INQUIRY_TO, signed with the portfolio link", async () => {
+  it("sends one FIXED thank-you to the inquirer, replying to SERVICE_INQUIRY_TO, with nothing the sender typed", async () => {
     const fetchImplementation = vi.fn(async () => ok());
+    const hostile = { ...valid, name: "Visit http://phish.example now", need: "Click http://phish.example/login to verify your account" };
     const send = createResendServiceInquiryAutoReplySender(
       { ...verifiedSender, SERVICE_INQUIRY_TO: "syncoders@gmail.com" },
       fetchImplementation as unknown as typeof fetch,
     );
-    expect(await send(valid)).toEqual({ sent: true });
+    expect(await send(hostile)).toEqual({ sent: true });
     expect(fetchImplementation).toHaveBeenCalledTimes(1);
     const body = JSON.parse((fetchImplementation.mock.calls[0] as unknown as [string, RequestInit])[1].body as string);
     expect(body).toMatchObject({
@@ -60,20 +62,16 @@ describe("auto-reply email", () => {
       reply_to: "syncoders@gmail.com",
       subject: "Thanks for your inquiry",
     });
-    expect(body.text).toContain("Thanks for reaching out about a custom application. I will reply within 1 to 2 business days.");
-    expect(body.text).toContain(`Your message:\n${valid.need}`);
-    expect(body.text.trim().endsWith("Ashwani Arya\nhttps://ashwaniarya.vercel.app")).toBe(true);
-    expect(`${body.text}${body.html}`).not.toMatch(/[\u2013\u2014]/);
+    expect(body.text).toBe("Hi there,\n\nThanks for your inquiry. I will reply within 1 to 2 business days.\n\nAshwani Arya\nhttps://ashwaniarya.vercel.app");
+    expect(`${body.text}${body.html}`).not.toMatch(/phish|Visit|Click|[\u2013\u2014]/);
     expect((body.html.match(/href="/g) ?? []).length).toBe(1);
   });
 
-  it("escapes the echoed message in HTML and caps it at the message length limit", () => {
-    const echo = buildServiceInquiryAutoReply({ ...valid, need: `<script>alert("x")</script> & more` });
-    expect(echo.html).toContain("&lt;script&gt;alert(&quot;x&quot;)&lt;/script&gt; &amp; more");
-    expect(echo.html).not.toContain("<script>");
-    const long = buildServiceInquiryAutoReply({ ...valid, need: "y".repeat(5000) });
-    expect(long.text).toContain("y".repeat(3000));
-    expect(long.text).not.toContain("y".repeat(3001));
+  it("builds the same message for every inquiry (no echo of name or message)", () => {
+    expect(buildServiceInquiryAutoReply()).toEqual(buildServiceInquiryAutoReply());
+    expect(buildServiceInquiryAutoReply().html).toBe(
+      '<p>Hi there,</p>\n<p>Thanks for your inquiry. I will reply within 1 to 2 business days.</p>\n<p>Ashwani Arya<br><a href="https://ashwaniarya.vercel.app">https://ashwaniarya.vercel.app</a></p>',
+    );
   });
 
   it("keeps CR and LF out of every header field (name and email)", async () => {
@@ -81,10 +79,19 @@ describe("auto-reply email", () => {
     expect(injected.name).not.toMatch(/[\r\n]/);
     expect(injected.email).not.toMatch(/[\r\n]/);
     const fetchImplementation = vi.fn(async () => ok());
-    await createResendServiceInquiryAutoReplySender(verifiedSender, fetchImplementation as unknown as typeof fetch)({ ...valid, name: "Ada\r\nBcc: x" });
+    await createResendServiceInquiryAutoReplySender(verifiedSender, fetchImplementation as unknown as typeof fetch)({ ...valid, email: "a@b.co\r\nBcc: x" });
     const body = JSON.parse((fetchImplementation.mock.calls[0] as unknown as [string, RequestInit])[1].body as string);
     for (const header of [body.from, body.reply_to, body.subject, ...body.to]) expect(header).not.toMatch(/[\r\n]/);
-    expect(body.text.split("\n")[0]).toBe("Hi Ada  Bcc: x,");
+  });
+
+  it("passes a 10 second timeout signal to Resend (H3)", async () => {
+    const timeout = vi.spyOn(AbortSignal, "timeout");
+    const fetchImplementation = vi.fn(async () => ok());
+    await createResendServiceInquiryAutoReplySender(verifiedSender, fetchImplementation as unknown as typeof fetch)(valid);
+    expect(timeout).toHaveBeenCalledWith(10_000);
+    const init = (fetchImplementation.mock.calls[0] as unknown as [string, RequestInit])[1];
+    expect(init.signal).toBe(timeout.mock.results[0].value);
+    timeout.mockRestore();
   });
 
   it("logs a warning without secrets and reports a provider error when Resend fails", async () => {
@@ -136,3 +143,60 @@ describe("handler and auto-reply", () => {
     expect(await thrown.json()).toEqual({ ok: true });
   });
 });
+
+describe("auto-reply caps (per instance, in memory)", () => {
+  const day = 24 * 60 * 60 * 1000;
+
+  it("sends at most one auto-reply per address per 24 hours, case-insensitively", () => {
+    const tryReserve = createServiceInquiryAutoReplyCaps();
+    expect(tryReserve("Person@Example.com", 0)).toBe(true);
+    expect(tryReserve(" person@example.COM ", 1000)).toBe(false);
+    expect(tryReserve("person@example.com", day - 1)).toBe(false);
+    expect(tryReserve("person@example.com", day)).toBe(true);
+  });
+
+  it("stops at the daily cap across all addresses, then resets the next day", () => {
+    const tryReserve = createServiceInquiryAutoReplyCaps({ perRecipientWindowMilliseconds: day, dailyMax: 50, maxTrackedRecipients: 5000 });
+    for (let index = 0; index < 50; index += 1) expect(tryReserve(`p${index}@example.com`, index)).toBe(true);
+    expect(tryReserve("p50@example.com", 100)).toBe(false);
+    expect(tryReserve("p50@example.com", day + 100)).toBe(true);
+  });
+
+  it("is enforced by the sender: a capped address gets no Resend call", async () => {
+    const fetchImplementation = vi.fn(async () => ok());
+    const send = createResendServiceInquiryAutoReplySender(verifiedSender, fetchImplementation as unknown as typeof fetch, () => undefined, createServiceInquiryAutoReplyCaps());
+    expect(await send(valid)).toEqual({ sent: true });
+    expect(await send({ ...valid, email: "TEST@example.com" })).toEqual({ sent: false, reason: "capped" });
+    expect(fetchImplementation).toHaveBeenCalledTimes(1);
+  });
+
+  it("refuses new recipients when the bounded store is full of live entries", () => {
+    const tryReserve = createServiceInquiryAutoReplyCaps({ perRecipientWindowMilliseconds: day, dailyMax: 1000, maxTrackedRecipients: 2 });
+    expect(tryReserve("a@example.com", 0)).toBe(true);
+    expect(tryReserve("b@example.com", 0)).toBe(true);
+    expect(tryReserve("c@example.com", 0)).toBe(false);
+  });
+});
+
+describe("auto-reply runs after the response (H2)", () => {
+  it("returns the identical 200 body whether the auto-reply is sent, skipped or hangs, without waiting for it", async () => {
+    const deliver = vi.fn(async () => ({ delivered: true as const }));
+    const scheduled: Array<() => Promise<unknown>> = [];
+    const runAfterResponse = (task: () => Promise<unknown>) => void scheduled.push(task);
+    const bodies: string[] = [];
+    for (const sendAutoReply of [
+      vi.fn(async () => ({ sent: true as const })),
+      vi.fn(async () => ({ sent: false as const, reason: "not_enabled" as const })),
+      vi.fn(() => new Promise<never>(() => undefined)),
+    ]) {
+      const response = await handleServiceInquiry(post(valid), { isAllowed: () => true, deliver, sendAutoReply, runAfterResponse });
+      expect(response.status).toBe(200);
+      bodies.push(await response.text());
+      expect(sendAutoReply).not.toHaveBeenCalled();
+    }
+    expect(new Set(bodies)).toEqual(new Set(['{"ok":true}']));
+    expect(scheduled).toHaveLength(3);
+    await scheduled[0]();
+  });
+});
+

@@ -129,13 +129,52 @@ describe("service inquiry limits (G7)", () => {
     expect(getClientKey(new Headers())).toBe("unknown");
   });
 
-  it("evicts the oldest client once maxTrackedClients is exceeded", () => {
+  it("drops expired entries first, then refuses new keys instead of evicting live ones", () => {
     const isAllowed = createServiceInquiryRateLimiter({ maxRequestsPerWindow: 1, windowMilliseconds: 60_000, maxTrackedClients: 2 });
     expect(isAllowed("a", 0)).toBe(true);
     expect(isAllowed("b", 1)).toBe(true);
-    expect(isAllowed("a", 2)).toBe(false);
-    expect(isAllowed("c", 3)).toBe(true); // map now holds 3 > 2, so "a" (oldest) is dropped
-    expect(isAllowed("a", 4)).toBe(true);
+    expect(isAllowed("c", 2)).toBe(false); // full of live windows: refuse the newcomer
+    expect(isAllowed("a", 3)).toBe(false); // a stays blocked
+    expect(isAllowed("c", 60_001)).toBe(true); // a and b expired and were dropped
+  });
+
+  it("keeps a blocked client blocked after a flood of 5,001 new IPs (G4)", () => {
+    const isAllowed = createServiceInquiryRateLimiter();
+    for (let attempt = 0; attempt < 3; attempt += 1) expect(isAllowed("blocked", 0)).toBe(true);
+    expect(isAllowed("blocked", 1)).toBe(false);
+    for (let index = 0; index < 5001; index += 1) isAllowed(`10.0.${Math.floor(index / 256)}.${index % 256}`, 2);
+    expect(isAllowed("blocked", 3)).toBe(false);
+  });
+
+  it("stream-reads the body and answers 413 past 10 KB even without Content-Length (G2)", async () => {
+    let pulled = 0;
+    const stream = new ReadableStream<Uint8Array>({
+      pull(controller) {
+        pulled += 1;
+        if (pulled > 1000) controller.close();
+        else controller.enqueue(new TextEncoder().encode("x".repeat(1024)));
+      },
+    });
+    const chunked = new Request("http://localhost/api/service-inquiry", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: stream,
+      duplex: "half",
+    } as RequestInit & { duplex: "half" });
+    expect(chunked.headers.get("content-length")).toBeNull();
+    expect((await handleServiceInquiry(chunked, allow)).status).toBe(413);
+    expect(pulled).toBeLessThan(20);
+  });
+
+  it("points the 503 fallback at the inquiry recipient", async () => {
+    const response = await handleServiceInquiry(raw(JSON.stringify(valid)), {
+      isAllowed: () => true,
+      deliver: createResendServiceInquiryDeliverer({}),
+      fallbackEmail: "inbox@example.com",
+    });
+    expect((await response.json()).contactEmail).toBe("inbox@example.com");
+    const fallback = await handleServiceInquiry(raw(JSON.stringify(valid)), { isAllowed: () => true, deliver: createResendServiceInquiryDeliverer({}) });
+    expect((await fallback.json()).contactEmail).toBe("syncoders@gmail.com");
   });
 
   it("uses a 10 minute window of 3 requests", () => {

@@ -1,4 +1,4 @@
-import { serviceInquiryLimits, type ServiceInquiryInput } from "@/app/config/serviceInquiry";
+import { serviceInquiryDefaultRecipient, type ServiceInquiryInput } from "@/app/config/serviceInquiry";
 
 /**
  * Delivers an inquiry by email through Resend's HTTP API (free tier, no SDK dependency).
@@ -9,7 +9,7 @@ import { serviceInquiryLimits, type ServiceInquiryInput } from "@/app/config/ser
  */
 export const serviceInquiryDeliveryDefaults = {
   // Ashwani approved syncoders@gmail.com as the Resend account and recipient (25 Nov 2026, 3:47 PM IST).
-  toEmail: "syncoders@gmail.com",
+  toEmail: serviceInquiryDefaultRecipient,
   fromEmail: "Portfolio inquiries <onboarding@resend.dev>",
   resendEndpoint: "https://api.resend.com/emails",
 } as const;
@@ -62,16 +62,11 @@ export function createResendServiceInquiryDeliverer(
   };
 }
 
-/** The service every inquiry from the Custom application form is about. */
-export const serviceInquiryServiceTitle = "a custom application";
 export const serviceInquiryAutoReplySubject = "Thanks for your inquiry";
 const portfolioUrl = "https://ashwaniarya.vercel.app";
 
-export type ServiceInquiryAutoReplyResult = { sent: true } | { sent: false; reason: "not_enabled" | "provider_error" };
+export type ServiceInquiryAutoReplyResult = { sent: true } | { sent: false; reason: "not_enabled" | "capped" | "provider_error" };
 export type ServiceInquiryAutoReplySender = (inquiry: ServiceInquiryInput) => Promise<ServiceInquiryAutoReplyResult>;
-
-const escapeHtml = (value: string) =>
-  value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 
 /** Strips CR, LF and other control characters so nothing can add a header line. */
 const singleLine = (value: string) => value.replace(/[\u0000-\u001f\u007f]/g, " ").trim();
@@ -87,29 +82,72 @@ export function isServiceInquiryAutoReplyEnabled(environment: Record<string, str
   return /^[^\s@]+@[^\s@]+$/.test(address) && !/@(?:[^@]*\.)?resend\.dev$/.test(address);
 }
 
-export function buildServiceInquiryAutoReply(inquiry: ServiceInquiryInput, messageMaxLength = serviceInquiryLimits.needMaxLength) {
-  const name = singleLine(inquiry.name);
-  const message = inquiry.need.slice(0, messageMaxLength);
-  const thanks = `Thanks for reaching out about ${serviceInquiryServiceTitle}. I will reply within 1 to 2 business days.`;
-  const text = [`Hi ${name},`, "", thanks, "", "Your message:", message, "", "Ashwani Arya", portfolioUrl].join("\n");
-  const html = [
-    `<p>Hi ${escapeHtml(name)},</p>`,
-    `<p>${escapeHtml(thanks)}</p>`,
-    `<p>Your message:</p>`,
-    `<blockquote style="white-space:pre-wrap">${escapeHtml(message)}</blockquote>`,
-    `<p>Ashwani Arya<br><a href="${portfolioUrl}">${portfolioUrl}</a></p>`,
-  ].join("\n");
+/**
+ * Fixed template: nothing the inquirer typed (name or message) is in it, so the form cannot be used to
+ * send attacker-chosen text from the sending domain to an arbitrary address.
+ */
+export function buildServiceInquiryAutoReply() {
+  const thanks = "Thanks for your inquiry. I will reply within 1 to 2 business days.";
+  const text = ["Hi there,", "", thanks, "", "Ashwani Arya", portfolioUrl].join("\n");
+  const html = [`<p>Hi there,</p>`, `<p>${thanks}</p>`, `<p>Ashwani Arya<br><a href="${portfolioUrl}">${portfolioUrl}</a></p>`].join("\n");
   return { subject: serviceInquiryAutoReplySubject, text, html };
+}
+
+/**
+ * Auto-reply caps, in memory and per function instance (no shared store and no paid infra). At most one
+ * auto-reply per recipient address (lowercased) per 24 hours, and at most `dailyMax` per instance per day.
+ * Acceptable because the message is fixed: a bypass can only send the same plain thank-you.
+ */
+export const serviceInquiryAutoReplyCapsConfiguration = {
+  perRecipientWindowMilliseconds: 24 * 60 * 60 * 1000,
+  dailyMax: 50,
+  maxTrackedRecipients: 5000,
+} as const;
+
+export type ServiceInquiryAutoReplyCapsConfiguration = Readonly<{
+  perRecipientWindowMilliseconds: number;
+  dailyMax: number;
+  maxTrackedRecipients: number;
+}>;
+
+export function createServiceInquiryAutoReplyCaps(
+  configuration: ServiceInquiryAutoReplyCapsConfiguration = serviceInquiryAutoReplyCapsConfiguration,
+) {
+  const lastSentAt = new Map<string, number>();
+  let dayStart = -Infinity;
+  let sentToday = 0;
+  /** Reserves a send for this address now, or returns false when a cap says no. */
+  return function tryReserve(email: string, now = Date.now()): boolean {
+    const recipient = email.trim().toLowerCase();
+    if (now - dayStart >= 24 * 60 * 60 * 1000) {
+      dayStart = now;
+      sentToday = 0;
+    }
+    if (sentToday >= configuration.dailyMax) return false;
+    const previous = lastSentAt.get(recipient);
+    if (previous !== undefined && now - previous < configuration.perRecipientWindowMilliseconds) return false;
+    if (previous === undefined && lastSentAt.size >= configuration.maxTrackedRecipients) {
+      for (const [key, sentAt] of lastSentAt) {
+        if (now - sentAt >= configuration.perRecipientWindowMilliseconds) lastSentAt.delete(key);
+      }
+      if (lastSentAt.size >= configuration.maxTrackedRecipients) return false;
+    }
+    lastSentAt.set(recipient, now);
+    sentToday += 1;
+    return true;
+  };
 }
 
 export function createResendServiceInquiryAutoReplySender(
   environment: Record<string, string | undefined> = process.env,
   fetchImplementation: typeof fetch = fetch,
   warn: (message: string) => void = (message) => console.warn(message),
+  tryReserve: (email: string) => boolean = createServiceInquiryAutoReplyCaps(),
 ): ServiceInquiryAutoReplySender {
   return async (inquiry) => {
     if (!isServiceInquiryAutoReplyEnabled(environment)) return { sent: false, reason: "not_enabled" };
-    const { subject, text, html } = buildServiceInquiryAutoReply(inquiry);
+    if (!tryReserve(inquiry.email)) return { sent: false, reason: "capped" };
+    const { subject, text, html } = buildServiceInquiryAutoReply();
     try {
       const response = await fetchImplementation(serviceInquiryDeliveryDefaults.resendEndpoint, {
         method: "POST",
@@ -131,4 +169,9 @@ export function createResendServiceInquiryAutoReplySender(
     }
     return { sent: false, reason: "provider_error" };
   };
+}
+
+/** Where the no-key or failure fallback mailto points: the same address inquiries go to. */
+export function getServiceInquiryRecipient(environment: Record<string, string | undefined> = process.env): string {
+  return environment.SERVICE_INQUIRY_TO || serviceInquiryDeliveryDefaults.toEmail;
 }
