@@ -6,64 +6,63 @@ import {
   homepageSelectedWorkSectionCopyConfiguration,
   type SelectedWorkRecord,
 } from "@/app/config/portfolioSelectedWorkConfiguration";
-import { homepageSelectedWorkSectionPolicy } from "@/app/constants/policy";
-import { BodyText, Caption, Heading } from "@/design-system/tokens/Typography";
+import { homepageSelectedWorkSectionPolicy as policy } from "@/app/constants/policy";
 
 export type SelectedWorkTileProps = Readonly<{
   work: SelectedWorkRecord;
 }>;
 
+/** 3:4 project card: preview, kicker, title (stretched primary link), one-line tagline, chips, footer links. */
 export function SelectedWorkTile({ work }: SelectedWorkTileProps) {
   const { tilePreview, caseStudyHref, sourceUrl } = work;
+  const copy = homepageSelectedWorkSectionCopyConfiguration;
+  const primaryHref = caseStudyHref ?? work.liveUrl;
+  const isExternal = !caseStudyHref;
 
   return (
-    <article className="flex h-full flex-col gap-3">
-      <InteractiveLink
-        variant="card"
-        href={caseStudyHref ?? work.liveUrl}
-        isExternal={!caseStudyHref}
-        className={homepageSelectedWorkSectionPolicy.tileLinkClassName}
-      >
+    <article className={policy.tileCardClassName} data-test="selected-work-card">
+      <div className={policy.tilePreviewFrameClassName}>
         <SelectedWorkTilePreview tilePreview={tilePreview} />
-        <div className="mt-4 space-y-1">
-          <Caption>{work.kicker}</Caption>
-          <Heading level="h3">{work.title}</Heading>
-          <BodyText size="sm" className="text-textSecondary">
-            {work.summary}
-          </BodyText>
-          {caseStudyHref ? (
-            <span className={homepageSelectedWorkSectionPolicy.tileCaseStudyCueClassName}>
-              {homepageSelectedWorkSectionCopyConfiguration.caseStudyCueLabel}
-              <TbArrowRight
-                aria-hidden
-                className={homepageSelectedWorkSectionPolicy.tileCaseStudyCueIconClassName}
-              />
-            </span>
-          ) : null}
-        </div>
-      </InteractiveLink>
-      <div className={homepageSelectedWorkSectionPolicy.tileMetaRowClassName}>
-        <ul className={homepageSelectedWorkSectionPolicy.stackListClassName}>
-          {work.stackLabels.map((label) => (
-            <li key={label} className={homepageSelectedWorkSectionPolicy.stackChipClassName}>
+      </div>
+      <div className={policy.tileBodyClassName}>
+        <p className={policy.tileKickerClassName}>{work.kicker}</p>
+        <h3 className={policy.tileTitleClassName}>
+          <a
+            href={primaryHref}
+            className={policy.tilePrimaryLinkClassName}
+            {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
+            {work.title}
+          </a>
+        </h3>
+        <p className={policy.tileTaglineClassName}>{work.tagline}</p>
+        <ul className={policy.stackListClassName} aria-label={`${work.title} stack`}>
+          {work.stackLabels.slice(0, policy.tileMaxStackChips).map((label) => (
+            <li key={label} className={policy.stackChipClassName}>
               {label}
             </li>
           ))}
         </ul>
-        {caseStudyHref || sourceUrl ? (
-          <div className={homepageSelectedWorkSectionPolicy.tileSecondaryLinksClassName}>
-            {caseStudyHref ? (
-              <InteractiveLink variant="externalLink" href={work.liveUrl} isExternal className="text-sm">
-                {homepageSelectedWorkSectionCopyConfiguration.liveLinkLabel}
-              </InteractiveLink>
-            ) : null}
-            {sourceUrl ? (
-              <InteractiveLink variant="externalLink" href={sourceUrl} isExternal className="text-sm">
-                {homepageSelectedWorkSectionCopyConfiguration.sourceLinkLabel}
-              </InteractiveLink>
-            ) : null}
-          </div>
-        ) : null}
+        <div className={policy.tileFooterClassName}>
+          <span aria-hidden="true" className={policy.tileCaseStudyCueClassName}>
+            {caseStudyHref ? copy.caseStudyCueLabel : copy.liveCueLabel}
+            <TbArrowRight className={policy.tileCaseStudyCueIconClassName} />
+          </span>
+          {caseStudyHref || sourceUrl ? (
+            <div className={policy.tileSecondaryLinksClassName}>
+              {caseStudyHref ? (
+                <InteractiveLink variant="externalLink" href={work.liveUrl} isExternal className="text-sm">
+                  {copy.liveLinkLabel}
+                </InteractiveLink>
+              ) : null}
+              {sourceUrl ? (
+                <InteractiveLink variant="externalLink" href={sourceUrl} isExternal className="text-sm">
+                  {copy.sourceLinkLabel}
+                </InteractiveLink>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
       </div>
     </article>
   );

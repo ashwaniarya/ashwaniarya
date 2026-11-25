@@ -32,6 +32,8 @@ export type SelectedWorkRecord = Readonly<{
   slug: string;
   title: string;
   kicker: string;
+  /** One short sentence for the 3:4 card. Keep it under ~60 characters so it fits two lines at 375px. */
+  tagline: string;
   summary: string;
   liveUrl: string;
   sourceUrl?: string;
@@ -44,9 +46,10 @@ export type SelectedWorkRecord = Readonly<{
 export const homepageSelectedWorkSectionCopyConfiguration = {
   sectionHeading: "Selected work",
   sectionIntroLines: [
-    "Live things I defined, built, and deployed myself, then kept running. Open any of them; every one is in production (private repos link to contact for a demo).",
+    "Things I defined, built and deployed myself. Private repos link to contact for a demo.",
   ],
   caseStudyCueLabel: "Read the case study",
+  liveCueLabel: "Open the live app",
   liveLinkLabel: "Live",
   sourceLinkLabel: "Source",
 } as const;
@@ -56,6 +59,7 @@ const portfolioSelectedWork = [
     slug: "automixpilot",
     title: "AutoMixPilot",
     kicker: "Music-channel SaaS",
+    tagline: "Plans, composes and renders music mixes on a schedule.",
     summary:
       "Plans, composes, and renders music mixes on a schedule. Express and Prisma API, BullMQ worker with ffmpeg and AI adapters, Next.js 15 dashboard, tiered file retention, and a disk guard.",
     liveUrl: "https://mixpilot-web-three.vercel.app",
@@ -73,6 +77,7 @@ const portfolioSelectedWork = [
     slug: "postgres-mcp",
     title: "postgres-mcp",
     kicker: "Multi-tenant MCP SaaS",
+    tagline: "Permission-gated Postgres access for AI agents over MCP.",
     summary:
       "Permission-gated Postgres access for AI agents over MCP. Organisations, invitations and live Prisma migrations. Private repo; demo on request.",
     liveUrl: "https://ashwaniarya.vercel.app/#contact",
@@ -94,6 +99,7 @@ const portfolioSelectedWork = [
     slug: "shop-management",
     title: "Shop Management",
     kicker: "Parts-shop operations",
+    tagline: "Inventory and invoicing for parts shops.",
     summary:
       "Inventory and invoicing for parts shops. Express, Prisma, PostgreSQL, Next.js 15, and OIDC with PKCE. Deadlock-free invoices in one transaction with ordered locks; a single-origin proxy fixed DNS failures on Indian carriers.",
     liveUrl: "https://github.com/ashwaniarya/shop-management",
@@ -111,6 +117,7 @@ const portfolioSelectedWork = [
     slug: "pulseboard",
     title: "Pulseboard",
     kicker: "Dashboard and design system",
+    tagline: "Clinic analytics with a token-based design system.",
     summary:
       "Clinic-operations analytics with a token-based design system documented in Storybook with axe checks, visx charts and a virtualized table.",
     liveUrl: pulseboardLiveAppUrl,
@@ -123,6 +130,7 @@ const portfolioSelectedWork = [
     slug: "ai-secure-share",
     title: "ai-secure-share",
     kicker: "Encrypted AI answer sharing",
+    tagline: "End-to-end encrypted sharing for AI answers.",
     summary:
       "End-to-end encrypted sharing for AI-generated answers so teams can pass along model output without exposing prompts or data in the clear.",
     liveUrl: "https://airesponseshare.com",
@@ -140,6 +148,7 @@ const portfolioSelectedWork = [
     slug: "agent-dev-tools",
     title: "Agent dev tools",
     kicker: "Open-source AI tooling",
+    tagline: "Open-source dev tools for AI agents.",
     summary:
       "Dev tools for AI agents: grok-web-sdk (logged-in Grok as MCP, CLI, and HTTP tools without an API key), PromptBoard (SwiftUI overlay for saved prompts in coding tools), and trello-skill (Claude Code plugin for Trello).",
     liveUrl: "https://github.com/ashwaniarya/grok-web-sdk",
@@ -159,6 +168,7 @@ const portfolioSelectedWork = [
     slug: "syncoderslabs",
     title: "Syncoders Labs",
     kicker: "Cinematic studio site",
+    tagline: "Marketing site for a generative-media studio.",
     summary:
       "Marketing site for a generative-media studio. Hand-written CSS, a decode-style hero animation that respects reduced motion, and a WebGL scroll backdrop behind crawlable HTML.",
     liveUrl: "https://syncoderslabs.com",
@@ -176,6 +186,7 @@ const portfolioSelectedWork = [
     slug: "scroll-engine",
     title: "scroll-engine",
     kicker: "Open-source 3D scroll engine",
+    tagline: "A TypeScript engine for scroll-driven 3D sites.",
     summary:
       "A TypeScript engine for scroll-driven 3D sites: composited layer renderers, GLSL shader layers and visibility culling.",
     liveUrl: "https://scroll-engine.syncoderslabs.com",
@@ -194,6 +205,7 @@ const portfolioSelectedWork = [
     slug: "mindflow",
     title: "MindFlow",
     kicker: "Agent that builds mind maps",
+    tagline: "A LangGraph agent that plans mind maps.",
     summary:
       "A ReAct agent in LangGraph that plans a mind map through tools, with a step budget and streamed reasoning. Predicted branch colours, tidy-tree Smart Align, and double-click markdown editing on the canvas.",
     liveUrl: "https://mindflow-ai-sepia.vercel.app",
@@ -211,6 +223,7 @@ const portfolioSelectedWork = [
     slug: "trinetra",
     title: "TRINETRA",
     kicker: "Scroll-told film promo",
+    tagline: "A seven-screen scroll-told promo for a mythic epic.",
     summary:
       "Seven-screen promo for a mythic epic, told through scroll. Instanced yantra mandala, PMREM-lit gold trishul, nebula and god-ray shader passes, ACES tone mapping.",
     liveUrl: "https://trinetra.syncoderslabs.com",

@@ -297,7 +297,7 @@ export default function DesignSystemPage() {
             {designSystemButton3DVariants.map((entry) => (
               <li key={entry.variant} className="text-sm text-textSecondary">
                 <code className="text-textPrimary">{entry.variant}</code>
-                {entry.hasCanvas ? " (3D)" : " (flat)"} — {entry.description}
+                {entry.hasCanvas ? " (3D)" : " (flat)"}: {entry.description}
               </li>
             ))}
           </ul>

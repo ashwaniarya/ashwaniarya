@@ -4,8 +4,7 @@ import path from "path";
 import { describe, expect, it } from "vitest";
 
 import {
-  calculateBudgetUsagePercent,
-  pulseboardCaseStudyConfiguration,
+    pulseboardCaseStudyConfiguration,
 } from "@/app/config/portfolioPulseboardCaseStudyConfiguration";
 
 const publicDirectory = path.join(process.cwd(), "public");
@@ -75,28 +74,8 @@ describe("portfolioPulseboardCaseStudyConfiguration", () => {
     expect(new Set(sectionTitleIds).size).toBe(sectionTitleIds.length);
   });
 
-  it("keeps every measured number within its budget", () => {
-    const { virtualizedTable, bundleBudgets } = performance;
-
-    expect(virtualizedTable.p95FrameMilliseconds).toBeLessThanOrEqual(
-      virtualizedTable.frameBudgetMilliseconds,
-    );
-    for (const budget of bundleBudgets.budgets) {
-      expect(budget.usedKilobytes, budget.chunkLabel).toBeLessThanOrEqual(budget.budgetKilobytes);
-    }
-  });
-
-  it("rounds budget usage to a whole percent", () => {
-    expect(calculateBudgetUsagePercent(10.2, 16.7)).toBe(61);
-    expect(calculateBudgetUsagePercent(229, 360)).toBe(64);
-  });
-
-  it("reports an overrun above 100 percent instead of clamping it", () => {
-    expect(calculateBudgetUsagePercent(450, 360)).toBe(125);
-  });
-
-  it("rejects a budget that is not positive", () => {
-    expect(() => calculateBudgetUsagePercent(10, 0)).toThrow(RangeError);
-    expect(() => calculateBudgetUsagePercent(10, -5)).toThrow(RangeError);
+  it("ships no unsourced measured numbers", () => {
+    const serialised = JSON.stringify(pulseboardCaseStudyConfiguration);
+    expect(serialised).not.toMatch(/52,555|52K|264|64\.7|10\.2|16\.7|90%|85%|40 KB|About 20/);
   });
 });

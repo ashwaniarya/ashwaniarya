@@ -17,7 +17,7 @@ I build products end to end. I started as a full-stack engineer, specialised in 
 
 ## Selected work
 - **getbujo (now Cignara)**: Founding Engineer. Built the merchant side: AI copilot, co-browsing, video calling and chat. Cut Zoom join time from 24s to 6s with a global call UI and clear join states. The widget delivered 100K-150K sessions, with 4K-5K opens.
-- **Tap Invest**: Founding Engineer. Frontend architecture, backend payment and investment services, MySQL data model, an atomic-design system, and a server-driven UI ops tool that cut onboarding from 2-3 days to 3-4 hours.
+- **Tap Invest**: Founding Engineer, Full Stack. Frontend architecture, backend payment and investment services, MySQL data model, an atomic-design system, and automated onboarding for asset-leasing companies, from document checks to the public listing page, that cut it from 2-3 days to 3-4 hours.
 - **AIClicks** (Apr-Nov 2026, contract, ended): Founding Engineer, Full Stack. Recommendation engine pulling posts from 6 platforms. Raised AI mention-detection accuracy from 90% to 98%. Stripe PaymentIntents and Invoices.
 - **My own products**: [EnvSecure](https://envsecure.syncoderslabs.com) (secrets governance for AI agents), [Syncoders Labs](https://syncoderslabs.com), AutoMixPilot.
 

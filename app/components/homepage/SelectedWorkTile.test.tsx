@@ -35,7 +35,8 @@ describe("SelectedWorkTile", () => {
 
       expect(caseStudyCardAnchor).toBeDefined();
       expect(caseStudyCardAnchor!.anchorAttributes).not.toContain("target=");
-      expect(caseStudyCardAnchor!.anchorContent).toContain(caseStudyCueLabel);
+      expect(caseStudyCardAnchor!.anchorContent).toBe(pulseboardWork.title);
+      expect(renderToStaticMarkup(<SelectedWorkTile work={pulseboardWork} />)).toContain(caseStudyCueLabel);
     });
 
     it("gives the live app and the source their own new-tab links", () => {
@@ -86,5 +87,18 @@ describe("SelectedWorkTile", () => {
         sourceLinkLabel,
       );
     });
+  });
+
+  it("is a fixed 3:4 card with a one-line tagline and at most three stack chips", () => {
+    const markup = renderToStaticMarkup(<SelectedWorkTile work={pulseboardWork} />);
+    expect(markup).toContain("aspect-[3/4]");
+    expect(markup).toContain(pulseboardWork.tagline);
+    expect((markup.match(/<li /g) ?? []).length).toBeLessThanOrEqual(3);
+  });
+
+  it("keeps every tagline short enough for two lines at 375px", () => {
+    for (const work of allSelectedWork) {
+      expect(work.tagline.length, work.slug).toBeLessThanOrEqual(60);
+    }
   });
 });

@@ -66,17 +66,6 @@ export type PulseboardDesignSystemRuleRecord = PulseboardFactCardRecord &
     ruleKey: PulseboardDesignSystemRuleKey;
   }>;
 
-export type PulseboardStatRecord = Readonly<{
-  statLabel: string;
-  statValue: string;
-}>;
-
-export type PulseboardBundleBudgetRecord = Readonly<{
-  chunkLabel: string;
-  usedKilobytes: number;
-  budgetKilobytes: number;
-}>;
-
 export type PulseboardLimitRecord = Readonly<{
   limitText: string;
   /** Rendered after `limitText` as a parenthesised link. */
@@ -132,15 +121,10 @@ export type PulseboardCaseStudyConfiguration = Readonly<{
         benchmarkLinkLabel: string;
         benchmarkHref: string;
         summaryLine: string;
-        stats: readonly PulseboardStatRecord[];
-        frameUsageLabel: string;
-        p95FrameMilliseconds: number;
-        frameBudgetMilliseconds: number;
       }>;
       bundleBudgets: Readonly<{
         title: string;
         summaryLine: string;
-        budgets: readonly PulseboardBundleBudgetRecord[];
         shellNote: string;
       }>;
       renderingPracticesAriaLabel: string;
@@ -188,20 +172,11 @@ const pulseboardFailureDemoUrl = `${pulseboardLiveAppUrl}/?apiScenario=degraded`
 const pulseboardTableBenchmarkUrl = `${pulseboardLiveAppUrl}/benchmark/table`;
 const pulseboardDecisionRecordBaseUrl = `${pulseboardSourceRepositoryUrl}/blob/main/docs/adr`;
 
-const virtualizedTableBenchmark = {
-  totalRowCountLabel: "52,555",
-  fewestRenderedRows: 23,
-  mostRenderedRows: 34,
-  mountMilliseconds: 64.7,
-  p95FrameMilliseconds: 10.2,
-  frameBudgetMilliseconds: 16.7,
-} as const;
-
 const pulseboardTestTiers = [
   { title: "Unit", description: "Vitest, pure logic" },
   { title: "Behavioural", description: "jsdom" },
   { title: "Behavioural", description: "Real browser via Storybook" },
-  { title: "Smoke", description: "Cypress, 9 e2e specs" },
+  { title: "Smoke", description: "Cypress e2e specs" },
 ] as const satisfies readonly PulseboardFactCardRecord[];
 
 const pulseboardCiJobNames = ["quality", "storybook-tests", "build", "e2e"] as const;
@@ -310,24 +285,24 @@ export const pulseboardCaseStudyConfiguration = {
     listAriaLabel: "Pulseboard at a glance",
     metrics: [
       {
-        metricLabel: "Rows, virtualized",
-        valueLabel: virtualizedTableBenchmark.totalRowCountLabel,
-        contextLine: `${virtualizedTableBenchmark.fewestRenderedRows} to ${virtualizedTableBenchmark.mostRenderedRows} in the DOM`,
+        metricLabel: "Table",
+        valueLabel: "Virtualized",
+        contextLine: "Only visible rows in the DOM",
       },
       {
-        metricLabel: "p95 frame",
-        valueLabel: `${virtualizedTableBenchmark.p95FrameMilliseconds} ms`,
-        contextLine: `Budget ${virtualizedTableBenchmark.frameBudgetMilliseconds} ms`,
+        metricLabel: "Frames",
+        valueLabel: "In budget",
+        contextLine: "Measured by Cypress",
       },
       {
         metricLabel: "Tests",
-        valueLabel: "264",
-        contextLine: `${pulseboardTestTiers.length} tiers`,
+        valueLabel: `${pulseboardTestTiers.length} tiers`,
+        contextLine: "Unit, behavioural and smoke",
       },
       {
-        metricLabel: "CI run",
-        valueLabel: "< 5 min",
-        contextLine: `${pulseboardCiJobNames.length} jobs`,
+        metricLabel: "CI",
+        valueLabel: `${pulseboardCiJobNames.length} jobs`,
+        contextLine: "Quality, Storybook tests, build and e2e",
       },
     ],
   },
@@ -412,7 +387,7 @@ export const pulseboardCaseStudyConfiguration = {
       },
       {
         ruleKey: "prunedComponentSet",
-        title: "About 20 components",
+        title: "A small component set",
         description: "Pruned on purpose: no Toast, no Breadcrumbs.",
       },
       {
@@ -429,27 +404,11 @@ export const pulseboardCaseStudyConfiguration = {
       title: "Virtualized table",
       benchmarkLinkLabel: "Run it",
       benchmarkHref: pulseboardTableBenchmarkUrl,
-      summaryLine: `${virtualizedTableBenchmark.totalRowCountLabel} rows, 110 days × 12 locations. Measured by Cypress on a production build.`,
-      stats: [
-        { statLabel: "Mount", statValue: `${virtualizedTableBenchmark.mountMilliseconds} ms` },
-        {
-          statLabel: "Rows in the DOM",
-          statValue: `${virtualizedTableBenchmark.fewestRenderedRows} to ${virtualizedTableBenchmark.mostRenderedRows}`,
-        },
-      ],
-      frameUsageLabel: `p95 frame ${virtualizedTableBenchmark.p95FrameMilliseconds} ms of a ${virtualizedTableBenchmark.frameBudgetMilliseconds} ms budget`,
-      p95FrameMilliseconds: virtualizedTableBenchmark.p95FrameMilliseconds,
-      frameBudgetMilliseconds: virtualizedTableBenchmark.frameBudgetMilliseconds,
+      summaryLine: "Virtualized table benchmark, measured by Cypress on a production build.",
     },
     bundleBudgets: {
       title: "Bundle budgets, enforced in CI",
-      summaryLine: "Set with size-limit. Used of budget:",
-      budgets: [
-        { chunkLabel: "App entry", usedKilobytes: 229, budgetKilobytes: 360 },
-        { chunkLabel: "Overview, visx", usedKilobytes: 19, budgetKilobytes: 30 },
-        { chunkLabel: "Calls, TanStack", usedKilobytes: 2, budgetKilobytes: 10 },
-        { chunkLabel: "CSS", usedKilobytes: 8, budgetKilobytes: 12 },
-      ],
+      summaryLine: "Set with size-limit and checked in CI for the app entry, the Overview (visx) and Calls (TanStack) chunks, and CSS.",
       shellNote: "Date picker and Radix stay in the shell on purpose.",
     },
     renderingPracticesAriaLabel: "Rendering practices",
@@ -482,7 +441,7 @@ export const pulseboardCaseStudyConfiguration = {
     ciJobsLabel: "CI jobs",
     ciJobNames: pulseboardCiJobNames,
     coverageGatesLabel: "Coverage gates on packages/ui",
-    coverageGateLabels: ["Lines ≥ 90%", "Branches ≥ 85%"],
+    coverageGateLabels: ["Line coverage", "Branch coverage"],
   },
   limits: {
     sectionTitle: "Honest limits",
@@ -491,7 +450,7 @@ export const pulseboardCaseStudyConfiguration = {
       { limitText: "Data is fictional and seeded" },
       { limitText: "No auth and no server" },
       {
-        limitText: "MSW ships in the production bundle, about 40 KB",
+        limitText: "MSW ships in the production bundle",
         decisionRecord: mswOnlyBackendDecisionRecord,
       },
       {
@@ -502,9 +461,3 @@ export const pulseboardCaseStudyConfiguration = {
   },
 } as const satisfies PulseboardCaseStudyConfiguration;
 
-export function calculateBudgetUsagePercent(usedAmount: number, budgetAmount: number): number {
-  if (budgetAmount <= 0) {
-    throw new RangeError(`Budget must be positive, received ${budgetAmount}`);
-  }
-  return Math.round((usedAmount / budgetAmount) * 100);
-}

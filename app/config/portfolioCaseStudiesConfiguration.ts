@@ -89,7 +89,7 @@ const portfolioCaseStudies = [
       "Cross-functional work from discovery to release",
     ],
     engagementOverviewParagraphs: [
-      "GetBujo needed a senior engineer who could move fast across and build cost effective scalable platform. I joined as Founding Engineer to turn ambiguous problems into shippable product: live collaboration, distribution through the browser, and AI-assisted workflows tied back to clear dashboards.",
+      "GetBujo needed a senior engineer who could move fast across the stack and build a cost-effective, scalable platform. I joined as Founding Engineer to turn ambiguous problems into shippable product: live collaboration, distribution through the browser, and AI-assisted workflows tied back to clear dashboards.",
     ],
     productChapters: [
       {
@@ -259,14 +259,14 @@ const portfolioCaseStudies = [
     summary:
       "Owned features end to end across a Next.js dashboard, a FastAPI backend on Postgres and two Python workers: prompt tagging and bulk workflows, a multi-stage LLM pipeline for prompt discovery, the mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
     highlights: [
-      "About 1,900 commits and about 500 PR merges across five repositories (git log, Apr to Oct 2026)",
+      "Owned features end to end across five repositories",
       "Brotli compression on the cited-sources payload, measured in the real app stack",
-      "Explorer reach queries 153.9 s to 30.9 s across 14 benchmark queries after a citations GIN index, identical results (prod, one run each)",
+      "Explorer reach queries much faster after a citations GIN index, identical results (prod)",
       "Multi-stage LLM pipeline for prompt discovery: topic clustering, planning, generation, similarity filter, LLM judge",
     ],
     engagementOverviewParagraphs: [
       "AIclicks tracks how AI assistants mention and cite brands. I joined as Founding Engineer, Full Stack, on contract, and took customer problems from ticket to merged PR across the whole stack: schema and migrations, FastAPI routes, Postgres rollups and indexes, background workers, and the React dashboard. Work went out as small PRs behind feature flags, merged to a dev branch and released to main.",
-      "Measured from git log across the five repositories I committed to, Apr to Oct 2026: about 1,900 commits, about 500 PR merges, roughly 225,000 lines added and 45,000 removed, excluding lockfiles and generated files. Commit counts include merge commits.",
+      "Work spanned the five repositories I committed to, Apr to Oct 2026.",
     ],
     productChapters: [
       {
@@ -291,10 +291,10 @@ const portfolioCaseStudies = [
         bodyParagraphs: [
           "Built the tag system for prompts and topics: schema, API, tag chips in the prompts table, a dashboard tag filter, and bulk tag assignment at topic level. Added select-all and bulk actions on the prompts table with server-side selection semantics, so a customer can tag, pause or delete a whole filtered set at once.",
           "Made the analytics views stateful: filters, tabs and sort live in the URL, prompt analytics sorting and a dynamic timeline follow one shared date range, and a project picker lets users who belong to several brands switch without losing context. A domain-view rollup aggregates brand pages across tracked domains.",
-          "Bulk topic delete went from one request per topic to one request for the whole set. On a 5,000-prompt fixture with a real Redis: 2,399 ms to 316 ms, 78 cache scans to 3, 26 webhooks to 1, 78 commits to 1.",
+          "Bulk topic delete went from one request per topic to one request for the whole set, with far fewer cache scans, webhooks and commits.",
         ],
         impactBullets: [
-          "Bulk delete of 5,000 prompts: 2,399 ms to 316 ms and 78 commits to 1 (fixture, real Redis).",
+          "Bulk delete now runs as one request instead of one per topic (fixture, real Redis).",
           "Filters persist in the URL, so a view can be shared as a link.",
           "Prompt analytics sort and timeline follow one shared range state.",
         ],
@@ -371,9 +371,9 @@ const portfolioCaseStudies = [
         ],
         impactBullets: [
           "Cited-sources payload compressed with brotli q4, at lower CPU cost than gzip.",
-          "Reach queries after the citations GIN index: 106.8 s to 1.9 s on the heaviest site class, 153.9 s to 30.9 s over 14 queries with identical results (prod, one run each). Index 1.92 GiB on a 55 GiB table.",
+          "Reach queries much faster after the citations GIN index, with identical results (prod).",
           "Faster brand tab query with a daily-brands rollup (prod mirror).",
-          "Nightly worker: 90 of 90 days rolled, 0 errors, 163 to 190 s per day (prod, Oct 2026).",
+          "Nightly worker rolled every planned day without errors (prod, Oct 2026).",
         ],
         skills: [
           "Postgres rollups",
@@ -408,9 +408,9 @@ const portfolioCaseStudies = [
           "In the recommendations service I built the Get Mentioned path: citations enrichment with an on-demand variant, a ScrapingBee rate limiter, title-group jobs, scheduled mention fetches, Engage Online v2, the first phase of outreach feedback, and a reco-ops dashboard so operators can see job state without reading logs.",
         ],
         impactBullets: [
-          "Matcher review removed 1,814 wrong detections and kept all 5,674 correct ones (16,502 competitor rows against 38,804 page titles).",
-          "Subdomain credit fix: 13.4% of tracked brands had uncredited subdomain mentions before it (prod read, checksum verified).",
-          "Stage-5 brand-name fix recovered 15.8% more mentions for one customer, 174 snapshots rewritten and verified three ways.",
+          "Matcher review removed wrong detections and kept the correct ones.",
+          "Subdomain credit fix: brands with uncredited subdomain mentions now get credit (prod read, checksum verified).",
+          "Stage-5 brand-name fix recovered missed mentions for one customer, with rewritten snapshots verified three ways.",
           "Operators see job state in a dashboard instead of logs.",
         ],
         skills: [
