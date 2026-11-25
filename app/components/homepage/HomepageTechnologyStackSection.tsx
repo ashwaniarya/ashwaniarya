@@ -1,3 +1,4 @@
+import { MicroBoltIcon } from "@/app/components/icons/MicroIcons";
 import { TechnologyCategoryCard } from "@/app/components/homepage/TechnologyCategoryCard";
 import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
@@ -8,6 +9,7 @@ import {
   homepageProjectsSectionPolicy,
   homepageTechnologyStackSectionPolicy,
   homepageScrollHighlightPolicy,
+  homepageSectionHeadingIconPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
@@ -36,7 +38,8 @@ export function HomepageTechnologyStackSection() {
             variant="horizontalTitle"
             className={homepageScrollHighlightPolicy.accentBarClassName}
           />
-          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-technology-stack-heading">
+          <Heading level="h2" className={`${homepageScrollHighlightPolicy.headingClassName} ${homepageSectionHeadingIconPolicy.headingRowClassName}`} id="homepage-technology-stack-heading">
+            <MicroBoltIcon trigger="view" className={homepageSectionHeadingIconPolicy.iconClassName} />
             {homepageTechnologyStackSectionCopyConfiguration.sectionHeading}
           </Heading>
           {homepageTechnologyStackSectionCopyConfiguration.sectionIntroLines.map(

@@ -11,7 +11,6 @@ import {
   type PointerEvent,
   type ReactNode,
 } from "react";
-import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
 
 import {
   chunkOutcomesCarouselPages,
@@ -19,6 +18,7 @@ import {
   getOutcomesCarouselPageSize,
   type OutcomesCarouselLayoutName,
 } from "@/app/components/homepage/outcomesCarouselPaging";
+import { MicroChevronLeftIcon, MicroChevronRightIcon } from "@/app/components/icons/MicroIcons";
 import { homepageProductionProofSectionPolicy } from "@/app/constants/policy";
 
 export type OutcomesCarouselProps = Readonly<{
@@ -284,7 +284,7 @@ function OutcomesCarouselTrack({
               onClick={() => { if (activePage > 0) goToPage(activePage - 1); }}
               data-test="outcomes-carousel-prev"
             >
-              <TbChevronLeft aria-hidden className="h-5 w-5" />
+              <MicroChevronLeftIcon className="h-5 w-5" />
             </button>
             <div className={policy.carouselDotsRowClassName}>
               {pages.map((_, page) => (
@@ -311,7 +311,7 @@ function OutcomesCarouselTrack({
               onClick={() => { if (activePage < pageCount - 1) goToPage(activePage + 1); }}
               data-test="outcomes-carousel-next"
             >
-              <TbChevronRight aria-hidden className="h-5 w-5" />
+              <MicroChevronRightIcon className="h-5 w-5" />
             </button>
           </div>
           <p

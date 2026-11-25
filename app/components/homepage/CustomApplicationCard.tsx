@@ -1,5 +1,6 @@
 "use client";
 
+import { MicroSparkleIcon } from "@/app/components/icons/MicroIcons";
 import { Card } from "@/app/components/content/Card";
 import { useOpenServiceInquiry } from "@/app/components/homepage/ServiceInquiryDialog";
 import { homepageServicesSectionCopyConfiguration } from "@/app/config/homepageServicesConfiguration";
@@ -23,6 +24,7 @@ export function CustomApplicationCard() {
           data-test="custom-application-open"
         >
           {copy.buttonLabel}
+          <MicroSparkleIcon className="h-4 w-4" />
         </button>
       </div>
     </Card>

@@ -1,3 +1,4 @@
+import { MicroChartIcon } from "@/app/components/icons/MicroIcons";
 import { OutcomesCarousel } from "@/app/components/homepage/OutcomesCarousel";
 import { ProductionProofMetricTile } from "@/app/components/homepage/ProductionProofMetricTile";
 import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
@@ -11,6 +12,7 @@ import {
   homepageProductionProofSectionPolicy,
   homepageProjectsSectionPolicy,
   homepageScrollHighlightPolicy,
+  homepageSectionHeadingIconPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
@@ -40,7 +42,8 @@ export function HomepageProductionProofSection() {
             variant="horizontalTitle"
             className={homepageScrollHighlightPolicy.accentBarClassName}
           />
-          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-outcomes-achieved-heading">
+          <Heading level="h2" className={`${homepageScrollHighlightPolicy.headingClassName} ${homepageSectionHeadingIconPolicy.headingRowClassName}`} id="homepage-outcomes-achieved-heading">
+            <MicroChartIcon trigger="view" className={homepageSectionHeadingIconPolicy.iconClassName} />
             {homepageProductionProofSectionCopyConfiguration.sectionHeading}
           </Heading>
           {homepageProductionProofSectionCopyConfiguration.sectionIntroLines.map((line, index) => (

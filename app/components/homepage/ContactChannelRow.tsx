@@ -24,6 +24,7 @@ export function ContactChannelRow({ channel, staggerIndex }: ContactChannelRowPr
 
   return (
     <li
+      data-micro-trigger
       className={`${homepageContactSectionPolicy.channelRowClassName} ${homepageScrollHighlightPolicy.staggerItemClassName}`}
       style={{ transitionDelay: `${staggerIndex * homepageScrollHighlightPolicy.staggerStepMilliseconds}ms` }}
     >

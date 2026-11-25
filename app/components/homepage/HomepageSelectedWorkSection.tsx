@@ -1,3 +1,4 @@
+import { MicroCodeIcon } from "@/app/components/icons/MicroIcons";
 import { HorizontalSnapScroller } from "@/app/components/homepage/HorizontalSnapScroller";
 import { SelectedWorkTile } from "@/app/components/homepage/SelectedWorkTile";
 import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
@@ -13,6 +14,7 @@ import {
   homepageProjectsSectionPolicy,
   homepageSelectedWorkSectionPolicy,
   homepageScrollHighlightPolicy,
+  homepageSectionHeadingIconPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
@@ -48,7 +50,8 @@ export function HomepageSelectedWorkSection() {
             variant="horizontalTitle"
             className={homepageScrollHighlightPolicy.accentBarClassName}
           />
-          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-selected-work-heading">
+          <Heading level="h2" className={`${homepageScrollHighlightPolicy.headingClassName} ${homepageSectionHeadingIconPolicy.headingRowClassName}`} id="homepage-selected-work-heading">
+            <MicroCodeIcon trigger="view" className={homepageSectionHeadingIconPolicy.iconClassName} />
             {homepageSelectedWorkSectionCopyConfiguration.sectionHeading}
           </Heading>
           {homepageSelectedWorkSectionCopyConfiguration.sectionIntroLines.map((line, index) => (

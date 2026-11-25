@@ -1,3 +1,4 @@
+import { MicroGearIcon } from "@/app/components/icons/MicroIcons";
 import { CustomApplicationCard } from "@/app/components/homepage/CustomApplicationCard";
 import { OutcomesCarousel } from "@/app/components/homepage/OutcomesCarousel";
 import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
@@ -14,6 +15,7 @@ import {
   homepageProductionProofSectionPolicy,
   homepageProjectsSectionPolicy,
   homepageScrollHighlightPolicy,
+  homepageSectionHeadingIconPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
@@ -38,7 +40,8 @@ export function HomepageServicesSection() {
       >
         <header className={[homepageProjectsSectionPolicy.headerStackClassName, homepageProjectsSectionPolicy.headingMaxWidthClassName].join(" ")}>
           <EditorialAccentMark variant="horizontalTitle" className={homepageScrollHighlightPolicy.accentBarClassName} />
-          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-services-heading">
+          <Heading level="h2" className={`${homepageScrollHighlightPolicy.headingClassName} ${homepageSectionHeadingIconPolicy.headingRowClassName}`} id="homepage-services-heading">
+            <MicroGearIcon trigger="view" className={homepageSectionHeadingIconPolicy.iconClassName} />
             {copy.sectionHeading}
           </Heading>
           {copy.sectionIntroLines.map((line, index) => (
