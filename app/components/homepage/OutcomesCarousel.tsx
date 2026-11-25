@@ -23,6 +23,8 @@ import { homepageProductionProofSectionPolicy } from "@/app/constants/policy";
 
 export type OutcomesCarouselProps = Readonly<{
   label: string;
+  /** Plural noun for the arrow labels, e.g. "Next page of outcomes". */
+  pageNoun?: string;
   /** One node per card, rendered inside an `<li>`. */
   children: ReactNode;
   itemClassName?: string;
@@ -70,6 +72,7 @@ type TrackProps = Readonly<{
   layoutName: OutcomesCarouselLayoutName;
   visibilityClassName: string;
   label: string;
+  pageNoun: string;
   items: readonly ReactNode[];
   itemClassName: string;
   staggerStepMilliseconds: number;
@@ -84,6 +87,7 @@ function OutcomesCarouselTrack({
   layoutName,
   visibilityClassName,
   label,
+  pageNoun,
   items,
   itemClassName,
   staggerStepMilliseconds,
@@ -272,7 +276,7 @@ function OutcomesCarouselTrack({
           >
             <button
               type="button"
-              aria-label="Previous page of outcomes"
+              aria-label={`Previous page of ${pageNoun}`}
               aria-controls={regionId}
               aria-disabled={activePage <= 0}
               className={policy.carouselArrowButtonClassName}
@@ -299,7 +303,7 @@ function OutcomesCarouselTrack({
             </div>
             <button
               type="button"
-              aria-label="Next page of outcomes"
+              aria-label={`Next page of ${pageNoun}`}
               aria-controls={regionId}
               aria-disabled={activePage >= pageCount - 1}
               className={policy.carouselArrowButtonClassName}
@@ -329,13 +333,14 @@ function OutcomesCarouselTrack({
  */
 export function OutcomesCarousel({
   label,
+  pageNoun = "outcomes",
   children,
   itemClassName = "",
   staggerStepMilliseconds = 0,
 }: OutcomesCarouselProps) {
   const items = Children.toArray(children);
   const policy = homepageProductionProofSectionPolicy;
-  const shared = { label, items, itemClassName, staggerStepMilliseconds };
+  const shared = { label, pageNoun, items, itemClassName, staggerStepMilliseconds };
   return (
     <>
       <OutcomesCarouselTrack

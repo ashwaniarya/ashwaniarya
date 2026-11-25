@@ -4,6 +4,7 @@ import { HomepageExperienceSection } from "@/app/components/homepage/HomepageExp
 import { HomepageContactSection } from "@/app/components/homepage/HomepageContactSection";
 import { HomepageProductionProofSection } from "@/app/components/homepage/HomepageProductionProofSection";
 import { HomepageProjectsSection } from "@/app/components/homepage/HomepageProjectsSection";
+import { HomepageServicesSection } from "@/app/components/homepage/HomepageServicesSection";
 import { HomepageSelectedWorkSection } from "@/app/components/homepage/HomepageSelectedWorkSection";
 import { HomepageTechnologyStackSection } from "@/app/components/homepage/HomepageTechnologyStackSection";
 import { PageLayout } from "@/app/components/layout/PageLayout";
@@ -18,6 +19,7 @@ export default function Home() {
       <HomepageExperienceSection />
       <HomepageProjectsSection />
       <HomepageTechnologyStackSection />
+      <HomepageServicesSection />
       <HomepageContactSection />
     </PageLayout>
   );
