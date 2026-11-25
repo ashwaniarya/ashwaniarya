@@ -3,7 +3,7 @@ import {
   serviceInquiryHoneypotFieldName,
   validateServiceInquiry,
 } from "@/app/config/serviceInquiry";
-import type { ServiceInquiryDeliverer } from "@/app/lib/serviceInquiryDelivery";
+import type { ServiceInquiryAutoReplySender, ServiceInquiryDeliverer } from "@/app/lib/serviceInquiryDelivery";
 import { getClientKey } from "@/app/lib/serviceInquiryRateLimit";
 
 const maxBodyBytes = 10_000;
@@ -11,6 +11,8 @@ const maxBodyBytes = 10_000;
 export type ServiceInquiryHandlerDependencies = Readonly<{
   isAllowed: (clientKey: string) => boolean;
   deliver: ServiceInquiryDeliverer;
+  /** Optional "Thanks for your inquiry" email to the sender, tried only after the owner email is delivered. */
+  sendAutoReply?: ServiceInquiryAutoReplySender;
 }>;
 
 const json = (status: number, body: Record<string, unknown>) => Response.json(body, { status });
@@ -43,7 +45,11 @@ export async function handleServiceInquiry(request: Request, dependencies: Servi
   if (Object.keys(errors).length > 0) return json(400, { ok: false, error: "invalid", errors });
 
   const result = await dependencies.deliver(inquiry);
-  if (result.delivered) return json(200, { ok: true });
+  if (result.delivered) {
+    // Best effort: an auto-reply problem never changes the answer (or reveals whether it is enabled).
+    await dependencies.sendAutoReply?.(inquiry).catch(() => undefined);
+    return json(200, { ok: true });
+  }
   return json(503, {
     ok: false,
     error: result.reason,

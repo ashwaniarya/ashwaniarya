@@ -1,4 +1,7 @@
-import { createResendServiceInquiryDeliverer } from "@/app/lib/serviceInquiryDelivery";
+import {
+  createResendServiceInquiryAutoReplySender,
+  createResendServiceInquiryDeliverer,
+} from "@/app/lib/serviceInquiryDelivery";
 import { handleServiceInquiry } from "@/app/lib/serviceInquiryHandler";
 import { createServiceInquiryRateLimiter } from "@/app/lib/serviceInquiryRateLimit";
 
@@ -8,5 +11,9 @@ export const runtime = "nodejs";
 const isAllowed = createServiceInquiryRateLimiter();
 
 export async function POST(request: Request) {
-  return handleServiceInquiry(request, { isAllowed, deliver: createResendServiceInquiryDeliverer() });
+  return handleServiceInquiry(request, {
+    isAllowed,
+    deliver: createResendServiceInquiryDeliverer(),
+    sendAutoReply: createResendServiceInquiryAutoReplySender(),
+  });
 }

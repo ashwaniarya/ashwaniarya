@@ -1,4 +1,4 @@
-import type { ServiceInquiryInput } from "@/app/config/serviceInquiry";
+import { serviceInquiryLimits, type ServiceInquiryInput } from "@/app/config/serviceInquiry";
 
 /**
  * Delivers an inquiry by email through Resend's HTTP API (free tier, no SDK dependency).
@@ -59,5 +59,76 @@ export function createResendServiceInquiryDeliverer(
     } catch {
       return { delivered: false, reason: "provider_error" };
     }
+  };
+}
+
+/** The service every inquiry from the Custom application form is about. */
+export const serviceInquiryServiceTitle = "a custom application";
+export const serviceInquiryAutoReplySubject = "Thanks for your inquiry";
+const portfolioUrl = "https://ashwaniarya.vercel.app";
+
+export type ServiceInquiryAutoReplyResult = { sent: true } | { sent: false; reason: "not_enabled" | "provider_error" };
+export type ServiceInquiryAutoReplySender = (inquiry: ServiceInquiryInput) => Promise<ServiceInquiryAutoReplyResult>;
+
+const escapeHtml = (value: string) =>
+  value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+
+/** Strips CR, LF and other control characters so nothing can add a header line. */
+const singleLine = (value: string) => value.replace(/[\u0000-\u001f\u007f]/g, " ").trim();
+
+/**
+ * Auto-reply is on only with a real sending domain: SERVICE_INQUIRY_FROM must be set and must not
+ * be a resend.dev address (Resend's test sender only delivers to the account owner).
+ */
+export function isServiceInquiryAutoReplyEnabled(environment: Record<string, string | undefined>): boolean {
+  const from = environment.SERVICE_INQUIRY_FROM?.trim();
+  if (!environment.RESEND_API_KEY || !from) return false;
+  const address = (from.match(/<([^>]+)>/)?.[1] ?? from).trim().toLowerCase();
+  return /^[^\s@]+@[^\s@]+$/.test(address) && !/@(?:[^@]*\.)?resend\.dev$/.test(address);
+}
+
+export function buildServiceInquiryAutoReply(inquiry: ServiceInquiryInput, messageMaxLength = serviceInquiryLimits.needMaxLength) {
+  const name = singleLine(inquiry.name);
+  const message = inquiry.need.slice(0, messageMaxLength);
+  const thanks = `Thanks for reaching out about ${serviceInquiryServiceTitle}. I will reply within 1 to 2 business days.`;
+  const text = [`Hi ${name},`, "", thanks, "", "Your message:", message, "", "Ashwani Arya", portfolioUrl].join("\n");
+  const html = [
+    `<p>Hi ${escapeHtml(name)},</p>`,
+    `<p>${escapeHtml(thanks)}</p>`,
+    `<p>Your message:</p>`,
+    `<blockquote style="white-space:pre-wrap">${escapeHtml(message)}</blockquote>`,
+    `<p>Ashwani Arya<br><a href="${portfolioUrl}">${portfolioUrl}</a></p>`,
+  ].join("\n");
+  return { subject: serviceInquiryAutoReplySubject, text, html };
+}
+
+export function createResendServiceInquiryAutoReplySender(
+  environment: Record<string, string | undefined> = process.env,
+  fetchImplementation: typeof fetch = fetch,
+  warn: (message: string) => void = (message) => console.warn(message),
+): ServiceInquiryAutoReplySender {
+  return async (inquiry) => {
+    if (!isServiceInquiryAutoReplyEnabled(environment)) return { sent: false, reason: "not_enabled" };
+    const { subject, text, html } = buildServiceInquiryAutoReply(inquiry);
+    try {
+      const response = await fetchImplementation(serviceInquiryDeliveryDefaults.resendEndpoint, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${environment.RESEND_API_KEY}`, "Content-Type": "application/json" },
+        signal: AbortSignal.timeout(10_000),
+        body: JSON.stringify({
+          from: singleLine(environment.SERVICE_INQUIRY_FROM ?? ""),
+          to: [singleLine(inquiry.email)],
+          reply_to: environment.SERVICE_INQUIRY_TO || serviceInquiryDeliveryDefaults.toEmail,
+          subject,
+          text,
+          html,
+        }),
+      });
+      if (response.ok) return { sent: true };
+      warn(`service-inquiry: auto-reply not sent (provider status ${response.status})`);
+    } catch (error) {
+      warn(`service-inquiry: auto-reply not sent (${error instanceof Error ? error.name : "error"})`);
+    }
+    return { sent: false, reason: "provider_error" };
   };
 }
