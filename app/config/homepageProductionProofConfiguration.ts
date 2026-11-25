@@ -67,7 +67,7 @@ export const homepageProductionProofMetricsConfiguration = [
     metricKey: "tapInvestOnboardingTime",
     valueLabel: "2-3 days → 3-4 hrs",
     metricLabel: "Onboarding time",
-    contextLine: "Tap Invest, automated onboarding for new businesses, from document checks to the listing on the app",
+    contextLine: "Tap Invest, automated onboarding for new asset-leasing businesses, from document checks to the listing on the app",
     sourceReference: experienceTimelineSourceReference,
   },
   {

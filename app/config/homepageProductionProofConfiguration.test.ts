@@ -44,7 +44,7 @@ describe("homepageProductionProofConfiguration", () => {
       metricLabel: "Onboarding time",
     });
     expect(tapInvest?.contextLine).toBe(
-      "Tap Invest, automated onboarding for new businesses, from document checks to the listing on the app",
+      "Tap Invest, automated onboarding for new asset-leasing businesses, from document checks to the listing on the app",
     );
   });
 
