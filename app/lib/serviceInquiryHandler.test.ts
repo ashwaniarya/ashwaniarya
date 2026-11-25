@@ -81,7 +81,7 @@ describe("createServiceInquiryRateLimiter", () => {
 });
 
 describe("createResendServiceInquiryDeliverer", () => {
-  it("posts to Resend with the key from the environment, to Ashwani's address, replying to the sender", async () => {
+  it("posts to Resend with the key from the environment, to syncoders@gmail.com by default, replying to the sender", async () => {
     const fetchImplementation = vi.fn(async () => new Response("{}", { status: 200 }));
     const deliver = createResendServiceInquiryDeliverer({ RESEND_API_KEY: "test-key" }, fetchImplementation as unknown as typeof fetch);
     expect(await deliver(valid)).toEqual({ delivered: true });
@@ -89,7 +89,7 @@ describe("createResendServiceInquiryDeliverer", () => {
     expect(url).toBe("https://api.resend.com/emails");
     expect((init.headers as Record<string, string>).Authorization).toBe("Bearer test-key");
     const body = JSON.parse(init.body as string);
-    expect(body.to).toEqual(["ashwaniparker@gmail.com"]);
+    expect(body.to).toEqual(["syncoders@gmail.com"]);
     expect(body.reply_to).toBe("test@example.com");
     expect(body.text).toContain("Budget: $2,000 to $5,000");
   });

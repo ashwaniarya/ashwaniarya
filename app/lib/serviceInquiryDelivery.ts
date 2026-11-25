@@ -8,7 +8,8 @@ import type { ServiceInquiryInput } from "@/app/config/serviceInquiry";
  * Server-only variables: RESEND_API_KEY, SERVICE_INQUIRY_TO, SERVICE_INQUIRY_FROM (see .env.example).
  */
 export const serviceInquiryDeliveryDefaults = {
-  toEmail: "ashwaniparker@gmail.com",
+  // Ashwani approved syncoders@gmail.com as the Resend account and recipient (25 Nov 2026, 3:47 PM IST).
+  toEmail: "syncoders@gmail.com",
   fromEmail: "Portfolio inquiries <onboarding@resend.dev>",
   resendEndpoint: "https://api.resend.com/emails",
 } as const;
