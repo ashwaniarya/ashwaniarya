@@ -20,7 +20,7 @@ export const homepageWorkHistoryConfiguration = [
   {
     roleKey: "aiclicks",
     company: "AIClicks",
-    title: "Product engineer",
+    title: "Founding Engineer, Full Stack",
     dateRange: "Apr 2026 to Nov 2026",
     engagementLabel: "Remote contract, ended",
     detailLines: [
@@ -31,7 +31,7 @@ export const homepageWorkHistoryConfiguration = [
   {
     roleKey: "getbujo",
     company: "getbujo",
-    title: "Full-stack engineer",
+    title: "Founding Engineer",
     dateRange: "Dec 2024 to Feb 2026",
     detailLines: [
       "Built the merchant side: AI copilot, co-browsing, video calling and chat. Moved calling into a global UI with clear join states and cut Zoom join time from 24s to 6s, which reduced call churn.",
@@ -56,7 +56,7 @@ export const homepageWorkHistoryConfiguration = [
   {
     roleKey: "tapinvest",
     company: "Tap Invest",
-    title: "Founding engineer, full stack",
+    title: "Founding Engineer, Full Stack",
     dateRange: "Dec 2021 to Aug 2023",
     detailLines: [
       "Automated onboarding for asset-leasing companies, from document checks to the public listing page, cutting it from 2–3 days to 3–4 hours. Also built an atomic-design system.",

@@ -18,6 +18,11 @@ describe("homepageWorkHistoryConfiguration", () => {
     ]);
   });
 
+  it("uses the confirmed titles for AIClicks and getbujo", () => {
+    expect(homepageWorkHistoryConfiguration[0].title).toBe("Founding Engineer, Full Stack");
+    expect(homepageWorkHistoryConfiguration[1].title).toBe("Founding Engineer");
+  });
+
   it("shows AIClicks as an ended contract, never as current", () => {
     const aiclicks = homepageWorkHistoryConfiguration[0];
     expect(aiclicks.dateRange).toBe("Apr 2026 to Nov 2026");

@@ -75,8 +75,8 @@ const portfolioCaseStudies = [
     title: "GetBujo: Founding Engineer, Three Product Surfaces",
     metaTitle: "GetBujo: Founding Engineer",
     metaDescription:
-      "How I shipped a live video dashboard, a Chrome extension, and an AI copilot experience as founding engineer at GetBujo: end-to-end product engineering.",
-    role: "Founding engineer",
+      "How I shipped a live video dashboard, a Chrome extension, and an AI copilot experience as Founding Engineer at GetBujo: end-to-end product engineering.",
+    role: "Founding Engineer",
     company: "GetBujo",
     companySiteUrl: "https://getbujo.com",
     location: "Bangalore",
@@ -89,7 +89,7 @@ const portfolioCaseStudies = [
       "Cross-functional work from discovery to release",
     ],
     engagementOverviewParagraphs: [
-      "GetBujo needed a senior engineer who could move fast across and build cost effective scalable platform. I joined as a founding engineer to turn ambiguous problems into shippable product: live collaboration, distribution through the browser, and AI-assisted workflows tied back to clear dashboards.",
+      "GetBujo needed a senior engineer who could move fast across and build cost effective scalable platform. I joined as Founding Engineer to turn ambiguous problems into shippable product: live collaboration, distribution through the browser, and AI-assisted workflows tied back to clear dashboards.",
     ],
     productChapters: [
       {
@@ -246,11 +246,11 @@ const portfolioCaseStudies = [
   },
   {
     slug: "aiclicks",
-    title: "AIclicks: Product Engineer, AI Visibility Analytics",
-    metaTitle: "AIclicks: Product Engineer",
+    title: "AIclicks: Founding Engineer, Full Stack, AI Visibility Analytics",
+    metaTitle: "AIclicks: Founding Engineer, Full Stack",
     metaDescription:
-      "Contract product engineering at AIclicks: prompt tagging and bulk workflows, a multi-stage LLM pipeline for prompt discovery, a mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
-    role: "Product engineer (contract)",
+      "Founding Engineer, Full Stack (contract) at AIclicks: prompt tagging and bulk workflows, a multi-stage LLM pipeline for prompt discovery, a mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
+    role: "Founding Engineer, Full Stack (contract)",
     company: "AIclicks",
     companySiteUrl: "https://aiclicks.io",
     credentialsLine: "GEO analytics SaaS",
@@ -265,7 +265,7 @@ const portfolioCaseStudies = [
       "Multi-stage LLM pipeline for prompt discovery: topic clustering, planning, generation, similarity filter, LLM judge",
     ],
     engagementOverviewParagraphs: [
-      "AIclicks tracks how AI assistants mention and cite brands. I joined as a contract product engineer and took customer problems from ticket to merged PR across the whole stack: schema and migrations, FastAPI routes, Postgres rollups and indexes, background workers, and the React dashboard. Work went out as small PRs behind feature flags, merged to a dev branch and released to main.",
+      "AIclicks tracks how AI assistants mention and cite brands. I joined as Founding Engineer, Full Stack, on contract, and took customer problems from ticket to merged PR across the whole stack: schema and migrations, FastAPI routes, Postgres rollups and indexes, background workers, and the React dashboard. Work went out as small PRs behind feature flags, merged to a dev branch and released to main.",
       "Measured from git log across the five repositories I committed to, Apr to Oct 2026: about 1,900 commits, about 500 PR merges, roughly 225,000 lines added and 45,000 removed, excluding lockfiles and generated files. Commit counts include merge commits.",
     ],
     productChapters: [
