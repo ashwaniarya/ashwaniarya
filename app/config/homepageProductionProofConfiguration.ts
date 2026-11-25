@@ -67,14 +67,14 @@ export const homepageProductionProofMetricsConfiguration = [
     metricKey: "tapInvestOnboardingTime",
     valueLabel: "2-3 days → 3-4 hrs",
     metricLabel: "Onboarding time",
-    contextLine: "Tap Invest, automated asset-leasing company onboarding: document checks, listing page draft, publish",
+    contextLine: "Tap Invest, automated onboarding for new businesses, from document checks to the listing on the app",
     sourceReference: experienceTimelineSourceReference,
   },
   {
     metricKey: "tapInvestFrontendFromScratch",
-    valueLabel: "From scratch",
-    metricLabel: "Frontend architecture",
-    contextLine: "Tap Invest, architected the frontend web app from scratch",
+    valueLabel: "Built from scratch",
+    metricLabel: "Frontend web app",
+    contextLine: "Tap Invest, architecture and build",
     sourceReference: "Ashwani, 25 Nov 2026 2:10 PM IST, relayed by Head",
   },
   // Ashwani's Q1 (keep the two ~10x claims?) is pending. If dropped, delete the next two cards and

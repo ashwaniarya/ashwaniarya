@@ -43,7 +43,9 @@ describe("homepageProductionProofConfiguration", () => {
       valueLabel: "2-3 days → 3-4 hrs",
       metricLabel: "Onboarding time",
     });
-    expect(tapInvest?.contextLine).toMatch(/^Tap Invest, automated asset-leasing company onboarding/);
+    expect(tapInvest?.contextLine).toBe(
+      "Tap Invest, automated onboarding for new businesses, from document checks to the listing on the app",
+    );
   });
 
   it("adds the Tap Invest frontend and CV outcome cards with their cited sources", () => {
@@ -51,8 +53,9 @@ describe("homepageProductionProofConfiguration", () => {
       homepageProductionProofMetricsConfiguration.map((metric) => [metric.metricKey, metric]),
     );
     expect(byKey.tapInvestFrontendFromScratch).toMatchObject({
-      valueLabel: "From scratch",
-      contextLine: "Tap Invest, architected the frontend web app from scratch",
+      valueLabel: "Built from scratch",
+      metricLabel: "Frontend web app",
+      contextLine: "Tap Invest, architecture and build",
     });
     expect(byKey.tapInvestRenderEngineOpsWork).toMatchObject({ valueLabel: "~10x", metricLabel: "Less ops work" });
     expect(byKey.tapInvestDesignSystemDelivery).toMatchObject({
