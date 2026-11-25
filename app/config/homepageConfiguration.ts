@@ -10,7 +10,7 @@ export const homepageHeroCopyConfiguration = {
 export const homepageAboutMeCopyConfiguration = {
   sectionHeading: "About me",
   paragraphs: [
-    "Product engineer in Bengaluru, 7+ years. I build products end to end: UI, backend, AI and payments, and I like automating the slow parts of a business.",
+    "Product engineer in Bengaluru, 7+ years. I build products end to end: UI, backend, AI and payments, and I like automating the slow parts of a business. I take ambiguous business problems, ship the first version fast, and iterate to maximise outcomes.",
     "Own builds: AutoMixPilot (a query in, a finished AI music video out) and a Trello MCP server for AI agents. I've also worked with embeddings, semantic clustering and topic extraction.",
     "Stack: React, Next.js, TypeScript, Node.js (NestJS, Express), Stripe. Open to remote or Bengaluru, full-time or contract.",
   ],
