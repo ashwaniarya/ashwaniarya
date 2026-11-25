@@ -1,71 +1,55 @@
-import { ExperienceFocusAreaTile } from "@/app/components/homepage/ExperienceFocusAreaTile";
-import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
-import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
-import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
+import { HomepageSectionShell } from "@/app/components/homepage/HomepageSectionShell";
 import {
-  homepageExperienceFocusAreasConfiguration,
-  homepageExperienceSectionCopyConfiguration,
-} from "@/app/config/homepageExperienceConfiguration";
-import {
-  homepageExperienceSectionPolicy,
-  homepageProjectsSectionPolicy,
-  homepageScrollHighlightPolicy,
-  meshEditorialSurfacePolicy,
-} from "@/app/constants/policy";
+  homepageWorkHistoryConfiguration,
+  homepageWorkHistorySectionCopyConfiguration,
+} from "@/app/config/homepageWorkHistoryConfiguration";
+import { homepageExperienceSectionPolicy } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
 
 export function HomepageExperienceSection() {
   return (
-    <ScrollHighlightSection
-      aria-labelledby="homepage-experience-heading"
+    <HomepageSectionShell
+      headingId="homepage-experience-heading"
+      heading={homepageWorkHistorySectionCopyConfiguration.sectionHeading}
+      introLines={homepageWorkHistorySectionCopyConfiguration.sectionIntroLines}
       className={homepageExperienceSectionPolicy.sectionClassName}
       data-test="homepage-experience-section"
     >
-      <MeshGlowBackdrop
-        className={[
-          meshEditorialSurfacePolicy.shellBaseClassName,
-          meshEditorialSurfacePolicy.homepageMeshShellShadowClassName,
-          meshEditorialSurfacePolicy.homepageProjectsPaddingClassName,
-        ].join(" ")}
-      >
-        <header
-          className={[
-            homepageProjectsSectionPolicy.headerStackClassName,
-            homepageProjectsSectionPolicy.headingMaxWidthClassName,
-          ].join(" ")}
-        >
-          <EditorialAccentMark
-            variant="horizontalTitle"
-            className={homepageScrollHighlightPolicy.accentBarClassName}
-          />
-          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-experience-heading">
-            {homepageExperienceSectionCopyConfiguration.sectionHeading}
-          </Heading>
-          {homepageExperienceSectionCopyConfiguration.sectionIntroLines.map((line, index) => (
-            <BodyText
-              key={`experience-intro-${index}`}
-              className={[
-                homepageProjectsSectionPolicy.introMaxWidthClassName,
-                "text-textSecondary",
-              ].join(" ")}
-            >
-              {line}
+      <ol className={homepageExperienceSectionPolicy.timelineListClassName}>
+        {homepageWorkHistoryConfiguration.map((role) => (
+          <li key={role.roleKey} className={homepageExperienceSectionPolicy.timelineItemClassName}>
+            <span aria-hidden="true" className={homepageExperienceSectionPolicy.timelineDotClassName} />
+            <div className={homepageExperienceSectionPolicy.timelineHeaderRowClassName}>
+              <Heading level="h3">
+                {role.company}
+                {"engagementLabel" in role ? (
+                  <span className={homepageExperienceSectionPolicy.timelineEngagementTagClassName}>
+                    {role.engagementLabel}
+                  </span>
+                ) : null}
+              </Heading>
+              <span className={homepageExperienceSectionPolicy.timelineMetaClassName}>{role.dateRange}</span>
+            </div>
+            <BodyText size="sm" className="text-textPrimary">
+              {role.title}
             </BodyText>
-          ))}
-        </header>
-
-        <ul className={homepageExperienceSectionPolicy.focusAreaCardsListClassName}>
-          {homepageExperienceFocusAreasConfiguration.map((focusArea, index) => (
-            <li
-              key={focusArea.focusAreaKey}
-              className={`min-w-0 ${homepageScrollHighlightPolicy.staggerItemClassName}`}
-              style={{ transitionDelay: `${index * homepageScrollHighlightPolicy.staggerStepMilliseconds}ms` }}
-            >
-              <ExperienceFocusAreaTile focusArea={focusArea} />
-            </li>
-          ))}
-        </ul>
-      </MeshGlowBackdrop>
-    </ScrollHighlightSection>
+            {role.detailLines.length > 0 ? (
+              <ul className={homepageExperienceSectionPolicy.timelineDetailListClassName}>
+                {role.detailLines.map((line) => (
+                  <li key={line}>
+                    <BodyText size="sm" className="text-textSecondary">
+                      {line}
+                    </BodyText>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </li>
+        ))}
+      </ol>
+      <p className={homepageExperienceSectionPolicy.educationLineClassName}>
+        {homepageWorkHistorySectionCopyConfiguration.educationLine}
+      </p>
+    </HomepageSectionShell>
   );
 }

@@ -105,7 +105,7 @@ export function CaseStudyProductChapter({
           ) : (
             <Caption className="max-w-prose text-textSecondary">
               {chapter.availabilityCaption ??
-                "No standalone public URL—work shipped inside client or partner systems."}
+                "No standalone public URL: work shipped inside client or partner systems."}
             </Caption>
           )}
         </div>

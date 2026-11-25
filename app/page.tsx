@@ -1,4 +1,5 @@
 import { HeroSection } from "@/app/components/homepage/HeroSection";
+import { HomepageAboutMeSection } from "@/app/components/homepage/HomepageAboutMeSection";
 import { HomepageExperienceSection } from "@/app/components/homepage/HomepageExperienceSection";
 import { HomepageContactSection } from "@/app/components/homepage/HomepageContactSection";
 import { HomepageProductionProofSection } from "@/app/components/homepage/HomepageProductionProofSection";
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <PageLayout>
       <HeroSection />
+      <HomepageAboutMeSection />
       <HomepageProductionProofSection />
       <HomepageSelectedWorkSection />
       <HomepageExperienceSection />

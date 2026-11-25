@@ -54,7 +54,7 @@ export function HomepageTechnologyStackSection() {
           )}
         </header>
 
-        <ul className={homepageProjectsSectionPolicy.cardsListClassName}>
+        <ul className={homepageTechnologyStackSectionPolicy.tierCardsListClassName}>
           {homepageTechnologyStackCategoriesConfiguration.map((category, index) => (
             <li
               key={category.categoryTitle}

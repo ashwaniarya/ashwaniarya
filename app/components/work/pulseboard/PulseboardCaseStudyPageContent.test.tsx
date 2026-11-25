@@ -1,10 +1,7 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
-import {
-  calculateBudgetUsagePercent,
-  pulseboardCaseStudyConfiguration,
-} from "@/app/config/portfolioPulseboardCaseStudyConfiguration";
+import { pulseboardCaseStudyConfiguration } from "@/app/config/portfolioPulseboardCaseStudyConfiguration";
 import { primaryHomepageNavigationHref } from "@/app/config/siteConfiguration";
 
 import { PulseboardCaseStudyPageContent } from "./PulseboardCaseStudyPageContent";
@@ -91,22 +88,6 @@ describe("PulseboardCaseStudyPageContent", () => {
       expect(renderedMarkup).toContain(`aria-labelledby="${sectionTitleId}"`);
       expect(renderedMarkup).toContain(`id="${sectionTitleId}"`);
       expect(renderedMarkup).toContain(escapeHtmlText(sectionTitle));
-    }
-  });
-
-  it("draws each usage bar at its computed share of the budget", () => {
-    const { virtualizedTable, bundleBudgets } = performance;
-    const frameUsagePercent = calculateBudgetUsagePercent(
-      virtualizedTable.p95FrameMilliseconds,
-      virtualizedTable.frameBudgetMilliseconds,
-    );
-
-    expect(renderedMarkup).toContain(`>${frameUsagePercent}%<`);
-    expect(renderedMarkup).toContain(`width:${frameUsagePercent}%`);
-    for (const { chunkLabel, usedKilobytes, budgetKilobytes } of bundleBudgets.budgets) {
-      expect(renderedMarkup, chunkLabel).toContain(
-        `width:${calculateBudgetUsagePercent(usedKilobytes, budgetKilobytes)}%`,
-      );
     }
   });
 

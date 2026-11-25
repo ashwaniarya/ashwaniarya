@@ -32,7 +32,7 @@ export function SelectedWorkTilePreview({ tilePreview }: SelectedWorkTilePreview
 
   return (
     <figure className={homepageSelectedWorkSectionPolicy.tileFigureClassName}>
-      <picture>
+      <picture className="block h-full w-full">
         <source srcSet={webpSrc} type="image/webp" />
         <Image
           src={pngSrc}
@@ -42,6 +42,7 @@ export function SelectedWorkTilePreview({ tilePreview }: SelectedWorkTilePreview
           sizes={homepageSelectedWorkSectionPolicy.tileImageSizes}
           className={homepageSelectedWorkSectionPolicy.tileImageClassName}
           unoptimized
+          loading="lazy"
         />
       </picture>
     </figure>

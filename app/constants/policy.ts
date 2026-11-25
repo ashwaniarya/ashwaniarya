@@ -45,22 +45,35 @@ export const homepageProjectsSectionPolicy = {
 /** Homepage technology stack: same rhythm as projects; cards reuse projects grid classes. */
 export const homepageTechnologyStackSectionPolicy = {
   sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
-  technologyItemListClassName: "mt-3 list-none space-y-2 p-0",
-  technologyItemRowClassName: "flex items-start gap-2.5",
+  /** Tiers stack full width so the long primary list wraps as chips instead of a tall column. */
+  tierCardsListClassName: "mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:mt-8 sm:gap-5",
+  technologyItemListClassName: "mt-3 flex list-none flex-wrap gap-2 p-0",
+  technologyItemRowClassName:
+    "flex items-center gap-1.5 rounded-md border border-borderDefault/70 bg-surfaceMuted/40 px-2.5 py-1",
   technologyItemIconClassName:
     "mt-0.5 h-4 w-4 shrink-0 text-textSecondary",
 } as const;
 
-/** Homepage experience focus areas: icon-led tiles in the projects grid rhythm. */
+/** Homepage about me: short prose block right after the hero. */
+export const homepageAboutMeSectionPolicy = {
+  sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
+  bodyStackClassName: "mt-4 max-w-prose space-y-3",
+} as const;
+
+/** Homepage experience job timeline: icon-led tiles in the projects grid rhythm. */
 export const homepageExperienceSectionPolicy = {
   sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
-  focusAreaCardsListClassName:
-    "mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:mt-8 sm:gap-5",
-  focusAreaTileRowClassName: "flex items-start gap-4",
-  focusAreaTileIconBadgeClassName:
-    "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-accentPrimary/25 bg-accentPrimary/10",
-  focusAreaTileIconClassName: "h-5 w-5 text-accentPrimary",
-  focusAreaTileTextStackClassName: "min-w-0 space-y-1.5",
+  /** Job timeline: a left rail with one dot per role. */
+  timelineListClassName: "mt-6 list-none space-y-6 border-l border-borderDefault/80 p-0 pl-5 sm:mt-8",
+  timelineItemClassName: "relative min-w-0",
+  timelineDotClassName:
+    "absolute -left-[1.6rem] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-accentPrimary bg-backgroundPage",
+  timelineHeaderRowClassName: "flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1",
+  timelineMetaClassName: "text-sm text-textSecondary",
+  timelineEngagementTagClassName:
+    "ml-2 inline-block rounded border border-borderDefault/70 px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-textSecondary",
+  timelineDetailListClassName: "mt-1.5 list-none space-y-1 p-0",
+  educationLineClassName: "mt-6 text-sm text-textSecondary",
 } as const;
 
 /** Homepage contact: channel list under mesh shell (matches stack section rhythm). */
@@ -103,7 +116,7 @@ export const siteHeaderNavigationPolicy = {
   /** On phones `phoneCallToActionPillClassName` shows this link beside the brand instead, so it is exposed once at every width. */
   phoneHiddenCallToActionListItemClassName: "max-sm:hidden",
   phoneCallToActionPillClassName:
-    "inline-flex h-11 items-center rounded-full border border-accentPrimary/45 bg-accentPrimary/5 px-3.5 text-accentPrimary transition-colors hover:bg-accentPrimary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:hidden",
+    "inline-flex h-11 items-center rounded-full border border-accentPrimary/70 bg-accentPrimary/5 px-3.5 text-accentPrimary transition-colors hover:bg-accentPrimary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:hidden",
 } as const;
 
 /**
@@ -210,9 +223,9 @@ export const meshGlowBackdropPolicy = {
 
 export const contentCardPolicy = {
   containerBaseClassName:
-    "block min-w-0 rounded-lg border border-borderDefault bg-backgroundPage p-6 shadow-sm",
+    "block min-w-0 rounded-xl border border-borderDefault bg-gradient-to-b from-surfaceElevated to-backgroundPage p-5 shadow-[inset_0_1px_0_0_rgb(255_255_255/0.05),0_10px_30px_-18px_rgb(0_0_0/0.9)] sm:p-6",
   linkInteractiveClassName:
-    "transition-colors transition-shadow hover:border-accentPrimary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+    "transition-[border-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-accentPrimary/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary motion-reduce:transition-none",
 } as const;
 
 export type Button3DVariant =
@@ -233,9 +246,9 @@ export const button3DPolicy = {
   canvasVariants: ["primary", "card", "nav"] as ReadonlyArray<Button3DVariant>,
   variantClassName: {
     primary:
-      "relative inline-flex items-center justify-center rounded-full border border-accentPrimary/40 bg-surfaceElevated/70 px-7 py-3 text-sm font-semibold text-textPrimary shadow-sm backdrop-blur-sm transition-colors hover:border-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+      "relative inline-flex items-center justify-center rounded-full border border-accentPrimary/70 bg-surfaceElevated/70 px-7 py-3 text-sm font-semibold text-textPrimary shadow-sm backdrop-blur-sm transition-colors hover:border-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
     card:
-      "relative block min-w-0 rounded-lg border border-borderDefault bg-surfaceElevated/60 p-6 shadow-sm backdrop-blur-sm transition-colors transition-shadow hover:border-accentPrimary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+      "relative block min-w-0 rounded-xl border border-borderDefault bg-gradient-to-b from-surfaceElevated to-backgroundPage p-5 shadow-[inset_0_1px_0_0_rgb(255_255_255/0.05),0_10px_30px_-18px_rgb(0_0_0/0.9)] transition-[border-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-accentPrimary/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary motion-reduce:transition-none sm:p-6",
     nav:
       "relative inline-flex min-h-11 items-center rounded-sm px-2 text-textPrimary/80 transition-colors hover:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage sm:min-h-0 sm:px-1",
     inlineLink:
@@ -243,30 +256,53 @@ export const button3DPolicy = {
     externalLink:
       "rounded-sm font-medium text-accentPrimary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
     pillLink:
-      "inline-flex items-center rounded-full border border-borderDefault px-3.5 py-1.5 text-sm font-medium text-textPrimary transition-colors hover:border-accentPrimary/60 hover:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
+      "inline-flex items-center rounded-full border border-textSecondary/60 px-3.5 py-1.5 text-sm font-medium text-textPrimary transition-colors hover:border-accentPrimary/60 hover:text-accentPrimary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accentPrimary focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundPage",
   } satisfies Record<Button3DVariant, string>,
 } as const;
 
 /** Homepage selected work: screenshot tiles linking to live pieces. Shares the projects section rhythm. */
 export const homepageSelectedWorkSectionPolicy = {
-  tilesListClassName:
-    "mt-6 grid list-none grid-cols-1 gap-5 p-0 sm:mt-8 sm:gap-6 md:grid-cols-2",
-  tileLinkClassName: "h-full",
-  tileFigureClassName:
-    "m-0 overflow-hidden rounded-md border border-borderDefault/70 bg-backgroundPage",
-  tileCodePreviewPanelClassName:
-    "flex aspect-[8/5] w-full items-stretch bg-surfaceMuted/90 p-4 sm:p-5",
+  /** Horizontal scroll-snap row. The scroller is focusable so arrow keys scroll it. */
+  scrollerClassName:
+    "mt-6 -mx-1 snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth scroll-px-1 px-1 pt-1 pb-4 [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary sm:mt-8",
+  tilesListClassName: "flex list-none gap-4 p-0 sm:gap-5",
+  /** Fixed width per breakpoint so every card in the row is the same size; mobile peeks the next card. */
+  tileListItemClassName: "w-[80%] shrink-0 snap-start snap-always sm:w-[17rem]",
+  scrollControlsRowClassName: "mt-2 flex items-center justify-end gap-2",
+  scrollControlButtonClassName:
+    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-textSecondary/70 text-textPrimary transition-colors hover:border-accentPrimary hover:text-accentPrimary disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-textSecondary/70 disabled:hover:text-textPrimary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
+  /** 3:4 card. The primary link stretches over the whole card; secondary links sit above it. */
+  tileCardClassName: [
+    "group relative flex aspect-[3/4] w-full flex-col overflow-hidden rounded-xl",
+    "border border-borderDefault bg-gradient-to-b from-surfaceElevated to-backgroundPage",
+    "shadow-[inset_0_1px_0_0_rgb(255_255_255/0.05),0_10px_30px_-18px_rgb(0_0_0/0.9)]",
+    "transition-[border-color,transform,box-shadow] duration-200 motion-reduce:transition-none",
+    "hover:-translate-y-0.5 hover:border-accentPrimary/60 hover:shadow-[inset_0_1px_0_0_rgb(255_255_255/0.06),0_16px_36px_-18px_rgb(0_0_0/0.95)]",
+    "has-[.work-primary-link:focus-visible]:border-accentPrimary has-[.work-primary-link:focus-visible]:outline-2 has-[.work-primary-link:focus-visible]:outline-offset-2 has-[.work-primary-link:focus-visible]:outline-accentPrimary",
+  ].join(" "),
+  tilePreviewFrameClassName:
+    "relative h-[40%] shrink-0 overflow-hidden border-b border-borderDefault bg-surfaceMuted",
+  tileFigureClassName: "m-0 h-full w-full",
+  tileCodePreviewPanelClassName: "flex h-full w-full items-stretch bg-surfaceMuted p-4",
   tileCodePreviewPreClassName:
-    "m-0 min-h-0 w-full flex-1 overflow-hidden whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-textSecondary sm:text-xs",
-  tileImageClassName: "block h-auto w-full",
-  tileImageSizes: "(min-width: 768px) 50vw, 100vw",
-  tileMetaRowClassName: "flex flex-wrap items-center justify-between gap-2 px-1",
-  tileCaseStudyCueClassName: "inline-flex items-center gap-1 pt-1 text-sm font-medium text-accentPrimary",
-  tileCaseStudyCueIconClassName: "h-4 w-4 shrink-0",
-  tileSecondaryLinksClassName: "flex items-center gap-3",
-  stackListClassName: "flex list-none flex-wrap gap-1.5 p-0",
+    "m-0 min-h-0 w-full flex-1 overflow-hidden whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-textSecondary [mask-image:linear-gradient(to_bottom,black_65%,transparent)]",
+  tileImageClassName:
+    "block h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03] motion-reduce:transition-none",
+  tileImageSizes: "(min-width: 640px) 272px, 80vw",
+  tileBodyClassName: "flex min-h-0 flex-1 flex-col gap-1.5 p-4",
+  tileKickerClassName: "text-[11px] font-semibold uppercase leading-tight tracking-[0.1em] text-accentSecondary",
+  tileTitleClassName: "font-heading text-lg font-semibold leading-snug text-textPrimary",
+  tilePrimaryLinkClassName:
+    "work-primary-link rounded-sm after:absolute after:inset-0 after:content-[''] focus-visible:outline-none",
+  tileTaglineClassName: "text-sm leading-snug text-textSecondary",
+  stackListClassName: "mt-auto flex list-none flex-wrap gap-1.5 p-0 pt-1",
   stackChipClassName:
-    "rounded-full border border-borderDefault/30 px-2 py-0.5 text-xs text-textSecondary",
+    "rounded-md border border-borderDefault bg-backgroundPage/60 px-2 py-0.5 text-[11px] leading-4 text-textSecondary",
+  tileMaxStackChips: 3,
+  tileFooterClassName: "flex items-center justify-between gap-2 border-t border-borderDefault pt-2.5",
+  tileCaseStudyCueClassName: "inline-flex items-center gap-1 text-sm font-medium text-accentPrimary",
+  tileCaseStudyCueIconClassName: "h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none",
+  tileSecondaryLinksClassName: "relative z-10 flex items-center gap-3",
   /** Must match `WORK_SCREENSHOT_WIDTH_PX` in `scripts/optimize-work-screenshots.mjs`. */
   selectedWorkTileImageWidthPx: 1200,
 } as const;
@@ -291,13 +327,14 @@ export const homepageScrollHighlightPolicy = {
 export const homepageProductionProofSectionPolicy = {
   sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
   metricCardsListClassName:
-    "mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:mt-8 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4",
-  metricTileStackClassName: "min-w-0 space-y-2",
+    "mt-5 grid list-none grid-cols-2 gap-3 p-0 sm:mt-6 lg:grid-cols-4",
+  metricTileStackClassName: "min-w-0 space-y-1.5",
   /** Micro-rail + label row, mirroring `caseStudyProductChapterPolicy` (rail is `aria-hidden`). */
   metricLabelRowClassName: "flex min-w-0 items-center gap-1.5",
   metricLabelRailClassName: editorialMicroRailClassName,
   metricLabelClassName:
-    "block min-w-0 text-[11px] font-bold uppercase leading-none tracking-[0.1em] text-accentSecondary/90",
+    "block min-w-0 text-[11px] font-bold uppercase leading-tight tracking-[0.1em] text-accentSecondary/90",
+  metricTileCardClassName: "h-full p-4! sm:p-5!",
   /**
    * Sits on top of `BodyText size="lg"` (`text-lg`). Only the `sm:` variant sets a size, so there
    * is no same-variant font-size collision with the primitive's own class.

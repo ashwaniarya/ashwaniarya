@@ -35,7 +35,8 @@ describe("SelectedWorkTile", () => {
 
       expect(caseStudyCardAnchor).toBeDefined();
       expect(caseStudyCardAnchor!.anchorAttributes).not.toContain("target=");
-      expect(caseStudyCardAnchor!.anchorContent).toContain(caseStudyCueLabel);
+      expect(caseStudyCardAnchor!.anchorContent).toBe(pulseboardWork.title);
+      expect(renderToStaticMarkup(<SelectedWorkTile work={pulseboardWork} />)).toContain(caseStudyCueLabel);
     });
 
     it("gives the live app and the source their own new-tab links", () => {
@@ -86,5 +87,36 @@ describe("SelectedWorkTile", () => {
         sourceLinkLabel,
       );
     });
+  });
+
+  it("is a fixed 3:4 card with a one-line tagline and at most three stack chips", () => {
+    const markup = renderToStaticMarkup(<SelectedWorkTile work={pulseboardWork} />);
+    expect(markup).toContain("aspect-[3/4]");
+    expect(markup).toContain(pulseboardWork.tagline);
+    expect((markup.match(/<li /g) ?? []).length).toBeLessThanOrEqual(3);
+  });
+
+  it("keeps every tagline short enough for two lines at 375px", () => {
+    for (const work of allSelectedWork) {
+      expect(work.tagline.length, work.slug).toBeLessThanOrEqual(60);
+    }
+  });
+
+  it("shows a cue that matches each card's link type", () => {
+    const { liveCueLabel } = homepageSelectedWorkSectionCopyConfiguration;
+    for (const work of allSelectedWork) {
+      const markup = renderToStaticMarkup(<SelectedWorkTile work={work} />);
+      const isContact = work.liveUrl.includes("#contact");
+      const isSource = work.liveUrl.startsWith("https://github.com/");
+      const expected = work.caseStudyHref
+        ? caseStudyCueLabel
+        : isContact
+          ? "Ask for a demo"
+          : isSource
+            ? "View the source"
+            : liveCueLabel;
+      expect(markup, work.slug).toContain(`>${expected}<`);
+      if (expected !== liveCueLabel) expect(markup, work.slug).not.toContain(liveCueLabel);
+    }
   });
 });

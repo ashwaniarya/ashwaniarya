@@ -72,25 +72,24 @@ export type CaseStudyRecord = Readonly<{
 const portfolioCaseStudies = [
   {
     slug: "getbujo",
-    title: "GetBujo — Founding Engineer, Three Product Surfaces",
-    metaTitle: "GetBujo — Founding Engineer",
+    title: "GetBujo: Founding Engineer, Three Product Surfaces",
+    metaTitle: "GetBujo: Founding Engineer",
     metaDescription:
-      "How I shipped a live video dashboard, a Chrome extension, and an AI copilot experience as founding engineer at GetBujo: end-to-end product engineering.",
-    role: "Founding engineer",
+      "How I shipped a live video dashboard, a Chrome extension, and an AI copilot experience as Founding Engineer at GetBujo: end-to-end product engineering.",
+    role: "Founding Engineer",
     company: "GetBujo",
     companySiteUrl: "https://getbujo.com",
-    credentialsLine: "YC P26",
     location: "Bangalore",
-    dateRange: "Dec 2024 — Feb 2026",
+    dateRange: "Dec 2024 to Feb 2026",
     summary:
-      "End-to-end ownership across three product streams: live video and dashboards, a browser extension, and AI-assisted workflows—shipping iteratively with a small team.",
+      "End-to-end ownership across three product streams: live video and dashboards, a browser extension, and AI-assisted workflows, shipping iteratively with a small team.",
     highlights: [
       "Three shippable product surfaces from one engagement",
       "Strong focus on clarity, performance, and user trust",
       "Cross-functional work from discovery to release",
     ],
     engagementOverviewParagraphs: [
-      "GetBujo needed a senior engineer who could move fast across and build cost effective scalable platform. I joined as a founding engineer to turn ambiguous problems into shippable product: live collaboration, distribution through the browser, and AI-assisted workflows tied back to clear dashboards.",
+      "GetBujo needed a senior engineer who could move fast across the stack and build a cost-effective, scalable platform. I joined as Founding Engineer to turn ambiguous problems into shippable product: live collaboration, distribution through the browser, and AI-assisted workflows tied back to clear dashboards.",
     ],
     productChapters: [
       {
@@ -101,12 +100,7 @@ const portfolioCaseStudies = [
           label: "Wingman (getwingman.io)",
         },
         availabilityCaption:
-          "Powered by Bujo — live video and co-browsing embedded in retailers’ SSR storefronts; more at getbujo.com.",
-        productImpactSnapshot: {
-          stageLabel: "YC-backed (Seed)",
-          dailyReachLabel: "~100k/day",
-          revenueLabel: "$0 → $150K ARR",
-        },
+          "Powered by Bujo: live video and co-browsing embedded in retailers’ SSR storefronts; more at getbujo.com.",
         chapterIllustration: {
           webpSrc: "/get-wingman.webp",
           pngSrc: "/get-wingman.png",
@@ -118,7 +112,7 @@ const portfolioCaseStudies = [
           {
             sectionHeading: "Overview",
             sectionBody:
-              "A multi-tenant, cross-platform live video call consultation platform which connects a shopper to a company's sales representative. An owner for the e-commerce business gets an AI Powered Dashboard—a very clean, easy way to understand how sales reps performed and evaluate their sales pitch.",
+              "A multi-tenant, cross-platform live video call consultation platform which connects a shopper to a company's sales representative. An owner for the e-commerce business gets an AI Powered Dashboard: a very clean, easy way to understand how sales reps performed and evaluate their sales pitch.",
           },
           {
             sectionHeading: "Problem",
@@ -131,7 +125,7 @@ const portfolioCaseStudies = [
           },
         ],
         bodyParagraphs: [
-          "Built the first uninterrupted, cross-platform in-browser video calling experience on a Server-Side Rendered e-commerce site. The hard part was not the first paint—it was guided selling: a rep walks a shopper across PDPs, collections, and checkout-style sections, but classic full-page navigations rebuild the whole document, which repeatedly tore down the call surface and created a jarring disconnect mid-conversation.",
+          "Built the first uninterrupted, cross-platform in-browser video calling experience on a Server-Side Rendered e-commerce site. The hard part was not the first paint. It was guided selling: a rep walks a shopper across PDPs, collections, and checkout-style sections, but classic full-page navigations rebuild the whole document, which repeatedly tore down the call surface and created a jarring disconnect mid-conversation.",
           "Designed the experience so the video layer survives those SSR route changes: the call stays attached and continuous while the storefront content around it updates, instead of forcing a re-join after every click.",
           "Created a wrapper on top of the existing third-party video stack so we could deliberately reshape the out-of-the-box UX: instead of two disconnected entry points, both embed surfaces route through our own central launcher icon, so every visitor sees one consistent way to start or join a call.",
           "Refined real-time session state and the operator dashboard so hosts and internal teams can read live and historical usage without digging through noisy raw metrics.",
@@ -139,10 +133,10 @@ const portfolioCaseStudies = [
         impactBullets: [
           "E-commerce + SSR navigation: addressed full-page rebuilds that broke sales-led flows when users moved between sections.",
           "Multi-tab experience for widget users.",
-          "Dashboard for mulitiple tenants.",
+          "Dashboard for multiple tenants.",
           "Configurable brandable UI for the widget.",
-          "Cross-platform in-browser video that stays coherent for “rep guides shopper” sessions—not only landing → call.",
-          "Single launcher UX across two legacy widgets—shared affordance, shared telemetry hooks, less user confusion at join time.",
+          "Cross-platform in-browser video that stays coherent for “rep guides shopper” sessions, not only landing → call.",
+          "Single launcher UX across two legacy widgets: shared affordance, shared telemetry hooks, less user confusion at join time.",
           "Reduced ambiguity in the live session lifecycle (join, active call, wrap-up).",
           "Tightened dashboard summaries so success metrics are scannable in under a minute.",
           
@@ -171,21 +165,16 @@ const portfolioCaseStudies = [
         heading: "AI Copilot + Dashboard",
         segmentLabel: "B2B",
         availabilityCaption:
-          "No separate public product page for this copilot (company site: getbujo.com)—it ran as an iframe inside Sprinklr with an in-house AI backend.",
-        productImpactSnapshot: {
-          stageLabel: "YC-backed (Seed)",
-          dailyReachLabel: "~80 agents · ~30k/month conversations",
-          revenueLabel: "~$20k MRR",
-        },
+          "No separate public product page for this copilot (company site: getbujo.com). It ran as an iframe inside Sprinklr with an in-house AI backend.",
         bodyParagraphs: [
-          "Designed and developed an iframe-based copilot embedded in Sprinklr, wired to an in-house AI backend. The rollout supported about 80 sales agents handling on the order of 30,000 conversations per month, with company revenue on the order of $20k MRR from this line.",
-          "Migrated the integration from v1 (RESTful API–driven) to v2 (WebSocket-based) architecture in about four calendar days—reducing chat latency and connection churn for agents under load. That delivery window helped the company secure a long-term contract with LG US.",
-          "Built a proxy path on AWS API Gateway so the iframe widget could work inside Sprinklr’s embedding constraints—routing traffic safely without fighting the platform’s same-origin and widget sandbox rules.",
+          "Designed and developed an iframe-based copilot embedded in Sprinklr, wired to an in-house AI backend.",
+          "Migrated the integration from v1 (RESTful API driven) to v2 (WebSocket-based) architecture, reducing chat latency and connection churn for agents under load.",
+          "Built a proxy path on AWS API Gateway so the iframe widget could work inside Sprinklr’s embedding constraints, routing traffic safely without fighting the platform’s same-origin and widget sandbox rules.",
           "Shipped an AI evaluation dashboard plus an AI QA workflow/system so teams could review model behavior, regressions, and production quality in one place. Reused the same streamable UI architecture used elsewhere in the stack to keep UX consistent and delivery fast.",
         ],
         impactBullets: [
-          "Sprinklr-embedded iframe copilot + in-house AI: ~80 agents, ~30k conversations/month, ~$20k MRR.",
-          "v1 REST → v2 WebSockets in ~4 days; cited as a factor in winning a long-term LG US contract.",
+          "Sprinklr-embedded iframe copilot with an in-house AI backend.",
+          "v1 REST → v2 WebSockets migration for lower chat latency.",
           "AWS API Gateway proxy to bypass iframe/widget restrictions inside Sprinklr.",
           "AI evaluation dashboard + QA workflow; streamable UI reused for speed and visual consistency.",
         ],
@@ -211,7 +200,7 @@ const portfolioCaseStudies = [
         ],
       },
       {
-        heading: "AI Shopping Assistant — Chrome extension",
+        heading: "AI Shopping Assistant: Chrome extension",
         segmentLabel: "B2C",
         productPageLink: {
           url: "https://chromewebstore.google.com/detail/bujo-ai-shopping-assistan/hohpkegbedejmdcebpapfafgcdgjjbnn",
@@ -225,7 +214,7 @@ const portfolioCaseStudies = [
           height: 800,
         },
         bodyParagraphs: [
-          "Shipped Bujo AI Shopping Assistant as a consumer-facing Chrome extension listed on the Chrome Web Store—bringing in-page help into everyday browsing without a heavy install story. I architected the extension and built out the frontend layers so the product felt cohesive across surfaces rather than bolted on.",
+          "Shipped Bujo AI Shopping Assistant as a consumer-facing Chrome extension listed on the Chrome Web Store, bringing in-page help into everyday browsing without a heavy install story. I architected the extension and built out the frontend layers so the product felt cohesive across surfaces rather than bolted on.",
           "The experience leans on a streamable UI over WebSocket with durable client state, guarded by explicit error paths and timeout handling when the network or host page misbehaves. An LRU-backed cache keeps repeat interactions snappy, and I contributed to shared extraction and parsing logic so the assistant could reason over real page content safely.",
         ],
         impactBullets: [
@@ -257,11 +246,11 @@ const portfolioCaseStudies = [
   },
   {
     slug: "aiclicks",
-    title: "AIclicks: Product Engineer, AI Visibility Analytics",
-    metaTitle: "AIclicks: Product Engineer",
+    title: "AIclicks: Founding Engineer, Full Stack, AI Visibility Analytics",
+    metaTitle: "AIclicks: Founding Engineer, Full Stack",
     metaDescription:
-      "Contract product engineering at AIclicks: prompt tagging and bulk workflows, a multi-stage LLM pipeline for prompt discovery, a mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
-    role: "Product engineer (contract)",
+      "Founding Engineer, Full Stack (contract) at AIclicks: prompt tagging and bulk workflows, a multi-stage LLM pipeline for prompt discovery, a mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
+    role: "Founding Engineer, Full Stack (contract)",
     company: "AIclicks",
     companySiteUrl: "https://aiclicks.io",
     credentialsLine: "GEO analytics SaaS",
@@ -270,14 +259,14 @@ const portfolioCaseStudies = [
     summary:
       "Owned features end to end across a Next.js dashboard, a FastAPI backend on Postgres and two Python workers: prompt tagging and bulk workflows, a multi-stage LLM pipeline for prompt discovery, the mention and citation pipeline, a recommendations service, and the first version of a public Data Explorer.",
     highlights: [
-      "About 1,900 commits and about 500 PR merges across five repositories (git log, Apr to Oct 2026)",
-      "Cited-sources payload 18.7 MB to 2.0 MB (9.34x) with brotli, measured in the real app stack",
-      "Explorer reach queries 153.9 s to 30.9 s across 14 benchmark queries after a citations GIN index, identical results (prod, one run each)",
+      "Owned features end to end across five repositories",
+      "Brotli compression on the cited-sources payload, measured in the real app stack",
+      "Explorer reach queries use a citations GIN index, with identical results (prod)",
       "Multi-stage LLM pipeline for prompt discovery: topic clustering, planning, generation, similarity filter, LLM judge",
     ],
     engagementOverviewParagraphs: [
-      "AIclicks tracks how AI assistants mention and cite brands. I joined as a contract product engineer and took customer problems from ticket to merged PR across the whole stack: schema and migrations, FastAPI routes, Postgres rollups and indexes, background workers, and the React dashboard. Work went out as small PRs behind feature flags, merged to a dev branch and released to main.",
-      "Measured from git log across the five repositories I committed to, Apr to Oct 2026: about 1,900 commits, about 500 PR merges, roughly 225,000 lines added and 45,000 removed, excluding lockfiles and generated files. Commit counts include merge commits.",
+      "AIclicks tracks how AI assistants mention and cite brands. I joined as Founding Engineer, Full Stack, on contract, and took customer problems from ticket to merged PR across the whole stack: schema and migrations, FastAPI routes, Postgres rollups and indexes, background workers, and the React dashboard. Work went out as small PRs behind feature flags, merged to a dev branch and released to main.",
+      "Work spanned the five repositories I committed to, Apr to Oct 2026.",
     ],
     productChapters: [
       {
@@ -302,10 +291,10 @@ const portfolioCaseStudies = [
         bodyParagraphs: [
           "Built the tag system for prompts and topics: schema, API, tag chips in the prompts table, a dashboard tag filter, and bulk tag assignment at topic level. Added select-all and bulk actions on the prompts table with server-side selection semantics, so a customer can tag, pause or delete a whole filtered set at once.",
           "Made the analytics views stateful: filters, tabs and sort live in the URL, prompt analytics sorting and a dynamic timeline follow one shared date range, and a project picker lets users who belong to several brands switch without losing context. A domain-view rollup aggregates brand pages across tracked domains.",
-          "Bulk topic delete went from one request per topic to one request for the whole set. On a 5,000-prompt fixture with a real Redis: 2,399 ms to 316 ms, 78 cache scans to 3, 26 webhooks to 1, 78 commits to 1.",
+          "Bulk topic delete went from one request per topic to one request for the whole set.",
         ],
         impactBullets: [
-          "Bulk delete of 5,000 prompts: 2,399 ms to 316 ms and 78 commits to 1 (fixture, real Redis).",
+          "Bulk delete now runs as one request instead of one per topic.",
           "Filters persist in the URL, so a view can be shared as a link.",
           "Prompt analytics sort and timeline follow one shared range state.",
         ],
@@ -347,7 +336,7 @@ const portfolioCaseStudies = [
         impactBullets: [
           "Topic clustering replaced single-shot generation, so new prompts avoid saturated themes.",
           "Two cosine bands plus an LLM judge keep near-duplicates out without rejecting useful variants.",
-          "Pipeline and cluster-stats behaviour covered by 10 tests I wrote; the content-ideas topic step has 17.",
+          "Pipeline and cluster-stats behaviour covered by tests I wrote, as is the content-ideas topic step.",
         ],
         skills: [
           "Python 3.12",
@@ -377,14 +366,14 @@ const portfolioCaseStudies = [
         ],
         bodyParagraphs: [
           "Designed the rollup tables and wrote the nightly explorer-preprocess worker as sole author: day planning, roll-day jobs, a claim guard with takeover, retry and heal paths, roll versioning and a late scan for stragglers. A gate serves a rollup only once it is complete for the day. The worker runs on a VM under Docker Compose.",
-          "On the API side I added the explorer metric cards, a citations API, a lean cited-sources endpoint, an influence route and an untracked-mentions route, backed by a GIN index on citations and a function-based query path. Compressing the cited-sources endpoint with brotli took the payload from 18.7 MB to 2.0 MB, a 9.34x cut measured in the real app stack.",
+          "On the API side I added the explorer metric cards, a citations API, a lean cited-sources endpoint, an influence route and an untracked-mentions route, backed by a GIN index on citations and a function-based query path. Compressing the cited-sources endpoint with brotli cut the payload size, measured in the real app stack.",
           "This shipped as a first version. The rollup infrastructure needed a redesign before it could run across the full dataset, and that work was not finished when the engagement ended.",
         ],
         impactBullets: [
-          "Cited-sources payload 18.7 MB to 2.0 MB (9.34x) with brotli q4; 57 ms CPU against 238 ms for gzip.",
-          "Reach queries after the citations GIN index: 106.8 s to 1.9 s on the heaviest site class, 153.9 s to 30.9 s over 14 queries with identical results (prod, one run each). Index 1.92 GiB on a 55 GiB table.",
-          "Brand tab query 4.1 to 5.9 s down to under 0.1 s with a daily-brands rollup (prod mirror).",
-          "Nightly worker: 90 of 90 days rolled, 0 errors, 163 to 190 s per day (prod, Oct 2026).",
+          "Cited-sources payload compressed with brotli q4, at lower CPU cost than gzip.",
+          "Reach queries use the citations GIN index, with identical results (prod).",
+          "Brand tab query served from a daily-brands rollup (prod mirror).",
+          "Nightly worker rolled every planned day without errors (prod, Oct 2026).",
         ],
         skills: [
           "Postgres rollups",
@@ -419,9 +408,9 @@ const portfolioCaseStudies = [
           "In the recommendations service I built the Get Mentioned path: citations enrichment with an on-demand variant, a ScrapingBee rate limiter, title-group jobs, scheduled mention fetches, Engage Online v2, the first phase of outreach feedback, and a reco-ops dashboard so operators can see job state without reading logs.",
         ],
         impactBullets: [
-          "Matcher review removed 1,814 wrong detections and kept all 5,674 correct ones (16,502 competitor rows against 38,804 page titles).",
-          "Subdomain credit fix: 13.4% of tracked brands had uncredited subdomain mentions before it (prod read, checksum verified).",
-          "Stage-5 brand-name fix recovered 15.8% more mentions for one customer, 174 snapshots rewritten and verified three ways.",
+          "Matcher review removed wrong detections and kept the correct ones.",
+          "Subdomain credit fix: brands with uncredited subdomain mentions now get credit (prod read, checksum verified).",
+          "Stage-5 brand-name fix recovered missed mentions for one customer, with rewritten snapshots verified three ways.",
           "Operators see job state in a dashboard instead of logs.",
         ],
         skills: [

@@ -1,54 +1,49 @@
 export type ProductionProofMetricKey =
-  | "liveVideoDailySessions"
-  | "liveVideoRevenueRamp"
-  | "copilotMonthlyConversations"
-  | "copilotMonthlyRevenue";
+  | "getbujoZoomJoinTime"
+  | "getbujoWidgetSessions"
+  | "aiclicksMentionDetectionAccuracy"
+  | "aiclicksRecommendationSources";
 
 export type ProductionProofMetricRecord = Readonly<{
   metricKey: ProductionProofMetricKey;
   /**
-   * Must appear verbatim inside the getbujo case study config; the drift guard in
+   * Must appear inside the Experience timeline copy (with "→" read as "to"); the drift guard in
    * `homepageProductionProofConfiguration.test.ts` enforces it.
    */
   valueLabel: string;
   metricLabel: string;
+  /** Company the number comes from. */
   contextLine: string;
 }>;
 
 export const homepageProductionProofSectionCopyConfiguration = {
   sectionHeading: "In production",
-  sectionIntroLines: [
-    "Numbers from the founding-engineer work at getbujo (YC P26). Each one is unpacked in the case study below.",
-  ],
+  sectionIntroLines: ["Numbers from getbujo and AIClicks. The roles behind them are in Experience below."],
 } as const;
 
 export const homepageProductionProofMetricsConfiguration = [
   {
-    metricKey: "liveVideoDailySessions",
-    valueLabel: "~100k/day",
-    metricLabel: "Live video sessions",
-    contextLine:
-      "Wingman widget embedded in server-rendered retailer storefronts, calls surviving full-page navigations.",
+    metricKey: "getbujoZoomJoinTime",
+    valueLabel: "24s → 6s",
+    metricLabel: "Zoom join time",
+    contextLine: "getbujo",
   },
   {
-    metricKey: "liveVideoRevenueRamp",
-    valueLabel: "$0 → $150K ARR",
-    metricLabel: "Company revenue ramp",
-    contextLine:
-      "First engineer on the product, from nothing shipped to $150K ARR on a multi-tenant live-video platform.",
+    metricKey: "getbujoWidgetSessions",
+    valueLabel: "100K-150K",
+    metricLabel: "Widget sessions",
+    contextLine: "getbujo, with 4K-5K opens",
   },
   {
-    metricKey: "copilotMonthlyConversations",
-    valueLabel: "~30k/month",
-    metricLabel: "AI conversations",
-    contextLine:
-      "About 80 sales agents on an iframe copilot inside Sprinklr, backed by an in-house AI service on AWS.",
+    metricKey: "aiclicksMentionDetectionAccuracy",
+    valueLabel: "90% → 98%",
+    metricLabel: "Mention-detection accuracy",
+    contextLine: "AIClicks",
   },
   {
-    metricKey: "copilotMonthlyRevenue",
-    valueLabel: "~$20k MRR",
-    metricLabel: "Copilot revenue line",
-    contextLine:
-      "REST to WebSocket migration in four calendar days, cited as a factor in winning a long-term LG US contract.",
+    metricKey: "aiclicksRecommendationSources",
+    valueLabel: "6 platforms",
+    metricLabel: "Recommendation engine sources",
+    contextLine: "AIClicks",
   },
 ] as const satisfies readonly ProductionProofMetricRecord[];
