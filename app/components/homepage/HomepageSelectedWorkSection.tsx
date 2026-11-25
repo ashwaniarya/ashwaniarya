@@ -31,8 +31,9 @@ export function HomepageSelectedWorkSection() {
       data-test="homepage-selected-work-section"
     >
       <MeshGlowBackdrop
+        bleed
         className={[
-          meshEditorialSurfacePolicy.shellBaseClassName,
+          meshEditorialSurfacePolicy.carouselShellBaseClassName,
           meshEditorialSurfacePolicy.homepageMeshShellShadowClassName,
           meshEditorialSurfacePolicy.homepageProjectsPaddingClassName,
         ].join(" ")}

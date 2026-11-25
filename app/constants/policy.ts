@@ -90,6 +90,11 @@ export const homepageContactSectionPolicy = {
 export const meshEditorialSurfacePolicy = {
   /** Border + fill only — compose with a shadow token below. */
   shellBaseClassName: "rounded-2xl border border-borderDefault/70 bg-surfaceMuted",
+  /**
+   * Carousel sections: no frame border, and the shell does not clip, so cards slide out past the
+   * viewport edge like a window (glows are clipped by an inner layer instead).
+   */
+  carouselShellBaseClassName: "rounded-2xl bg-surfaceMuted",
   /** Home: keep the frame light; the old case-study shadow felt heavy on marketing pages. */
   homepageMeshShellShadowClassName: "shadow-sm",
   /** Work: deeper lift for long-form reading depth. */
@@ -264,13 +269,15 @@ export const button3DPolicy = {
 export const homepageSelectedWorkSectionPolicy = {
   /** Horizontal scroll-snap row. The scroller is focusable so arrow keys scroll it. */
   scrollerClassName:
-    "mt-6 -mx-1 snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth scroll-px-1 px-1 pt-1 pb-4 [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary sm:mt-8",
+    "carousel-bleed scrollbar-hidden mt-6 snap-x snap-mandatory overflow-x-auto overscroll-x-contain motion-safe:scroll-smooth pt-1 pb-4 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accentPrimary sm:mt-8 data-[dragging=true]:snap-none data-[dragging=true]:scroll-auto data-[dragging=true]:cursor-grabbing data-[dragging=true]:select-none",
+  /** Wraps the scroller so `carousel-bleed` can measure the content width it bleeds out of. */
+  scrollerFrameClassName: "carousel-bleed-frame",
   tilesListClassName: "flex list-none gap-4 p-0 sm:gap-5",
   /** Fixed width per breakpoint so every card in the row is the same size; mobile peeks the next card. */
   tileListItemClassName: "w-[80%] shrink-0 snap-start snap-always sm:w-[17rem]",
   scrollControlsRowClassName: "mt-2 flex items-center justify-end gap-2",
   scrollControlButtonClassName:
-    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-textSecondary/70 text-textPrimary transition-colors hover:border-accentPrimary hover:text-accentPrimary disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-textSecondary/70 disabled:hover:text-textPrimary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
+    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-textSecondary/70 text-textPrimary transition-colors hover:border-accentPrimary hover:text-accentPrimary aria-disabled:cursor-not-allowed aria-disabled:opacity-40 aria-disabled:hover:border-textSecondary/70 aria-disabled:hover:text-textPrimary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
   /** 3:4 card. The primary link stretches over the whole card; secondary links sit above it. */
   tileCardClassName: [
     "group relative flex aspect-[3/4] w-full flex-col overflow-hidden rounded-xl",
@@ -330,14 +337,14 @@ export const homepageProductionProofSectionPolicy = {
   metricCardsListClassName:
     "mt-5 grid list-none grid-cols-2 gap-3 p-0 sm:mt-6 lg:grid-cols-4",
   /** Both layouts are server-rendered; CSS shows the one for the current width. */
-  carouselCompactTrackClassName: "lg:hidden",
-  carouselWideTrackClassName: "hidden lg:block",
+  carouselCompactTrackClassName: "carousel-bleed-frame lg:hidden",
+  carouselWideTrackClassName: "carousel-bleed-frame hidden lg:block",
   /** Horizontal snap scroller; each child is one full-width page. */
   carouselScrollerClassName: [
-    "relative mt-5 -mx-1 flex items-start overflow-x-auto overscroll-x-contain px-1 pt-1 pb-2 scroll-px-1 sm:mt-6",
+    "carousel-bleed relative mt-5 flex items-start overflow-x-auto overscroll-x-contain pt-1 pb-2 sm:mt-6",
     "snap-x snap-mandatory motion-safe:scroll-smooth data-[dragging=true]:snap-none data-[dragging=true]:scroll-auto data-[dragging=true]:cursor-grabbing data-[dragging=true]:select-none",
-    "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
+    "scrollbar-hidden",
+    "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accentPrimary",
   ].join(" "),
   /** One page: full scroller width; a margin after it keeps pages apart. */
   carouselPageClassName:
