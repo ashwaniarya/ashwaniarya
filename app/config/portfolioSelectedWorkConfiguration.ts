@@ -48,7 +48,7 @@ export type SelectedWorkRecord = Readonly<{
 export const homepageSelectedWorkSectionCopyConfiguration = {
   sectionHeading: "Selected work",
   sectionIntroLines: [
-    "Things I defined, built and deployed myself. Private repos link to contact for a demo.",
+    "Things I built myself, from the first version to deployment. Private repos link to contact for a demo.",
   ],
   caseStudyCueLabel: "Read the case study",
   liveCueLabel: "Open the live app",

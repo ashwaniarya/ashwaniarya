@@ -28,10 +28,24 @@ describe("siteIdentityConfiguration positioning", () => {
     expect(siteIdentityConfiguration.homepageTitle.length).toBeLessThanOrEqual(60);
   });
 
-  it("opens the hero with the approved product engineer line", () => {
+  it("opens the hero with the product engineer and builder line plus the approved positioning line (Ashwani, 2:57 PM IST)", () => {
     expect(homepageHeroCopyConfiguration.descriptionLines[0]).toBe(
-      "Product engineer in Bengaluru, 7+ years. I build products end to end: UI, backend, AI and payments.",
+      "Product engineer and builder in Bengaluru, 7+ years. I take ambiguous business problems, ship the first version fast, and iterate to maximise outcomes.",
     );
+  });
+
+  it("leads title, descriptions and hero with product engineer and builder, never a generic full stack or frontend title", () => {
+    for (const copyField of [
+      siteIdentityConfiguration.homepageTitle,
+      siteIdentityConfiguration.siteDescription,
+      siteIdentityConfiguration.homepageDescription,
+      ...homepageHeroCopyConfiguration.descriptionLines,
+    ]) {
+      expect(copyField).not.toMatch(/full[ -]?stack|frontend engineer/i);
+    }
+    expect(siteIdentityConfiguration.homepageTitle).toMatch(/Product Engineer and Builder/);
+    expect(siteIdentityConfiguration.siteDescription).toMatch(/^Portfolio of Ashwani Arya, product engineer and builder/);
+    expect(siteIdentityConfiguration.homepageDescription).toMatch(/^Product engineer and builder/);
   });
 
   it("keeps the hero to two lines: positioning, then stack and open-to-work", () => {

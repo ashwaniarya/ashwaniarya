@@ -15,7 +15,7 @@ export type ContactChannelRecord = Readonly<{
 export const homepageContactSectionCopyConfiguration = {
   sectionHeading: "Contact",
   sectionIntroLines: [
-    "Reach out about a full-time role, a contract build, or a quick hello. I am in Bengaluru and open to remote or Bengaluru, full-time or contract.",
+    "Reach out about a product engineering role, a contract build, or a quick hello. I am in Bengaluru and open to remote or Bengaluru, full-time or contract.",
   ],
 } as const;
 
