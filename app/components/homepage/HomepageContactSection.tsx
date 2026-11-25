@@ -1,3 +1,4 @@
+import { MicroChatIcon } from "@/app/components/icons/MicroIcons";
 import { ContactChannelRow } from "@/app/components/homepage/ContactChannelRow";
 import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
@@ -12,6 +13,7 @@ import {
   homepageContactSectionPolicy,
   homepageProjectsSectionPolicy,
   homepageScrollHighlightPolicy,
+  homepageSectionHeadingIconPolicy,
   meshEditorialSurfacePolicy,
 } from "@/app/constants/policy";
 import { BodyText, Heading } from "@/design-system/tokens/Typography";
@@ -44,7 +46,8 @@ export function HomepageContactSection() {
             variant="horizontalTitle"
             className={homepageScrollHighlightPolicy.accentBarClassName}
           />
-          <Heading level="h2" className={homepageScrollHighlightPolicy.headingClassName} id="homepage-contact-heading">
+          <Heading level="h2" className={`${homepageScrollHighlightPolicy.headingClassName} ${homepageSectionHeadingIconPolicy.headingRowClassName}`} id="homepage-contact-heading">
+            <MicroChatIcon trigger="view" className={homepageSectionHeadingIconPolicy.iconClassName} />
             {homepageContactSectionCopyConfiguration.sectionHeading}
           </Heading>
           {homepageContactSectionCopyConfiguration.sectionIntroLines.map(

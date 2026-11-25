@@ -1,3 +1,4 @@
+import { MicroArrowUpRightIcon } from "@/app/components/icons/MicroIcons";
 import { Card } from "@/app/components/content/Card";
 import {
   formatServicePriceUsd,
@@ -41,6 +42,7 @@ export function ServiceCard({ service }: Readonly<{ service: ContraServiceRecord
           data-test="service-book-link"
         >
           {bookLinkLabel}
+          <MicroArrowUpRightIcon className="h-4 w-4" />
           <span className="sr-only">: {service.title} (opens in a new tab)</span>
         </a>
       </div>

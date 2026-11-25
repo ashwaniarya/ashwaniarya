@@ -1,5 +1,5 @@
-import { TbArrowRight } from "react-icons/tb";
 
+import { MicroArrowRightIcon } from "@/app/components/icons/MicroIcons";
 import { SelectedWorkTilePreview } from "@/app/components/homepage/SelectedWorkTilePreview";
 import { InteractiveLink } from "@/app/components/content/InteractiveLink";
 import {
@@ -20,7 +20,7 @@ export function SelectedWorkTile({ work }: SelectedWorkTileProps) {
   const isExternal = !caseStudyHref;
 
   return (
-    <article className={policy.tileCardClassName} data-test="selected-work-card">
+    <article className={policy.tileCardClassName} data-micro-trigger data-test="selected-work-card">
       <div className={policy.tilePreviewFrameClassName}>
         <SelectedWorkTilePreview tilePreview={tilePreview} />
       </div>
@@ -46,7 +46,7 @@ export function SelectedWorkTile({ work }: SelectedWorkTileProps) {
         <div className={policy.tileFooterClassName}>
           <span aria-hidden="true" className={policy.tileCaseStudyCueClassName}>
             {caseStudyHref ? copy.caseStudyCueLabel : (work.cueLabel ?? copy.liveCueLabel)}
-            <TbArrowRight className={policy.tileCaseStudyCueIconClassName} />
+            <MicroArrowRightIcon className={policy.tileCaseStudyCueIconClassName} />
           </span>
           {caseStudyHref || sourceUrl ? (
             <div className={policy.tileSecondaryLinksClassName}>

@@ -1,3 +1,4 @@
+import { MicroEyeIcon } from "@/app/components/icons/MicroIcons";
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import { HomepageHeroProfileImage } from "@/app/components/homepage/HomepageHeroProfileImage";
@@ -61,7 +62,10 @@ export function HeroSection() {
             variant="primary"
             href={`#${homepageSectionAnchorConfiguration.projectsSectionDomId}`}
           >
-            View work
+            <span className="inline-flex items-center gap-2">
+              <MicroEyeIcon className="h-4 w-4" />
+              View work
+            </span>
           </InteractiveLink>
         </div>
       </MeshGlowBackdrop>

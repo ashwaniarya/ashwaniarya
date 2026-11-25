@@ -10,8 +10,8 @@ import {
   type PointerEvent,
   type ReactNode,
 } from "react";
-import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
 
+import { MicroChevronLeftIcon, MicroChevronRightIcon } from "@/app/components/icons/MicroIcons";
 import { homepageSelectedWorkSectionPolicy } from "@/app/constants/policy";
 
 export type HorizontalSnapScrollerProps = Readonly<{
@@ -155,7 +155,7 @@ export function HorizontalSnapScroller({ label, children }: HorizontalSnapScroll
             if (!atStart) scrollByOneCard(-1);
           }}
         >
-          <TbChevronLeft aria-hidden className="h-5 w-5" />
+          <MicroChevronLeftIcon className="h-5 w-5" />
         </button>
         <button
           type="button"
@@ -167,7 +167,7 @@ export function HorizontalSnapScroller({ label, children }: HorizontalSnapScroll
             if (!atEnd) scrollByOneCard(1);
           }}
         >
-          <TbChevronRight aria-hidden className="h-5 w-5" />
+          <MicroChevronRightIcon className="h-5 w-5" />
         </button>
       </div>
     </div>

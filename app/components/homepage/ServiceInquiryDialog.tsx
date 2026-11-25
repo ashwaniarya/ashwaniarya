@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, useContext, useId, useRef, useState, type FormEvent, type KeyboardEvent, type ReactNode } from "react";
-import { TbX } from "react-icons/tb";
 
+import { MicroCloseIcon, MicroSendIcon } from "@/app/components/icons/MicroIcons";
 import { homepageServicesSectionCopyConfiguration } from "@/app/config/homepageServicesConfiguration";
 import {
   normaliseServiceInquiry,
@@ -153,7 +153,7 @@ export function ServiceInquiryDialogProvider({ children }: Readonly<{ children: 
             onClick={close}
             data-test="custom-application-close"
           >
-            <TbX aria-hidden className="h-5 w-5" />
+            <MicroCloseIcon className="h-5 w-5" />
           </button>
         </div>
 
@@ -217,6 +217,7 @@ export function ServiceInquiryDialogProvider({ children }: Readonly<{ children: 
             <div className="flex flex-wrap items-center gap-3">
               <button type="submit" className={policy.submitButtonClassName} disabled={status === "submitting"} data-test="inquiry-submit">
                 {status === "submitting" ? "Sending..." : "Send inquiry"}
+                <MicroSendIcon className="h-4 w-4" />
               </button>
               <p role="status" aria-live="polite" className={policy.statusClassName} data-test="inquiry-status">
                 {status === "error" ? statusMessage : status === "submitting" ? statusMessage : ""}

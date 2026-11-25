@@ -1,19 +1,20 @@
-import type { IconType } from "react-icons";
+import type { ComponentType } from "react";
 import { SiGithub, SiWhatsapp } from "react-icons/si";
-import { TbMail, TbMapPin, TbPhone } from "react-icons/tb";
 
+import { MicroMailIcon, MicroPhoneIcon, MicroPinIcon } from "@/app/components/icons/MicroIcons";
 import type { ContactChannelKey } from "@/app/config/homepageContactConfiguration";
 
-const contactChannelIconByKey: Readonly<Record<ContactChannelKey, IconType>> = {
-  email: TbMail,
-  call: TbPhone,
+/** Brand marks stay static; mail, phone and location use animated micro icons (play on row hover). */
+export type ContactChannelIcon = ComponentType<{ className?: string; "aria-hidden"?: boolean }>;
+
+const contactChannelIconByKey: Readonly<Record<ContactChannelKey, ContactChannelIcon>> = {
+  email: MicroMailIcon,
+  call: MicroPhoneIcon,
   whatsapp: SiWhatsapp,
-  location: TbMapPin,
+  location: MicroPinIcon,
   github: SiGithub,
 };
 
-export function resolveContactChannelIcon(
-  channelKey: ContactChannelKey,
-): IconType {
+export function resolveContactChannelIcon(channelKey: ContactChannelKey): ContactChannelIcon {
   return contactChannelIconByKey[channelKey];
 }

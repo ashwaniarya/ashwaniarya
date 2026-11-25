@@ -308,10 +308,16 @@ export const homepageSelectedWorkSectionPolicy = {
   tileMaxStackChips: 3,
   tileFooterClassName: "flex items-center justify-between gap-2 border-t border-borderDefault pt-2.5",
   tileCaseStudyCueClassName: "inline-flex items-center gap-1 text-sm font-medium text-accentPrimary",
-  tileCaseStudyCueIconClassName: "h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none",
+  tileCaseStudyCueIconClassName: "h-4 w-4 shrink-0",
   tileSecondaryLinksClassName: "relative z-10 flex items-center gap-3",
   /** Must match `WORK_SCREENSHOT_WIDTH_PX` in `scripts/optimize-work-screenshots.mjs`. */
   selectedWorkTileImageWidthPx: 1200,
+} as const;
+
+/** Animated SVG icon beside a homepage section heading (plays once when the section is shown). */
+export const homepageSectionHeadingIconPolicy = {
+  headingRowClassName: "flex items-center gap-2.5",
+  iconClassName: "h-6 w-6 text-accentPrimary",
 } as const;
 
 /** Homepage section highlight on first scroll into view, driven by `data-scroll-highlight` on `ScrollHighlightSection`. */
@@ -495,7 +501,7 @@ export const homepageServicesSectionPolicy = {
     "inline-flex items-center rounded-full border border-textSecondary/40 px-2 py-0.5 text-[11px] font-medium leading-4 text-textSecondary",
   cardFooterClassName: "mt-auto pt-2",
   bookLinkClassName:
-    "inline-flex min-h-10 items-center whitespace-nowrap rounded-full border border-accentPrimary/70 px-3 text-[13px] font-medium text-accentPrimary sm:px-3.5 sm:text-sm transition-colors hover:bg-accentPrimary/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
+    "inline-flex min-h-10 items-center gap-1.5 whitespace-nowrap rounded-full border border-accentPrimary/70 px-3 text-[13px] font-medium text-accentPrimary sm:px-3.5 sm:text-sm transition-colors hover:bg-accentPrimary/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
   dialogClassName:
     "m-auto w-[min(34rem,calc(100vw-2rem))] max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-xl border border-borderDefault bg-surfaceElevated p-5 text-textPrimary shadow-2xl backdrop:bg-black/70 sm:p-6",
   dialogHeaderClassName: "mb-4 flex items-start justify-between gap-4",
@@ -509,6 +515,6 @@ export const homepageServicesSectionPolicy = {
   fieldRowClassName: "grid gap-4 sm:grid-cols-2",
   honeypotClassName: "absolute -left-[10000px] h-px w-px overflow-hidden",
   submitButtonClassName:
-    "inline-flex min-h-11 items-center justify-center rounded-full border border-accentPrimary/70 bg-accentPrimary/10 px-5 text-sm font-semibold text-textPrimary hover:bg-accentPrimary/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary disabled:opacity-60",
+    "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-accentPrimary/70 bg-accentPrimary/10 px-5 text-sm font-semibold text-textPrimary hover:bg-accentPrimary/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary disabled:opacity-60",
   statusClassName: "text-sm text-textSecondary",
 } as const;
