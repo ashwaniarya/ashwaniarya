@@ -3,7 +3,7 @@
 **Product engineer in Bengaluru, 7+ years. I build products end to end: UI, backend, AI and payments.**
 
 ## About
-I build products end to end. I started as a full-stack engineer, specialised in frontend (React, Next.js, TypeScript), then went deeper into backends and business systems: Node.js (NestJS, Express) and FastAPI services, payment and investment flows, and Stripe. I like being the first engineer on a product and owning it from first commit to production. Remote Bangalore.
+I build products end to end. I started as a full-stack engineer, specialised in frontend (React, Next.js, TypeScript), then went deeper into backends and business systems: Node.js (NestJS, Express) and FastAPI services, payment and investment flows, and Stripe. I like being the first engineer on a product and owning it from first commit to production. Remote Bengaluru.
 
 ## What I build
 | Area | What I do | Tools |

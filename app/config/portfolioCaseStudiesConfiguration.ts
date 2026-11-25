@@ -79,7 +79,7 @@ const portfolioCaseStudies = [
     role: "Founding Engineer",
     company: "GetBujo",
     companySiteUrl: "https://getbujo.com",
-    location: "Bangalore",
+    location: "Bengaluru",
     dateRange: "Dec 2024 to Feb 2026",
     summary:
       "End-to-end ownership across three product streams: live video and dashboards, a browser extension, and AI-assisted workflows, shipping iteratively with a small team.",
