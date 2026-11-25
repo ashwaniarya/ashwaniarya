@@ -1,23 +1,32 @@
 export const homepageHeroCopyConfiguration = {
   headline: "Ashwani Arya",
   descriptionLines: [
-    "Independent contract engineer with 6+ years taking unclear problems to production. I take fractional or contract founding-engineer builds, mainly for EU startups, working directly with founders as a solo contractor, not an agency.",
-    "Four-time founding engineer (AIClicks, getbujo YC P26, Tap Invest, BackTick): live video at ~100k sessions a day, getbujo $0 → $150K ARR, an AI copilot at ~30k conversations a month. Remote contract at AIClicks since Apr 2026 across React, TypeScript, FastAPI, Python workers, and Stripe-backed outreach.",
-    "Based in Bangalore (IST), remote with overlap for Europe and US time zones. AI-native: I ship daily with Claude Code, Codex, and MCP; every change passes tests and review.",
+    "Product engineer in Bengaluru, 7+ years. I build products end to end: UI, backend, AI and payments.",
+    "React, Next.js, TypeScript, Node.js and Stripe. Open to remote or Bengaluru, full-time or contract.",
+  ],
+} as const;
+
+/** About me copy. Source: the approved about text (job details live in the Experience timeline). */
+export const homepageAboutMeCopyConfiguration = {
+  sectionHeading: "About me",
+  paragraphs: [
+    "Product engineer in Bengaluru, 7+ years. I build products end to end: UI, backend, AI and payments, and I like automating the slow parts of a business.",
+    "Own builds: AutoMixPilot (a query in, a finished AI music video out) and a Trello MCP server for AI agents. I've also worked with embeddings, semantic clustering and topic extraction.",
+    "Stack: React, Next.js, TypeScript, Node.js (NestJS, Express), Stripe. Open to remote or Bengaluru, full-time or contract.",
   ],
 } as const;
 
 export const homepageProjectsSectionCopyConfiguration = {
   sectionHeading: "Case studies",
   sectionIntroLines: [
-    "Longer write-ups of production work: founding-engineer engagements spanning live video at scale, an AI copilot, and a browser extension, with the numbers each one moved.",
+    "Longer write-ups of production work at getbujo and AIClicks: live video, an AI copilot, a browser extension and an AI visibility analytics product.",
   ],
 } as const;
 
 export const homepageTechnologyStackSectionCopyConfiguration = {
   sectionHeading: "Technology stack",
   sectionIntroLines: [
-    "What I reach for in contract builds: TypeScript, React, and Next.js on the surface; Node, Express, and FastAPI for services; PostgreSQL, Prisma, Redis, and BullMQ for data and jobs; Stripe for payments; Docker, Railway, and Vercel to run it. Claude Code, Codex, and MCP for AI-native delivery.",
+    "Grouped by how much I use each one: primary every day, secondary regularly, tertiary now and then.",
   ],
 } as const;
 

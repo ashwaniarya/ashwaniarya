@@ -36,7 +36,7 @@ describe("portfolioCaseStudiesConfiguration", () => {
     expect(getAllCaseStudies().length).toBeGreaterThan(0);
   });
 
-  it("includes product impact snapshots on live video and AI copilot chapters", () => {
+  it("keeps the live video chapter link and drops unverified impact snapshots", () => {
     const caseStudy = getCaseStudyBySlug("getbujo");
     expect(caseStudy).toBeDefined();
 
@@ -48,13 +48,9 @@ describe("portfolioCaseStudiesConfiguration", () => {
       label: "Wingman (getwingman.io)",
     });
     expect(liveVideoChapter?.availabilityCaption).toBe(
-      "Powered by Bujo — live video and co-browsing embedded in retailers’ SSR storefronts; more at getbujo.com.",
+      "Powered by Bujo: live video and co-browsing embedded in retailers’ SSR storefronts; more at getbujo.com.",
     );
-    expect(liveVideoChapter?.productImpactSnapshot).toEqual({
-      stageLabel: "YC-backed (Seed)",
-      dailyReachLabel: "~100k/day",
-      revenueLabel: "$0 → $150K ARR",
-    });
+    expect(liveVideoChapter?.productImpactSnapshot).toBeUndefined();
     expect(liveVideoChapter?.chapterIllustration).toEqual({
       webpSrc: "/get-wingman.webp",
       pngSrc: "/get-wingman.png",
@@ -66,11 +62,8 @@ describe("portfolioCaseStudiesConfiguration", () => {
     const copilotChapter = caseStudy?.productChapters.find((chapter) =>
       chapter.heading.toLowerCase().includes("copilot"),
     );
-    expect(copilotChapter?.productImpactSnapshot).toEqual({
-      stageLabel: "YC-backed (Seed)",
-      dailyReachLabel: "~80 agents · ~30k/month conversations",
-      revenueLabel: "~$20k MRR",
-    });
+    expect(copilotChapter?.productImpactSnapshot).toBeUndefined();
+    expect(JSON.stringify(caseStudy)).not.toMatch(/YC|150K ARR|30k|20k MRR|80 agents|LG US/);
   });
 });
 

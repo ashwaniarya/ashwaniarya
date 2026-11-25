@@ -4,9 +4,9 @@ import {
   homepageProductionProofMetricsConfiguration,
   homepageProductionProofSectionCopyConfiguration,
 } from "@/app/config/homepageProductionProofConfiguration";
-import { getCaseStudyBySlug } from "@/app/config/portfolioCaseStudiesConfiguration";
+import { homepageWorkHistoryConfiguration } from "@/app/config/homepageWorkHistoryConfiguration";
 
-const serialisedGetbujoCaseStudy = JSON.stringify(getCaseStudyBySlug("getbujo"));
+const serialisedWorkHistory = JSON.stringify(homepageWorkHistoryConfiguration);
 const maxValueLabelTokenLength = 10;
 
 describe("homepageProductionProofConfiguration", () => {
@@ -19,10 +19,17 @@ describe("homepageProductionProofConfiguration", () => {
     expect(new Set(metricKeys).size).toBe(metricKeys.length);
   });
 
-  it("keeps every metric value traceable to the getbujo case study", () => {
+  it("keeps every metric value traceable to the Experience timeline", () => {
     for (const metric of homepageProductionProofMetricsConfiguration) {
-      expect(serialisedGetbujoCaseStudy).toContain(metric.valueLabel);
+      expect(serialisedWorkHistory).toContain(metric.valueLabel.replace(" → ", " to "));
     }
+  });
+
+  it("splits the tiles two from getbujo and two from AIClicks", () => {
+    const sources = homepageProductionProofMetricsConfiguration.map((metric) =>
+      metric.contextLine.split(",")[0],
+    );
+    expect(sources).toEqual(["getbujo", "getbujo", "AIClicks", "AIClicks"]);
   });
 
   it("keeps every value label token short enough for a four-column tile", () => {

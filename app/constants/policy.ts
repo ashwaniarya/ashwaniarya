@@ -45,22 +45,35 @@ export const homepageProjectsSectionPolicy = {
 /** Homepage technology stack: same rhythm as projects; cards reuse projects grid classes. */
 export const homepageTechnologyStackSectionPolicy = {
   sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
-  technologyItemListClassName: "mt-3 list-none space-y-2 p-0",
-  technologyItemRowClassName: "flex items-start gap-2.5",
+  /** Tiers stack full width so the long primary list wraps as chips instead of a tall column. */
+  tierCardsListClassName: "mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:mt-8 sm:gap-5",
+  technologyItemListClassName: "mt-3 flex list-none flex-wrap gap-2 p-0",
+  technologyItemRowClassName:
+    "flex items-center gap-1.5 rounded-md border border-borderDefault/70 bg-surfaceMuted/40 px-2.5 py-1",
   technologyItemIconClassName:
     "mt-0.5 h-4 w-4 shrink-0 text-textSecondary",
 } as const;
 
-/** Homepage experience focus areas: icon-led tiles in the projects grid rhythm. */
+/** Homepage about me: short prose block right after the hero. */
+export const homepageAboutMeSectionPolicy = {
+  sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
+  bodyStackClassName: "mt-4 max-w-prose space-y-3",
+} as const;
+
+/** Homepage experience job timeline: icon-led tiles in the projects grid rhythm. */
 export const homepageExperienceSectionPolicy = {
   sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
-  focusAreaCardsListClassName:
-    "mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:mt-8 sm:gap-5",
-  focusAreaTileRowClassName: "flex items-start gap-4",
-  focusAreaTileIconBadgeClassName:
-    "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-accentPrimary/25 bg-accentPrimary/10",
-  focusAreaTileIconClassName: "h-5 w-5 text-accentPrimary",
-  focusAreaTileTextStackClassName: "min-w-0 space-y-1.5",
+  /** Job timeline: a left rail with one dot per role. */
+  timelineListClassName: "mt-6 list-none space-y-6 border-l border-borderDefault/80 p-0 pl-5 sm:mt-8",
+  timelineItemClassName: "relative min-w-0",
+  timelineDotClassName:
+    "absolute -left-[1.6rem] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-accentPrimary bg-backgroundPage",
+  timelineHeaderRowClassName: "flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1",
+  timelineMetaClassName: "text-sm text-textSecondary",
+  timelineEngagementTagClassName:
+    "ml-2 inline-block rounded border border-borderDefault/70 px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-textSecondary",
+  timelineDetailListClassName: "mt-1.5 list-none space-y-1 p-0",
+  educationLineClassName: "mt-6 text-sm text-textSecondary",
 } as const;
 
 /** Homepage contact: channel list under mesh shell (matches stack section rhythm). */
@@ -249,8 +262,14 @@ export const button3DPolicy = {
 
 /** Homepage selected work: screenshot tiles linking to live pieces. Shares the projects section rhythm. */
 export const homepageSelectedWorkSectionPolicy = {
-  tilesListClassName:
-    "mt-6 grid list-none grid-cols-1 gap-5 p-0 sm:mt-8 sm:gap-6 md:grid-cols-2",
+  /** Horizontal scroll-snap row. The scroller is focusable so arrow keys scroll it. */
+  scrollerClassName:
+    "mt-6 -mx-1 overflow-x-auto overscroll-x-contain scroll-smooth px-1 pb-4 [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary sm:mt-8",
+  tilesListClassName: "flex list-none snap-x snap-mandatory gap-4 p-0 sm:gap-5",
+  tileListItemClassName: "w-[85%] shrink-0 snap-start sm:w-[22rem]",
+  scrollControlsRowClassName: "mt-2 flex items-center justify-end gap-2",
+  scrollControlButtonClassName:
+    "inline-flex h-9 w-9 items-center justify-center rounded-full border border-borderDefault/80 text-textPrimary hover:border-accentPrimary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
   tileLinkClassName: "h-full",
   tileFigureClassName:
     "m-0 overflow-hidden rounded-md border border-borderDefault/70 bg-backgroundPage",
@@ -259,7 +278,7 @@ export const homepageSelectedWorkSectionPolicy = {
   tileCodePreviewPreClassName:
     "m-0 min-h-0 w-full flex-1 overflow-hidden whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-textSecondary sm:text-xs",
   tileImageClassName: "block h-auto w-full",
-  tileImageSizes: "(min-width: 768px) 50vw, 100vw",
+  tileImageSizes: "(min-width: 640px) 352px, 85vw",
   tileMetaRowClassName: "flex flex-wrap items-center justify-between gap-2 px-1",
   tileCaseStudyCueClassName: "inline-flex items-center gap-1 pt-1 text-sm font-medium text-accentPrimary",
   tileCaseStudyCueIconClassName: "h-4 w-4 shrink-0",
@@ -291,13 +310,14 @@ export const homepageScrollHighlightPolicy = {
 export const homepageProductionProofSectionPolicy = {
   sectionClassName: "mt-10 border-t border-borderDefault/80 pt-8 sm:mt-12 sm:pt-10",
   metricCardsListClassName:
-    "mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:mt-8 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4",
-  metricTileStackClassName: "min-w-0 space-y-2",
+    "mt-5 grid list-none grid-cols-2 gap-3 p-0 sm:mt-6 lg:grid-cols-4",
+  metricTileStackClassName: "min-w-0 space-y-1.5",
   /** Micro-rail + label row, mirroring `caseStudyProductChapterPolicy` (rail is `aria-hidden`). */
   metricLabelRowClassName: "flex min-w-0 items-center gap-1.5",
   metricLabelRailClassName: editorialMicroRailClassName,
   metricLabelClassName:
-    "block min-w-0 text-[11px] font-bold uppercase leading-none tracking-[0.1em] text-accentSecondary/90",
+    "block min-w-0 text-[11px] font-bold uppercase leading-tight tracking-[0.1em] text-accentSecondary/90",
+  metricTileCardClassName: "h-full p-4! sm:p-5!",
   /**
    * Sits on top of `BodyText size="lg"` (`text-lg`). Only the `sm:` variant sets a size, so there
    * is no same-variant font-size collision with the primitive's own class.

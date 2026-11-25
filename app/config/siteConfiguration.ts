@@ -7,6 +7,7 @@ export type NavigationLink = Readonly<{
 
 export const primaryHomepageNavigationHref = {
   home: `/#${homepageSectionAnchorConfiguration.homeSectionDomId}`,
+  about: `/#${homepageSectionAnchorConfiguration.aboutSectionDomId}`,
   work: `/#${homepageSectionAnchorConfiguration.selectedWorkSectionDomId}`,
   projects: `/#${homepageSectionAnchorConfiguration.projectsSectionDomId}`,
   contact: `/#${homepageSectionAnchorConfiguration.contactSectionDomId}`,
@@ -25,22 +26,21 @@ export const siteIdentityConfiguration = {
    * named Ashwani Arya outrank this site, so the title has to carry the role and
    * stack terms that separate them.
    */
-  homepageTitle: "Ashwani Arya — Contract Founding Engineer",
+  homepageTitle: "Ashwani Arya: Product Engineer in Bengaluru",
   siteDescription:
-    "Independent contract engineer portfolio: fractional and contract founding-engineer builds for EU startups. Live video at scale, AI copilot, dashboards, and full-stack SaaS by Ashwani Arya.",
+    "Portfolio of Ashwani Arya, product engineer in Bengaluru with 7+ years. I build products end to end: UI, backend, AI and payments.",
   homepageDescription:
-    "Independent contract engineer and four-time founding engineer. Live video at ~100k sessions a day, getbujo $0 → $150K ARR, an AI copilot at ~30k conversations a month. React, Next.js, Node, FastAPI, Postgres, Stripe, and AWS. Remote from Bangalore.",
+    "Product engineer in Bengaluru, 7+ years: UI, backend, AI and payments. Cut Zoom join time from 24s to 6s at getbujo and raised AI mention-detection accuracy from 90% to 98% at AIClicks. React, Next.js, TypeScript, Node.js and Stripe. Open to remote or Bengaluru, full-time or contract.",
   ownerName: "Ashwani Arya",
-  ownerJobTitle: "Independent Contract Engineer",
-  ownerLocality: "Bangalore",
+  ownerJobTitle: "Product Engineer",
+  ownerLocality: "Bengaluru",
   ownerCountry: "India",
   socialProfileUrls: [
     "https://github.com/ashwaniarya",
     "https://syncoderslabs.com",
   ],
   expertiseAreas: [
-    "Contract product engineering",
-    "Fractional founding engineer",
+    "Product engineering",
     "React",
     "Next.js",
     "TypeScript",
@@ -53,7 +53,6 @@ export const siteIdentityConfiguration = {
     "WebSockets",
     "REST API design",
     "MCP",
-    "Claude Code",
     "Three.js",
     "Tailwind CSS",
     "Design systems",
@@ -63,6 +62,7 @@ export const siteIdentityConfiguration = {
 export const navigationConfiguration = {
   navigationLinks: [
     { label: "Home", href: primaryHomepageNavigationHref.home },
+    { label: "About", href: primaryHomepageNavigationHref.about },
     { label: "Work", href: primaryHomepageNavigationHref.work },
     { label: "Case studies", href: primaryHomepageNavigationHref.projects },
     { label: "Contact", href: primaryHomepageNavigationHref.contact },
@@ -91,7 +91,7 @@ export const searchConfiguration = {
 export const footerConfiguration = {
   /** Shown after the © year in `SiteFooter` (name + short descriptor). */
   footerCopyrightAttributionLine:
-    "Ashwani Arya, independent contract engineer: fractional and contract founding-engineer builds for EU startups. Remote contract at AIClicks since Apr 2026.",
+    "Ashwani Arya, product engineer in Bengaluru. Open to remote or Bengaluru, full-time or contract.",
 } as const;
 
 export const siteConfiguration = {

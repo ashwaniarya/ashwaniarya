@@ -3,67 +3,42 @@ export type TechnologyStackCategoryRecord = Readonly<{
   itemLabels: readonly string[];
 }>;
 
+/** Tiered by how much each one is used. visx and OIDC were dropped on purpose. */
 export const homepageTechnologyStackCategoriesConfiguration = [
   {
-    categoryTitle: "Frontend",
+    categoryTitle: "Primary",
     itemLabels: [
-      "ReactJS",
-      "NextJS",
       "TypeScript",
-      "Tailwind CSS",
-      "React Native",
-      "Chrome extensions",
-      "Storybook",
-      "visx",
-    ],
-  },
-  {
-    categoryTitle: "Backend & data",
-    itemLabels: [
-      "NodeJS",
-      "ExpressJS",
-      "NestJS",
-      "Python",
-      "FastAPI",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Express",
       "PostgreSQL",
-      "Prisma",
-      "MongoDB",
-      "Redis",
-      "BullMQ",
-    ],
-  },
-  {
-    categoryTitle: "Payments",
-    itemLabels: [
-      "Stripe PaymentIntents",
-      "Stripe Payment Links",
-      "Stripe Invoices",
-      "Stripe webhooks",
-    ],
-  },
-  {
-    categoryTitle: "AI toolchain",
-    itemLabels: ["Claude Code", "Codex", "MCP", "LangGraph"],
-  },
-  {
-    categoryTitle: "Ship & run",
-    itemLabels: [
-      "Docker",
-      "AWS",
-      "Vercel Deployment",
+      "Stripe",
+      "Redis + BullMQ",
+      "React Native",
+      "WebSockets / Socket.io",
+      "Docker + AWS",
+      "Tailwind CSS",
+      "Chrome extensions",
       "GitHub Actions",
-      "Datadog",
-      "PostHog",
-      "Vitest",
-      "Cypress",
     ],
   },
   {
-    categoryTitle: "APIs & realtime",
-    itemLabels: ["RESTful APIs", "WebSockets", "Socket.io", "OIDC"],
+    categoryTitle: "Secondary",
+    itemLabels: [
+      "Python + FastAPI",
+      "Prisma",
+      "LangGraph + MCP",
+      "Vitest / Storybook / Cypress",
+      "MongoDB",
+      "Datadog / PostHog",
+      "MySQL",
+      "Embeddings / clustering",
+    ],
   },
   {
-    categoryTitle: "Motion & 3D",
-    itemLabels: ["Three.js", "GSAP", "WebGL"],
+    categoryTitle: "Tertiary",
+    itemLabels: ["NestJS", "Three.js / GSAP / WebGL"],
   },
 ] as const satisfies readonly TechnologyStackCategoryRecord[];

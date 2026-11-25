@@ -72,18 +72,17 @@ export type CaseStudyRecord = Readonly<{
 const portfolioCaseStudies = [
   {
     slug: "getbujo",
-    title: "GetBujo — Founding Engineer, Three Product Surfaces",
-    metaTitle: "GetBujo — Founding Engineer",
+    title: "GetBujo: Founding Engineer, Three Product Surfaces",
+    metaTitle: "GetBujo: Founding Engineer",
     metaDescription:
       "How I shipped a live video dashboard, a Chrome extension, and an AI copilot experience as founding engineer at GetBujo: end-to-end product engineering.",
     role: "Founding engineer",
     company: "GetBujo",
     companySiteUrl: "https://getbujo.com",
-    credentialsLine: "YC P26",
     location: "Bangalore",
-    dateRange: "Dec 2024 — Feb 2026",
+    dateRange: "Dec 2024 to Feb 2026",
     summary:
-      "End-to-end ownership across three product streams: live video and dashboards, a browser extension, and AI-assisted workflows—shipping iteratively with a small team.",
+      "End-to-end ownership across three product streams: live video and dashboards, a browser extension, and AI-assisted workflows, shipping iteratively with a small team.",
     highlights: [
       "Three shippable product surfaces from one engagement",
       "Strong focus on clarity, performance, and user trust",
@@ -101,12 +100,7 @@ const portfolioCaseStudies = [
           label: "Wingman (getwingman.io)",
         },
         availabilityCaption:
-          "Powered by Bujo — live video and co-browsing embedded in retailers’ SSR storefronts; more at getbujo.com.",
-        productImpactSnapshot: {
-          stageLabel: "YC-backed (Seed)",
-          dailyReachLabel: "~100k/day",
-          revenueLabel: "$0 → $150K ARR",
-        },
+          "Powered by Bujo: live video and co-browsing embedded in retailers’ SSR storefronts; more at getbujo.com.",
         chapterIllustration: {
           webpSrc: "/get-wingman.webp",
           pngSrc: "/get-wingman.png",
@@ -118,7 +112,7 @@ const portfolioCaseStudies = [
           {
             sectionHeading: "Overview",
             sectionBody:
-              "A multi-tenant, cross-platform live video call consultation platform which connects a shopper to a company's sales representative. An owner for the e-commerce business gets an AI Powered Dashboard—a very clean, easy way to understand how sales reps performed and evaluate their sales pitch.",
+              "A multi-tenant, cross-platform live video call consultation platform which connects a shopper to a company's sales representative. An owner for the e-commerce business gets an AI Powered Dashboard: a very clean, easy way to understand how sales reps performed and evaluate their sales pitch.",
           },
           {
             sectionHeading: "Problem",
@@ -131,7 +125,7 @@ const portfolioCaseStudies = [
           },
         ],
         bodyParagraphs: [
-          "Built the first uninterrupted, cross-platform in-browser video calling experience on a Server-Side Rendered e-commerce site. The hard part was not the first paint—it was guided selling: a rep walks a shopper across PDPs, collections, and checkout-style sections, but classic full-page navigations rebuild the whole document, which repeatedly tore down the call surface and created a jarring disconnect mid-conversation.",
+          "Built the first uninterrupted, cross-platform in-browser video calling experience on a Server-Side Rendered e-commerce site. The hard part was not the first paint. It was guided selling: a rep walks a shopper across PDPs, collections, and checkout-style sections, but classic full-page navigations rebuild the whole document, which repeatedly tore down the call surface and created a jarring disconnect mid-conversation.",
           "Designed the experience so the video layer survives those SSR route changes: the call stays attached and continuous while the storefront content around it updates, instead of forcing a re-join after every click.",
           "Created a wrapper on top of the existing third-party video stack so we could deliberately reshape the out-of-the-box UX: instead of two disconnected entry points, both embed surfaces route through our own central launcher icon, so every visitor sees one consistent way to start or join a call.",
           "Refined real-time session state and the operator dashboard so hosts and internal teams can read live and historical usage without digging through noisy raw metrics.",
@@ -141,8 +135,8 @@ const portfolioCaseStudies = [
           "Multi-tab experience for widget users.",
           "Dashboard for mulitiple tenants.",
           "Configurable brandable UI for the widget.",
-          "Cross-platform in-browser video that stays coherent for “rep guides shopper” sessions—not only landing → call.",
-          "Single launcher UX across two legacy widgets—shared affordance, shared telemetry hooks, less user confusion at join time.",
+          "Cross-platform in-browser video that stays coherent for “rep guides shopper” sessions, not only landing → call.",
+          "Single launcher UX across two legacy widgets: shared affordance, shared telemetry hooks, less user confusion at join time.",
           "Reduced ambiguity in the live session lifecycle (join, active call, wrap-up).",
           "Tightened dashboard summaries so success metrics are scannable in under a minute.",
           
@@ -171,21 +165,16 @@ const portfolioCaseStudies = [
         heading: "AI Copilot + Dashboard",
         segmentLabel: "B2B",
         availabilityCaption:
-          "No separate public product page for this copilot (company site: getbujo.com)—it ran as an iframe inside Sprinklr with an in-house AI backend.",
-        productImpactSnapshot: {
-          stageLabel: "YC-backed (Seed)",
-          dailyReachLabel: "~80 agents · ~30k/month conversations",
-          revenueLabel: "~$20k MRR",
-        },
+          "No separate public product page for this copilot (company site: getbujo.com). It ran as an iframe inside Sprinklr with an in-house AI backend.",
         bodyParagraphs: [
-          "Designed and developed an iframe-based copilot embedded in Sprinklr, wired to an in-house AI backend. The rollout supported about 80 sales agents handling on the order of 30,000 conversations per month, with company revenue on the order of $20k MRR from this line.",
-          "Migrated the integration from v1 (RESTful API–driven) to v2 (WebSocket-based) architecture in about four calendar days—reducing chat latency and connection churn for agents under load. That delivery window helped the company secure a long-term contract with LG US.",
-          "Built a proxy path on AWS API Gateway so the iframe widget could work inside Sprinklr’s embedding constraints—routing traffic safely without fighting the platform’s same-origin and widget sandbox rules.",
+          "Designed and developed an iframe-based copilot embedded in Sprinklr, wired to an in-house AI backend.",
+          "Migrated the integration from v1 (RESTful API driven) to v2 (WebSocket-based) architecture, reducing chat latency and connection churn for agents under load.",
+          "Built a proxy path on AWS API Gateway so the iframe widget could work inside Sprinklr’s embedding constraints, routing traffic safely without fighting the platform’s same-origin and widget sandbox rules.",
           "Shipped an AI evaluation dashboard plus an AI QA workflow/system so teams could review model behavior, regressions, and production quality in one place. Reused the same streamable UI architecture used elsewhere in the stack to keep UX consistent and delivery fast.",
         ],
         impactBullets: [
-          "Sprinklr-embedded iframe copilot + in-house AI: ~80 agents, ~30k conversations/month, ~$20k MRR.",
-          "v1 REST → v2 WebSockets in ~4 days; cited as a factor in winning a long-term LG US contract.",
+          "Sprinklr-embedded iframe copilot with an in-house AI backend.",
+          "v1 REST → v2 WebSockets migration for lower chat latency.",
           "AWS API Gateway proxy to bypass iframe/widget restrictions inside Sprinklr.",
           "AI evaluation dashboard + QA workflow; streamable UI reused for speed and visual consistency.",
         ],
@@ -211,7 +200,7 @@ const portfolioCaseStudies = [
         ],
       },
       {
-        heading: "AI Shopping Assistant — Chrome extension",
+        heading: "AI Shopping Assistant: Chrome extension",
         segmentLabel: "B2C",
         productPageLink: {
           url: "https://chromewebstore.google.com/detail/bujo-ai-shopping-assistan/hohpkegbedejmdcebpapfafgcdgjjbnn",
@@ -225,7 +214,7 @@ const portfolioCaseStudies = [
           height: 800,
         },
         bodyParagraphs: [
-          "Shipped Bujo AI Shopping Assistant as a consumer-facing Chrome extension listed on the Chrome Web Store—bringing in-page help into everyday browsing without a heavy install story. I architected the extension and built out the frontend layers so the product felt cohesive across surfaces rather than bolted on.",
+          "Shipped Bujo AI Shopping Assistant as a consumer-facing Chrome extension listed on the Chrome Web Store, bringing in-page help into everyday browsing without a heavy install story. I architected the extension and built out the frontend layers so the product felt cohesive across surfaces rather than bolted on.",
           "The experience leans on a streamable UI over WebSocket with durable client state, guarded by explicit error paths and timeout handling when the network or host page misbehaves. An LRU-backed cache keeps repeat interactions snappy, and I contributed to shared extraction and parsing logic so the assistant could reason over real page content safely.",
         ],
         impactBullets: [

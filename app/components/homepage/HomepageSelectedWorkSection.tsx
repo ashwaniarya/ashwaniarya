@@ -1,3 +1,4 @@
+import { HorizontalSnapScroller } from "@/app/components/homepage/HorizontalSnapScroller";
 import { SelectedWorkTile } from "@/app/components/homepage/SelectedWorkTile";
 import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
@@ -59,17 +60,19 @@ export function HomepageSelectedWorkSection() {
           ))}
         </header>
 
-        <ul className={homepageSelectedWorkSectionPolicy.tilesListClassName}>
-          {work.map((item, index) => (
-            <li
-              key={item.slug}
-              className={`min-w-0 ${homepageScrollHighlightPolicy.staggerItemClassName}`}
-              style={{ transitionDelay: `${index * homepageScrollHighlightPolicy.staggerStepMilliseconds}ms` }}
-            >
-              <SelectedWorkTile work={item} />
-            </li>
-          ))}
-        </ul>
+        <HorizontalSnapScroller label="Selected work, scroll sideways for more">
+          <ul className={homepageSelectedWorkSectionPolicy.tilesListClassName}>
+            {work.map((item, index) => (
+              <li
+                key={item.slug}
+                className={`${homepageSelectedWorkSectionPolicy.tileListItemClassName} ${homepageScrollHighlightPolicy.staggerItemClassName}`}
+                style={{ transitionDelay: `${index * homepageScrollHighlightPolicy.staggerStepMilliseconds}ms` }}
+              >
+                <SelectedWorkTile work={item} />
+              </li>
+            ))}
+          </ul>
+        </HorizontalSnapScroller>
       </MeshGlowBackdrop>
     </ScrollHighlightSection>
   );

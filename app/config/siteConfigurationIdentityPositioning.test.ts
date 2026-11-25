@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 
 import { homepageHeroCopyConfiguration } from "@/app/config/homepageConfiguration";
-import { siteIdentityConfiguration } from "@/app/config/siteConfiguration";
+import { footerConfiguration, siteIdentityConfiguration } from "@/app/config/siteConfiguration";
 
 describe("siteIdentityConfiguration positioning", () => {
-  it("presents the owner as an independent contract engineer in JSON-LD and the share card", () => {
-    expect(siteIdentityConfiguration.ownerJobTitle).toBe("Independent Contract Engineer");
+  it("presents the owner as a product engineer in JSON-LD and the share card", () => {
+    expect(siteIdentityConfiguration.ownerJobTitle).toBe("Product Engineer");
   });
 
   it("carries the backend and infrastructure terms in knowsAbout", () => {
@@ -28,19 +28,31 @@ describe("siteIdentityConfiguration positioning", () => {
     expect(siteIdentityConfiguration.homepageTitle.length).toBeLessThanOrEqual(60);
   });
 
-  it("opens the hero with the independent contract engineer line", () => {
-    expect(homepageHeroCopyConfiguration.descriptionLines[0]).toMatch(
-      /^Independent contract engineer/,
+  it("opens the hero with the approved product engineer line", () => {
+    expect(homepageHeroCopyConfiguration.descriptionLines[0]).toBe(
+      "Product engineer in Bengaluru, 7+ years. I build products end to end: UI, backend, AI and payments.",
     );
   });
 
-  it("names the current aiclicks engagement in the hero", () => {
-    expect(homepageHeroCopyConfiguration.descriptionLines[1]).toMatch(/aiclicks/i);
+  it("keeps the hero to two lines: positioning, then stack and open-to-work", () => {
+    expect(homepageHeroCopyConfiguration.descriptionLines).toHaveLength(2);
+    expect(homepageHeroCopyConfiguration.descriptionLines[1]).toMatch(/Next\.js/);
+    expect(homepageHeroCopyConfiguration.descriptionLines[1]).toMatch(/Open to remote or Bengaluru/);
   });
 
-  it("does not use job-seeker or relocation wording in the hero", () => {
-    const heroCopy = homepageHeroCopyConfiguration.descriptionLines.join(" ");
-    expect(heroCopy).not.toMatch(/full-time/i);
-    expect(heroCopy).not.toMatch(/relocation/i);
+  it("never presents AIClicks as a current engagement or repeats retired claims", () => {
+    const publicCopy = [
+      ...homepageHeroCopyConfiguration.descriptionLines,
+      siteIdentityConfiguration.homepageTitle,
+      siteIdentityConfiguration.siteDescription,
+      siteIdentityConfiguration.homepageDescription,
+      footerConfiguration.footerCopyrightAttributionLine,
+    ].join(" ");
+    expect(publicCopy).not.toMatch(/since Apr 2026/i);
+    expect(publicCopy).not.toMatch(/YC P26/);
+    expect(publicCopy).not.toMatch(/100k\/day|100k sessions a day/i);
+    expect(publicCopy).not.toMatch(/150K ARR/i);
+    expect(publicCopy).not.toMatch(/30k conversations|20k MRR/i);
+    expect(publicCopy).not.toContain("\u2014");
   });
 });

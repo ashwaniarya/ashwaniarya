@@ -97,7 +97,7 @@ const portfolioSelectedWork = [
     summary:
       "Inventory and invoicing for parts shops. Express, Prisma, PostgreSQL, Next.js 15, and OIDC with PKCE. Deadlock-free invoices in one transaction with ordered locks; a single-origin proxy fixed DNS failures on Indian carriers.",
     liveUrl: "https://github.com/ashwaniarya/shop-management",
-    stackLabels: ["Next.js 15", "Express", "Prisma", "OIDC"],
+    stackLabels: ["Next.js 15", "Express", "Prisma"],
     tilePreview: {
       previewKind: "screenshot",
       webpSrc: "/images/work/shop-management.webp",

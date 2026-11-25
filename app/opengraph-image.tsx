@@ -112,8 +112,8 @@ export default async function OpenGraphImage() {
               display: "flex",
             }}
           >
-            Independent contract engineer. Four-time founding engineer: live
-            video at ~100k sessions a day, $0 → $150K ARR at getbujo.
+            Product engineer in Bengaluru, 7+ years. I build products end to
+            end: UI, backend, AI and payments.
           </div>
         </div>
 

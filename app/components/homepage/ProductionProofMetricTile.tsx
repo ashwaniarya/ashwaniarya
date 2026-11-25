@@ -12,7 +12,7 @@ export type ProductionProofMetricTileProps = Readonly<{
 
 export function ProductionProofMetricTile({ metric }: ProductionProofMetricTileProps) {
   return (
-    <Card className="h-full">
+    <Card className={homepageProductionProofSectionPolicy.metricTileCardClassName}>
       <div className={homepageProductionProofSectionPolicy.metricTileStackClassName}>
         <div className={homepageProductionProofSectionPolicy.metricLabelRowClassName}>
           <span

@@ -33,7 +33,7 @@ describe("CaseStudyProductImpactSnapshot", () => {
   it("renders Stage and Daily reach and omits Revenue when revenueLabel is undefined", () => {
     const html = renderToStaticMarkup(
       <CaseStudyProductImpactSnapshot
-        snapshot={{ stageLabel: "Early", dailyReachLabel: "~100k/day" }}
+        snapshot={{ stageLabel: "Early", dailyReachLabel: "Example reach" }}
       />,
     );
     expect(html).toContain(
@@ -50,7 +50,7 @@ describe("CaseStudyProductImpactSnapshot", () => {
       caseStudyProductChapterPolicy.impactSnapshotMetricLabelRailClassName,
     );
     expect(html).toContain("Early");
-    expect(html).toContain("~100k/day");
+    expect(html).toContain("Example reach");
     expect(html).toContain("Stage");
     expect(html).toContain("Daily reach");
     expect(html).not.toContain("Revenue");
@@ -63,13 +63,13 @@ describe("CaseStudyProductImpactSnapshot", () => {
       <CaseStudyProductImpactSnapshot
         snapshot={{
           stageLabel: "Early",
-          dailyReachLabel: "~80 agents",
-          revenueLabel: "~$20k MRR",
+          dailyReachLabel: "Example agents",
+          revenueLabel: "Example revenue",
         }}
       />,
     );
     expect(html).toContain("Revenue");
-    expect(html).toContain("~$20k MRR");
+    expect(html).toContain("Example revenue");
   });
 
   it("renders nothing when snapshot has no non-empty values", () => {
