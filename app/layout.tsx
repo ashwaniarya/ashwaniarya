@@ -95,7 +95,7 @@ export default function RootLayout({
             gtag('config', 'G-71D4ZMWTJR');
           `}
         </Script>
-        <div className="flex min-h-dvh flex-col">
+        <div className="@container flex min-h-dvh flex-col">
           <SiteHeader />
           <div className="flex min-h-0 flex-1 flex-col">{children}</div>
           <SiteFooter />

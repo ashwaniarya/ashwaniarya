@@ -81,6 +81,41 @@ html {
   }
 }
 
+/*
+ * Full-bleed carousels. `carousel-bleed-frame` is a size container sitting where the cards should
+ * align (the section content box); it records the page width (100cqw of the layout container) in a
+ * registered length, so it resolves to pixels there. The scroller then bleeds out by
+ * (page width - frame width) / 2 on each side and pads back by the same amount, with matching
+ * scroll padding, so cards start aligned with the heading but slide out past the viewport edge.
+ * Without @property support the bleed falls back to 0 (the old contained track).
+ */
+@property --carousel-page-width {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@utility carousel-bleed-frame {
+  container-type: inline-size;
+  --carousel-page-width: 100cqw;
+}
+
+@utility carousel-bleed {
+  --carousel-bleed: max(0px, calc((var(--carousel-page-width) - 100cqw) / 2));
+  margin-inline: calc(-1 * var(--carousel-bleed));
+  padding-inline: var(--carousel-bleed);
+  scroll-padding-inline: var(--carousel-bleed);
+}
+
+/* Hide the scrollbar on every engine; scrolling, snap, keys and touch still work. */
+@utility scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @theme inline {
   --font-sans: var(--font-plus-jakarta-sans);
   --font-mono: var(--font-geist-mono);

@@ -1,6 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type MouseEvent,
+  type PointerEvent,
+  type ReactNode,
+} from "react";
 import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
 
 import { homepageSelectedWorkSectionPolicy } from "@/app/constants/policy";
@@ -17,9 +26,20 @@ export function measureCardPitch(scroller: HTMLElement): number {
   return scroller.clientWidth * 0.85;
 }
 
+/** A mouse press becomes a drag only past this distance, so plain clicks on links still work. */
+const dragStartThresholdPx = 6;
+/** A drag shorter than this springs back to the card it started on. */
+const dragStepThresholdPx = 40;
+const dragExcludedTargetSelector = "input, textarea, select, [contenteditable], dialog";
+
+function scrollBehavior(): ScrollBehavior {
+  return typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+}
+
 /**
  * Focusable scroll-snap region (snap lives on this scrolling element). Touch swipes and trackpads
- * scroll it natively, arrow keys scroll it once focused, and prev/next step one card pitch.
+ * scroll it natively, arrow keys scroll it once focused, prev/next step one card pitch, and a mouse
+ * drag moves it and settles on a card on release (snap is paused while dragging).
  * Prev is disabled at the start and Next at the end.
  */
 export function HorizontalSnapScroller({ label, children }: HorizontalSnapScrollerProps) {
@@ -51,13 +71,60 @@ export function HorizontalSnapScroller({ label, children }: HorizontalSnapScroll
   const scrollByOneCard = (direction: 1 | -1) => {
     const scroller = scrollerRef.current;
     if (!scroller) return;
-    scroller.scrollBy({ left: direction * measureCardPitch(scroller), behavior: "smooth" });
+    scroller.scrollBy({ left: direction * measureCardPitch(scroller), behavior: scrollBehavior() });
+  };
+
+  const dragRef = useRef<{ pointerId: number; startX: number; startScroll: number; captured: boolean } | null>(null);
+  const suppressNextClickRef = useRef(false);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const onPointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (
+      event.pointerType !== "mouse" ||
+      event.button !== 0 ||
+      !scrollerRef.current ||
+      (event.target as Element).closest?.(dragExcludedTargetSelector)
+    )
+      return;
+    dragRef.current = { pointerId: event.pointerId, startX: event.clientX, startScroll: scrollerRef.current.scrollLeft, captured: false };
+  };
+  const onPointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    if (!drag || !scrollerRef.current) return;
+    const deltaX = event.clientX - drag.startX;
+    if (!drag.captured) {
+      if (Math.abs(deltaX) < dragStartThresholdPx) return;
+      drag.captured = true;
+      event.currentTarget.setPointerCapture(drag.pointerId);
+      setIsDragging(true);
+    }
+    scrollerRef.current.scrollLeft = drag.startScroll - deltaX;
+  };
+  const endDrag = (event: PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    const scroller = scrollerRef.current;
+    dragRef.current = null;
+    if (!drag || !drag.captured || !scroller) return;
+    setIsDragging(false);
+    // The click that follows a real drag must not open the link under the cursor.
+    suppressNextClickRef.current = true;
+    const pitch = measureCardPitch(scroller);
+    const deltaX = event.clientX - drag.startX;
+    const cards = Math.abs(deltaX) < dragStepThresholdPx ? 0 : Math.max(1, Math.round(Math.abs(deltaX) / pitch));
+    const startCard = Math.round(drag.startScroll / pitch);
+    scroller.scrollTo({ left: (startCard + (deltaX < 0 ? cards : -cards)) * pitch, behavior: scrollBehavior() });
+  };
+  const onClickCapture = (event: MouseEvent<HTMLDivElement>) => {
+    if (!suppressNextClickRef.current) return;
+    suppressNextClickRef.current = false;
+    event.preventDefault();
+    event.stopPropagation();
   };
 
   const policy = homepageSelectedWorkSectionPolicy;
 
   return (
-    <div>
+    <div className={policy.scrollerFrameClassName}>
       <div
         ref={scrollerRef}
         id={regionId}
@@ -65,6 +132,13 @@ export function HorizontalSnapScroller({ label, children }: HorizontalSnapScroll
         aria-label={label}
         tabIndex={0}
         className={policy.scrollerClassName}
+        data-dragging={isDragging ? "true" : undefined}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onClickCapture={onClickCapture}
+        onDragStart={(event) => event.preventDefault()}
         data-test="selected-work-scroller"
       >
         {children}

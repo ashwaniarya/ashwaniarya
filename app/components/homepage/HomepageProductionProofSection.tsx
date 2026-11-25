@@ -23,8 +23,9 @@ export function HomepageProductionProofSection() {
       data-test="homepage-production-proof-section"
     >
       <MeshGlowBackdrop
+        bleed
         className={[
-          meshEditorialSurfacePolicy.shellBaseClassName,
+          meshEditorialSurfacePolicy.carouselShellBaseClassName,
           meshEditorialSurfacePolicy.homepageMeshShellShadowClassName,
           meshEditorialSurfacePolicy.homepageProjectsPaddingClassName,
         ].join(" ")}

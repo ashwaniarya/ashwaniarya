@@ -51,10 +51,10 @@ describe("HomepageProductionProofSection", () => {
   it("pages eight cards as two 2x2 pages below lg and two 3x2 pages at lg", () => {
     expect(homepageProductionProofMetricsConfiguration).toHaveLength(8);
     expect(renderedMarkup).toContain(
-      'class="lg:hidden" data-test="outcomes-carousel" data-layout="compact" data-page-size="4" data-page-count="2"',
+      'class="carousel-bleed-frame lg:hidden" data-test="outcomes-carousel" data-layout="compact" data-page-size="4" data-page-count="2"',
     );
     expect(renderedMarkup).toContain(
-      'class="hidden lg:block" data-test="outcomes-carousel" data-layout="wide" data-page-size="6" data-page-count="2"',
+      'class="carousel-bleed-frame hidden lg:block" data-test="outcomes-carousel" data-layout="wide" data-page-size="6" data-page-count="2"',
     );
     expect(renderedMarkup.split('data-test="outcomes-carousel-page"').length - 1).toBe(4);
     expect(renderedMarkup.split('data-test="outcomes-carousel-controls"').length - 1).toBe(2);
