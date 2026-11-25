@@ -25,7 +25,10 @@ export function ServiceCard({ service }: Readonly<{ service: ContraServiceRecord
         ))}
         {hiddenTagCount > 0 ? (
           <li className={policy.tagClassName} title={service.tags.slice(maxVisibleTags).join(", ")}>
-            +{hiddenTagCount}
+            <span aria-hidden="true">+{hiddenTagCount}</span>
+            <span className="sr-only" data-test="service-hidden-tags">
+              more tags: {service.tags.slice(maxVisibleTags).join(", ")}
+            </span>
           </li>
         ) : null}
       </ul>

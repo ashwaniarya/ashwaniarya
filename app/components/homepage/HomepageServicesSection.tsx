@@ -2,6 +2,7 @@ import { CustomApplicationCard } from "@/app/components/homepage/CustomApplicati
 import { OutcomesCarousel } from "@/app/components/homepage/OutcomesCarousel";
 import { ScrollHighlightSection } from "@/app/components/homepage/ScrollHighlightSection";
 import { ServiceCard } from "@/app/components/homepage/ServiceCard";
+import { ServiceInquiryDialogProvider } from "@/app/components/homepage/ServiceInquiryDialog";
 import { EditorialAccentMark } from "@/app/components/layout/EditorialAccentMark";
 import { MeshGlowBackdrop } from "@/app/components/layout/MeshGlowBackdrop";
 import {
@@ -45,6 +46,7 @@ export function HomepageServicesSection() {
             </BodyText>
           ))}
         </header>
+        <ServiceInquiryDialogProvider>
         <OutcomesCarousel
           label={copy.carouselLabel}
           pageNoun={copy.carouselPageNoun}
@@ -56,6 +58,7 @@ export function HomepageServicesSection() {
             <CustomApplicationCard key="customApplication" />,
           ]}
         </OutcomesCarousel>
+        </ServiceInquiryDialogProvider>
       </MeshGlowBackdrop>
     </ScrollHighlightSection>
   );

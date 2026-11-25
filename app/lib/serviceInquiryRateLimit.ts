@@ -43,5 +43,6 @@ export function createServiceInquiryRateLimiter(
 /** First address in x-forwarded-for (set by Vercel), else x-real-ip, else a shared bucket. */
 export function getClientKey(headers: Headers): string {
   const forwarded = headers.get("x-forwarded-for")?.split(",")[0]?.trim();
-  return forwarded || headers.get("x-real-ip")?.trim() || "unknown";
+  // Cap the key so a long spoofed header cannot inflate the map (Vercel overwrites x-forwarded-for).
+  return (forwarded || headers.get("x-real-ip")?.trim() || "unknown").slice(0, 64);
 }

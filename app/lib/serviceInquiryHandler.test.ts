@@ -2,7 +2,11 @@ import { describe, expect, it, vi } from "vitest";
 
 import { createResendServiceInquiryDeliverer } from "@/app/lib/serviceInquiryDelivery";
 import { handleServiceInquiry } from "@/app/lib/serviceInquiryHandler";
-import { createServiceInquiryRateLimiter } from "@/app/lib/serviceInquiryRateLimit";
+import {
+  createServiceInquiryRateLimiter,
+  getClientKey,
+  serviceInquiryRateLimitConfiguration,
+} from "@/app/lib/serviceInquiryRateLimit";
 
 const valid = {
   name: "Test Person",
@@ -95,3 +99,73 @@ describe("createResendServiceInquiryDeliverer", () => {
     expect(await deliver(valid)).toEqual({ delivered: false, reason: "provider_error" });
   });
 });
+
+describe("service inquiry limits (G7)", () => {
+  const raw = (body: string, headers: Record<string, string> = {}) =>
+    new Request("http://localhost/api/service-inquiry", {
+      method: "POST",
+      headers: { "content-type": "application/json", ...headers },
+      body,
+    });
+  const allow = { isAllowed: () => true, deliver: vi.fn(async () => ({ delivered: true as const })) };
+
+  it("rejects a body over 10,000 characters with 413, before reading it when content-length says so", async () => {
+    const big = JSON.stringify({ ...valid, need: "x".repeat(10_001) });
+    expect((await handleServiceInquiry(raw(big), allow)).status).toBe(413);
+    const lying = raw(JSON.stringify(valid), { "content-length": "10001" });
+    const text = vi.spyOn(lying, "text");
+    expect((await handleServiceInquiry(lying, allow)).status).toBe(413);
+    expect(text).not.toHaveBeenCalled();
+  });
+
+  it("rejects a JSON array with 400 and anything that is not JSON with 415", async () => {
+    expect((await handleServiceInquiry(raw("[1,2]"), allow)).status).toBe(400);
+    expect((await handleServiceInquiry(raw(JSON.stringify(valid), { "content-type": "text/plain" }), allow)).status).toBe(415);
+  });
+
+  it("keys the rate limit on the first X-Forwarded-For address, capped at 64 characters", () => {
+    expect(getClientKey(new Headers({ "x-forwarded-for": "1.1.1.1, 2.2.2.2" }))).toBe("1.1.1.1");
+    expect(getClientKey(new Headers({ "x-forwarded-for": "a".repeat(500) }))).toHaveLength(64);
+    expect(getClientKey(new Headers())).toBe("unknown");
+  });
+
+  it("evicts the oldest client once maxTrackedClients is exceeded", () => {
+    const isAllowed = createServiceInquiryRateLimiter({ maxRequestsPerWindow: 1, windowMilliseconds: 60_000, maxTrackedClients: 2 });
+    expect(isAllowed("a", 0)).toBe(true);
+    expect(isAllowed("b", 1)).toBe(true);
+    expect(isAllowed("a", 2)).toBe(false);
+    expect(isAllowed("c", 3)).toBe(true); // map now holds 3 > 2, so "a" (oldest) is dropped
+    expect(isAllowed("a", 4)).toBe(true);
+  });
+
+  it("uses a 10 minute window of 3 requests", () => {
+    expect(serviceInquiryRateLimitConfiguration.windowMilliseconds).toBe(10 * 60 * 1000);
+    expect(serviceInquiryRateLimitConfiguration.maxRequestsPerWindow).toBe(3);
+    const isAllowed = createServiceInquiryRateLimiter();
+    for (let attempt = 0; attempt < 3; attempt += 1) expect(isAllowed("x", 0)).toBe(true);
+    expect(isAllowed("x", 10 * 60 * 1000 - 1)).toBe(false);
+    expect(isAllowed("x", 10 * 60 * 1000)).toBe(true);
+  });
+});
+
+describe("Resend delivery hardening", () => {
+  it("sends to SERVICE_INQUIRY_TO when set, with a 10s timeout signal", async () => {
+    const fetchImplementation = vi.fn(async () => new Response("{}", { status: 200 }));
+    const deliver = createResendServiceInquiryDeliverer(
+      { RESEND_API_KEY: "k", SERVICE_INQUIRY_TO: "inbox@example.com" },
+      fetchImplementation as unknown as typeof fetch,
+    );
+    await deliver(valid);
+    const [, init] = fetchImplementation.mock.calls[0] as unknown as [string, RequestInit];
+    expect(JSON.parse(init.body as string).to).toEqual(["inbox@example.com"]);
+    expect(init.signal).toBeInstanceOf(AbortSignal);
+  });
+
+  it("reports a provider error when the request aborts (timeout)", async () => {
+    const deliver = createResendServiceInquiryDeliverer({ RESEND_API_KEY: "k" }, (async () => {
+      throw new DOMException("The operation timed out.", "TimeoutError");
+    }) as unknown as typeof fetch);
+    expect(await deliver(valid)).toEqual({ delivered: false, reason: "provider_error" });
+  });
+});
+

@@ -35,7 +35,8 @@ export const homepageProductionProofSectionCopyConfiguration = {
   sectionIntroLines: [
     "Numbers from getbujo, AIClicks and Tap Invest. The roles behind them are in Experience below.",
   ],
-  carouselLabel: "Outcomes achieved",
+  /** Differs from the section heading so the two landmarks have unique names (axe landmark-unique). */
+  carouselLabel: "Outcome cards",
   builtAtPillPrefix: "Built at",
   inProductionPillLabel: "In production",
 } as const;

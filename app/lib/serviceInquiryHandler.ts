@@ -20,6 +20,10 @@ export async function handleServiceInquiry(request: Request, dependencies: Servi
   if (!dependencies.isAllowed(getClientKey(request.headers))) {
     return json(429, { ok: false, error: "rate_limited", message: "Too many requests. Please try again in a few minutes." });
   }
+  if (!(request.headers.get("content-type") ?? "").toLowerCase().startsWith("application/json")) {
+    return json(415, { ok: false, error: "unsupported_media_type" });
+  }
+  if (Number(request.headers.get("content-length") ?? "0") > maxBodyBytes) return json(413, { ok: false, error: "too_large" });
   const rawText = await request.text();
   if (rawText.length > maxBodyBytes) return json(413, { ok: false, error: "too_large" });
   let raw: Record<string, unknown>;

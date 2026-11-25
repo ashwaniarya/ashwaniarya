@@ -21,7 +21,8 @@ export const homepageServicesSectionCopyConfiguration = {
   sectionIntroLines: [
     "Fixed-price builds on Contra, run the way I work as a product engineer and builder: take the problem, ship the first version, then iterate on outcomes. Need something else? Ask for a custom application.",
   ],
-  carouselLabel: "Services",
+  /** Differs from the section heading so the two landmarks have unique names (axe landmark-unique). */
+  carouselLabel: "Service cards",
   carouselPageNoun: "services",
   bookLinkLabel: "Book on Contra",
   /** Visible tags per card; the rest show as "+N". */
@@ -30,6 +31,8 @@ export const homepageServicesSectionCopyConfiguration = {
     title: "Custom application",
     summary: "Something that does not fit a package? Tell me what you need to build and I will reply by email.",
     buttonLabel: "Start an inquiry",
+    privacyLine: "Your message goes to my inbox by email. I use it only to reply to you.",
+    requiredFieldsLine: "All fields are required.",
   },
 } as const;
 

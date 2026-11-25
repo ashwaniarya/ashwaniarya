@@ -30,4 +30,14 @@ describe("HomepageServicesSection", () => {
     expect(markup).toContain('aria-haspopup="dialog"');
     expect(markup).toContain('name="company_website"');
   });
+
+  it("renders one inquiry dialog with the privacy and required-fields lines, and names hidden tags for screen readers", () => {
+    expect(count("<dialog")).toBe(1);
+    expect(markup).toContain("Your message goes to my inbox by email. I use it only to reply to you.");
+    expect(markup).toContain("All fields are required.");
+    expect(markup).not.toMatch(/Resend/);
+    expect(markup).toContain("more tags: OpenAI, Python, Redis, AI Agent Developer, Artificial Intelligence");
+    expect(markup).toContain('aria-label="Service cards"');
+  });
 });
+

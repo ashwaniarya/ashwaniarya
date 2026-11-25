@@ -80,7 +80,7 @@ describe("homepageProductionProofConfiguration", () => {
 
   it("names the section with Ashwani's phrase", () => {
     expect(homepageProductionProofSectionCopyConfiguration.sectionHeading).toBe("Outcomes achieved");
-    expect(homepageProductionProofSectionCopyConfiguration.carouselLabel).toBe("Outcomes achieved");
+    expect(homepageProductionProofSectionCopyConfiguration.carouselLabel).toBe("Outcome cards");
   });
 
   it("backs the Tap Invest frontend and ~10x cards with lines in the Tap Invest timeline entry", () => {

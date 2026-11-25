@@ -4,7 +4,8 @@ import type { ServiceInquiryInput } from "@/app/config/serviceInquiry";
  * Delivers an inquiry by email through Resend's HTTP API (free tier, no SDK dependency).
  * Needs RESEND_API_KEY in the Vercel environment. Until a domain is verified in Resend, the
  * sender is Resend's shared test address, which can only deliver to the Resend account's own
- * email, so the account must be created with SERVICE_INQUIRY_TO_EMAIL (default below).
+ * email, so the account must be created with the SERVICE_INQUIRY_TO address (default below).
+ * Server-only variables: RESEND_API_KEY, SERVICE_INQUIRY_TO, SERVICE_INQUIRY_FROM (see .env.example).
  */
 export const serviceInquiryDeliveryDefaults = {
   toEmail: "ashwaniparker@gmail.com",
@@ -44,9 +45,10 @@ export function createResendServiceInquiryDeliverer(
       const response = await fetchImplementation(serviceInquiryDeliveryDefaults.resendEndpoint, {
         method: "POST",
         headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+        signal: AbortSignal.timeout(10_000),
         body: JSON.stringify({
-          from: environment.SERVICE_INQUIRY_FROM_EMAIL || serviceInquiryDeliveryDefaults.fromEmail,
-          to: [environment.SERVICE_INQUIRY_TO_EMAIL || serviceInquiryDeliveryDefaults.toEmail],
+          from: environment.SERVICE_INQUIRY_FROM || serviceInquiryDeliveryDefaults.fromEmail,
+          to: [environment.SERVICE_INQUIRY_TO || serviceInquiryDeliveryDefaults.toEmail],
           reply_to: inquiry.email,
           subject,
           text,

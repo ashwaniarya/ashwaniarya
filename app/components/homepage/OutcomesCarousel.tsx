@@ -36,7 +36,7 @@ const dragThresholdPx = 40;
 /** A mouse press only becomes a drag (and captures the pointer) after this much movement, so plain clicks reach links and buttons in cards. */
 const dragStartThresholdPx = 6;
 /** Presses that start on these never begin a drag: text fields and selects keep their own mouse behaviour. */
-const dragExcludedTargetSelector = "input, textarea, select, [contenteditable]";
+const dragExcludedTargetSelector = "input, textarea, select, [contenteditable], dialog";
 
 function prefersReducedMotion(): boolean {
   return (
@@ -152,7 +152,8 @@ function OutcomesCarouselTrack({
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (!hasMultiplePages) return;
+    // Only keys pressed on the region itself page it: fields and dialogs inside cards keep their own keys.
+    if (!hasMultiplePages || event.target !== event.currentTarget) return;
     const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
     if (step !== undefined) {
       event.preventDefault();

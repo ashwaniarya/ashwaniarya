@@ -39,7 +39,7 @@ export type ServiceInquiryErrors = Partial<Record<ServiceInquiryField, string>>;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export function normaliseServiceInquiry(raw: Record<string, unknown>): ServiceInquiryInput {
-  const text = (key: ServiceInquiryField) => (typeof raw[key] === "string" ? (raw[key] as string).trim() : "");
+  const text = (key: ServiceInquiryField) => (typeof raw[key] === "string" ? (raw[key] as string).replace(key === "need" ? /[\u0000-\u0008\u000b-\u001f\u007f]/g : /[\u0000-\u001f\u007f]/g, " ").trim() : "");
   return { name: text("name"), email: text("email"), need: text("need"), budget: text("budget"), timeline: text("timeline") };
 }
 
