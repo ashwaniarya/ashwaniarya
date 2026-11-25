@@ -277,7 +277,7 @@ export const homepageSelectedWorkSectionPolicy = {
   tileListItemClassName: "w-[80%] shrink-0 snap-start snap-always sm:w-[17rem]",
   scrollControlsRowClassName: "mt-2 flex items-center justify-end gap-2",
   scrollControlButtonClassName:
-    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-textSecondary/70 text-textPrimary transition-colors hover:border-accentPrimary hover:text-accentPrimary disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-textSecondary/70 disabled:hover:text-textPrimary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
+    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-textSecondary/70 text-textPrimary transition-colors hover:border-accentPrimary hover:text-accentPrimary aria-disabled:cursor-not-allowed aria-disabled:opacity-40 aria-disabled:hover:border-textSecondary/70 aria-disabled:hover:text-textPrimary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentPrimary",
   /** 3:4 card. The primary link stretches over the whole card; secondary links sit above it. */
   tileCardClassName: [
     "group relative flex aspect-[3/4] w-full flex-col overflow-hidden rounded-xl",

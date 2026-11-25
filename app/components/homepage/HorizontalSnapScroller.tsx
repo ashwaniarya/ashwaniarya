@@ -40,7 +40,7 @@ function scrollBehavior(): ScrollBehavior {
  * Focusable scroll-snap region (snap lives on this scrolling element). Touch swipes and trackpads
  * scroll it natively, arrow keys scroll it once focused, prev/next step one card pitch, and a mouse
  * drag moves it and settles on a card on release (snap is paused while dragging).
- * Prev is disabled at the start and Next at the end.
+ * Prev is aria-disabled at the start and Next at the end (they stay focusable, so keyboard focus is not lost).
  */
 export function HorizontalSnapScroller({ label, children }: HorizontalSnapScrollerProps) {
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -106,8 +106,9 @@ export function HorizontalSnapScroller({ label, children }: HorizontalSnapScroll
     dragRef.current = null;
     if (!drag || !drag.captured || !scroller) return;
     setIsDragging(false);
-    // The click that follows a real drag must not open the link under the cursor.
-    suppressNextClickRef.current = true;
+    // The click that follows a real drag must not open the link under the cursor. A cancelled pointer
+    // gets no click, so only a release arms the guard (otherwise the next real click would be eaten).
+    suppressNextClickRef.current = event.type === "pointerup";
     const pitch = measureCardPitch(scroller);
     const deltaX = event.clientX - drag.startX;
     const cards = Math.abs(deltaX) < dragStepThresholdPx ? 0 : Math.max(1, Math.round(Math.abs(deltaX) / pitch));
@@ -148,9 +149,11 @@ export function HorizontalSnapScroller({ label, children }: HorizontalSnapScroll
           type="button"
           aria-label="Previous project"
           aria-controls={regionId}
-          disabled={atStart}
+          aria-disabled={atStart}
           className={policy.scrollControlButtonClassName}
-          onClick={() => scrollByOneCard(-1)}
+          onClick={() => {
+            if (!atStart) scrollByOneCard(-1);
+          }}
         >
           <TbChevronLeft aria-hidden className="h-5 w-5" />
         </button>
@@ -158,9 +161,11 @@ export function HorizontalSnapScroller({ label, children }: HorizontalSnapScroll
           type="button"
           aria-label="Next project"
           aria-controls={regionId}
-          disabled={atEnd}
+          aria-disabled={atEnd}
           className={policy.scrollControlButtonClassName}
-          onClick={() => scrollByOneCard(1)}
+          onClick={() => {
+            if (!atEnd) scrollByOneCard(1);
+          }}
         >
           <TbChevronRight aria-hidden className="h-5 w-5" />
         </button>

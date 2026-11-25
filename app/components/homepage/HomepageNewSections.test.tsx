@@ -47,7 +47,8 @@ describe("HomepageSelectedWorkSection", () => {
     const regionId = scrollerTag.match(/id="([^"]+)"/)?.[1];
     expect(regionId).toBeTruthy();
     expect(markup.match(new RegExp(`aria-controls="${regionId}"`, "g"))).toHaveLength(2);
-    expect(markup).toMatch(/aria-label="Previous project"[^>]*disabled=""|disabled=""[^>]*aria-label="Previous project"/);
+    expect(markup).toMatch(/aria-label="Previous project"[^>]*aria-disabled="true"|aria-disabled="true"[^>]*aria-label="Previous project"/);
+    expect(markup).not.toMatch(/<button[^>]*\sdisabled=""/);
   });
 });
 

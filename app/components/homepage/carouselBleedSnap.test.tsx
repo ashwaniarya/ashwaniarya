@@ -58,7 +58,7 @@ describe("carousel bleed and snap styles", () => {
     const rule = globalsCss.slice(globalsCss.indexOf("@utility carousel-bleed {"));
     expect(rule).toMatch(/--carousel-bleed:\s*max\(0px, calc\(\(var\(--carousel-page-width\) - 100cqw\) \/ 2\)\)/);
     expect(rule).toMatch(/margin-inline:\s*calc\(-1 \* var\(--carousel-bleed\)\)/);
-    expect(rule).toMatch(/padding-inline:\s*var\(--carousel-bleed\)/);
+    expect(rule).toMatch(/^\s*padding-inline:\s*var\(--carousel-bleed\)/m);
     expect(rule).toMatch(/scroll-padding-inline:\s*var\(--carousel-bleed\)/);
     // The page width comes from the layout container, which excludes the vertical scrollbar.
     expect(layoutSource).toContain('<div className="@container flex min-h-dvh flex-col">');
@@ -95,6 +95,7 @@ describe("Selected work scroller mouse drag and reduced motion", () => {
   const scrollTo = vi.fn();
   const scrollBy = vi.fn();
   const linkClicks = vi.fn();
+  const setPointerCapture = vi.fn();
 
   beforeAll(() => {
     (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
@@ -105,9 +106,19 @@ describe("Selected work scroller mouse drag and reduced motion", () => {
     window.matchMedia = ((query: string) => ({ matches: query.includes("reduce") ? reduced : false, media: query })) as unknown as typeof window.matchMedia;
     HTMLElement.prototype.scrollTo = scrollTo as unknown as typeof HTMLElement.prototype.scrollTo;
     HTMLElement.prototype.scrollBy = scrollBy as unknown as typeof HTMLElement.prototype.scrollBy;
-    HTMLElement.prototype.setPointerCapture = vi.fn();
+    HTMLElement.prototype.setPointerCapture = setPointerCapture;
     Object.defineProperty(HTMLElement.prototype, "clientWidth", { configurable: true, get: () => 400 });
     Object.defineProperty(HTMLElement.prototype, "scrollWidth", { configurable: true, get: () => 1000 });
+    const scrollLefts = new WeakMap<HTMLElement, number>();
+    Object.defineProperty(HTMLElement.prototype, "scrollLeft", {
+      configurable: true,
+      get(this: HTMLElement) {
+        return scrollLefts.get(this) ?? 0;
+      },
+      set(this: HTMLElement, value: number) {
+        scrollLefts.set(this, value);
+      },
+    });
     Object.defineProperty(HTMLElement.prototype, "offsetLeft", {
       configurable: true,
       get(this: HTMLElement) {
@@ -120,6 +131,7 @@ describe("Selected work scroller mouse drag and reduced motion", () => {
     scrollTo.mockClear();
     scrollBy.mockClear();
     linkClicks.mockClear();
+    setPointerCapture.mockClear();
     container = document.createElement("div");
     document.body.append(container);
     root = createRoot(container);
@@ -130,7 +142,9 @@ describe("Selected work scroller mouse drag and reduced motion", () => {
             <li>
               <a href="#one" onClick={(event) => { event.preventDefault(); linkClicks(); }}>One</a>
             </li>
-            <li>Two</li>
+            <li>
+              <input aria-label="Field" />
+            </li>
           </ul>
         </HorizontalSnapScroller>,
       ),
@@ -142,9 +156,9 @@ describe("Selected work scroller mouse drag and reduced motion", () => {
   });
 
   const scroller = () => container.querySelector<HTMLElement>('[data-test="selected-work-scroller"]')!;
-  function pointer(target: Element, type: string, clientX: number) {
-    const event = new MouseEvent(type, { bubbles: true, cancelable: true, clientX, button: 0 });
-    Object.defineProperty(event, "pointerType", { value: "mouse" });
+  function pointer(target: Element, type: string, clientX: number, pointerType = "mouse", button = 0) {
+    const event = new MouseEvent(type, { bubbles: true, cancelable: true, clientX, button });
+    Object.defineProperty(event, "pointerType", { value: pointerType });
     Object.defineProperty(event, "pointerId", { value: 1 });
     act(() => {
       target.dispatchEvent(event);
@@ -186,5 +200,47 @@ describe("Selected work scroller mouse drag and reduced motion", () => {
     pointer(link, "pointermove", 100);
     pointer(link, "pointerup", 100);
     expect(scrollTo).toHaveBeenCalledWith({ left: 340, behavior: "auto" });
+  });
+
+  it("drags only for a primary mouse press past 6px outside form fields, captures, moves opposite and blocks dragstart", () => {
+    const link = container.querySelector("a")!;
+    const field = container.querySelector("input")!;
+    for (const [target, type, button] of [[link, "touch", 0], [link, "mouse", 2], [field, "mouse", 0]] as const) {
+      pointer(target, "pointerdown", 300, type, button);
+      pointer(target, "pointermove", 200, type, button);
+      expect(scroller().dataset.dragging).toBeUndefined();
+      pointer(target, "pointerup", 200, type, button);
+    }
+    expect(setPointerCapture).not.toHaveBeenCalled();
+    pointer(link, "pointerdown", 300);
+    pointer(link, "pointermove", 295);
+    expect(setPointerCapture).not.toHaveBeenCalled();
+    pointer(link, "pointermove", 294);
+    expect(setPointerCapture).toHaveBeenCalledTimes(1);
+    expect(scroller().scrollLeft).toBe(6);
+    const dragStart = new Event("dragstart", { bubbles: true, cancelable: true });
+    act(() => {
+      link.dispatchEvent(dragStart);
+    });
+    expect(dragStart.defaultPrevented).toBe(true);
+    pointer(link, "pointerup", 294);
+  });
+
+  it("a cancelled drag resets without eating the next real click", () => {
+    const link = container.querySelector("a")!;
+    pointer(link, "pointerdown", 300);
+    pointer(link, "pointermove", 200);
+    pointer(link, "pointercancel", 200);
+    expect(scroller().dataset.dragging).toBeUndefined();
+    act(() => link.click());
+    expect(linkClicks).toHaveBeenCalledTimes(1);
+  });
+
+  it("keeps Prev focusable with aria-disabled at the start and ignores its click", () => {
+    const prev = container.querySelector<HTMLButtonElement>('[aria-label="Previous project"]')!;
+    expect(prev.getAttribute("aria-disabled")).toBe("true");
+    expect(prev.disabled).toBe(false);
+    act(() => prev.click());
+    expect(scrollBy).not.toHaveBeenCalled();
   });
 });

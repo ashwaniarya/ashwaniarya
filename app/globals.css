@@ -88,6 +88,7 @@ html {
  * (page width - frame width) / 2 on each side and pads back by the same amount, with matching
  * scroll padding, so cards start aligned with the heading but slide out past the viewport edge.
  * Without @property support the bleed falls back to 0 (the old contained track).
+ * Assumes the frame is horizontally centred in the layout container; an off-centre frame would bleed unevenly.
  */
 @property --carousel-page-width {
   syntax: "<length>";
